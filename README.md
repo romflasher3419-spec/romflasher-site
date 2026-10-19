@@ -34,6 +34,7 @@ make_qr.py               regenerates static/upi-qr.png from the app's payload
 make_icons.py            regenerates the PWA / Apple touch icons from app.png
 make_waves.py            rebuilds the wave files + prints progress
 _progress.py             how many guides are written, per wave
+_audit.py                independent read-only audit of every written guide
 _fix_devices.py          gives a guide its device back from the title
 WRITER.md                the binding writing rules for every article
 ```
