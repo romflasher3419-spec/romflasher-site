@@ -64,4 +64,4 @@ Q: Does the Rom Flasher tool unlock the bootloader for me?
 A: No. You have to unlock the bootloader yourself, and unlocking erases everything on the phone. The tool starts once the bootloader is already unlocked.
 
 Q: Is the Rom Flasher tool free?
-A: Yes, it is free. There is no unlock code, no price and nothing held back. You download it from GitHub and use the whole thing.
+A: Yes, it is free. Nothing to pay, no price and nothing held back. You download it from GitHub and use the whole thing.

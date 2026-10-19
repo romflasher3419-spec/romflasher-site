@@ -85,17 +85,31 @@ def faq_from(lines):
     return [f for f in out if f["q"] and f["a"]]
 
 
+def check_text(name, text, problems):
+    """Language and banned-word checks - no length window."""
+    if DEVANAGARI.search(text):
+        problems.append("%s has Devanagari (must be English)" % name)
+    bad = BANNED.search(text)
+    if bad:
+        problems.append("%s has banned text %r" % (name, bad.group(0)))
+
+
+def faq_text(faq):
+    """Every question and answer as one blob, so the FAQ gets checked too.
+
+    The FAQ used to be counted and never read, which is exactly where a stray
+    banned phrase could hide.
+    """
+    return "\n".join("%s %s" % (f.get("q", ""), f.get("a", "")) for f in faq or [])
+
+
 def check_piece(name, text, lo, hi, problems):
     n = len(text.strip())
     if n < lo:
         problems.append("%s short (%d < %d)" % (name, n, lo))
     if n > hi:
         problems.append("%s long (%d > %d)" % (name, n, hi))
-    if DEVANAGARI.search(text):
-        problems.append("%s has Devanagari (must be English)" % name)
-    bad = BANNED.search(text)
-    if bad:
-        problems.append("%s has banned text %r" % (name, bad.group(0)))
+    check_text(name, text, problems)
 
 
 def main():
@@ -135,6 +149,7 @@ def main():
                             MIN_BODY, MAX_BODY, problems)
                 if not (MIN_FAQ <= nfaq <= MAX_FAQ):
                     problems.append("%s faq count %d" % (name, nfaq))
+                check_text(name + " faq", faq_text(data.get("faq")), problems)
                 if not any("github.com/romflasher3419-spec" in (l.get("url") or "")
                            for l in data.get("links") or []):
                     problems.append("%s missing the tool link" % name)
@@ -174,6 +189,7 @@ def main():
     check_piece("body", body, MIN_BODY, MAX_BODY, problems)
     if not (MIN_FAQ <= len(faq) <= MAX_FAQ):
         problems.append("faq count %d" % len(faq))
+    check_text("faq", faq_text(faq), problems)
 
     path = os.path.join(CONTENT, "%s.json" % args.id)
     data = json.load(io.open(path, encoding="utf-8"))
