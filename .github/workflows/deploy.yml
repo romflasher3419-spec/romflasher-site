@@ -18,15 +18,23 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # Where the site really lives. While the domain is not pointing here yet, the
-  # canonical URLs / sitemap must match the GitHub Pages address, otherwise
-  # search engines drop the pages for pointing at a dead domain.
+  # ---- where the site lives ------------------------------------------------
+  # One repository variable drives the whole domain switch. While
+  # ROMFLASHER_DOMAIN is unset, every canonical URL / sitemap entry keeps the
+  # GitHub Pages address - correct, because that is the address that answers.
   #
-  # WHEN romflasher.com IS LIVE: change the line below to
-  #   ROMFLASHER_SITE_URL: https://romflasher.com
-  # and uncomment the CNAME line under it.
-  ROMFLASHER_SITE_URL: https://romflasher3419-spec.github.io/romflasher-site
-  # ROMFLASHER_DOMAIN: romflasher.com
+  # WHEN romflasher.in RESOLVES TO GITHUB PAGES, set a repository variable
+  #   Settings -> Secrets and variables -> Actions -> Variables -> New variable
+  #       name:  ROMFLASHER_DOMAIN      value: romflasher.in
+  # That one variable writes dist/CNAME and points every canonical URL home.
+  # ROMFLASHER_SITE_URL is only needed to state the URLs differently from the
+  # domain itself - leave it unset normally.
+  #
+  # Keep both empty until `python _dnscheck.py romflasher.in` says the DNS is
+  # live: writing a CNAME earlier makes Pages redirect the working github.io
+  # address to a domain that does not answer yet, and the site goes dark.
+  ROMFLASHER_DOMAIN: ${{ vars.ROMFLASHER_DOMAIN }}
+  ROMFLASHER_SITE_URL: ${{ vars.ROMFLASHER_SITE_URL }}
 
   # Optional IDs - everything stays switched off while these are empty, so the
   # site never ships half-configured. Uncomment + fill in when you have them.

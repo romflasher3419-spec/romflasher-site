@@ -68,20 +68,68 @@ Nothing is uploaded by hand. **Push to `main` and
 and publishes it to GitHub Pages.** The workflow runs `_seocheck.py` and
 `qa.py --links`, so a broken build never goes live.
 
-### When romflasher.com is live
+### Going live on romflasher.in
 
-1. In GitHub → **Settings → Pages → Custom domain**, enter `romflasher.com`, and
-   at the registrar add the four A records plus the `www` CNAME GitHub shows you.
-2. In `.github/workflows/deploy.yml` change one line:
-   ```yaml
-   ROMFLASHER_SITE_URL: https://romflasher.com
+The site only moves once the domain's DNS answers, and each step below makes the
+next one safe. Skipping ahead - especially writing the CNAME early - takes the
+working site offline.
+
+1. **Buy `romflasher.in`** at a registrar that takes UPI (Hostinger, GoDaddy
+   India, BigRock and Namecheap all sell `.in`). Turn auto-renew on.
+2. **Add the DNS records** in that registrar's DNS zone editor:
+
    ```
-   and uncomment `ROMFLASHER_DOMAIN: romflasher.com` (that writes `dist/CNAME`).
-3. Push. Canonicals, sitemap and structured data all follow that one value.
+   A      @      185.199.108.153
+   A      @      185.199.109.153
+   A      @      185.199.110.153
+   A      @      185.199.111.153
+   AAAA   @      2606:50c0:8000::153
+   AAAA   @      2606:50c0:8001::153
+   AAAA   @      2606:50c0:8002::153
+   AAAA   @      2606:50c0:8003::153
+   CNAME  www    romflasher3419-spec.github.io
+   ```
 
-> Do **not** write a CNAME before the DNS is pointing at GitHub: Pages would
-> start redirecting the working github.io address to a domain that does not
-> answer yet, and the site would go dark in the meantime.
+   The apex goes to GitHub's four addresses, **not** to a CNAME of the
+   `github.io` host - an apex CNAME breaks the mail and any other records on the
+   same name.
+3. **Wait, then check.** DNS spreads in minutes, but a slow resolver can take an
+   hour.
+
+   ```powershell
+   python _dnscheck.py romflasher.in
+   ```
+
+   It lists whatever is still missing, then prints `READY` and exits 0 when the
+   domain truly answers from GitHub Pages.
+4. **Register the domain with Pages** - GitHub → **Settings → Pages → Custom
+   domain** → `romflasher.in` → **Save**. Wait for *DNS check successful*, then
+   tick **Enforce HTTPS**. The certificate is only issued at this point, so
+   HTTPS failing before here is normal, not a fault.
+5. **Switch the site over** - GitHub → **Settings → Secrets and variables →
+   Actions → Variables → New variable**:
+
+   ```
+   ROMFLASHER_DOMAIN = romflasher.in
+   ```
+
+   Then push anything (or re-run *Build and publish the site*). That single
+   variable writes `dist/CNAME` and points every canonical URL, sitemap entry
+   and structured-data `url` at the new home. Nothing else needs editing.
+6. **Tell the app** - one line in the tool repo, at
+   `app/src/main/java/com/romflasher/tool/ui/SiteLink.kt`:
+
+   ```kotlin
+   const val SITE_URL = "https://romflasher.in/"
+   ```
+
+   Rebuild and publish the app so the footer pill opens the new address.
+7. **Search Console** - add `romflasher.in` as a property, verify with
+   `ROMFLASHER_GOOGLE`, and submit `https://romflasher.in/sitemap.xml`.
+
+> The old `github.io/romflasher-site` address keeps working: Pages redirects it
+> to the custom domain. Every link in the site is relative, so the move to a
+> domain root is clean - no page has to be rewritten.
 
 ## Switches (all off until you fill them in)
 
@@ -91,8 +139,8 @@ variables: *Settings → Secrets and variables → Actions → Variables*).
 
 | Variable | What it turns on |
 |---|---|
-| `ROMFLASHER_SITE_URL` | the canonical address of the site |
-| `ROMFLASHER_DOMAIN` | writes `dist/CNAME` for the custom domain |
+| `ROMFLASHER_DOMAIN` | the custom domain: writes `dist/CNAME` **and** the canonical URLs |
+| `ROMFLASHER_SITE_URL` | overrides just the URLs, when they differ from the domain |
 | `ROMFLASHER_GA4` | Google Analytics 4 — **only after the visitor says yes** |
 | `ROMFLASHER_ADS` | AdSense: the loader **and** a correct `ads.txt` |
 | `ROMFLASHER_AMAZON` | adds your Associates tag to the gear links |

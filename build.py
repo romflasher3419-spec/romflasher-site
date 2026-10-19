@@ -30,13 +30,21 @@ DIST = os.path.join(HERE, "dist")
 SITE = "Rom Flasher"
 TAGLINE = "Custom ROMs, flashing guides and a free Android tool"
 
-# Every absolute URL on the site (canonical, sitemap, structured data) is built
-# from this. Override it for a preview deploy without touching the file:
-#     $env:ROMFLASHER_SITE_URL = "https://romflasher3419-spec.github.io/romflasher-site"
-# The moment romflasher.com resolves here, drop the override (and add dist/CNAME)
-# and everything points home again.
-SITE_URL = os.environ.get("ROMFLASHER_SITE_URL",
-                          "https://romflasher.com").rstrip("/")
+# Where the site says it lives. Every absolute URL on it (canonical, sitemap,
+# og:url, structured data) is built from SITE_URL, and dist/CNAME is written from
+# CUSTOM_DOMAIN - so one switch, ROMFLASHER_DOMAIN, drives both:
+#
+#     $env:ROMFLASHER_DOMAIN = "romflasher.in"      # the only thing to set
+#
+# Leave it empty and the site calls itself by its GitHub Pages address, which is
+# what actually serves it until DNS is live. That empty default is the safe one:
+# pointing search engines at a domain that does not answer yet gets the pages
+# dropped, so never set the domain before it resolves.
+PAGES_URL = "https://romflasher3419-spec.github.io/romflasher-site"
+CUSTOM_DOMAIN = os.environ.get("ROMFLASHER_DOMAIN", "").strip().strip("/")
+SITE_URL = (os.environ.get("ROMFLASHER_SITE_URL", "").strip()
+            or (("https://" + CUSTOM_DOMAIN) if CUSTOM_DOMAIN else PAGES_URL)
+            ).rstrip("/")
 
 # ------------------------------------------------------- switch-on-when-set
 # Each of these is off while empty, so nothing half-configured ever ships.
@@ -46,7 +54,6 @@ ADS_PUBLISHER = os.environ.get("ROMFLASHER_ADS", "")   # "pub-0000000000000000"
 AMAZON_TAG = os.environ.get("ROMFLASHER_AMAZON", "")   # "romflasher-21"
 GOOGLE_VERIFY = os.environ.get("ROMFLASHER_GOOGLE", "")  # Search Console token
 BING_VERIFY = os.environ.get("ROMFLASHER_BING", "")      # Bing Webmaster token
-CUSTOM_DOMAIN = os.environ.get("ROMFLASHER_DOMAIN", "")  # "romflasher.com" -> CNAME
 TOOL_URL = "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
 REPO_URL = "https://github.com/romflasher3419-spec/rom-flasher-tool"
 CHANNEL_URL = "https://www.youtube.com/@Rom_Flasher"
