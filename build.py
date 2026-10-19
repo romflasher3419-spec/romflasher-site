@@ -535,6 +535,64 @@ def video_id_of(url):
 
 
 # ------------------------------------------------------------------ layout
+
+# The pointer glow: two blurred orbs rendered on every page. The markup is the
+# light itself, the script only moves it, and both are skipped on touch devices
+# (see the media query in style.css).
+CURSOR_LIGHT = ('<div class="cursorlight" id="cursorlight" aria-hidden="true">'
+                '<i class="orb"></i><i class="core"></i></div>')
+
+CURSOR_LIGHT_JS = """<script>
+(function(){
+  var layer = document.getElementById('cursorlight');
+  if(!layer) return;
+  try{
+    if(window.matchMedia('(hover:none)').matches ||
+       window.matchMedia('(pointer:coarse)').matches) return;
+  }catch(e){}
+  var orb = layer.getElementsByClassName('orb')[0];
+  var core = layer.getElementsByClassName('core')[0];
+  if(!orb || !core) return;
+
+  var tx = -9999, ty = -9999;                 // where the pointer is right now
+  var ox = tx, oy = ty;                       // the wide, slow light
+  var cx = tx, cy = ty;                       // the bright one that keeps up
+  var raf = 0, still = 0;
+
+  function place(node, x, y){
+    node.style.transform = 'translate3d(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px,0)';
+  }
+
+  function frame(){
+    ox += (tx - ox) * 0.07;  oy += (ty - oy) * 0.07;
+    cx += (tx - cx) * 0.30;  cy += (ty - cy) * 0.30;
+    place(orb, ox, oy);
+    place(core, cx, cy);
+    var caught = Math.abs(tx - ox) < 0.4 && Math.abs(ty - oy) < 0.4 &&
+                 Math.abs(tx - cx) < 0.4 && Math.abs(ty - cy) < 0.4;
+    still = caught ? still + 1 : 0;
+    if(still > 24){ raf = 0; return; }        // it has caught up; stop drawing
+    raf = requestAnimationFrame(frame);
+  }
+  function start(){ if(!raf) raf = requestAnimationFrame(frame); }
+
+  window.addEventListener('pointermove', function(e){
+    tx = e.clientX; ty = e.clientY;
+    if(!layer.className.match(/\\bon\\b/)){
+      layer.className += ' on';
+      ox = cx = tx; oy = cy = ty;             // arrive, do not fly in from a corner
+      place(orb, ox, oy); place(core, cx, cy);
+    }
+    start();
+  }, {passive:true});
+
+  function hide(){ layer.className = layer.className.replace(/\\s*\\bon\\b/, ''); }
+  document.addEventListener('mouseleave', hide);
+  window.addEventListener('blur', hide);
+})();
+</script>"""
+
+
 def page(title, description, body, path="", extra_head="", keywords="",
          og_type="website", image=None):
     """Assemble a full page. `path` is where it will live inside dist/."""
@@ -586,6 +644,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         extra_head,
         "</head>",
         "<body>",
+        CURSOR_LIGHT,
         '<header class="top"><div class="wrap">',
         '  <a class="brand" href="%sindex.html"><img class="applogo" '
         'src="%sstatic/app.png" alt="Rom Flasher tool icon" width="30" '
@@ -634,6 +693,8 @@ def page(title, description, body, path="", extra_head="", keywords="",
 </html>
 """ % (SITE, TAGLINE, browse, up, up, up, up, up, up, up, CHANNEL_URL, up)
 
+    # the pointer light is moved by a script, so it belongs at the end of body
+    foot = foot.replace("</body>", CURSOR_LIGHT_JS + "\n</body>")
     return head + body + "\n" + foot
 
 

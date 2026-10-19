@@ -631,6 +631,53 @@ footer .browse a{color:#cfd7ff;font-weight:500}
 
 ::selection{background:rgba(108,99,255,.45)}
 
+/* ------------------------------------------------------------ cursor light */
+/* A soft, colourful glow that travels with the pointer. It is fixed and sits at
+   z-index:-1, i.e. above the page's own background gradients but behind every
+   card and line of text - so the glass surfaces blur and tint it instead of
+   covering it up, and nothing ever becomes hard to read.
+   Two layers: a wide slow one that trails, and a bright one that keeps up. */
+.cursorlight{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  opacity:0;transition:opacity .5s ease;
+}
+.cursorlight.on{opacity:1}
+.cursorlight i{
+  position:absolute;left:0;top:0;border-radius:50%;
+  will-change:transform;transform:translate3d(-9999px,-9999px,0);
+}
+.cursorlight .orb{
+  width:660px;height:660px;margin:-330px 0 0 -330px;
+  filter:blur(48px);
+  background:radial-gradient(circle at 50% 50%,
+    rgba(108,99,255,.50) 0%,
+    rgba(191,90,242,.34) 30%,
+    rgba(255,45,155,.20) 50%,
+    rgba(90,200,250,.13) 66%,
+    rgba(90,200,250,0) 79%);
+}
+.cursorlight .core{
+  width:200px;height:200px;margin:-100px 0 0 -100px;
+  filter:blur(26px);
+  background:radial-gradient(circle at 50% 50%,
+    rgba(255,255,255,.30) 0%,
+    rgba(90,200,250,.28) 34%,
+    rgba(191,90,242,.18) 60%,
+    rgba(191,90,242,0) 75%);
+  /* `scale` is its own property, so it composes with the translate the script
+     writes into `transform` instead of overwriting it. */
+  animation:corepulse 4.2s ease-in-out infinite;
+}
+@keyframes corepulse{
+  0%,100%{scale:1}
+  50%{scale:1.13}
+}
+/* No pointer to follow on a touch screen, and nothing to animate if the
+   visitor asked their system for less motion. */
+@media (hover:none),(pointer:coarse){
+  .cursorlight{display:none}
+}
+
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
   .card:hover,.btn:hover,.chip:hover{transform:none}
