@@ -638,10 +638,13 @@ footer .browse a{color:#cfd7ff;font-weight:500}
    covering it up, and nothing ever becomes hard to read.
    Two layers: a wide slow one that trails, and a bright one that keeps up. */
 .cursorlight{
+  /* How bright the light is. 1 = full strength, .7 = 30% softer.
+     This is the one number to change if it ever feels too strong. */
+  --light:.7;
   position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
   opacity:0;transition:opacity .5s ease;
 }
-.cursorlight.on{opacity:1}
+.cursorlight.on{opacity:var(--light)}
 .cursorlight i{
   position:absolute;left:0;top:0;border-radius:50%;
   will-change:transform;transform:translate3d(-9999px,-9999px,0);
