@@ -1,0 +1,57 @@
+{
+ "id": "ioQ1zR_T3Z4",
+ "slug": "joker-face-miui-14-rom-on-xiaomi-11t-pro-full-feature-tour",
+ "title": "Joker Face MIUI 14 ROM on Xiaomi 11T Pro Full Feature Tour",
+ "blurb": "Joker Face MIUI 14 on the Xiaomi 11T Pro — a tuned MIUI build with a Leica camera, iOS emoji and a long list of small fixes that add up.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "MIUI",
+ "android": "",
+ "views": 2572,
+ "published": "2023-02-27",
+ "url": "https://youtu.be/ioQ1zR_T3Z4",
+ "tags": [
+  "MIUI",
+  "Xiaomi 11T Pro",
+  "Install",
+  "Root",
+  "Unlock"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Joker Face MIUI 14 on the Xiaomi 11T Pro — a tuned MIUI build with a Leica camera, iOS emoji and a long list of small fixes that add up.\n\nThis is modded MIUI, not an AOSP port, so the phone still feels like a Xiaomi. Same control centre, same settings tree, same gestures. What changes is the detail work: the build is cleaned up, the camera app is the newer Leica one, and a pile of stock annoyances have been patched out. I walked through every screen I could in the clip and the phone held up — banking apps opened normally and the Play Store showed up certified.\n\n📱 Device  : Xiaomi 11T Pro\n🧩 ROM     : Joker Face MIUI 14 (14.0.1)\n🧰 Type    : Modded MIUI build\n\n🧩 What's Inside\n• Thunder animation while charging\n• iOS emoji set baked into the system\n• SafetyNet passing by default\n• Newer MiuiHome v2 running on MIUI 14\n• New Leica camera app\n• Battery health screen added\n• Extended power menu\n• Notification groups and a screenshot frame\n• Extra features in MIUI Lab under Accessibility\n• Automatic screen refresh-rate adjustment\n• Unlimited Google Photos\n• Super icon unlock, and no root needed for it\n• Debloated: MiuiBugReport, MiuiDaemon, MiBrowserGlobal and Updater are gone\n• Control centre MiPlay bug fixed\n\n💡 Best Part\nIt behaves like a daily driver instead of a project. Certified Play Store, unlimited Google Photos, banking and payment apps opening without complaints, and the MIUI layout you already know — just tidier underneath.\n\n🚫 Worth Knowing\nThe camera is Xiaomi's Leica app, so don't expect the Google camera processing you'd get from an AOSP ROM. And MIUI 14 keeps its own quirks — a modded build fixes plenty of them, not every single one.\n\n📝 Before You Flash\n1. Back up anything you care about.\n2. Reboot to recovery and format data if you're coming from a different base.\n3. Flash the ROM zip and let it finish.\n4. Reboot to system and set the phone up fresh.",
+ "links": [
+  {
+   "label": "Joker Face MIUI 14 for Xiaomi 11T Pro",
+   "url": "https://xpshort.com/SjhzL"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB & Fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  },
+  {
+   "label": "Platform Tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "TWRP for K50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "TWRP for Mi 11X",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for AOSP ROM",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "OrangeFox for Mi 11T Pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

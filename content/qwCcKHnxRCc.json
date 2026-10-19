@@ -1,0 +1,70 @@
+{
+ "id": "qwCcKHnxRCc",
+ "slug": "axion-os-2-4-on-poco-x7-pro-install-guide-features-quick-tour",
+ "title": "Axion OS 2.4 on POCO X7 Pro Install Guide, Features & Quick Tour",
+ "blurb": "Axion OS 2.4 on the POCO X7 Pro — the full install with vendor_boot and ADB sideload, then a tour of what's actually new in this Android 16 build.",
+ "device": "POCO X7 Pro",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 2035,
+ "published": "2026-02-09",
+ "url": "https://youtu.be/qwCcKHnxRCc",
+ "tags": [
+  "HyperOS",
+  "POCO X7 Pro",
+  "Flash",
+  "Install",
+  "Root"
+ ],
+ "summary": "Axion OS 2.4 on the POCO X7 Pro is an Android 16 ROM with a short install: flash vendor_boot to both slots, catch recovery with Volume Up, wipe, then sideload the zip over ADB. Set aside about ten minutes of waiting, then a first boot you actually want to sit through.",
+ "body": "Axion OS 2.4 is the install I would point a first-timer at if they wanted a clean Android 16 base without a pile of extra steps. The flash is short when your vendor_boot is the right one, and the phone comes up looking finished rather than half-built.\n\nThe whole thing fits in one sitting. Here is the order, plus the two or three things that decide whether it boots on the first try.\n\n## What you need\n\n- The Axion OS 2.4 ROM zip from the link below.\n- The vendor_boot image that matches this exact build.\n- A PC with ADB and Fastboot installed.\n- A cable that does data, not a charge-only one. This is not a small detail.\n\nThe cable point is worth repeating. A charge-only cable will let the phone show up and then die in the middle of a sideload, and you will spend an hour blaming the ROM.\n\n## Step 1 - confirm the PC sees the phone\n\nBoot the phone into fastboot and run `fastboot devices`. It should list the device. If it lists nothing, fix the driver now. Everything after this depends on a stable connection.\n\n## Step 2 - flash vendor_boot to both slots\n\nPush the vendor_boot file to slot A and to slot B. Both. It takes a moment longer and saves you a bootloop later if the phone ever switches slots.\n\n## Step 3 - reboot and hold Volume Up\n\nRun `fastboot reboot`, then hold Volume Up straight away and keep holding until recovery appears. If you let go, the phone boots into system instead, and the sideload has nowhere to go.\n\n## Step 4 - factory reset, then format data\n\nIn recovery, do a factory reset first, then format data. The format is the one that clears the old encryption. Skip it and the phone can loop on the first boot, because the old data partition is still sitting there encrypted with the wrong key.\n\n## Step 5 - sideload the zip\n\nGo to Apply update, then Apply from ADB. On the PC, run the sideload command with the ROM zip. Recovery prints progress as it goes and tells you when it is finished. Do not close the window early.\n\n## Step 6 - optional extras\n\nIf you want root, flash Magisk now, while you are still in recovery. If you want a separate GApps package, this is also the moment. Do one or the other, in the same session, so you do not have to come back.\n\n## Step 7 - first boot\n\nReboot to system and go through setup. The first boot takes longer than a normal boot on a fresh install. Let it finish.\n\n## Where this usually goes wrong\n\n- Missing the Volume Up hold, so the phone lands in system instead of recovery.\n- A vendor_boot from a different build mixed with this zip.\n- Skipping the factory reset and format data, which leaves the old encryption in place.\n\n## What is actually new in 2.4\n\nThe part I filmed properly is what happens after the first boot, because that is what you live with. Smoothness on a clean Android 16 base, the settings worth turning on in the first ten minutes, and how the battery behaves on day one. Day-one battery is always a rough read, so treat the first charge as a guess and judge it again after a week.\n\nFor gaming, there is a quick pass rather than a five-second tour, so you can see what the phone does under a real load instead of a scroll through menus.\n\n## The honest part\n\nAxion OS is a community build, so there is no official update path once you flash it. Keep your backup until you have used it for a few days, and read the changelog before every update, because a build that installs cleanly can still change how your phone behaves.\n\nIf the driver and tools setup is the slow part for you, the free Rom Flasher tool on GitHub handles the ADB and fastboot driver install in a couple of clicks, so you can skip the Device Manager hunt. It is free, and the link is in the downloads section.",
+ "video_description": "Axion OS 2.4 on the POCO X7 Pro — the full install with vendor_boot and ADB sideload, then a tour of what's actually new in this Android 16 build.\n\nThe flash is short work when your vendor_boot is right: boot to fastboot, push vendor_boot to both slots, reboot, catch recovery with Volume Up, wipe, then sideload. Around ten minutes of waiting and you're sitting on a clean Android 16 base with a fresh UI to poke at.\n\nWhere it gets interesting is after that first boot — smoothness, the settings worth turning on early, and how battery behaves on day one. That's the part I filmed properly, instead of a five-second tour.\n\n📱 Device  : POCO X7 Pro\n🧩 ROM     : Axion OS 2.4\n🤖 Android : 16\n\n🛠️ What You Need\n• Axion OS 2.4 ROM zip\n• vendor_boot.img that matches this exact build\n• A PC with ADB and Fastboot installed\n• A cable that actually does data, not a charge-only one\n\n📝 Steps\n1. Check the PC can see the phone — fastboot devices should list it.\n2. Flash the vendor_boot file to both slots.\n3. fastboot reboot, then hold Volume Up to enter recovery.\n4. Factory reset, then Format data.\n5. Apply update → Apply from ADB, then sideload the ROM zip.\n6. Let the install finish — recovery tells you when it's done.\n7. Optional: flash Magisk or GApps at this point.\n8. Reboot to system and go through setup.\n\n⚠️ Where People Get Stuck\n• Skipping the Volume Up hold — the phone boots into system instead of recovery and nothing lines up.\n• Mixing a ROM zip with a vendor_boot from a different build, which is a fast route to a bootloop.\n• Forgetting the factory reset, which leaves the old encryption sitting in place.\n\n🎨 First Look\nAfter boot, the tour covers the UI, the stock apps and the settings I'd change in the first ten minutes. Battery and gaming get a quick pass too — no padding, just what a fresh install actually feels like on real hardware.",
+ "links": [
+  {
+   "label": "Axion OS 2.4 ROM",
+   "url": "https://tmearn.net/link/yoizrEJ"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Vendor Boot",
+   "url": "https://tmearn.net/link/8aOEW6ak"
+  },
+  {
+   "label": "Termux flash file",
+   "url": "https://tmearn.net/link/lQ5Lhx2G"
+  },
+  {
+   "label": "ADB & Fastboot Tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB & Fastboot Driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Do I need to flash GApps on Axion OS 2.4?",
+   "a": "It is optional. You can flash a GApps package in recovery right after the ROM sideload finishes, in the same session. If you skip it, install it while still in recovery rather than after you have booted."
+  },
+  {
+   "q": "Does flashing Axion OS wipe my data?",
+   "a": "Yes. The install needs a factory reset and a format data in recovery, so internal storage is cleared. Back up your files before you start."
+  },
+  {
+   "q": "Why did my phone boot into system instead of recovery?",
+   "a": "You missed the Volume Up hold. Run fastboot reboot and hold Volume Up the moment it restarts, keeping it held until recovery appears."
+  },
+  {
+   "q": "Can I use a vendor_boot from another build?",
+   "a": "No. The vendor_boot has to match this exact Axion OS 2.4 build. Mixing versions is a fast route to a bootloop."
+  },
+  {
+   "q": "How long does the install take?",
+   "a": "The flash itself is quick once your vendor_boot is right. Add roughly ten minutes of waiting for the sideload and the first boot, and leave the phone plugged in until it is done."
+  }
+ ]
+}

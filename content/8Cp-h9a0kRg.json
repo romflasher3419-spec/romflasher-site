@@ -1,0 +1,29 @@
+{
+ "id": "8Cp-h9a0kRg",
+ "slug": "bananadroid-android-12l-on-mi-11x-unofficial-rom-flash-guide",
+ "title": "BananaDroid Android 12L on MI 11X Unofficial ROM Flash Guide",
+ "blurb": "BananaDroid Android 12L on the MI 11X — how to flash this unofficial build on alioth, and what the ROM actually gives you once it boots.",
+ "device": "Mi 11X",
+ "rom": "",
+ "android": "",
+ "views": 46,
+ "published": "2022-10-02",
+ "url": "https://youtu.be/8Cp-h9a0kRg",
+ "tags": [
+  "Mi 11X",
+  "Flash",
+  "Bootloader",
+  "Recovery",
+  "Custom ROM"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "BananaDroid Android 12L on the MI 11X — how to flash this unofficial build on alioth, and what the ROM actually gives you once it boots.\n\nBananaDroid is the kind of ROM you flash when you want something other than the big names everyone posts about. This one is unofficial for alioth, which just means it's a community build rather than a release from the team's official device list. That's not a dirty word, but it does mean you should read before you flash and keep a backup ready. The MI 11X, POCO F3 and Redmi K40 all share the same hardware, so one zip covers all three names. In the video I take it from a downloaded file to a booting phone and show what you're looking at on the other side.\n\n📱 Device  : MI 11X / POCO F3 / Redmi K40 (alioth)\n🧩 ROM     : BananaDroid (Unofficial)\n🤖 Android : 12L\n\n🛠️ What You Need\n• Unlocked bootloader on the alioth.\n• A custom recovery that can handle an Android 12L zip.\n• The BananaDroid build for alioth, not another device's build.\n• Firmware that matches the base this build expects.\n• A full backup, because clean flashing wipes you clean.\n\n📝 Steps\n1. Move the ROM zip into internal storage.\n2. Boot into recovery and back up first. Always first.\n3. Wipe data, cache and Dalvik.\n4. Flash the ROM zip and let it finish.\n5. Format data if the build asks for it.\n6. Reboot and wait out the long first boot.\n7. Run setup, then use it normally for a day before deciding.\n\n⚠️ Where People Get Stuck\n• Treating an unofficial build like an official one and flashing with zero backup.\n• Mixing zips from a different alioth variant or a different firmware base.\n• Assuming a port or unofficial release will be as polished as a mainline ROM. It usually isn't, and that's fine as long as you know.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

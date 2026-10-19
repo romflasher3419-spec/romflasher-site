@@ -1,0 +1,45 @@
+{
+ "id": "GDfwVPeVnMk",
+ "slug": "debloat-any-xiaomi-or-poco-phone-remove-bloatware-safely",
+ "title": "Debloat Any Xiaomi or POCO Phone Remove Bloatware Safely",
+ "blurb": "How to strip the extra apps off a Xiaomi or POCO phone - MIUI junk and preinstalled Google apps gone, with a one-click restore if you change your mind.",
+ "device": "Any Xiaomi",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 337,
+ "published": "2025-12-22",
+ "url": "https://youtu.be/GDfwVPeVnMk",
+ "tags": [
+  "HyperOS",
+  "Any Xiaomi",
+  "Flash",
+  "Unlock",
+  "Bootloader"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "How to strip the extra apps off a Xiaomi or POCO phone - MIUI junk and preinstalled Google apps gone, with a one-click restore if you change your mind.\n\nStock MIUI and HyperOS arrive loaded, and half of it you'll never open. This tool clears that out in one go, and the reason I keep it around is the second mode: it puts every removed app back. You need a PC, or Termux if you don't have one, plus USB debugging turned on. One pass emptied my app drawer down to the things I actually use - File Manager, Calculator, Calendar, Messaging. Everything else, the Mi apps and the preinstalled Google apps, went away. If you go too far, run the reinstall mode and they all come back.\n\n🎯 What It Does\n• Removes preinstalled Xiaomi, MIUI and Google apps in a single run\n• Keeps the basics you rely on: File Manager, Calculator, Calendar, Messaging\n• Has a second mode that reinstalls the apps it took out\n• Runs over USB debugging, from a PC or from Termux\n\n💡 Best Part\nNothing here is permanent. The restore mode brings back everything from LinkedIn and YouTube to Google TV, Google One, Meet, Snapchat, WPS Office and the theme store. If you clear something and a menu starts misbehaving, you're one click from undoing it.\n\n🚫 What It Doesn't Do\n• It won't root your phone and it never touches the bootloader\n• It only handles the app packages that can be removed safely\n• It works on MIUI and HyperOS builds, but it isn't a magic speed fix for a phone that needs a factory reset anyway\n\n📝 Setup\n1. Go to Settings, then About phone, and tap the build number to unlock Developer options.\n2. Turn on USB debugging in Developer options.\n3. Plug the phone into the PC, or connect over Termux.\n4. Open the debloater file and choose your mode - remove, or reinstall.\n\n❓ Common Questions\n• Do I need root? No. USB debugging is enough.\n• Will this wipe my data? No, it only touches apps.\n• What if the phone acts strange afterwards? Run the reinstall mode.\n• Can I use it on any Xiaomi or POCO phone? That's what the commands are written for.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Debloat file",
+   "url": "https://tmearn.net/link/kVLH"
+  },
+  {
+   "label": "Termux flash file",
+   "url": "https://tmearn.net/link/lQ5Lhx2G"
+  },
+  {
+   "label": "ADB and fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB and fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

@@ -1,0 +1,37 @@
+{
+ "id": "_LUZfJDUkSE",
+ "slug": "xiaomi-11t-pro-lineageos-19-1-a12-1-install-step-by-step",
+ "title": "Xiaomi 11T Pro + LineageOS 19.1 A12.1 Install Step by Step",
+ "blurb": "LineageOS 19.1 on the Xiaomi 11T Pro — the full A12.1 flash, from formatting data to an optional GApps or Magisk sideload.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "LineageOS",
+ "android": "",
+ "views": 4635,
+ "published": "2022-11-27",
+ "url": "https://youtu.be/_LUZfJDUkSE",
+ "tags": [
+  "LineageOS",
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Install",
+  "Root"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "LineageOS 19.1 on the Xiaomi 11T Pro — the full A12.1 flash, from formatting data to an optional GApps or Magisk sideload.\n\nLineageOS 19.1 is the clean, no-nonsense pick for the 11T Pro, and this is the exact order I used. Format data, reboot recovery, sideload the ROM, done. If you want Google apps or root on top, there's a second pass afterwards — and that's the part people rush, then end up with a half-broken system. Take the backup seriously here, because step one wipes everything on the phone.\n\n🧩 Before You Flash\n• Back up everything — internal storage gets wiped, and there's no undo\n• A recovery of your choice: TWRP or OrangeFox both work\n• Platform Tools on the PC so ADB sideload can talk to the phone\n• A charged battery and a cable you trust\n\n📝 The Order\n1. IMPORTANT: take a backup of all your precious data, because all internal storage will be wiped — then don't blame me for data loss.\n2. Boot into recovery, format data, and reboot recovery.\n3. After the reboot, sideload the ROM: adb sideload ROM-file.zip\n4. Reboot the system. Done.\n\n➕ Optional: GApps or Magisk\n1. Reboot recovery after the ROM flash. LOS recovery can take a good while to appear, but it gets there.\n2. Select Apply Update, then Apply from ADB, and sideload GApps or Magisk. GApps must be for Android 12.1 and ARM64.\n3. If LOS recovery complains about a mismatching signature, that's normal — tap continue.\n4. Reboot the system and you're done.\n\n❓ Common Questions\n• Which recovery should I use? TWRP and OrangeFox both work here.\n• Do I format data once or twice? Format, reboot recovery, then start the sideload from there.\n• Is GApps mandatory? No, LineageOS boots fine without it.",
+ "links": [
+  {
+   "label": "LineageOS 19.1 (A12.1) for Xiaomi 11T Pro",
+   "url": "https://xpshort.com/oEjRSG"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Recovery",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

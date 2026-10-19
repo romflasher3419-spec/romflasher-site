@@ -1,0 +1,66 @@
+{
+ "id": "mT5BFksNBhU",
+ "slug": "poco-x7-pro-dyperos-3-android-16-modded-hyperos-review",
+ "title": "POCO X7 Pro DyperOS 3 Android 16 Modded HyperOS Review",
+ "blurb": "DyperOS 3 on the POCO X7 Pro (rodin) — a HyperOS-based Android 16 build with a long list of unlocks, tested on the real device.",
+ "device": "POCO X7 Pro",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 2024,
+ "published": "2025-12-07",
+ "url": "https://youtu.be/mT5BFksNBhU",
+ "tags": [
+  "HyperOS",
+  "POCO X7 Pro",
+  "MIUI",
+  "Battery",
+  "Performance"
+ ],
+ "summary": "DyperOS 3.0.5.0 is a HyperOS-based Android 16 build for the POCO X7 Pro, and it arrives packed: decrypted with full read-write access, MIUI dialer and messages instead of Google's apps, an unlocked Gboard and unlimited Google Photos. I tested it on the real phone. Fast, feature-heavy, and it leaves your thermal settings alone.",
+ "body": "DyperOS 3 is for the person who likes HyperOS but keeps hitting the parts of it that are locked down. It sits on top of HyperOS 3.0.5.0.WOJMIXM, and it is not shy about changes. This is the December 6, 2025 build, credited to @Fiqih_wijaya, and I ran it on the POCO X7 Pro rather than reading a changelog and calling it a review.\n\n## What it looks like\n\nHyperOS, mostly. That is the point. You get the launcher and the system apps you already know, with the dialer and messages coming from MIUI instead of Google's alternatives. If you have always preferred the MIUI phone and messaging apps, that swap alone will feel like coming home.\n\nThe first boot and setup flow were clean. No odd wizard, no missing app, no fighting with a broken language pack. It came up like a phone.\n\n## What changed\n\nThis is where the build earns its name. The changelog is long, so here is what I actually noticed in daily use.\n\n- Decrypted ROM with full read-write access, so you can modify system files without a fight.\n- MIUI dialer and MMS working instead of Google's apps.\n- Gboard with the enhanced keyboard unlocked.\n- The secure flag toggle can be switched off.\n- Unlimited Google Photos.\n- A game spoof option.\n- Modded system apps out of the box, including the Launcher, ThemeManager and AppVault.\n\nPerformance is set up sensibly too. It picks schedutil as the default CPU governor and uses CPU idle TEO. Everything else, all the thermal and tweak switches, is left at default.\n\nThat last line is the grown-up move. Plenty of mod ROMs ship aggressive thermal changes to make a benchmark look good, and you pay for it with a phone that gets warm in normal use. DyperOS did not do that here.\n\n## What is worth being careful about\n\nNothing was broken in a way that stopped me using the phone. The honest notes are about expectations, not bugs.\n\nFull read-write access and an unlimited Photos toggle are conveniences, not magic. They change what the software will allow. They do not change what the hardware can do, and they do not make a community build behave like a signed factory image.\n\nThere is no official OTA path either. Updates come from the community, so read the changelog before every flash. When you are running a build this modified, the changelog is the only warning system you get.\n\nAnd back up before you flash. That applies to every ROM, but especially one that touches system files this directly.\n\n## Who should install it\n\nInstall DyperOS 3 if you want HyperOS with the training wheels off. You like the MIUI dialer, you want system write access, and you are comfortable flashing from a PC and checking a changelog before each update.\n\nSkip it if you want the boring, guaranteed reliability of a factory build. A community ROM with this many modifications is a choice you keep making, not a one-time decision. If you would rather not think about it again for six months, stock is the better answer.\n\n## How it compares to the stock ROM\n\nFor features, DyperOS wins and it is not close. For smoothness, it holds up fine in daily use. For the plain predictability of a phone you never think about, stock still wins, and it is worth saying that out loud instead of pretending otherwise.\n\nIf you are going to flash, get the driver side out of the way first. The free Rom Flasher tool on GitHub installs the ADB and fastboot driver in a couple of clicks, so you are not digging through Device Manager when the phone should already be in fastboot. It is free, and the link is in the downloads section.",
+ "video_description": "DyperOS 3 on the POCO X7 Pro (rodin) — a HyperOS-based Android 16 build with a long list of unlocks, tested on the real device.\n\nDyperOS 3.0.5.0.WOJMIXM sits on top of HyperOS 3.0.5.0.WOJMIXM, and it is not shy about changes. It comes decrypted with full RW access, ships the MIUI dialer and messages instead of the Google ones, and brings back the kind of mods people used to dig through groups for. Gboard here has the enhanced keyboard unlocked, the secure flag toggle can be switched off, and Google Photos is set to unlimited.\n\nPerformance-wise it picks schedutil as the default CPU governor and uses CPU idle TEO, with every thermal and tweak switch reset to default. That last part matters — plenty of mod ROMs ship with aggressive thermal tweaks that cook the battery. This one doesn't.\n\nWhat I liked: modded system apps out of the box (Launcher, ThemeManager, AppVault and more), a game spoof option, and a clean first boot. What I'd warn you about: mods like full RW and unlimited photos are convenience features, not magic. Back up first, and don't expect official OTA support.\n\n📱 Device  : POCO X7 Pro (rodin)\n🧩 ROM     : DyperOS 3.0.5.0.WOJMIXM\n🤖 Android : 16\n📦 Build   : December 6, 2025\n👤 Credits : @Fiqih_wijaya\n\n🔬 What Was Tested\n• First boot and setup flow on the POCO X7 Pro\n• MIUI dialer and MMS working instead of Google's apps\n• Gboard with the enhanced keyboard unlocked\n• Unlimited Google Photos toggle\n• Game spoof and modded system apps in daily use\n• Thermal behavior with the default governor and TEO idle\n\n📊 Verdict\nFast, feature-packed, and clearly built by someone who uses these mods themselves. Keeping thermal and governor at default is the grown-up move — smooth daily use without the phone turning into a hand warmer. Just go in knowing it's a community build with a specific mod set, so read the changelog before you flash.\n\n🗒 Changelog\n• Decrypt ROM with full RW\n• Based on HyperOS 3.0.5.0.WOJMIXM\n• Add Gboard with enhanced keyboard unlocked\n• MIUI dialer and MMS included\n• Disable secure flag toggle switch\n• Unlimited Google Photos\n• Add game spoof\n• All thermal/tweak switches set to default\n• schedutil as default CPU governor with CPU idle TEO\n• Modded system apps (Launcher, ThemeManager, AppVault and more)",
+ "links": [
+  {
+   "label": "ROM LINK",
+   "url": "https://tmearn.net/link/coibCosh"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Credits",
+   "url": "https://telegra.ph/Credits-07-10-6"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is DyperOS 3 based on Android 16?",
+   "a": "Yes. DyperOS 3.0.5.0.WOJMIXM is built on HyperOS 3.0.5.0.WOJMIXM, which is Android 16. This is the December 6, 2025 build."
+  },
+  {
+   "q": "Does DyperOS 3 have Google apps?",
+   "a": "Yes, but the dialer and messages come from MIUI instead of Google. Gboard is included with the enhanced keyboard unlocked, and Google Photos is set to unlimited."
+  },
+  {
+   "q": "Does DyperOS 3 overheat or drain battery faster?",
+   "a": "It leaves every thermal and tweak switch at default and uses schedutil with CPU idle TEO, so it does not run hot the way some mod ROMs do. Daily use felt normal on the POCO X7 Pro."
+  },
+  {
+   "q": "Is DyperOS 3 safe to use as a daily driver?",
+   "a": "For most people, yes. Keep a backup, read the changelog before each update, and remember it is a community build with no official OTA support."
+  },
+  {
+   "q": "What does the game spoof option do?",
+   "a": "It lets the phone present itself differently to games, which the build includes alongside the other mods. If you do not need it, leave it off, since it is one more thing that changes how apps see your device."
+  }
+ ]
+}

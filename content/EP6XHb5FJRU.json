@@ -1,0 +1,49 @@
+{
+ "id": "EP6XHb5FJRU",
+ "slug": "flash-fastboot-rom-without-pc-any-xiaomi-poco-guide",
+ "title": "Flash Fastboot ROM Without PC — Any Xiaomi / Poco Guide",
+ "blurb": "MiTool is the Termux tool that lets you flash a fastboot ROM to a Xiaomi or Poco phone from a second Android device — no PC, no Mi Flash, no laptop at all.",
+ "device": "Any Xiaomi",
+ "rom": "Fastboot ROM",
+ "android": "",
+ "views": 4411,
+ "published": "2025-10-29",
+ "url": "https://youtu.be/EP6XHb5FJRU",
+ "tags": [
+  "Fastboot ROM",
+  "Any Xiaomi",
+  "Flash",
+  "Install",
+  "Unlock"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "MiTool is the Termux tool that lets you flash a fastboot ROM to a Xiaomi or Poco phone from a second Android device — no PC, no Mi Flash, no laptop at all. In this one I install it from a bare Termux and run a real fastboot flash end to end.\n\nThe trick is the second device. One phone runs Termux and MiTool, the other is the phone you're flashing. Connect them with an OTG cable, turn on USB debugging on the target, and drive the whole thing from the command line.\n\n🎯 What MiTool Does\n• Unlocks the bootloader.\n• Flashes fastboot ROMs.\n• Flashes recovery ROMs.\n• Handles bypass and a few other handy jobs.\n\n💡 Best Part\nThe install is a single curl command and it keeps itself current. You run it, it pulls the latest package, and then you just type mitool to open the menu. No shady APK, no Windows-only software, and no need to find a computer when there isn't one nearby.\n\n🚫 What It Doesn't Do\n• It can't skip Xiaomi's bootloader unlock wait — you still go through that process.\n• It needs a second Android device with Termux and USB debugging on the target, so a single-phone rescue isn't happening.\n• It's command-line, so if Termux is new to you, follow the steps slowly.\n\n📝 Setup\n1. Install Termux, and the Termux API package too.\n2. Run termux-setup-storage so it can reach your folders.\n3. Paste the install command and let it finish.\n4. Type mitool to launch the menu.\n5. Use an OTG cable to link the two phones, with USB debugging on for the target.\n\n❓ Common Questions\n• Do I really not need a PC? Correct — a second Android device replaces it.\n• What cable do I need? An OTG cable between the two phones.\n• Does it work on any Xiaomi or Poco? It's built as a general Xiaomi/Poco tool, but check the menu options for your model.\n• Where do the ROM files live? On the device running MiTool.",
+ "links": [
+  {
+   "label": "MiTool install script",
+   "url": "https://raw.githubusercontent.com/offici5l/MiTool/master/install.sh"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Termux",
+   "url": "https://tmearn.net/link/JbyhLhM"
+  },
+  {
+   "label": "Termux API",
+   "url": "https://tmearn.net/link/bt49"
+  },
+  {
+   "label": "ADB fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

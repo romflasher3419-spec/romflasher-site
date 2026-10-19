@@ -1,0 +1,47 @@
+{
+ "id": "w3uN1zRurr0",
+ "slug": "rom-flasher-live-tools-fastboot-files-flash-help-desk",
+ "title": "ROM Flasher Live Tools, Fastboot Files & Flash Help Desk",
+ "blurb": "Rom Flasher went live — a session around flashing tools, where the files live, and the questions that come up while people set their phones up.",
+ "device": "Channel",
+ "rom": "",
+ "android": "",
+ "views": 0,
+ "published": "2025-08-11",
+ "url": "https://youtu.be/w3uN1zRurr0",
+ "tags": [
+  "Channel",
+  "Flash",
+  "Recovery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Rom Flasher went live — a session around flashing tools, where the files live, and the questions that come up while people set their phones up.\n\nThis was a live one, so it moves at its own pace. If you're new to flashing, the useful part is seeing the toolkit laid out in one place: the ADB driver, Platform Tools, recovery images and vbmeta for the common Xiaomi and POCO devices. Those are the files that decide whether your first fastboot command works or stares back at you with no device found.\n\nNothing here is a magic fix. It's the same set of steps you'll see in the other videos, just talked through live. Grab what you need from the list below and follow along at your own speed.\n\n🎬 In This Clip\n• The flashing toolkit, item by item\n• Where each file is used and why\n• Recovery images for the common Xiaomi and POCO devices\n• The files people forget before their very first flash\n• A quick walk through what fastboot actually does\n\n❓ Common Questions\n• Which file do I need first? Start with the ADB and Fastboot driver, then Platform Tools.\n• Do I have to flash anything today? No — this session is about getting set up.\n• Will the same files work on every phone? No, recovery images are device specific.\n• Is the Rom Flasher Tool free? Yes, completely — just download and use it.",
+ "links": [
+  {
+   "label": "Platform Tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "TWRP for K50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "TWRP for Mi 11X",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for AOSP ROM",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "OrangeFox for Mi 11T Pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

@@ -1,0 +1,29 @@
+{
+ "id": "JQ_G5rhS0XI",
+ "slug": "official-miui-11-on-redmi-note-5-pro-stock-feel-full-install",
+ "title": "Official MIUI 11 on Redmi Note 5 Pro Stock Feel, Full Install",
+ "blurb": "Official MIUI 11 on the Redmi Note 5 Pro.",
+ "device": "Redmi Note 5 Pro",
+ "rom": "MIUI",
+ "android": "",
+ "views": 16,
+ "published": "2022-10-02",
+ "url": "https://youtu.be/JQ_G5rhS0XI",
+ "tags": [
+  "MIUI",
+  "Redmi Note 5 Pro",
+  "Flash",
+  "Install",
+  "Unlock"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Official MIUI 11 on the Redmi Note 5 Pro. No mods, no ported builds, no surprises. This is the flash for anyone who wants the stock MIUI experience on whyred and nothing else.\n\n📱 Device  : Redmi Note 5 Pro (whyred)\n🧩 ROM     : Official MIUI 11\n\n🛠️ What You Get\n• The stock MIUI 11 interface, with the new system-wide dark mode\n• The redesigned settings layout and the updated notification shade\n• Ultra battery saver, which genuinely helps on a phone with a tired battery\n• Mi Share for moving files between Xiaomi devices\n• The stock camera app from Xiaomi, with its own processing\n\n📝 Flash Steps\n1. Back up your data, the flash wipes the phone.\n2. Unlock the bootloader and get a recovery working on whyred.\n3. Move the MIUI 11 zip to internal storage.\n4. Wipe system, data, cache and dalvik.\n5. Flash the zip, then wipe cache and dalvik again.\n6. Reboot and let the first boot finish. It's slow, leave it alone.\n\n⚠️ Things Worth Knowing\n• MIUI 11 sits on an older Android base on this device, so don't expect recent security patches.\n• Some newer apps have started dropping support for that base.\n• If you need Google apps, flash them the way the release post says, not on a hunch.\n\n❓ Common Questions\nQ. Is this the official Xiaomi build? Yes, MIUI 11 as released for this device.\nQ. Will my banking apps work? Usually, since it's a stock build and not rooted.\nQ. Can I update from here? Check the release post, MIUI 11 is where the official line ends.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

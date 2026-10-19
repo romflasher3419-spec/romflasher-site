@@ -1,0 +1,40 @@
+{
+ "id": "QoMpFqmy9ZU",
+ "slug": "dyper-os-3-0-on-poco-x7-pro-modded-android-16-review",
+ "title": "Dyper OS 3.0 on Poco X7 Pro — Modded Android 16 Review",
+ "blurb": "Dyper OS 3.0 is a modded HyperOS 3 build for the Poco X7 Pro on Android 16, and it's built on HyperOS 3.0.2.0 WOJCNXM with the changes people actually go...",
+ "device": "",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 1041,
+ "published": "2025-11-02",
+ "url": "https://youtu.be/QoMpFqmy9ZU",
+ "tags": [
+  "HyperOS",
+  "Install",
+  "Custom ROM",
+  "Camera"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Dyper OS 3.0 is a modded HyperOS 3 build for the Poco X7 Pro on Android 16, and it's built on HyperOS 3.0.2.0 WOJCNXM with the changes people actually go looking for: a decrypted, fully read-write system, signature verification off, and unlimited Google Photos.\n\nI flashed it over the stock HyperOS install to see how different it really feels, and the first thing you notice is how much of the system is yours to touch. Xiaomi Home, Hyper Engine and the launcher apps are all modded, and the notification delay that annoys everyone on these builds is genuinely fixed.\n\n🔬 What's Changed\n• Based on HyperOS 3.0.2.0 WOJCNXM, decrypted with full read-write access.\n• Notification delay fixed.\n• Should support all languages — check yours before committing.\n• schedutil set as the default CPU governor, with cpu idle teo.\n• Signature verification fully disabled and the secure flag off, so you can screenshot inside restricted apps.\n• Unlimited Google Photos.\n• GMS, Quick Share and the usual extras enabled by default.\n• Modded system apps throughout.\n\n📊 Verdict\nFor a modded build it feels surprisingly settled. The RW system and the disabled signature checks are the headline, and the notification fix is the quiet win. Android 16 underneath means the base is current, and the language support is broad — much broader than the China-based ports, which only carry a handful. One honest catch: if you can't add a Google account, delete the saved password and try again. That's the workaround, and it works. Treat the ROM as a build to test rather than a locked, finished product.\n\n📝 Notes\n• Decrypted, fully RW, so back up before you experiment.\n• Known issues: the maintainer's list is basically \"tell me if you find one\".\n• Changelog source is linked below.",
+ "links": [
+  {
+   "label": "Dyper OS 3.0 ROM",
+   "url": "https://tmearn.net/link/SEA9KA1"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

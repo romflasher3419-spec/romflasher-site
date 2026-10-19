@@ -1,0 +1,45 @@
+{
+ "id": "BNH_F63-n1A",
+ "slug": "hyperos-3-lite-on-poco-x7-pro-eea-build-flash-features",
+ "title": "HyperOS 3 Lite on Poco X7 Pro EEA Build, Flash & Features",
+ "blurb": "HyperOS 3 Lite on the Poco X7 Pro — the EEA build that swaps the POCO skin for Redmi looks, unlocks refresh rates, and stays light on top of Android 16.",
+ "device": "Channel",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 280,
+ "published": "2025-11-20",
+ "url": "https://youtu.be/BNH_F63-n1A",
+ "tags": [
+  "HyperOS",
+  "Channel",
+  "Flash",
+  "Battery",
+  "Update"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "HyperOS 3 Lite on the Poco X7 Pro — the EEA build that swaps the POCO skin for Redmi looks, unlocks refresh rates, and stays light on top of Android 16.\n\nThe \"Lite\" tag is the pitch: strip the heavy bits, keep the HyperOS feel. This one goes further than most by replacing the POCO launcher and icons with the Redmi HyperOS 3 set, so the phone looks like a different device after a flash.\n\nThe display options are the standout. Refresh rate switches between 30, 60, 90 and 120 Hz, and you can drop the resolution to 2400x1080 when you want to stretch battery. That kind of control is exactly what stock builds tend to bury.\n\nIt also turns on the heavier blur textures and advanced animations, adds Package Installer V2, and disables signature verification through Core Patch. Expect a more premium-looking UI, but also the usual trade-offs that come with modified system apps.\n\n📱 Device  : POCO X7 Pro (rodin)\n🧩 ROM     : HyperOS 3 Lite (EEA)\n🧩 Base    : HyperOS 3.0.2.0-EEA-A16\n🤖 Android : 16\n👤 Credits : @Alonejust993\n\n🔬 What Was Tested\n• Redmi HyperOS 3 icons and launcher replacing the POCO set\n• Refresh rate switching: 30 / 60 / 90 / 120 Hz\n• Resolution switching to 2400x1080\n• High-end blur textures and advanced animations\n• Package Installer V2 and the Core Patch signature change\n\n📊 Verdict\n• Looks nothing like stock POCO once you're through — in a good way.\n• Real display controls, not decorative toggle options.\n• Core Patch disabling signature checks is handy, but trust whoever you install from.\n• The heavy blur and animations look great, though they do cost a little battery.",
+ "links": [
+  {
+   "label": "ROM link",
+   "url": "https://tmearn.net/link/C4rAr"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Mirror",
+   "url": "https://tmearn.net/link/bjm5Wo2U"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

@@ -1,0 +1,33 @@
+{
+ "id": "OFHsLlmvxzU",
+ "slug": "root-miui-14-in-2-minutes-no-pc-needed-on-any-xiaomi-phone",
+ "title": "Root MIUI 14 in 2 Minutes No PC Needed on Any Xiaomi Phone",
+ "blurb": "Rooting MIUI 14 on a Xiaomi phone in about two minutes — Magisk patching, the fastboot flash, and the two settings that make your banking apps behave...",
+ "device": "Any Xiaomi",
+ "rom": "MIUI",
+ "android": "",
+ "views": 6697,
+ "published": "2023-01-09",
+ "url": "https://youtu.be/OFHsLlmvxzU",
+ "tags": [
+  "MIUI",
+  "Any Xiaomi",
+  "Flash",
+  "Install",
+  "Root"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Rooting MIUI 14 on a Xiaomi phone in about two minutes — Magisk patching, the fastboot flash, and the two settings that make your banking apps behave again afterwards.\n\nThe whole job is: let Magisk patch the boot image, flash that patched image, boot up, install the Magisk app, and then tell Magisk which apps should not see root. On MIUI 14 that last part matters more than the root itself, because without it your bank app closes the second it opens.\n\n📱 Device  : Xiaomi phones on MIUI 14\n🧩 Tool    : Magisk\n🤖 Android : 13\n\n🛠️ What You Need\n• Unlocked bootloader\n• The Magisk APK\n• Your phone's boot image, matching your exact MIUI build\n• Platform tools and a USB cable\n\n📝 Steps\n1. Install the Magisk app and let it patch your boot image.\n2. Reboot to fastboot and flash the patched image.\n3. Boot the phone and open Magisk to finish the setup.\n4. In Magisk settings, enable the DenyList.\n5. Add every banking and payment app to that list.\n6. Check Play Store — it should show the device as certified.\n\n⚠️ Where People Get Stuck\n• Patching the wrong boot image. It has to match your exact MIUI build, or you get a bootloop.\n• Skipping the DenyList, then wondering why banking apps detect root.\n• Forgetting that a MIUI update replaces the boot image, so root is gone after every OTA. Re-patch and re-flash.\n\nThat's the full run. It really is a couple of minutes once the boot image is on your PC — the slow part is the download.",
+ "links": [
+  {
+   "label": "Magisk",
+   "url": "https://magiskmanager.com/downloading-magisk-manager/"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

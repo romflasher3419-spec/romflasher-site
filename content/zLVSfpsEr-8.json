@@ -1,0 +1,49 @@
+{
+ "id": "zLVSfpsEr-8",
+ "slug": "derpfest-rom-on-redmi-k50i-clean-aosp-custom-rom-review",
+ "title": "DerpFest ROM on Redmi K50i Clean AOSP Custom ROM Review",
+ "blurb": "DerpFest on the Redmi K50i — an AOSP based custom ROM review, plus an honest look at what you gain and what you give up.",
+ "device": "Redmi K50i",
+ "rom": "DerpFest",
+ "android": "",
+ "views": 679,
+ "published": "2023-02-24",
+ "url": "https://youtu.be/zLVSfpsEr-8",
+ "tags": [
+  "DerpFest",
+  "Redmi K50i",
+  "Flash",
+  "Bootloader",
+  "MIUI"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "DerpFest on the Redmi K50i — an AOSP based custom ROM review, plus an honest look at what you gain and what you give up.\n\nDerpFest comes out of the AOSiP side of the custom ROM world, and you feel it the second the phone boots. There's no MIUI skin in the way. The whole thing sits closer to Pixel than to anything Xiaomi shipped on this phone, and that's the entire point of flashing it. The K50i has the hardware for a fast, clean build, and an AOSP base lets it stretch.\n\n📱 Device  : Redmi K50i\n🧩 ROM     : DerpFest (AOSP based)\n\n📌 What Stood Out\n• A clean AOSP interface with next to no manufacturer clutter\n• Customisation options you'd expect from a DerpFest build\n• A ROM that respects the screen and the chip on this phone\n• No extra layer fighting you for the dialer, the launcher or the quick settings\n\n🔍 What You Trade\n• The stock MIUI camera app is gone — the AOSP camera is a different animal\n• Some Xiaomi specific habits simply don't exist here\n• On most AOSP builds you flash GApps separately, so plan for it\n\n❓ Quick Answers\n• Does it need an unlocked bootloader? Yes, and that's step one.\n• Do I need vbmeta? On AOSP builds, usually yes. It's in the links below.\n• Is it daily driver material? That depends on your build and your usage, so keep a path back to your stock setup.\n• Can I keep the stock recovery? No. Use TWRP or OrangeFox.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "twrp for k50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "twrp for mi 11x",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for aosp rom",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "ofox for mi11t pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

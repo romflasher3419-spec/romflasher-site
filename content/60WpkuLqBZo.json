@@ -1,0 +1,41 @@
+{
+ "id": "60WpkuLqBZo",
+ "slug": "bliss-os-android-13-gsi-on-xiaomi-11t-pro-install-test",
+ "title": "Bliss OS Android 13 GSI on Xiaomi 11T Pro Install & Test",
+ "blurb": "Bliss OS on Android 13 as a GSI on the Xiaomi 11T Pro — the fastboot install, the exact build to grab, and what a Treble image can and can't do on this phone.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "Kernel",
+ "android": "",
+ "views": 1922,
+ "published": "2023-01-03",
+ "url": "https://youtu.be/60WpkuLqBZo",
+ "tags": [
+  "Kernel",
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Install",
+  "Recovery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Bliss OS on Android 13 as a GSI on the Xiaomi 11T Pro — the fastboot install, the exact build to grab, and what a Treble image can and can't do on this phone.\n\nBliss OS ships as a generic system image here, phh-treble based, so the ROM is the portable part and your vendor and kernel decide how the hardware behaves. The good news is the image side is clean — there are no ROM bugs listed at all, which says a lot about how much work went into this one.\n\n📱 Device  : Xiaomi 11T Pro\n🧩 ROM     : Bliss OS (GSI, phh-treble)\n🤖 Android : 13\n👤 Credits : @Naz664\n\n🔬 What You Get\n• Android 13 as a GSI — ARM64 AB and A64 AB images are both published.\n• GApps and slim builds are available. Vanilla is not, so plan for that.\n• SELinux works in both modes here, enforcing and permissive.\n• No bugs reported inside the ROM. On the device side it depends on your vendor and kernel.\n\n🛠️ Install Order\n1. fastboot reboot fastboot\n2. fastboot --disable-verity --disable-verification flash vbmeta\n2. fastboot erase system\n3. fastboot flash system\n4. fastboot reboot recovery\n5. Wipe data in Mi Recovery\n6. Reboot and done\n\n📊 Verdict\nThis is one of the friendlier GSIs to start with, purely because the ROM side is stable and documented. What you should not expect is a stock-like camera. GSI camera quality is downstream of your vendor, and if your vendor blob is old, photos will show it. Get vbmeta right and wipe data at the end and it boots without drama. Skip either of those and you'll spend the evening staring at a boot animation.",
+ "links": [
+  {
+   "label": "Bliss OS Android 13 GSI download",
+   "url": "https://xpshort.com/FqoaB"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "vbmeta",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "Platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  }
+ ],
+ "faq": []
+}

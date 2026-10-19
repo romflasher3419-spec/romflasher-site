@@ -1,0 +1,37 @@
+{
+ "id": "GNcBDZFtkMA",
+ "slug": "xiaomi-11t-pro-nusantara-rom-fastboot-sideload-guide",
+ "title": "Xiaomi 11T Pro + Nusantara ROM Fastboot & Sideload Guide",
+ "blurb": "Nusantara ROM on the Xiaomi 11T Pro — the fastboot and sideload flash, plus the recovery you'll want running before any of it.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "",
+ "android": "",
+ "views": 5712,
+ "published": "2022-11-23",
+ "url": "https://youtu.be/GNcBDZFtkMA",
+ "tags": [
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Bootloader",
+  "Recovery",
+  "Custom ROM"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Nusantara ROM on the Xiaomi 11T Pro — the fastboot and sideload flash, plus the recovery you'll want running before any of it.\n\nNusantara is a custom ROM that lands on the 11T Pro through fastboot plus a recovery sideload, and the part people trip on is the A/B side of things. Boot and vendor_boot both go to the _ab slots, and if you skip one the phone won't even boot into recovery. Get that right and the rest is simple: sideload the ROM zip, factory reset, reboot. Clean, quick, and easy to undo if you keep a stock package around.\n\n🧰 What You Need\n• A custom recovery image for the 11T Pro — link below\n• The Nusantara ROM zip\n• Platform Tools on the PC\n• A backup, because a factory reset is part of the process\n\n⌨️ Fastboot, Line by Line\n• adb reboot bootloader\n• fastboot flash boot_ab boot.img\n• fastboot flash vendor_boot_ab vendor_boot.img\n• fastboot reboot recovery\n\n📲 Then In Recovery\n• Wipe data, which is the factory reset option\n• Select apply update from ADB\n• From the PC, sideload the ROM zip\n• Reboot and let the first boot finish — give it a few minutes\n\n⚠️ Where People Get Stuck\n• Flashing only one of boot and vendor_boot. Both are needed.\n• Sideloading with the wrong recovery booted, which fails without a clear reason.\n• Skipping the factory reset, then wondering why the system hangs on boot.",
+ "links": [
+  {
+   "label": "Nusantara ROM for Xiaomi 11T Pro",
+   "url": "https://xpshort.com/tv3lV"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "OrangeFox recovery",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

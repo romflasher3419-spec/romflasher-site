@@ -1,0 +1,62 @@
+{
+ "id": "kTSSkoCIHJs",
+ "slug": "xiaomi-pad-5-one-ui-android-14-galaxy-tab-s9-ultra-port",
+ "title": "Xiaomi Pad 5 One UI Android 14 Galaxy Tab S9 Ultra Port",
+ "blurb": "One UI on the Xiaomi Pad 5 — a Galaxy Tab S9 Ultra style Android 14 experience, flashed through the DSU Sideloader app without wiping your current setup.",
+ "device": "Xiaomi Pad 5",
+ "rom": "Root",
+ "android": "",
+ "views": 539,
+ "published": "2025-12-08",
+ "url": "https://youtu.be/kTSSkoCIHJs",
+ "tags": [
+  "Root",
+  "Xiaomi Pad 5",
+  "Install",
+  "Bootloader",
+  "Battery"
+ ],
+ "summary": "You can run a One UI Android 14 port of the Galaxy Tab S9 Ultra on the Xiaomi Pad 5 without wiping your current setup, using the DSU Sideloader app. Two settings decide whether it boots at all: vbmeta verification disabled on stock firmware, and SELinux set to permissive.",
+ "body": "This is the smart way to try a big-screen interface. Instead of replacing your whole system, you run the One UI GSI on top of what is already on the tablet, using DSU. If it misbehaves, you reboot and it is gone. Nothing you had before is touched.\n\nThe port comes from the Galaxy Tab S9 Ultra, so what you get is Samsung-style multitasking and a layout that actually respects a tablet display. That is the reason to bother. Most GSIs are phone interfaces stretched across a big screen, and it shows. This one was built for a large panel to begin with.\n\nThe catch is entirely in the setup. On stock firmware you have to disable vbmeta verification first, and SELinux has to be set to permissive or it will not boot. Skip either one and you get a black screen — no error, no hint, just nothing.\n\n## What you need\n\n- **An unlocked bootloader** on the Xiaomi Pad 5\n- **adb and fastboot**, plus the right driver on your PC\n- **The One UI GSI file** — link below\n- **The DSU Sideloader app**, and **root** to run it\n- **SELinux switched to permissive**\n\n## Step 1 — download the GSI\n\nGrab the One UI GSI file first so you are not hunting for it halfway through. Keep it somewhere you can point the sideloader at.\n\n## Step 2 — disable vbmeta verification, if you are on stock\n\nThis step applies when you are on stock firmware. The GSI will not boot while verification is still enforcing, because the system image does not match what your firmware expects. Disabling verification is what lets a foreign system image start.\n\nIf you are already on a custom ROM that has this handled, you can skip past it. On stock, do not skip.\n\n## Step 3 — make SELinux permissive\n\nThis one catches people. This particular GSI needs SELinux in permissive mode. Left on enforcing, it will not come up. It is a real requirement of this port, not a suggestion, and there is no workaround that keeps enforcing on.\n\nBe aware of what permissive means: the security policy is not being enforced. That is fine for a test system you reboot out of, and it is a reason not to leave this setup running as your daily driver forever.\n\n## Step 4 — install the DSU Sideloader app\n\nInstall DSU Sideloader on the tablet. It needs root to work. If you are not rooted, this method does not start — that is just how the tool interacts with the system.\n\n## Step 5 — flash the GSI inside DSU Sideloader\n\nPoint the app at the GSI file and let it flash. This takes a while and it is worth watching rather than walking away. When it finishes, you will have the option to boot straight into the DSU.\n\n## Step 6 — reboot into DSU and let it boot\n\nReboot into the DSU and wait. A first boot of a full GSI is not fast. Give it time before you decide it has hung.\n\nIf you get a black screen instead of a boot, go back and check Step 2 and Step 3. Those two settings are the answer roughly every time.\n\n## Where people get stuck\n\n- **Forgetting vbmeta verification.** On stock firmware the GSI simply will not boot. No error message, just a black screen.\n- **Leaving SELinux enforcing.** This port needs permissive. Enforcing is a no-boot.\n- **Setting it as the main system too early.** Test it through DSU first. That is the entire point of using DSU — you keep your working setup while you find out what this one does.\n\n## One honest note\n\nDSU is built for testing, and this is exactly the right use for it. You get to live with One UI on your tablet for an afternoon and decide whether you actually like it, without betting your daily setup on the answer. If you love it, you can look at installing the GSI properly. If you do not, reboot and you are back where you started.",
+ "video_description": "One UI on the Xiaomi Pad 5 — a Galaxy Tab S9 Ultra style Android 14 experience, flashed through the DSU Sideloader app without wiping your current setup.\n\nThis is the smart way to try a big-screen UI. Rather than replacing your whole system, you run the One UI GSI on top of what's already there with DSU. If it misbehaves, reboot and it's gone. The port comes from the Galaxy Tab S9 Ultra, so you get Samsung-style multitasking and a layout that actually respects a tablet display.\n\nThe catch is in the setup. On stock firmware you have to disable vbmeta verification first, and SELinux has to be set to permissive or it simply won't boot. Skip either and you get a black screen. I go through both in the video.\n\n📱 Device  : Xiaomi Pad 5\n🧩 ROM     : One UI GSI (Android 14, Galaxy Tab S9 Ultra port)\n🤖 Android : 14\n👤 Credits : GSI from Mystic\n\n🛠️ What You Need\n• Unlocked bootloader on the Xiaomi Pad 5\n• adb and fastboot tool plus the right driver\n• The One UI GSI file\n• DSU Sideloader app, and root to run it\n• SELinux switched to permissive\n\n📝 Steps\n1. Download the GSI.\n2. Disable vbmeta verification of your current ROM — only if you're on stock.\n3. Make SELinux permissive.\n4. Install the DSU Sideloader app.\n5. Flash the GSI inside DSU Sideloader.\n6. Reboot into DSU and let it boot.\n\n⚠️ Where People Get Stuck\n• Forgetting vbmeta verification. On stock firmware the GSI just won't boot.\n• Leaving SELinux enforcing when this one needs permissive.\n• Setting it as the main system too early instead of trying it through DSU first.\n\n❓ Common Questions\nQ: Does this replace my current ROM?\nA: No. DSU runs the One UI GSI alongside it. Your existing system stays untouched.\nQ: Do I need root?\nA: You need root to run DSU Sideloader, yes.\nQ: Will it survive a reboot?\nA: DSU is meant for testing. Reboot and you're back on your normal system unless you set it up to persist.",
+ "links": [
+  {
+   "label": "link",
+   "url": "https://tmearn.net/link/cqTA9t9A"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Does this One UI port replace my current ROM on the Xiaomi Pad 5?",
+   "a": "No. DSU runs the One UI GSI alongside your existing system. Your current setup stays untouched, and a reboot puts you back on it."
+  },
+  {
+   "q": "Do I need root to run DSU Sideloader?",
+   "a": "Yes. DSU Sideloader needs root to install the GSI. Without root this particular method does not work."
+  },
+  {
+   "q": "Why does the GSI show a black screen instead of booting?",
+   "a": "Two usual causes: vbmeta verification is still enabled on stock firmware, or SELinux is still set to enforcing. This port needs verification disabled and SELinux permissive."
+  },
+  {
+   "q": "Does it survive a reboot?",
+   "a": "By default, no. DSU is meant for testing, so a reboot returns you to your normal system. Your One UI install is still there to boot into again unless you set it up to persist."
+  },
+  {
+   "q": "Is it safe to run SELinux in permissive mode?",
+   "a": "Only for testing. Permissive means the security policy is not enforced, which is acceptable for a system you reboot out of. Do not leave it as your everyday driver for a long period."
+  }
+ ]
+}

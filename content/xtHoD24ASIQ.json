@@ -1,0 +1,57 @@
+{
+ "id": "xtHoD24ASIQ",
+ "slug": "xiaomi-eu-miui-14-0-1-rom-on-redmi-k50i-flash-review",
+ "title": "Xiaomi EU MIUI 14.0.1 ROM on Redmi K50i Flash & Review",
+ "blurb": "Xiaomi EU MIUI 14.0.1 on the Redmi K50i — the community MIUI build people move to when stock starts getting in the way.",
+ "device": "Redmi K50i",
+ "rom": "MIUI",
+ "android": "",
+ "views": 609,
+ "published": "2023-02-24",
+ "url": "https://youtu.be/xtHoD24ASIQ",
+ "tags": [
+  "MIUI",
+  "Redmi K50i",
+  "Flash",
+  "Install",
+  "Recovery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Xiaomi EU MIUI 14.0.1 on the Redmi K50i — the community MIUI build people move to when stock starts getting in the way.\n\nIf you know the EU ROM, you know why it sticks around. It's MIUI with the noise turned down and the useful parts left in, so you keep the layout, the gestures and the camera you're used to, without re-learning a whole phone. On the K50i it's a popular stop for people who want a tidier daily device but aren't ready to give up MIUI for a pure AOSP ROM. This clip is the flash, plus a look at what you end up with.\n\n📱 Device  : Redmi K50i\n🧩 ROM     : Xiaomi EU ROM MIUI 14.0.1\n🧰 Type    : Community MIUI build\n\n🧭 Why People Flash The EU Build\n• You keep MIUI's layout, gestures and camera app\n• The build is trimmed compared to stock firmware\n• Google services are already in place\n• System and security updates keep coming\n\n📝 Steps\n1. Copy the ROM zip to internal storage.\n2. Reboot to recovery.\n3. Format data if you're coming from another ROM.\n4. Flash the zip and let it finish completely.\n5. Reboot to system — give the first boot a few minutes.\n\n⚠️ Where People Get Stuck\n• Flashing over an AOSP ROM without formatting data.\n• Using a recovery that doesn't match the device.\n• Panicking during the first boot, which is simply slow on a clean install.\n\n❓ Common Questions\n• Do I need to unlock the bootloader? Yes, and it needs a PC for the first unlock.\n• Does it wipe my data? On a clean flash, yes. Back up first.\n• Can I still get Xiaomi's own updates? Not over the air on a build like this — you flash new versions manually.",
+ "links": [
+  {
+   "label": "Xiaomi EU MIUI 14.0.1 for Redmi K50i",
+   "url": "https://xpshort.com/rosa"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB & Fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  },
+  {
+   "label": "Platform Tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "TWRP for K50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "TWRP for Mi 11X",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for AOSP ROM",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "OrangeFox for Mi 11T Pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

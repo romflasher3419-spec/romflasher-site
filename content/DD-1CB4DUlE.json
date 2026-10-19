@@ -1,0 +1,49 @@
+{
+ "id": "DD-1CB4DUlE",
+ "slug": "superioros-on-poco-x7-pro-android-16-clean-flash-guide",
+ "title": "SuperiorOS on Poco X7 Pro — Android 16 Clean Flash Guide",
+ "blurb": "SuperiorOS is now running on the Poco X7 Pro on an Android 16 base, and this one is the whole clean flash from fastboot to first setup, plus the two spots...",
+ "device": "",
+ "rom": "",
+ "android": "",
+ "views": 547,
+ "published": "2025-11-10",
+ "url": "https://youtu.be/DD-1CB4DUlE",
+ "tags": [
+  "Flash",
+  "Recovery",
+  "Backup",
+  "Gaming",
+  "Update"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "SuperiorOS is now running on the Poco X7 Pro on an Android 16 base, and this one is the whole clean flash from fastboot to first setup, plus the two spots where people usually get it wrong.\n\nThere's no need to invent a complicated process here. You get into fastboot, push the vendor image, boot the recovery that comes with the ROM, wipe, and then sideload the ROM zip. Same rhythm as the other Poco X7 Pro builds, and if you've done one of those you'll fly through this.\n\n🛠️ What You Need\n• The SuperiorOS ROM and its vendor image (both linked below).\n• The ADB fastboot tool and the matching driver on your PC.\n• A phone that's already unlocked, and a good USB cable.\n• A backup — IMEI included — because clean flash is the only supported path.\n\n📝 Steps\n1. Boot the phone into fastboot and confirm the PC can see it.\n2. Flash vendor_boot to both slots.\n4. Reboot into the Superior recovery.\n5. Do a factory reset, then choose apply update over ADB.\n6. Sideload the ROM file and let it finish.\n7. Reboot to the system and set it up.\n\nNotes On This Build\n• This is a Gapps build, signed, with SELinux enforcing.\n• Changelog is basically the initial build, plus a gaming-focused tweak pass.\n• Keep your IMEI backed up — I never make backups and I still tell you to.\n\n⚠️ Where People Get Stuck\n• Flashing only one slot and wondering why recovery refuses to boot.\n• Sideloading before the factory reset — that usually ends in a bootloop.\n• Forgetting USB debugging, so the device never shows in the tool.\n\n🗒 Known Issues\n• You tell me — bring logs if you report something.\n• The Aperture in-video fix, shown in the video.\n• FP jiiov is likely still not working, so test your own fingerprint first.\n\n❓ Common Questions\n• Do I need to wipe? Yes. Clean flash is mandatory for this build.\n• Is root required? No. The ROM boots without it, and you can add it later.\n• Gapps included? Yes, this is a Gapps build.\n• Can I dirty flash from another ROM? You can try, but don't expect me to say it's a good idea.\n\n🤝 Thanks To\n• @rthedream for the device tree — repo linked in the ROM thread.",
+ "links": [
+  {
+   "label": "SuperiorOS ROM",
+   "url": "https://tmearn.net/link/wkg5hnT"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Vendor",
+   "url": "https://tmearn.net/link/Xy679l"
+  },
+  {
+   "label": "ADB fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  },
+  {
+   "label": "Device tree",
+   "url": "https://github.com/mt6899-rodin"
+  }
+ ],
+ "faq": []
+}

@@ -1,0 +1,41 @@
+{
+ "id": "RC-4USObAWw",
+ "slug": "robinhood-hyperos-3-on-poco-x7-pro-china-base-flash",
+ "title": "Robinhood HyperOS 3 on Poco X7 Pro — China Base Flash",
+ "blurb": "Robinhood HyperOS 3 is a China-based Android 16 build for the Poco X7 Pro, and the flashing part is genuinely easy — it's a fastboot installer, so no...",
+ "device": "",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 2150,
+ "published": "2025-11-01",
+ "url": "https://youtu.be/RC-4USObAWw",
+ "tags": [
+  "HyperOS",
+  "Flash",
+  "Install",
+  "Root",
+  "Bootloader"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Robinhood HyperOS 3 is a China-based Android 16 build for the Poco X7 Pro, and the flashing part is genuinely easy — it's a fastboot installer, so no recovery hopping and no command list to memorise.\n\nHonest heads-up first: it's China-based, so don't expect a full global app lineup out of the box. Set it up, see what's missing for you, and add the rest yourself. That's the trade-off, and it's worth knowing before you start.\n\n🛠️ What You Need\n• The ROM zip, unpacked into a folder on your PC.\n• The Poco X7 Pro with an unlocked bootloader, ready for fastboot.\n• Working ADB and fastboot drivers on Windows.\n• A backup — the installer's clean flash wipes everything.\n\n📝 Steps\n1. Unpack the ROM into a folder on your PC.\n2. Boot the phone into fastboot mode and connect it.\n3. Run Robinhood_os_installer.bat.\n4. Answer Y for a clean flash.\n5. Choose your root method with 1, 2 or 3 — or press 4 if you don't want root.\n6. Wait it out. When it's done it reboots to the system on its own, or you can tap S.\n\n⚠️ Where People Get Stuck\n• Running the installer from inside the zip instead of the extracted folder.\n• Missing fastboot drivers, so the script can't detect the phone.\n• Pulling the cable mid-flash because it looked frozen. It isn't — let it finish.\n\n📝 Notes\n• China-based build, so some global services may need adding by hand.\n• Clean flash is the intended path here.\n• If you're new to fastboot installers, follow the on-screen prompts exactly.",
+ "links": [
+  {
+   "label": "Robinhood HyperOS 3 ROM",
+   "url": "https://tmearn.net/link/ohnDv"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

@@ -1,0 +1,90 @@
+::summary
+Robinhood OS is a modded HyperOS 3.0.3.0 CN Dragonhood build for the POCO X7 Pro (rodin), flashed the fastboot way with an installer script. You unpack the package, boot to fastboot, run the installer, choose a clean flash and pick your root. It is also the route back from a bootloop.
+
+::body
+If your POCO X7 Pro is sitting in a bootloop, or dead after a bad flash, this is the kind of build that walks you back to a working phone. It is modded HyperOS, based on 3.0.3.0 WOJCNXM, and it installs through a script rather than a long line of commands you have to type one at a time.
+
+It is also just a good customised HyperOS build. Here is what is inside it and how the install actually goes.
+
+## What is in it
+
+- **Full read-write access** for product, system, system_ext and odm, so you can modify parts of the system that are usually locked down.
+- **Performance tweaks plus a thermal mod** baked into the build.
+- **All languages**, with 60, 90 and 120 Hz display support.
+- **New wallpapers and themes**, an enhanced Gboard keypad and Core Patch.
+- **Unlimited Google Photos storage**, a game spoof, and KaoriToolBox preinstalled.
+- **A debloated system** with modded launcher, theme, security and SystemUI apps.
+- Built on the **latest firmware base**, 3.0.8.0 GL.
+
+## What you need
+
+- The **Robinhood OS package** for the POCO X7 Pro. It is built for rodin and nothing else.
+- A **PC** with working ADB and fastboot, and the driver installed.
+- An **unlocked bootloader** and fastboot access.
+- Over **50% battery**, and a backup. This is a clean flash and everything on the phone goes.
+- Twenty quiet minutes where the phone can stay plugged in.
+
+## Step 1 - download and unpack on the PC
+
+Grab the package from the link in the downloads section and unpack it on your PC with 7-Zip or WinRAR. You are looking for a folder that contains the installer and the image files. Do not run anything from inside the zip. Extract it first.
+
+## Step 2 - boot the phone to fastboot
+
+Power the phone off and hold **Volume Down + Power** until you see the fastboot screen, then connect it to the PC and confirm it is visible with `fastboot devices`. No serial number means the driver is missing, and the script will not fix that for you.
+
+## Step 3 - run the installer
+
+In the unpacked folder, run the installer script as administrator. A black window opens and starts printing what it is doing. Some lines take a while. That is normal, so leave it alone.
+
+## Step 4 - press Y for a clean flash
+
+When it asks, choose the clean flash. Always clean, never dirty, especially if you are coming off a bootloop or another ROM. A dirty flash on top of a broken system tends to keep the broken part.
+
+## Step 5 - pick your root
+
+The installer asks what you want, and you answer with a number:
+
+- 1 for **Magisk**
+- 2 for **KernelSU**
+- 3 for **Apatch**
+- 4 for **no root**
+
+This is a nice touch. You do not have to finish the flash and then go hunting for a separate root guide.
+
+## Step 6 - let it finish
+
+Leave the cable in and the window open. When the script is done the phone reboots on its own. First boot after a clean flash takes a few minutes, and there may be one extra reboot along the way.
+
+## Where people get stuck
+
+- **Choosing a dirty flash** to save time. On a bootloop, that is the wrong call and it usually keeps the problem.
+- **Using a lock script** or otherwise relocking while experimenting. Keep it unlocked until you are settled.
+- **Flashing to a different model.** This package is for the POCO X7 Pro. It is not for another Xiaomi or POCO phone.
+- **A flaky cable or port.** If the window dies partway through a partition, suspect the connection before you blame the ROM.
+
+## Honest notes
+
+One payment app simply refused to work on this build in my testing, and I show that rather than pretending everything was perfect. On my unit the device passed its integrity checks and banking apps generally co-operated, but one did not, and that is the reality of a modded system.
+
+Because it is a clean flash, everything on the phone goes. Have a backup. Finish the setup wizard on the empty phone before you start restoring files, so if something is going to break you find out early.
+
+If you want an unbrick route that does not need typing, the free Rom Flasher tool includes an unbrick center and the ADB and fastboot driver install. It is free, and the link is in the downloads section.
+
+::faq
+Q: Can this fix a POCO X7 Pro stuck in a bootloop?
+A: Yes, that is one of the main reasons to use it. Unpack the package, boot to fastboot, run the installer and choose a clean flash. It rewrites the system images and the phone boots again.
+
+Q: Which root should I pick during the install?
+A: Whichever you already use. The installer offers Magisk, KernelSU, Apatch or no root at all, and you answer with a number. If you are unsure, pick no root and add it later once the phone is running.
+
+Q: Does this wipe my phone?
+A: Yes, it is a clean flash. Everything on internal storage is erased, so back up your photos and files before you run the installer.
+
+Q: Will banking apps work?
+A: On my unit the device passed its integrity checks and most banking apps co-operated, though one payment app refused to work. Results can differ between apps, so do not assume every one of them will be fine.
+
+Q: What does full read-write actually give me?
+A: It means product, system, system_ext and odm can be modified. That is what lets a build like this debloat apps and change the launcher, theme, security and SystemUI pieces in the first place.
+
+Q: Can I flash it on another Xiaomi phone?
+A: No. This build is for the POCO X7 Pro, known as rodin. Flashing it on another model can leave you with a device that will not boot and no easy way back.

@@ -1,0 +1,45 @@
+{
+ "id": "fazdw9z2TRU",
+ "slug": "crdroid-v12-2-on-poco-x7-pro-android-16-easy-install",
+ "title": "CrDroid v12.2 on Poco X7 Pro — Android 16 Easy Install",
+ "blurb": "CrDroid v12.2 is on the Poco X7 Pro with an Android 16 base, and CrDroid is honestly my favourite ROM family — so this one is me showing the install...",
+ "device": "Channel",
+ "rom": "crDroid",
+ "android": "",
+ "views": 1441,
+ "published": "2025-11-06",
+ "url": "https://youtu.be/fazdw9z2TRU",
+ "tags": [
+  "crDroid",
+  "Channel",
+  "Flash",
+  "Install",
+  "Recovery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "CrDroid v12.2 is on the Poco X7 Pro with an Android 16 base, and CrDroid is honestly my favourite ROM family — so this one is me showing the install properly and then being straight about the small annoyances.\n\nThe flash is a fastboot-then-sideload job. You flash vendor_boot, boot the CrDroid recovery, wipe, then sideload the ROM zip over ADB. Nothing exotic, but the order matters, and leaning on shortcuts here is exactly how people end up with a phone stuck on the logo.\n\n📱 Device  : Poco X7 Pro (rodin)\n🧩 ROM     : CrDroid v12.2 (Android 16)\n🤖 Android : 16\n\n🔬 What I Looked At\n• Fastboot flash of vendor_boot to both slots.\n• CrDroid recovery boot and the factory reset step.\n• ADB sideload of the ROM zip, end to end.\n• First boot and the initial setup.\n• The Aperture video-recording glitch and how to fix it.\n• The blur issue in recents — set image transparency to 0 in the launcher and it clears up.\n• FP jiiov, which is likely still not working.\n\n📊 Verdict\nCrDroid keeps earning the top spot for me. It's a Vanilla build, signed, with SELinux enforcing, so you get a clean base and you decide what goes on top. The recents blur and Aperture fixes are quick once you know them. Expect to back up your IMEI, because clean flash is mandatory.\n\n❗️Known Issues\n• You tell me — bring logs, not vibes.\n• Aperture in-video recording needs the fix shown in the video.\n• Recents blur — set launcher image transparency to 0.\n• FP jiiov likely still not working, so check your fingerprint reader first.\n\n📝 Notes\n• SELinux is enforcing.\n• Vanilla build.\n• Signed build.\n• Back up your IMEI before you start.\n• Clean flash is mandatory.",
+ "links": [
+  {
+   "label": "CrDroid v12.2 ROM",
+   "url": "https://tmearn.net/link/bhMa"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  },
+  {
+   "label": "CrDroid changelog",
+   "url": "https://crdroid.net/blog/"
+  }
+ ],
+ "faq": []
+}

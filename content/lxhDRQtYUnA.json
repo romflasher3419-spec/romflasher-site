@@ -1,0 +1,41 @@
+{
+ "id": "lxhDRQtYUnA",
+ "slug": "lineageos-gsi-on-xiaomi-11t-pro-android-11-install-guide",
+ "title": "LineageOS GSI on Xiaomi 11T Pro Android 11 Install Guide",
+ "blurb": "LineageOS as a GSI on the Xiaomi 11T Pro — Android 11, the September security patches, and the fix in this build that finally kills the random livelock...",
+ "device": "Xiaomi 11T Pro",
+ "rom": "LineageOS",
+ "android": "",
+ "views": 4649,
+ "published": "2022-12-19",
+ "url": "https://youtu.be/lxhDRQtYUnA",
+ "tags": [
+  "LineageOS",
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Install",
+  "Bootloader"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "LineageOS as a GSI on the Xiaomi 11T Pro — Android 11, the September security patches, and the fix in this build that finally kills the random livelock freezes.\n\nLineage on a GSI is a different animal from a device-specific build, and it's the version I keep coming back to when a phone starts feeling slow. Everything is generic on purpose, which means it's light, predictable, and boring in the best way.\n\n📱 Device  : Xiaomi 11T Pro\n🧩 ROM     : LineageOS (GSI, phh-treble)\n🤖 Android : 11\n\n🔧 What's In This Build\n• September security patches merged in.\n• Updated to the latest phh sources.\n• llkd, the livelock daemon, removed — the real potential fix for those random freezes that used to hit some setups.\n\n🛠️ What You Need\n• An unlocked bootloader and a Treble-ready phone\n• The LineageOS GSI image — all architectures are published for this one\n• Vanilla only. There's no GApps build, so flash Google apps separately if you need them.\n• The vbmeta file and platform tools on your PC\n\n📝 Steps\n1. fastboot reboot fastboot\n2. fastboot --disable-verity --disable-verification flash vbmeta\n3. fastboot erase system\n4. fastboot flash system\n5. fastboot reboot recovery\n6. Wipe data in Mi Recovery\n7. Reboot and you're in\n\nKnown bugs: nothing listed in the ROM itself. On the device side it depends on your vendor and kernel, same as every GSI. SELinux works both ways — enforcing and permissive.\n\n📊 Verdict\nIf you want the cleanest, least dramatic Android experience on a Treble phone, this is it. No bloat, no theming circus, and the llkd removal is exactly the kind of fix that matters months later when a phone would otherwise start freezing at random. The catch is hardware: camera and any vendor-specific extras are your phone's problem, not Lineage's. And since it's vanilla, expect to spend ten extra minutes getting Google services in.",
+ "links": [
+  {
+   "label": "LineageOS GSI download",
+   "url": "https://xpshort.com/pgrT"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "vbmeta",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "Platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  }
+ ],
+ "faq": []
+}

@@ -1,0 +1,34 @@
+{
+ "id": "wm74MStyxt8",
+ "slug": "project-infinity-x-v3-5-full-changelog-feature-overview",
+ "title": "Project Infinity X v3.5 Full Changelog & Feature Overview",
+ "blurb": "Project Infinity X v3.5 is out — here's every change in the update, walked through one by one on camera.",
+ "device": "",
+ "rom": "",
+ "android": "",
+ "views": 463,
+ "published": "2025-12-07",
+ "url": "https://youtu.be/wm74MStyxt8",
+ "tags": [
+  "Camera",
+  "Update"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Project Infinity X v3.5 is out — here's every change in the update, walked through one by one on camera.\n\nFirst, the disclaimer from the team: this is version 3.5, and it is not the QPR1 release. QPR1 is confirmed for January with version 3.6, so if you were waiting on that, this isn't it yet. What you do get is a thick list of polish and quality-of-life work.\n\nThe headliner for me is the NothingOS style ringer quick settings tile. It looks clean and finally matches the rest of the panel. Google Sans Flex got updated to Google's own latest release, more sections moved to Material expressive, and colored icon customization now only touches the icons on the settings homepage — which fixes the mismatched icons people were seeing in submenus.\n\nThe engine room got attention too: more aggressive idle killing for better standby drain, R8 code shrinking and optimizations enabled by default, and a smoother quick settings transition when blurs are off. There are also three more display cutouts, new system animation styles, a spark pulse renderer for the music visualizer, and the about phone cards are enlarged again like in v3.2 and v2.9.\n\n📱 ROM     : Project Infinity X v3.5 (Unofficial)\n🤖 Android : 16\n🗓 QPR1    : Not in this build — it arrives with v3.6 in January\n\n🔬 What Changed\n• Add NothingOS style ringer QS tile (author: rmp22)\n• Update Google sans flex font package to Google's latest release (author: neobuddy89)\n• Add system animation styles: Android P, Scale, Slide\n• Allow override of Mock Location restriction (author: userariii)\n• More aggressive idle killing for better idle draining\n• Colored icon customizations now only apply to settings homepage icons\n• Add spark pulse renderer style (author: neobuddy89)\n• Add three more display cutouts: render below cutout, hide, wide cutout\n• Enable R8 code shrinking and optimizations by default (author: jdduke)\n• Fix half-clipped status bar on lockscreen for some devices\n\n📊 Verdict\nA quiet but solid release. No giant new app — just a lot of \"why was this broken before\" fixes plus a few genuinely nice additions. If you're already on Infinity X, this is a sensible update. If you were promised QPR1, hold on for 3.6.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

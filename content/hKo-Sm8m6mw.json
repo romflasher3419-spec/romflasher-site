@@ -1,0 +1,45 @@
+{
+ "id": "hKo-Sm8m6mw",
+ "slug": "hyperos-3-0-eu-port-for-poco-x7-pro-android-16-tour",
+ "title": "HyperOS 3.0 EU Port for Poco X7 Pro — Android 16 Tour",
+ "blurb": "HyperOS 3.0 EU is now living on my Poco X7 Pro, ported across from the Xiaomi 15T Pro, and it sits on top of HyperOS 3.0.4.0 EU with Android 16 underneath.",
+ "device": "Xiaomi 15T Pro",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 398,
+ "published": "2025-11-05",
+ "url": "https://youtu.be/hKo-Sm8m6mw",
+ "tags": [
+  "HyperOS",
+  "Xiaomi 15T Pro",
+  "Install",
+  "Unlock",
+  "Restore"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "HyperOS 3.0 EU is now living on my Poco X7 Pro, ported across from the Xiaomi 15T Pro, and it sits on top of HyperOS 3.0.4.0 EU with Android 16 underneath. This is the version everyone kept asking about, so here's the install and a proper look at it.\n\nThe setup surprised me. It honestly feels like configuring a fresh iPhone for a minute — clear steps, English straight away instead of Chinese, and a real Google restore option once you log in. Restore your apps, skip what you don't need, and you're done.\n\n📱 Device  : Poco X7 Pro (rodin)\n🧩 ROM     : HyperOS 3.0 EU (port from Xiaomi 15T Pro)\n🤖 Android : 16\n📦 Build   : 03/11/2025 · 7.4 GB\n👤 Credits : Ms.Achraf (changelog)\n\n🔬 What I Looked At\n• The setup flow — no Chinese at all, and the Google data restore shows up after login.\n• Fingerprint and face unlock both offered during setup.\n• A pile of new wallpapers pulled from newer Xiaomi devices.\n• The bundled Tecno camera app, which you can delete if you don't want it.\n• Unlimited Photos switched on.\n• The ad and privacy toggles at setup, including printer control for shared devices.\n\n📊 Verdict\nIt was built for daily driving and battery life, and it shows — smooth through a normal day, and gaming held up fine while I tested. The only hard rule is the AOD: leave full always-on display off, or the phone can hang on the logo. Everything else here feels like a polished port with a familiar setup, which is exactly what people wanted from HyperOS 3.\n\n📝 Changelog Notes\n• Port from the Mi 15T Pro, based on HyperOS 3.0.4.0 EU.\n• Unlimited Photos added.\n• Tweaks plus a lot of wallpapers from new devices.\n• Tecno camera included, removable.\n• Known issue: don't use full AOD — it can make the phone stick on the logo.\n• Flash with a clean install; the installer offers root options, and KernelSU is available if you want it.",
+ "links": [
+  {
+   "label": "HyperOS 3.0 EU ROM (port)",
+   "url": "https://tmearn.net/link/bzpyPB"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  },
+  {
+   "label": "Flashing guide",
+   "url": "https://telegra.ph/READ-08-28-10"
+  }
+ ],
+ "faq": []
+}

@@ -1,0 +1,41 @@
+{
+ "id": "HzaNSaoI8Jo",
+ "slug": "unlock-bootloader-poco-xiaomi-mi-community-7-day-wait",
+ "title": "Unlock Bootloader: POCO & Xiaomi ⏳ Mi Community + 7 Day Wait",
+ "blurb": "Unlocking the bootloader on a POCO or any Xiaomi phone — the Mi Community request, the Mi Unlock Status step on the device, and the 7 day wait before Mi...",
+ "device": "Any Xiaomi",
+ "rom": "Bootloader unlock",
+ "android": "",
+ "views": 889,
+ "published": "2025-10-11",
+ "url": "https://youtu.be/HzaNSaoI8Jo",
+ "tags": [
+  "Bootloader unlock",
+  "Any Xiaomi",
+  "Install",
+  "Unlock",
+  "Bootloader"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Unlocking the bootloader on a POCO or any Xiaomi phone — the Mi Community request, the Mi Unlock Status step on the device, and the 7 day wait before Mi Unlock on PC finishes the job.\n\nXiaomi didn't make this easy, but it is at least predictable. You apply inside the Mi Community app during a short window, you link your account on the device, and then you wait seven days. There's no shortcut, and anyone who tries to rush it just restarts the clock. This is the exact order that worked on the POCO X7 Pro, and the same flow applies to most other POCO, Redmi and Xiaomi phones.\n\n📱 Device  : POCO X7 Pro (same flow on most POCO / Redmi / Xiaomi)\n🧰 Tools   : Mi Community app, Mi Unlock (PC)\n⏳ Wait    : 7 days after the account is added\n\n🛠️ What You Need\n• The Mi Community app, from the link below\n• Mi Unlock software on a Windows PC\n• ADB Fastboot driver installed so the PC can see the phone\n• The same Mi account on the phone and inside the app\n• Mobile data switched on for account verification\n\n📝 Steps\n1. Install the Mi Community app and sign in with your Mi account.\n2. Grant the app every permission it asks for. Without them the unlock option never appears.\n3. Open your profile in the app, tap Mi, and find the bootloader unlock option.\n4. Apply inside the request window. The timer here runs 9:29:59, and once it hits zero you tap immediately.\n5. On the phone: Settings, Developer options, Mi Unlock Status, then agree to the terms.\n6. Turn Wi-Fi off. Adding the account has to happen on mobile data.\n7. Tap Add account and confirm it goes through.\n8. Leave the phone alone for 7 days so the account ages on the device.\n9. After 7 days, connect to the PC and finish the unlock with Mi Unlock software.\n\n⚠️ Where People Get Stuck\n• Turning Wi-Fi back on during the account step, which fails the add.\n• Using two different Mi accounts on the phone and in the app.\n• Removing the account or resetting the phone during the wait — that restarts the full 7 days.\n\n❓ Common Questions\nCan the 7 day wait be skipped? No. It starts when the account is added and nothing shortens it.\nDo I need a PC? For the final unlock, yes. Mi Unlock runs on Windows.\nWill unlocking wipe my data? Yes, unlocking wipes the phone.\nDoes this work on other Xiaomi phones? The steps are the same for most POCO, Redmi and Xiaomi models.",
+ "links": [
+  {
+   "label": "Mi Community app",
+   "url": "https://tmearn.net/link/tH1x"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Mi Unlock (PC)",
+   "url": "https://tmearn.net/link/OQM9B"
+  },
+  {
+   "label": "ADB Fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

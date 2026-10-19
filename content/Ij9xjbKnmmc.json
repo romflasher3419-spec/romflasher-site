@@ -1,0 +1,41 @@
+{
+ "id": "Ij9xjbKnmmc",
+ "slug": "xiaomi-11t-pro-superior-os-android-13-gsi-fastboot-guide",
+ "title": "Xiaomi 11T Pro + Superior OS Android 13 GSI Fastboot Guide",
+ "blurb": "Xiaomi 11T Pro with Superior OS Android 13 as a GSI — every fastboot command in order, the vbmeta line, and what to expect once it boots.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "Kernel",
+ "android": "",
+ "views": 7211,
+ "published": "2022-12-10",
+ "url": "https://youtu.be/Ij9xjbKnmmc",
+ "tags": [
+  "Kernel",
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Recovery",
+  "Bootloop"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Xiaomi 11T Pro with Superior OS Android 13 as a GSI — every fastboot command in order, the vbmeta line, and what to expect once it boots.\n\nSuperior OS ran on the 11T Pro as a generic system image here, and that changes how you think about it. A GSI isn't a device-specific build — it rides on your vendor and kernel, which is exactly why results vary from phone to phone. On mine it booted and SELinux sat at enforcing. The commands below are the ones from the clip, in the same order, and skipping the vbmeta line is the fastest way into a bootloop.\n\n⌨️ The Commands, In Order\n• fastboot reboot fastboot\n• fastboot --disable-verity --disable-verification flash vbmeta\n• fastboot erase system\n• fastboot flash system\n• fastboot reboot recovery\n• wipe data in Mi Recovery, then reboot\n\n🧩 Build Details\n• Android version: 13\n• ROM type: generic system image (GSI)\n• Specific device: phh-treble\n• Arch: ARM64\n• GApps: available · Slim: available · Vanilla: not available\n• SELinux: enforcing and permissive both work\n• Bugs inside the ROM: none reported\n• Device-side bugs: depend on your vendor and kernel\n• Maintainer: @ChonDoe\n\n❓ Common Questions\n• Why erase system first? A GSI replaces the system partition, so start from a clean one.\n• Will the camera and calls work? Those come from your vendor and kernel, not from the GSI.\n• Can I skip unlocking the bootloader? No — unlocking comes first, and fastboot has to see the phone before any command works.",
+ "links": [
+  {
+   "label": "Superior OS Android 13 (GSI)",
+   "url": "https://xpshort.com/vVDsmDfC"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "vbmeta",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "Platform Tools",
+   "url": "https://xpshort.com/q3zAO"
+  }
+ ],
+ "faq": []
+}

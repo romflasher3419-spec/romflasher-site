@@ -1,0 +1,29 @@
+{
+ "id": "FIMSaf6x_cc",
+ "slug": "nusantara-4-7-selarong-on-mi-11x-android-12l-flash-guide",
+ "title": "Nusantara 4.7 Selarong on MI 11X Android 12L Flash Guide",
+ "blurb": "Nusantara Project 4.7 Selarong on the MI 11X — the full flash walkthrough for this Android 12L build, plus everything you should have ready before you...",
+ "device": "Mi 11X",
+ "rom": "OrangeFox",
+ "android": "",
+ "views": 61,
+ "published": "2022-10-02",
+ "url": "https://youtu.be/FIMSaf6x_cc",
+ "tags": [
+  "OrangeFox",
+  "Mi 11X",
+  "Flash",
+  "Bootloader",
+  "Recovery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Nusantara Project 4.7 Selarong on the MI 11X — the full flash walkthrough for this Android 12L build, plus everything you should have ready before you touch your bootloader.\n\nNusantara is one of those ROMs people keep coming back to because it stays close to clean Android and only adds the switches you actually use every day. This release is 4.7, the Selarong build, sitting on the Android 12L base. It's the official Nusantara drop for the alioth platform, which means the MI 11X, the POCO F3 and the Redmi K40 all take the same zip — same hardware, three names on the box. In the video I go through the whole thing in the real order, on the phone, so you can follow along without guessing.\n\n📱 Device  : MI 11X / POCO F3 / Redmi K40 (alioth)\n🧩 ROM     : Nusantara Project 4.7 \"Selarong\" (Official)\n🤖 Android : 12L\n\n🛠️ What You Need\n• An unlocked bootloader. Nothing here works until that's done, and unlocking wipes your data.\n• A custom recovery already running on the phone — OrangeFox or TWRP both do the job.\n• The Nusantara 4.7 Selarong zip built for alioth. Don't grab a build made for another device.\n• Matching firmware. If you're jumping down from a much newer MIUI base, slow down and check first.\n• A full backup of your internal storage and a battery above 60%.\n\n📝 Steps\n1. Download the ROM zip and keep it in internal storage, not on a PC you'll forget to reconnect.\n2. Boot into recovery and take a full backup before anything else.\n3. Wipe data, cache and Dalvik. Clean flash is the safe route with a new Android base.\n4. Flash the ROM zip and let it finish without interrupting.\n5. Format data if the ROM asks for it after the flash.\n6. Reboot and give the first boot a few minutes. It's slow, that's normal.\n7. Sign in, then give the phone a day before you judge the battery.\n\n⚠️ Where People Get Stuck\n• Flashing on top of a newer firmware base and then blaming the ROM for random crashes.\n• Forgetting to format data after a clean flash, which lands you in a bootloop.\n• Using an old recovery that doesn't understand the 12L zip.\n\n❓ Common Questions\nQ: Does this wipe my data? A: A clean flash does. Back up first.\nQ: Can I flash it over MIUI without unlocking? A: No. Unlocking is step one, always.\nQ: Will it work on the POCO F3? A: Yes, same alioth hardware, same zip.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

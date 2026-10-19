@@ -1,0 +1,45 @@
+{
+ "id": "XJv6mV95fIE",
+ "slug": "xiaomi-pad-5-crdroid-12-3-android-16-official-install-guide",
+ "title": "Xiaomi Pad 5 crDroid 12.3 Android 16 Official Install Guide",
+ "blurb": "crDroid 12.3 on the Xiaomi Pad 5 — the official Android 16 build, flashed step by step from fastboot all the way to first boot.",
+ "device": "Xiaomi Pad 5",
+ "rom": "crDroid",
+ "android": "",
+ "views": 4970,
+ "published": "2025-12-05",
+ "url": "https://youtu.be/XJv6mV95fIE",
+ "tags": [
+  "crDroid",
+  "Xiaomi Pad 5",
+  "Install",
+  "Bootloader",
+  "Bootloop"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "crDroid 12.3 on the Xiaomi Pad 5 — the official Android 16 build, flashed step by step from fastboot all the way to first boot.\n\nThis one being official matters. You get proper OTA support, so if you're on an older crDroid build you should receive the update pushed and it's worth taking it the same way. The build is Vanilla, meaning no Google apps baked in — add them yourself if you want them.\n\nThe changelog is mostly audio work: more fine-tuning and mic path refinement, the nabu moving to Audio HAL 7.x with effects HAL 7.0, and a surfaceflinger setting removed that could cause UX jitter. Small stuff on paper, but it's the kind of cleanup you feel in daily use.\n\nOne tip from the notes: pair it with the Adreno driver v797 (KsuN module) for an even smoother experience. And if you're flashing clean, don't skip the factory reset — that's the difference between a smooth boot and a bootloop.\n\n📱 Device  : Xiaomi Pad 5 (nabu)\n🧩 ROM     : crDroid 12.3 (Official · Vanilla)\n🤖 Android : 16\n\n🛠️ What You Need\n• Unlocked bootloader on the Xiaomi Pad 5\n• adb and fastboot tool plus the correct driver\n• The crDroid 12.3 ROM file and the vendor image\n• Optional: Adreno driver v797 (KsuN module) for smoother UX\n\n📝 Steps\n1. Open your adb and fastboot tool and connect the Pad 5.\n2. Reboot to bootloader from the tool — no button combo needed.\n3. Flash the vendor_boot file.\n4. Boot to recovery and do a factory reset.\n5. Apply update from ADB and sideload the crDroid zip.\n6. Say no to extra root or Gapps for a clean install, then reboot to system.\n\n⚠️ Where People Get Stuck\n• Not factory resetting first, which leads to a bootloop.\n• Flashing the wrong vendor image for the build.\n• Assuming it ships with Google apps — this is the Vanilla build.\n\n❓ Common Questions\nQ: Will I get OTA updates?\nA: Yes. crDroid 12.3 for the Pad 5 is official, so updates come through OTA.\nQ: Do I need to wipe coming from an older build?\nA: The notes recommend upgrading the same way, and it's the safer path. A clean flash still needs the factory reset.\nQ: Is Gapps included?\nA: No. This is the Vanilla build, so Google apps are a separate install.",
+ "links": [
+  {
+   "label": "rom file",
+   "url": "https://tmearn.net/link/yid4Gq"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "vendor",
+   "url": "https://tmearn.net/link/FN0ANfZ5"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

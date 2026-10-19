@@ -1,0 +1,28 @@
+{
+ "id": "M_wtcpkA-Kc",
+ "slug": "xiaomi-11t-pro-eliteromng-13-0-7-0-miui-13-stable-build",
+ "title": "Xiaomi 11T Pro + EliteRomNG 13.0.7.0 MIUI 13 Stable Build",
+ "blurb": "EliteRomNG 13.0.7.0 on the Xiaomi 11T Pro — a stable MIUI 13 build on an Android 12 base, and everything that changed inside it.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "MIUI",
+ "android": "",
+ "views": 1863,
+ "published": "2022-11-29",
+ "url": "https://youtu.be/M_wtcpkA-Kc",
+ "tags": [
+  "MIUI",
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Install"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "EliteRomNG 13.0.7.0 on the Xiaomi 11T Pro — a stable MIUI 13 build on an Android 12 base, and everything that changed inside it.\n\nEliteRomNG 13.0.7.0 is the stable branch for the 11T Pro, sitting on MIUI 13 over an Android 12 base, and this one reads more like a polish pass than a rebuild. The team went back through the code end to end, cleaned up the annoying bits — notification colouring, the calls log page, power menu behaviour — and reworked the installer down to roughly 40 seconds. Small things, but they're the ones you notice every single day.\n\n⚙️ Fast Facts\n• Build: EliteRomNG 13.0.7.0 Stable\n• MIUI 13 on an Android 12 base\n• Device: Xiaomi 11T Pro\n• Installer: new method, around 40 seconds\n\n🧩 What's New\n• Base updated to the mentioned ROM\n• Multi-language ROM for all apps\n• New app shortcuts on CC13, with a switch in Control Center settings to turn them off\n• Customisation for contact name and number fonts and sizes\n• Themes server chooser added in Other options\n• Power menu fixes, plus a new extended power menu\n• Notification background colouring fixed\n• CC13 tiles animation menu added, with several to pick from\n• Default colouring of the calls log page fixed\n• GPU Tuner enabled by default\n• New 40-second ROM installer with a new method\n• Latest MIUI launcher, Contacts, Messages, Permissions and App Vault apps\n• Charging colours feature removed\n• Notification menu crashes for some users fixed\n• Buggy feature removed from the calls settings page\n• All code revisited and polished\n\n❓ Common Questions\n• Which device is this for? The Xiaomi 11T Pro.\n• Do I need to format data? For a clean MIUI flash, yes — dirty flashes are where bootloops come from.\n• What's the base? MIUI 13 on Android 12.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

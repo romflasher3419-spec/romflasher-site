@@ -1,0 +1,37 @@
+{
+ "id": "vb9kz51RkSQ",
+ "slug": "xiaomi-11t-pro-spark-os-android-13-gsi-flash-setup",
+ "title": "Xiaomi 11T Pro + Spark OS Android 13 GSI Flash & Setup",
+ "blurb": "Spark OS Android 13 on the Xiaomi 11T Pro — the GSI flash, then the settings you have to touch after that first boot.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "",
+ "android": "",
+ "views": 1386,
+ "published": "2022-11-17",
+ "url": "https://youtu.be/vb9kz51RkSQ",
+ "tags": [
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Install",
+  "Recovery",
+  "Backup"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Spark OS Android 13 on the Xiaomi 11T Pro — the GSI flash, then the settings you have to touch after that first boot.\n\nSpark OS on Android 13 ran here as a GSI, and the flash itself is short: platform tools, fastboot, vbmeta, the image, wipe data. What makes this clip useful is the second half. After the phone boots there's a handful of toggles that decide whether things like calls, the always-on display and the camera API behave properly. Skip them and the ROM feels half-finished. Do them and it feels like a real daily.\n\n🧰 What You Need\n• Platform Tools on the PC\n• The Spark OS image for Android 13\n• vbmeta, with verity and verification disabled\n• A full backup, since data gets wiped\n\n📝 Flash, Then Setup\n1. Boot the phone to fastboot and confirm the PC sees it.\n2. Switch to fastbootd, then flash vbmeta, erase system and flash the Spark image.\n3. Reboot to recovery and wipe data.\n4. Boot to the system and work through the settings below.\n\n⚙️ After First Boot\n• Turn on the toggles shown for network and call behaviour\n• Screen brightness slider, force alternative options, skin and mode picks\n• Camera2 API, A2DP and the always-on display toggle\n• Qualcomm feature options, including an alternative camera profile if you want one\n• The device showed up certified, and Google Photos gave limited backup, with no extra patching\n• Theme customisation, including black and transparent looks\n\n❓ Common Questions\n• Is a GSI stable enough to live with? Mine booted and ran, but your vendor and kernel decide the rest.\n• Why does the device show as certified? It came that way here, no extra modules needed.\n• Do I use a recovery at all? Follow the fastboot steps, then do the data wipe from recovery.",
+ "links": [
+  {
+   "label": "Spark OS Android 13 (GSI)",
+   "url": "https://xpshort.com/ObnQ"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Platform Tools",
+   "url": "https://xpshort.com/q3zAO"
+  }
+ ],
+ "faq": []
+}

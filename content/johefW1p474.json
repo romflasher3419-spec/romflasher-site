@@ -1,0 +1,41 @@
+{
+ "id": "johefW1p474",
+ "slug": "ricedroid-8-6-gsi-on-xiaomi-11t-pro-install-android-13-guide",
+ "title": "RiceDroid 8.6 GSI on Xiaomi 11T Pro Install Android 13 Guide",
+ "blurb": "RiceDroid 8.6 as a GSI on the Xiaomi 11T Pro — Android 13 installed over the vendor image, with the exact fastboot commands and the wipe step people...",
+ "device": "Xiaomi 11T Pro",
+ "rom": "crDroid",
+ "android": "",
+ "views": 988,
+ "published": "2023-01-13",
+ "url": "https://youtu.be/johefW1p474",
+ "tags": [
+  "crDroid",
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Install",
+  "Bootloader"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "RiceDroid 8.6 as a GSI on the Xiaomi 11T Pro — Android 13 installed over the vendor image, with the exact fastboot commands and the wipe step people always forget.\n\nThis build is a generic system image, phh-treble based, so the ROM itself is clean and the device side of things depends entirely on your vendor and kernel. That's the whole trade: you can put it on almost anything Treble, but how well the camera or calls behave is your vendor's business, not the ROM's.\n\n📱 Device  : Xiaomi 11T Pro\n🧩 ROM     : RiceDroid 8.6 (GSI, phh-treble)\n🤖 Android : 13\n👤 Credits : @LynixFox\n\n🛠️ What You Need\n• Unlocked bootloader and a Treble-ready device\n• The RiceDroid 8.6 system image — ARM64 or A64 AB, GApps, vanilla and slim builds are all available\n• The vbmeta file and platform tools on your PC\n• A working custom recovery for the final data wipe\n\n📝 Steps\n1. fastboot reboot fastboot\n2. fastboot --disable-verity --disable-verification flash vbmeta\n3. fastboot erase system\n4. fastboot flash system\n5. fastboot reboot recovery\n6. Wipe data in Mi Recovery\n7. Reboot. Done.\n\n⚠️ Where People Get Stuck\n• Skipping the vbmeta flags. Without disabling verity and verification, the GSI won't boot.\n• Forgetting the data wipe at the end. A dirty system partition plus old userdata is the classic bootloop.\n• Blaming the ROM for broken hardware features. On a GSI, camera, calls and sensors ride on your vendor and kernel, and the ROM can't fix that.\n\nKnown bugs: nothing listed in the ROM itself, which is rare and nice. On the device side, it really does depend on your vendor and kernel. SELinux works both ways here — enforcing and permissive are both fine.",
+ "links": [
+  {
+   "label": "RiceDroid 8.6 GSI download",
+   "url": "https://xpshort.com/RkiC5ps"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "vbmeta",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "Platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  }
+ ],
+ "faq": []
+}

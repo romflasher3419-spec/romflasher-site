@@ -1,0 +1,12 @@
+# Build output - GitHub Actions rebuilds this on every push.
+dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+.idea/
+.vscode/
+Thumbs.db
+Desktop.ini

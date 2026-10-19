@@ -1,0 +1,66 @@
+{
+ "id": "8PJA-PlL7MM",
+ "slug": "lineageos-22-on-poco-x7-pro-flash-without-a-pc-termux",
+ "title": "LineageOS 22 on POCO X7 Pro Flash Without a PC (Termux)",
+ "blurb": "LineageOS 22 on the POCO X7 Pro — flashed from Termux on another Android device.",
+ "device": "POCO X7 Pro",
+ "rom": "LineageOS",
+ "android": "",
+ "views": 1480,
+ "published": "2025-10-26",
+ "url": "https://youtu.be/8PJA-PlL7MM",
+ "tags": [
+  "LineageOS",
+  "POCO X7 Pro",
+  "Flash",
+  "Install",
+  "Recovery"
+ ],
+ "summary": "You can flash LineageOS 22 on the POCO X7 Pro without a PC, using Termux on a second Android device to run the recovery steps over USB. It works, but the whole job depends on the ADB driver inside Termux being right, and that is where most attempts fail.",
+ "body": "You do not own a Windows laptop, or the one you have refuses to see the phone, or you just want to prove this can be done from a phone. Whatever the reason, flashing LineageOS 22 on the POCO X7 Pro from Termux is a real route, and I ran the whole thing that way.\n\nThe idea is simple. A second Android phone or tablet runs Termux, you connect the POCO to it with a USB cable, and the recovery tool in Termux talks to the phone over ADB and fastboot. No desktop, no platform-tools folder, no driver installer on Windows.\n\nThe catch is the same catch as always. When the device ID does not show up, that is almost never the phone. It is the ADB driver.\n\n## What you need\n\n- Termux, plus the recovery tool, already set up and working on the second device.\n- A second Android phone or tablet to run Termux. This is the device doing the flashing.\n- The LineageOS 22 ROM zip and the vendor file for this device.\n- USB debugging turned on, on the phone you are flashing.\n- A cable that actually moves data. Charge-only cables are useless here.\n- Your IMEI written down and your data copied off the phone.\n\nThat last point matters more than people think. Write the IMEI down somewhere you can find it. You cannot recreate it later.\n\n## Step 1 - prepare the phone you are flashing\n\nOn the POCO X7 Pro, enable Developer options and turn on USB debugging. Connect it to the Termux device with the cable and pick the option that checks the ADB device.\n\nIf that returns an ID, you are in business. If it returns nothing, jump to the troubleshooting section below before you go any further. Do not push on and hope.\n\n## Step 2 - reboot to fastboot\n\nFrom the tool's menu, reboot the phone to fastboot. Then check the fastboot device list before you touch anything else. You want to see the ID listed there too. This is the checkpoint that saves you from a bad flash later.\n\n## Step 3 - put the files where the tool expects them\n\nMove the LineageOS 22 zip and the recovery file into the Download folder on the Termux device, so the tool can find them without you typing long paths. This is boring and it is worth doing properly.\n\n## Step 4 - flash recovery\n\nFlash the recovery image to the phone. The tool handles it, and you want it on both slots. If it does not offer that as a menu option, do it manually for each slot.\n\n## Step 5 - sideload the ROM\n\nBoot into the LineageOS recovery you just flashed, format data, then use Apply update and Apply from ADB. Sideload the ROM zip and let it finish.\n\nFirst boot after that takes a while. Leave the phone alone.\n\n## Where people get stuck\n\n- **The fastboot ID never shows up.** Nine times out of ten this is the ADB driver inside Termux, not the phone. Reinstall the driver there and try again before you assume the device is dead.\n- **A cable that only charges.** If the device list is empty no matter what you do, try a different cable before you reinstall anything else.\n- **Skipping the vendor file.** The vendor file has to go on with the ROM. Without it the phone will not boot properly.\n\n## One honest note\n\nFlashing from a phone is slower and fussier than from a PC. Every time something does not respond, you are troubleshooting two Android devices instead of one, and the tool's output on a phone screen is cramped. I checked the device at every stage rather than trusting the tool, because a tool that looks connected while your phone sits there doing nothing is the worst feeling in this hobby.\n\nThat said, it works, and it is a genuinely good option if a PC is not available to you. Just be patient with the driver step and verify each checkpoint before moving on. If you would rather do it from a computer, the free Rom Flasher tool covers the ADB and fastboot driver setup there.",
+ "video_description": "LineageOS 22 on the POCO X7 Pro — flashed from Termux on another Android device. No laptop, no Windows, just the tool, the recovery and the ROM zip.\n\nThis one picks up where the Termux setup left off. You open Termux on the second Android device, paste the cd command, run the flash tool, connect the Poco with USB debugging on, and let the script do the parts you'd normally do from a PC. The tool lists your device, reboots it to fastboot where you ask it to, flashes the LineageOS recovery to both slots, and then you sideload the ROM.\n\nI tested the device at every stage instead of trusting it, because the worst feeling in this hobby is a tool that looks connected while your phone sits there doing nothing. If the fastboot ID doesn't show up, that's almost always the ADB driver, not the tool — reinstall it inside Termux and try again before you assume the phone is dead.\n\n🔧 What You Need\n• Termux plus the recovery tool, already set up and working\n• A second Android phone or tablet to run Termux\n• LineageOS 22 ROM zip and the vendor file for this device\n• USB debugging on, and a cable that actually moves data\n• Your IMEI written down and your data copied off\n\n📝 The No-PC Route\n1. On the phone you're flashing: enable Developer options and turn on USB debugging.\n2. Connect it to the Termux device and pick the option that checks the ADB device.\n3. When the ID appears, reboot the phone to fastboot from the tool's menu.\n4. Check the fastboot device list before you touch anything.\n5. Put the LineageOS zip and the recovery file in the Download folder.\n5. Flash the recovery to both A and B slots — if the menu has no A/B option, run the manual command.\n6. Reboot into the LineageOS recovery.\n7. Format data, then Apply update → Apply from ADB.\n7. Sideload the ROM zip, wait for it to finish, then reboot to system.\n\n⚠️ Where People Get Stuck\n• No fastboot ID — nine times out of ten it's the ADB driver in Termux, not the phone.\n• Flashing the recovery to only one slot, then wondering why it boots back into the old one.\n• Forgetting USB debugging after a reboot, because the toggle sometimes drops.\n\n❓ Common Questions\nIs a PC needed at all? No. Everything runs between two Android devices.\nDo I lose my data? Yes, this route formats data, so back up first.\nWhy sideload instead of a normal install? That's how this recovery takes the ROM.\nWhat if the ROM won't boot? Redo the vendor file step and check the build matches your device.",
+ "links": [
+  {
+   "label": "LineageOS 22 ROM",
+   "url": "https://tmearn.net/link/rNS9yO7C"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Vendor",
+   "url": "https://tmearn.net/link/wol2XX"
+  },
+  {
+   "label": "ADB & Fastboot Tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB & Fastboot Driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can I flash LineageOS 22 without a PC?",
+   "a": "Yes. You can run the flash from Termux on a second Android device over a USB cable, using the recovery tool to handle the ADB and fastboot steps. It works, but the driver setup inside Termux has to be right first."
+  },
+  {
+   "q": "Why does the fastboot device ID not show up in Termux?",
+   "a": "It is almost always the ADB driver rather than the phone. Reinstall the driver inside Termux and try again. Also check the cable, since a charge-only cable will never show a device."
+  },
+  {
+   "q": "Does flashing LineageOS 22 wipe the phone?",
+   "a": "Yes. You format data as part of the install, and unlocking the bootloader wipes the phone as well. Copy your files off and write down your IMEI before you start."
+  },
+  {
+   "q": "Do I need the vendor file with the LineageOS 22 zip?",
+   "a": "Yes. The vendor file goes on with the ROM and the build will not behave correctly without it. Get both files on the Termux device before you start flashing."
+  },
+  {
+   "q": "Why is there no fastboot device showing even though the cable is connected?",
+   "a": "Check the cable first, then the driver inside Termux. A charge-only cable will never pass data, and a missing ADB driver looks exactly like a dead phone. Fix those two before you blame the ROM."
+  }
+ ]
+}

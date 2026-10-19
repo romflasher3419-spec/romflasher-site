@@ -1,0 +1,66 @@
+{
+ "id": "gWejasTJqVI",
+ "slug": "derpfest-os-on-poco-x7-pro-android-16-flash-with-magisk",
+ "title": "DerpFest OS on POCO X7 Pro Android 16 Flash With Magisk",
+ "blurb": "DerpFest OS on the POCO X7 Pro (Rodin) — a fresh Android 16 build flashed with vendor_boot, ADB sideload and Magisk 29 installed straight after.",
+ "device": "POCO X7 Pro",
+ "rom": "DerpFest",
+ "android": "",
+ "views": 2396,
+ "published": "2025-10-27",
+ "url": "https://youtu.be/gWejasTJqVI",
+ "tags": [
+  "DerpFest",
+  "POCO X7 Pro",
+  "Flash",
+  "Root",
+  "Recovery"
+ ],
+ "summary": "DerpFest OS has landed on the POCO X7 Pro (Rodin) as an Android 16 build, flashed\nwith vendor_boot, ADB sideload, and Magisk 29 installed in the same recovery\nsession. GApps are already included, SELinux stays enforcing, and the build is\nsigned. This is the initial release, so the bug list is still being written.",
+ "body": "DerpFest is one of the ROMs people ask about most, and this is its first landing\non the X7 Pro. It follows the now-standard route for this phone: flash vendor_boot\nto both slots, reboot, catch recovery with the volume key, format data, sideload,\nthen root while recovery is still open. I sideloaded Magisk 29 in the same session\nbecause doing it in one pass saves you a second trip into recovery.\n\nWhat I like is how little drama there is. What I would flag is the honest part:\nthe maintainer wrote \"Initial Build\" and nothing else, so the bug list is still\nbeing written by whoever flashes first. That was me. Now it is you.\n\n## What changed\n\n- Initial build for the POCO X7 Pro.\n- Signed build with SELinux enforcing.\n- GApps included, so there is no separate package to hunt down.\n- Root via Magisk 29 during the same recovery session.\n\nThat first line is the one to think about. An initial build is not a bad build.\nIt simply means nobody has hit the strange corner cases yet, so keep a backup of\nwhatever you are running now.\n\n## What you need\n\n- The DerpFest ROM zip for the POCO X7 Pro (Rodin).\n- The `vendor_boot` image for this build.\n- A PC with ADB and fastboot, or the Termux route if you want to skip it.\n- The ADB and fastboot driver installed.\n- Your data moved off the phone, and your IMEI written down somewhere safe.\n- Magisk 29, only if you want root.\n\nThat IMEI line is not filler. It is the single step people skip and later regret,\nand it takes two minutes.\n\n## Step 1 - back up, and write down your IMEI\n\nMove your data off the phone first. Then find your IMEI, usually in Settings, and\nwrite it down or photograph it. If something goes wrong later, having it saved\nsomewhere other than the phone is worth more than you think.\n\n## Step 2 - fastboot, and check the connection\n\nBoot to fastboot with Volume Down and Power, connect to the PC, and run:\n\n`fastboot devices`\n\nYou want a serial number and the word `fastboot`. No serial number is a driver\nproblem, so fix that before going further.\n\n## Step 3 - flash vendor_boot to both slots\n\n`fastboot flash vendor_boot --slot=all vendor_boot.img`\n\nBoth slots. Half-flashing this image is how boot loops start.\n\n## Step 4 - reboot and catch recovery with Volume Up\n\nRun `fastboot reboot`, then hold Volume Up immediately.\n\nDo not use the fastboot command that jumps straight to recovery. On this phone\nthat is a brick waiting to happen, and I am not exaggerating for effect. Hold the\nkey yourself.\n\n## Step 5 - factory reset, then format data\n\nFactory reset, then Format data. This build wants a clean start, so do not try to\ndirty flash it over an older ROM.\n\n## Step 6 - sideload the ROM\n\nApply update, then Apply from ADB. From the PC:\n\n`adb sideload` and the DerpFest zip name.\n\nLet it finish to 100 percent before you touch anything.\n\n## Step 7 - say yes, then sideload Magisk 29\n\nWhen it asks, choose yes. Then, while recovery is still open, sideload Magisk 29\nif you want root. Doing it here means one pass instead of two, and it is the tidier\nroute than patching a boot image after the fact.\n\nRoot is optional here. The ROM boots perfectly well without it.\n\n## Step 8 - reboot to system\n\nFirst boot is slow. Give it minutes, not seconds, before you start worrying. A\nclean data partition with a fresh Android 16 install takes its time, and that is\nnormal.\n\n## Where people get stuck\n\n- **Not writing down the IMEI.** Two minutes now, a lot of regret later.\n- **Using the fastboot reboot recovery command.** Hold Volume Up instead.\n- **Expecting a bug list.** This is the initial build, so there is not one yet.\n- **First boot worry.** It is slow. Give it minutes.\n\n## One known rough edge\n\nThe maintainer posted a fix for Aperture video, so if that app misbehaves for you,\ncheck the ROM channel post for it rather than assuming the whole camera stack is\nbroken.\n\n## Should you flash it\n\nIf you want a signed Android 16 build with GApps already inside and you are happy\nbeing an early adopter, this is a clean one. It boots like a phone that shipped\nthis way, and the whole process is short. If you want a build with a settled bug\nlist and a few releases of history behind it, wait a while.\n\nIf the driver side is the part that slows you down, the free Rom Flasher tool on\nGitHub installs the ADB and fastboot driver in a couple of clicks. It is free, and\nthe link is in the downloads section.",
+ "video_description": "DerpFest OS on the POCO X7 Pro (Rodin) — a fresh Android 16 build flashed with vendor_boot, ADB sideload and Magisk 29 installed straight after.\n\nDerpFest is one of the ROMs people ask about most, and this is its first landing on the X7 Pro. It follows the now-standard route for this phone: flash vendor_boot to both slots, reboot, catch recovery with the volume key, format data, sideload, then root while recovery is still open. I sideloaded Magisk 29 in the same session because doing it in one pass saves you a second trip into recovery.\n\nWhat I like is how little drama there is. SELinux stays enforcing, the build is signed, GApps are already in so you're not hunting a separate package, and the whole thing boots like a phone that shipped this way. What I'd flag is the honest part: the maintainer wrote \"Initial Build\" and nothing else, so the bug list is still being written by whoever flashes first — me, and now you.\n\n🗒 What Changed\n• Initial build for the POCO X7 Pro\n• Signed build with SELinux enforcing\n• GApps included, no extra package needed\n• Root via Magisk 29 during the same recovery session\n\n📝 Steps\n1. Move your data off the phone and write down your IMEI somewhere safe.\n2. Boot to fastboot, connect to the PC and check with fastboot devices.\n3. Flash vendor_boot to both slots: fastboot flash vendor_boot --slot=all vendor_boot.img\n4. fastboot reboot, then hold Volume Up immediately for recovery.\n5. Do not use fastboot reboot recovery — on this phone that's a brick waiting to happen.\n6. Factory reset, then Format data.\n7. Apply update → Apply from ADB, then sideload the ROM zip.\n8. Choose yes when it asks, then sideload Magisk 29 while recovery is open.\n9. Reboot to system and let the first boot finish before you judge it.\n\n⚠️ Notes Worth Reading\n• Aperture video has a fix, linked to the ROM channel in the post.\n• Back up IMEI first. This is the single step people skip and later regret.\n• First boot is slow. Give it minutes, not seconds, before you start worrying.\n\n❓ Common Questions\nCan I dirty flash over an older ROM? No — this wants a clean start, so format data.\nDo I need Magisk? No, it's optional root. The ROM boots fine without it.\nDoes this work on other Poco phones? No. It's built for the X7 Pro.\nWill Play Store work? Yes, the GApps are baked into the build.",
+ "links": [
+  {
+   "label": "DerpFest OS ROM",
+   "url": "https://tmearn.net/link/xxWf"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Vendor",
+   "url": "https://tmearn.net/link/ZnLjdHLl"
+  },
+  {
+   "label": "ADB & Fastboot Tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB & Fastboot Driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Do I need Magisk with DerpFest on the POCO X7 Pro?",
+   "a": "No. Magisk 29 is optional root, and the ROM boots fine without it. If you do\nwant root, sideload it in the same recovery session as the ROM."
+  },
+  {
+   "q": "Can I dirty flash DerpFest over an older ROM?",
+   "a": "No. This build wants a clean start. Factory reset and format data before you\nsideload, or you risk the strange behaviour that dirty flashes bring."
+  },
+  {
+   "q": "Does DerpFest include Google apps?",
+   "a": "Yes. GApps are baked into the build, so there is no separate package to\nsideload and the Play Store works after setup."
+  },
+  {
+   "q": "Does DerpFest work on other POCO phones?",
+   "a": "No. This build is for the POCO X7 Pro, codename rodin. A package built for a\ndifferent model can leave the phone unable to boot."
+  },
+  {
+   "q": "Why is the first boot so slow?",
+   "a": "It is a fresh install on a clean data partition, so it takes minutes rather\nthan seconds. Let it finish before you start worrying that something is wrong."
+  }
+ ]
+}

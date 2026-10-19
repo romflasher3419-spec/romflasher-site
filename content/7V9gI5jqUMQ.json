@@ -1,0 +1,41 @@
+{
+ "id": "7V9gI5jqUMQ",
+ "slug": "new-build-after-a-long-break-custom-rom-update-free-tools",
+ "title": "New Build After a Long Break Custom ROM Update + Free Tools",
+ "blurb": "A new build landed after a long gap — this clip is the short version of that.",
+ "device": "Channel",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 89,
+ "published": "2026-06-12",
+ "url": "https://youtu.be/7V9gI5jqUMQ",
+ "tags": [
+  "HyperOS",
+  "Channel",
+  "Flash",
+  "Install",
+  "Root"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "A new build landed after a long gap — this clip is the short version of that. No install walkthrough, no long setup, just the update and the files I use for every flash.\n\nI've been quiet on the build side for a while, and this is the one that finally came together. If you've been following the channel, you know the rhythm by now: something new gets tested, then the whole process gets filmed properly. This clip is the marker in between.\n\n🎬 In This Clip\n- A fresh build arriving after a long break\n- A quick look at what changed since the last one\n- The tools I keep pinned, unchanged and free\n\nFor anyone new here: the Android app and the Windows tool both live in the links below, and neither costs anything. The hardbrick guide is down there too, because the day you need it is never the day you want to go searching. Everything on this channel is filmed on a real device, not a render.\n\nIf you're flashing something soon, slow down and read the steps twice. Half the messages I get about dead phones trace back to a wrong file or a skipped format, not to the ROM itself.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Termux flash file",
+   "url": "https://tmearn.net/link/lQ5Lhx2G"
+  },
+  {
+   "label": "ADB & Fastboot Tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB & Fastboot Driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

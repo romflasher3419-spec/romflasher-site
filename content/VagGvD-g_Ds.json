@@ -1,0 +1,57 @@
+{
+ "id": "VagGvD-g_Ds",
+ "slug": "ricedroid-android-13-rom-on-xiaomi-11t-pro-install-walkthrough",
+ "title": "RiceDroid Android 13 ROM on Xiaomi 11T Pro Install Walkthrough",
+ "blurb": "RiceDroid on Android 13 for the Xiaomi 11T Pro — a heavy-customisation AOSP ROM, flashed and set up from start to finish.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "AOSP",
+ "android": "",
+ "views": 823,
+ "published": "2023-02-24",
+ "url": "https://youtu.be/VagGvD-g_Ds",
+ "tags": [
+  "AOSP",
+  "Xiaomi 11T Pro",
+  "Install",
+  "Unlock",
+  "Bootloader"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "RiceDroid on Android 13 for the Xiaomi 11T Pro — a heavy-customisation AOSP ROM, flashed and set up from start to finish.\n\nRiceDroid is the kind of ROM you pick when stock software feels like it's making decisions for you. There's a setting for almost everything, and the whole interface can be reshaped until it matches how you actually use the phone. The cost is the usual one with AOSP builds: you're leaving the Xiaomi camera processing and the MIUI extras behind, and you'll be setting things up yourself instead of inheriting them.\n\n📱 Device  : Xiaomi 11T Pro\n🧩 ROM     : RiceDroid\n🤖 Android : 13\n🧰 Type    : AOSP-based custom ROM\n\n🎯 What You Get\n• A clean AOSP base under all the options\n• Deep customisation across the launcher, status bar and quick settings\n• A setup that stays close to stock Android until you change it\n• Regular security patches as the source updates\n\n🛠️ What You Need\n• ADB and Fastboot driver installed on your PC\n• Platform Tools, extracted and ready\n• A recovery for the Xiaomi 11T Pro\n• vbmeta for the AOSP build if your package asks for it\n• A full backup and a charged battery\n\n📝 Steps\n1. Unlock the bootloader if it isn't done already.\n2. Install the driver, plug in, and confirm fastboot sees the phone.\n3. Reboot to recovery and format data first.\n4. Flash the ROM package, then GApps if you want Google services.\n5. Reboot to system and set up from scratch.\n\n⚠️ Where People Get Stuck\n• Flashing the ROM before formatting data. You'll boot, then watch it fall over.\n• Skipping GApps and then wondering where the Play Store went.\n• Forgetting the firmware requirement for your device before flashing an Android 13 build.",
+ "links": [
+  {
+   "label": "RiceDroid Android 13 for Xiaomi 11T Pro",
+   "url": "https://xpshort.com/Nc7S"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB & Fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  },
+  {
+   "label": "Platform Tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "TWRP for K50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "TWRP for Mi 11X",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for AOSP ROM",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "OrangeFox for Mi 11T Pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

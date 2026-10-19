@@ -1,0 +1,29 @@
+{
+ "id": "Fc4wJIya-Cc",
+ "slug": "stag-os-android-10-on-redmi-note-5-pro-clean-aosp-full-flash",
+ "title": "STAG OS Android 10 on Redmi Note 5 Pro Clean AOSP, Full Flash",
+ "blurb": "STAG OS on the Redmi Note 5 Pro, and it's Android 10 underneath.",
+ "device": "Redmi Note 5 Pro",
+ "rom": "AOSP",
+ "android": "",
+ "views": 146,
+ "published": "2022-10-05",
+ "url": "https://youtu.be/Fc4wJIya-Cc",
+ "tags": [
+  "AOSP",
+  "Redmi Note 5 Pro",
+  "Flash",
+  "Unlock",
+  "Bootloader"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "STAG OS on the Redmi Note 5 Pro, and it's Android 10 underneath. If you want the cleanest software this phone can run, this is one of the builds people keep coming back to. Here's how the flash goes and what you get.\n\n📱 Device  : Redmi Note 5 Pro (whyred)\n🧩 ROM     : STAG OS\n🤖 Android : 10\n\n🎬 In This Clip\n• The STAG OS boot and first setup on whyred\n• A look at the launcher and the stock Android look\n• The bits that actually matter on a daily driver, calls and camera\n• Where the ROM leaves you after the first boot\n\n🔍 What Stands Out\nAndroid 10 on an old Redmi is a strange kind of upgrade. You get the newer notification handling and the gesture navigation, on hardware from 2018. STAG OS keeps it close to stock, which is exactly what a phone this old needs, because every extra feature is memory you don't have. There's no MIUI skin loading on top of everything.\n\n⚠️ The Honest Bits\n• Camera depends on the build, always test it before trusting it\n• Some heavy apps will feel the limits of this hardware, and no ROM fixes that\n• Firmware base matters here, flash the recommended one if the post says so\n\n📝 Flash Steps\n1. Unlock the bootloader and get a recovery for whyred running.\n2. Take a full backup of system and data.\n3. Wipe system, data, cache and dalvik.\n4. Flash the STAG OS zip, plus GApps only if the post asks for it.\n5. Wipe cache and dalvik, reboot, and wait out the first boot.\n\n❓ Common Questions\nQ. Is Android 10 too old now? For security patches, sure. For daily use, it still runs fine.\nQ. Do I need GApps? Flash it the way the release post describes, don't guess.\nQ. Can I go back to MIUI? Yes, with a fastboot flash of the stock ROM.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

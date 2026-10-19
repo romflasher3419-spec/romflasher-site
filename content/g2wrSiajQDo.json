@@ -1,0 +1,41 @@
+{
+ "id": "g2wrSiajQDo",
+ "slug": "cherish-os-android-13-gsi-on-xiaomi-11t-pro-install-review",
+ "title": "Cherish OS Android 13 GSI on Xiaomi 11T Pro Install & Review",
+ "blurb": "Cherish OS on Android 13 as a GSI for the Xiaomi 11T Pro — what the image actually does, the one reason to pick it over other GSIs, and the limits you...",
+ "device": "Xiaomi 11T Pro",
+ "rom": "Kernel",
+ "android": "",
+ "views": 1069,
+ "published": "2022-12-31",
+ "url": "https://youtu.be/g2wrSiajQDo",
+ "tags": [
+  "Kernel",
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Install",
+  "Custom ROM"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Cherish OS on Android 13 as a GSI for the Xiaomi 11T Pro — what the image actually does, the one reason to pick it over other GSIs, and the limits you should know about first.\n\nCherish OS is a customization-heavy ROM, and this release is a GSI, so all of that lands on top of your existing vendor. That's the deal with generic system images: the ROM is one file, the hardware support comes from your phone's own vendor and kernel, and you can't blame the ROM when the camera mode you like isn't there.\n\n🎯 What It Does\n• Installs Android 13 as a single system image on a Treble device — only ARM64 AB is published here.\n• GApps and slim builds are available. Vanilla isn't, so budget for Google apps being present.\n• SELinux runs in either mode — enforcing and permissive are both fine.\n• Keeps the Cherish customization set that the ROM is known for on the built-in parts.\n\n💡 Best Part\nIt's portable. Flash it, and if you don't like it, flash the next GSI over it — your vendor stays untouched, so switching ROMs is a five-minute job instead of an evening. On the 11T Pro the image booted without complaints, and there are no bugs listed inside the ROM itself.\n\n🚫 What It Doesn't Do\n• It doesn't fix hardware. Anything vendor-side — camera quality, dual SIM quirks, sensors — follows your vendor and kernel, not the ROM.\n• It doesn't give you a vanilla build. If you want a Google-free system, this release won't do it.\n• It doesn't ship for every architecture, so check that ARM64 AB matches your device before downloading.\n\n📦 Install Order\n1. fastboot reboot fastboot\n2. fastboot --disable-verity --disable-verification flash vbmeta\n3. fastboot erase system\n4. fastboot flash system\n5. fastboot reboot recovery\n6. Wipe data in Mi Recovery, then reboot",
+ "links": [
+  {
+   "label": "Cherish OS Android 13 GSI download",
+   "url": "https://xpshort.com/WnGQU1E"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "vbmeta",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "Platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  }
+ ],
+ "faq": []
+}

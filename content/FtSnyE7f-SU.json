@@ -1,0 +1,49 @@
+{
+ "id": "FtSnyE7f-SU",
+ "slug": "afterlife-os-on-poco-x7-pro-android-16-clean-flash-review",
+ "title": "AfterLife OS on Poco X7 Pro Android 16 Clean Flash & Review",
+ "blurb": "AfterLife OS on the Poco X7 Pro — Android 16, Gapps included, SELinux enforcing, and an official build that fixed WhatsApp voice calls.",
+ "device": "Any Android",
+ "rom": "Stock ROM",
+ "android": "",
+ "views": 2776,
+ "published": "2025-11-27",
+ "url": "https://youtu.be/FtSnyE7f-SU",
+ "tags": [
+  "Stock ROM",
+  "Flash",
+  "Install",
+  "Recovery",
+  "Custom ROM"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "AfterLife OS on the Poco X7 Pro — Android 16, Gapps included, SELinux enforcing, and an official build that fixed WhatsApp voice calls.\n\nThis is the build I'd hand to someone who wants Android 16 without fighting for Google apps. Gapps are baked in, it's a signed build, and SELinux stays enforcing — all good signs for stability and for apps that check.\n\nThe fix worth celebrating this round is WhatsApp voice calls. If you've ever had calls connect with dead silence on a custom ROM, you know how annoying that is. That one's sorted.\n\nA few things you have to respect. Clean flash is mandatory, back up your IMEI first, and there are known quirks with the camera in Aperture plus the fingerprint type depending on which sensor your device shipped with.\n\n📱 Device  : POCO X7 Pro (rodin)\n🧩 ROM     : AfterLife OS (Official)\n🤖 Android : 16\n🧩 Build   : Gapps · Signed · SELinux enforcing\n\n🔬 What Was Tested\n• Clean flash and first boot\n• The WhatsApp voice call fix\n• Play Store and signed build checks\n• Daily use and fingerprint behaviour\n• Gapps out of the box — no separate flash needed\n\n📊 Verdict\n• Official, signed and Gapps-ready — the hassle-free pick.\n• WhatsApp voice calls working is a big daily-use win.\n• The Aperture camera needs a workaround right now.\n• Clean flash is non-negotiable, so budget a full hour.\n\n❓ Common Questions\n• Do I need to flash Gapps? No — this build already includes them.\n• Is root included? No. Flash Magisk yourself if you want it.\n• Can I dirty flash from another ROM? No. Clean flash only.\n• Will my data survive? Not on a clean flash. Back up first, including your IMEI.\n• Is SELinux permissive? No, it's enforcing.",
+ "links": [
+  {
+   "label": "Download ROM",
+   "url": "https://tmearn.net/link/AlMx"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Download vendor",
+   "url": "https://tmearn.net/link/02XJWv"
+  },
+  {
+   "label": "Changelogs",
+   "url": "https://afterlifeos.com/changelog/"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

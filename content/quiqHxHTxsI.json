@@ -1,0 +1,33 @@
+{
+ "id": "quiqHxHTxsI",
+ "slug": "3-ways-to-flash-any-fastboot-aosp-or-modded-rom-no-pc",
+ "title": "3 Ways To Flash Any Fastboot, AOSP or Modded ROM No PC",
+ "blurb": "Three ways to install a ROM on an Android phone - fastboot ROMs, AOSP builds and modded ROMs like OxygenOS or DyperOS - and two of them work without a PC.",
+ "device": "Any Android",
+ "rom": "AOSP",
+ "android": "",
+ "views": 674,
+ "published": "2025-12-13",
+ "url": "https://youtu.be/quiqHxHTxsI",
+ "tags": [
+  "AOSP",
+  "Flash",
+  "Install",
+  "Bootloader",
+  "Recovery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Three ways to install a ROM on an Android phone - fastboot ROMs, AOSP builds and modded ROMs like OxygenOS or DyperOS - and two of them work without a PC.\n\nNot everyone keeps a Windows laptop next to the phone, and not every ROM flashes the same way. That's the whole point here. The setup is two APKs, Termux Monet and Termux API, both with permissions granted before you start. From there it splits into three routes. Route one handles the stock-style fastboot ROM through the Mi-flash style tool. Route two does AOSP through recovery, where you flash the recovery and boot images first. Route three is the modded ROMs, and that's the one where you flash vendor_boot by hand. Get that command wrong and you'll know about it.\n\n🛠️ What You Need\n• Termux Monet and Termux API APKs, permissions granted\n• The Termux flash file from the link below\n• Your ROM zip, and vendor_boot for AOSP or modded builds\n• USB debugging on, or a PC with ADB and fastboot\n• A backup, and the habit of reading a command before pasting it\n\n📝 Three Methods\n1. Fastboot ROM - open the flash tool, choose the fastboot flash option, put the phone in fastboot, let it run. This wipes the phone.\n2. AOSP ROM - set up the recovery tool first, flash the recovery and boot images, then send the ROM across.\n3. Modded ROM - flash vendor_boot manually with the fastboot command, then sideload the ROM. OxygenOS, DyperOS and friends go this way.\n\n⚠️ Where People Get Stuck\n• Jumping straight to the ROM and skipping the recovery or vendor_boot step.\n• Pasting a command written for a different device.\n• Forgetting that a fastboot ROM flash erases everything, then wondering where the photos went.\n\n❓ Common Questions\n• Do I need a PC? No, Termux covers it. A PC just makes it easier.\n• Which method is safest? The fastboot ROM route, because the tool does the work.\n• Which one bricks people? Method three. Slow down there.\n• Can I use this on any phone? The commands are device-specific.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Termux flash file",
+   "url": "https://tmearn.net/link/lQ5Lhx2G"
+  }
+ ],
+ "faq": []
+}

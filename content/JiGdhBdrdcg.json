@@ -1,0 +1,74 @@
+{
+ "id": "JiGdhBdrdcg",
+ "slug": "crdroid-v12-10-on-poco-x7-pro-android-16-gaming-rom-install",
+ "title": "crDroid v12.10 on POCO X7 Pro Android 16 Gaming ROM Install",
+ "blurb": "crDroid v12.10 on the POCO X7 Pro (rodin) — the Android 16 official build, flashed clean from a PC.",
+ "device": "POCO X7 Pro",
+ "rom": "crDroid",
+ "android": "",
+ "views": 3374,
+ "published": "2026-06-12",
+ "url": "https://youtu.be/JiGdhBdrdcg",
+ "tags": [
+  "crDroid",
+  "POCO X7 Pro",
+  "Flash",
+  "Install",
+  "Root"
+ ],
+ "summary": "crDroid v12.10 is the Android 16 official build for the POCO X7 Pro (rodin), and\nit moves to a LineageOS 23.2 base for steadier gaming. Flash vendor_boot, format\ndata, sideload the ROM, and sideload GApps in the same session, because this build\nis Vanilla and ships without the Play Store. Clean flash only for this one.",
+ "body": "The changelog for crDroid v12.10 is short, and that is a good sign on a gaming\nROM. This one moved to a LineageOS 23.2 base for more stable gaming, the I/O\nscheduler switched from BFQ to mq-deadline, debug logging is off on non-eng\nbuilds, and Factory Reset Protection is disabled. Boring lines on paper. You feel\nthem in a long match.\n\nHere is the whole process in the order I actually did it, including the GApps\nstep people forget and then panic about.\n\n## What changed, in plain words\n\n- Moved to a LineageOS 23.2 base, which is the stability part for gaming.\n- The I/O scheduler switched from BFQ to mq-deadline.\n- Debug logging is off on non-eng builds, so less background noise.\n- Factory Reset Protection is disabled.\n- GApps are not included. crDroid ships vanilla, so you add them yourself.\n\nThat vanilla line is the one that catches people. If you sideload only the ROM and\nreboot, you get a clean Android install with no Play Store, and then you have to\ngo back into recovery a second time.\n\n## What you need\n\n- A POCO X7 Pro (rodin) with an unlocked bootloader.\n- The crDroid v12.10 ROM zip from the link for your device.\n- The `vendor_boot` image that matches this exact build.\n- crDroid Recovery, or a recovery you already trust.\n- A GApps zip if you want Google services.\n- A full backup of your data.\n\nUnlocking the bootloader wipes the phone, so if you have not done that yet, do it\nfirst and set the phone up empty. There is no point restoring a backup you are\nabout to delete.\n\n## Step 1 - fastboot, and make sure the PC sees the phone\n\nMove the device to fastboot mode with Volume Down and Power, plug it in, and run:\n\n`fastboot devices`\n\nA serial number plus `fastboot` means you are good. Anything else, and it is the\ndriver, not the ROM.\n\n## Step 2 - flash the vendor_boot image\n\n`fastboot flash vendor_boot --slot=all vendor_boot.img`\n\nMatch the image to this build. A vendor_boot from an older crDroid release is a\nfast route to a phone that will not boot, and the fix is a lot longer than the\nfive minutes you saved.\n\n## Step 3 - reboot into recovery\n\nRun `fastboot reboot`, then hold Volume Up immediately. Do not use the fastboot\ncommand that jumps straight to recovery on this phone. Catch it with the volume\nkey instead.\n\n## Step 4 - factory reset, then format data\n\nFactory reset first, then Format data. This build wants a clean start. A dirty\nflash over an older ROM is the number one cause of strange behaviour here, so\nresist the shortcut.\n\n## Step 5 - sideload the ROM\n\nApply update, then Apply from ADB. From the PC:\n\n`adb sideload` and the crDroid zip name.\n\nLet it finish. If the transfer stops partway, update your platform-tools and try\nagain rather than blaming the zip.\n\n## Step 6 - say yes and sideload GApps in the same session\n\nAfter the ROM finishes, recovery asks whether you want to install additional\npackages. Answer Yes.\n\nThis is the step people forget. Because the build is vanilla, this is your one\nclean chance to add Google services. Pick the GApps zip and sideload it right\nthere, in the same recovery session, before you reboot to system. If you skip it,\nthe ROM boots fine but there is no Play Store, and you are back in recovery\nreloading packages while your setup wizard waits.\n\n## Step 7 - reboot to system and wait\n\nThe first boot on a clean data partition takes a few minutes. Let it finish the\nsetup wizard before you start gaming or restoring anything. If something is going\nto misbehave, you want it to happen on an empty phone.\n\n## Where people get stuck\n\n- **Flashing over a dirty install.** A clean flash is mandatory for the first\n  install on this build.\n- **Forgetting GApps**, then wondering where the Play Store went.\n- **Using a recovery from a different ROM**, which throws mount errors and fails\n  the sideload partway through.\n- **A vendor_boot from the wrong build.** The image has to match this release.\n\n## The gaming part\n\nThe changelog looks quiet, and that is the point. Moving to a LineageOS 23.2 base\nand swapping the I/O scheduler are the kind of changes you only notice when a\nlong session normally starts to stutter. This build is set up to hold its rhythm\nrather than sprint for the first five minutes. If you play in long matches, that\ndifference is the whole reason to update.\n\nIf the driver side of this is the tiresome part, the free Rom Flasher tool on\nGitHub installs the ADB and fastboot driver for you in a couple of clicks. It is\nfree, and the link is in the downloads section.",
+ "video_description": "crDroid v12.10 on the POCO X7 Pro (rodin) — the Android 16 official build, flashed clean from a PC. Here's the whole process in the real order, including the GApps step people forget and then panic about.\n\nThe changelog is small but it matters: this build moved to a LineageOS 23.2 base for more stable gaming, the I/O scheduler switched from BFQ to mq-deadline, debug logging is off on non-eng builds, and Factory Reset Protection is disabled. Boring lines on paper, real difference in a match.\n\nOne thing to know before you start: crDroid ships vanilla, so GApps are not included. Sideload them in the same recovery session or you'll have no Play Store.\n\n🛠️ What You Need\n- POCO X7 Pro (rodin) with an unlocked bootloader\n- The crDroid v12.10 ROM zip\n- The vendor_boot image that matches this build\n- crDroid Recovery, or the recovery you trust\n- GApps zip if you want Google services\n- A full backup of your data\n\n📝 Steps\n1. Move the device to fastboot mode and confirm it's visible.\n2. Flash the vendor_boot image.\n3. Reboot into recovery.\n4. Factory reset, then format data.\n5. Apply update, then Apply from ADB.\n6. Sideload the ROM zip and let it finish.\n7. Answer Yes to extra packages and sideload GApps.\n8. Reboot to system and give the first boot time.\n\n⚠️ Where People Get Stuck\n- Flashing over a dirty install. A clean flash is mandatory for the first install.\n- Forgetting GApps, then wondering where Play Store went.\n- Using a recovery from a different ROM and getting mount errors.\n\n🙏 Credits : @punkrec, @rthedream, @rakmoparte, plus all testers and contributors\n📢 Support : @deuspivete (channel) · @crdroidpx (group)",
+ "links": [
+  {
+   "label": "crDroid v12.10 for POCO X7 Pro (rodin) — SourceForge",
+   "url": "https://sourceforge.net/projects/crdroid/files/rodin/12.x/crDroidAndroid-16.0-20260531-rodin-v12.10.zip/download"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Google Drive mirror",
+   "url": "https://drive.google.com/uc?id=1SLmehkpZoyHrxQER5QOCz1w1dIFQ5hLf&export=download"
+  },
+  {
+   "label": "PixelDrain mirror",
+   "url": "https://pixeldrain.com/u/bTbDAqvz"
+  },
+  {
+   "label": "Termux flash file",
+   "url": "https://tmearn.net/link/lQ5Lhx2G"
+  },
+  {
+   "label": "ADB & Fastboot Tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB & Fastboot Driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Do I need GApps with crDroid v12.10?",
+   "a": "Yes, if you want the Play Store. The build is vanilla, so sideload a GApps zip\nin the same recovery session, right after the ROM, and before you reboot."
+  },
+  {
+   "q": "Can I dirty flash crDroid v12.10 over an older version?",
+   "a": "No, do a clean flash for this one. Factory reset and format data first, or you\nrisk the odd behaviour that dirty flashes are known for."
+  },
+  {
+   "q": "Which vendor_boot image do I use?",
+   "a": "The one that matches this exact build, from the download link for your device.\nAn image from an older release can leave the phone unable to boot."
+  },
+  {
+   "q": "Does crDroid v12.10 work on other POCO phones?",
+   "a": "No. This build is for the POCO X7 Pro, codename rodin. A package built for a\ndifferent model can write partitions your phone cannot boot from."
+  },
+  {
+   "q": "Is the bootloader unlock going to wipe my phone?",
+   "a": "Yes, unlocking always wipes data. Back up your files before you start, and\nexpect to run the setup wizard on the first boot after flashing."
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "id": "X-g_PaSev8Q",
+ "slug": "xiaomi-pad-5-hyperos-3-port-android-16-features-install",
+ "title": "Xiaomi Pad 5 HyperOS 3 Port Android 16 Features & Install",
+ "blurb": "HyperOS 3 on the Xiaomi Pad 5 — a port based on the Xiaomi Pad 6S Pro ROM, with a pile of features unlocked and Android 16 underneath.",
+ "device": "Xiaomi Pad 5",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 2069,
+ "published": "2025-12-06",
+ "url": "https://youtu.be/X-g_PaSev8Q",
+ "tags": [
+  "HyperOS",
+  "Xiaomi Pad 5",
+  "Install",
+  "Root",
+  "Kernel"
+ ],
+ "summary": "HyperOS 3 has been ported to the Xiaomi Pad 5 from the Xiaomi Pad 6S Pro ROM, with Android 16 underneath and a long list of features unlocked. It is a beta fastboot ROM, packaged as erofs, with KernelSU already built into the kernel. The refresh rate issue is fixed, and that alone changes how the tablet feels.",
+ "body": "HyperOS 3 on a Pad 5 sounds like it should not exist. The tablet shipped years before this software, and yet here it is running, pulled from the Xiaomi Pad 6S Pro ROM and put together as an unofficial beta port. The vendor uses the official nabu vendor, and the hardware composer port comes from Dagu.\n\nIt is a fastboot ROM packaged as erofs, and it is marked unofficial and beta. Read that again before you flash it. This is not something Xiaomi signed off on, so treat it as a test device while you get to know it.\n\n## What it looks like\n\nThe headline is the refresh rate fix. If you have been on an older HyperOS or MIUI build on this tablet, you know the stutter — the panel not running where it should, scrolling that never quite feels smooth. That is fixed here, completely. For a tablet you mostly read and scroll on, it is the change you feel every single minute.\n\nAround that, the software finally looks like tablet software. The interface is built for the size instead of stretched onto it, and the animations are the newer HyperOS ones you would see on current Xiaomi hardware.\n\n## What changed and what is unlocked\n\nThis port does not just boot the newer software. It switches on a pile of features that Xiaomi normally keeps for other devices:\n\n- **Features for tablets** section now shows up in Settings.\n- **Xiaomi Super Island** is enabled.\n- **Triple-speed game startup** for faster app launches.\n- **Speaker cleaning** for clearing dust out of the drivers.\n- **AI dynamic wallpapers**.\n- **Workstation mode**.\n- **Rhythm Eye Protection**.\n- **Magnet keyboard quick settings** toggle.\n- **AI Master Graphics Engine** for the UI.\n- **Leica camera app version 6.0** — the camera from the phones, on a tablet. Unusual, and a genuinely nice surprise.\n- **Via Browser built in**, so you can strip out the Xiaomi browser if you prefer.\n\n## Root is already there\n\nIf you want root, this is easier than usual. KernelSU 0.9.4 is built into the kernel, so you do not need to patch a boot image and flash it separately. Root is in place from the moment it boots. SELinux is running in enforcing mode for now, which is the more locked-down of the two modes.\n\n## What is broken\n\nBeta means beta. Two things I would want to know going in:\n\n- **The -999 APK install error, and lockscreen passwords.** If apps refuse to install, or the tablet will not let you set a lockscreen password, reboot to fastboot and run `fastboot erase frp` from platform tools. That clears the factory reset protection flag and both problems go away.\n- **Super Island and the three-dot window controls clash.** The dynamic Super Island position can overlap the window controls you use to close or minimize apps. Super Island wins the priority, so the controls move rather than the island.\n\nThere is also the general roughness you get with any port — an occasional hitch, something in Settings that does not apply until a reboot. Nothing that has stopped me using it.\n\n## Who should install it\n\nInstall this if you live on the tablet and you care about how it feels. You get the refresh rate fix, a proper tablet UI, root without extra work, and a camera app that is better than anything that shipped on this thing.\n\nSkip it if you need it to be boring. It is unofficial, it is beta, and there is no warranty behind it. If your tablet is a work device you cannot afford to fiddle with, wait. For everyone else, the refresh rate fix alone makes this worth the flash.",
+ "video_description": "HyperOS 3 on the Xiaomi Pad 5 — a port based on the Xiaomi Pad 6S Pro ROM, with a pile of features unlocked and Android 16 underneath.\n\nThis is a fastboot ROM, packaged as erofs, and it's marked unofficial and beta, so go in with your eyes open. The vendor uses the official nabu and the hwc port comes from Dagu. KernelSU 0.9.4 is already built into the kernel, which is handy if you want root without a separate patched image, and SELinux is temporarily in enforcing mode.\n\nThe fun part is what's been unlocked. The refresh rate issue is finally fixed, the \"Features for tablets\" section shows up in Settings, Xiaomi Super Island is enabled, and you get extras like triple-speed game startup, speaker cleaning, AI dynamic wallpapers, workstation mode and Rhythm Eye Protection. The camera app is version 6.0 — the Leica camera from the phones. That's genuinely unusual on a tablet.\n\nKnown wrinkle: if you can't install an APK (the -999 error) or set a lockscreen password, reboot to fastboot and run fastboot erase frp from platform tools. The dynamic Super Island position can also clash with the 3-dot window controls, but Super Island wins priority.\n\n📱 Device  : Xiaomi Pad 5 (nabu)\n🧩 ROM     : HyperOS 3.0.0.5 (Unofficial Port · Beta)\n🤖 Android : 16\n📦 Type    : Fastboot ROM · erofs\n👤 Notes   : Based on the Xiaomi Pad 6S Pro ROM · vendor official nabu · hwc port Dagu · KernelSU 0.9.4 built in · SELinux enforcing\n\n🔬 What's Unlocked\n• Refresh rate issue fixed completely\n• \"Features for tablets\" section enabled in Settings\n• Xiaomi Super Island unlocked\n• Triple-speed game startup\n• Speaker cleaning\n• AI dynamic wallpapers\n• Rhythm Eye Protection\n• Workstation mode\n• Magnet keyboard quick settings toggle\n• AI Master Graphics Engine (UI)\n• Leica camera app version 6.0\n• Built-in Via Browser (Xiaomi Browser can be removed)\n\n📊 Verdict\nFeature-rich and clearly aimed at tablet users who want more out of HyperOS. It's a beta port, so expect a rough edge here and there, but the headline unlock — the refresh rate fix — already makes it worth a look.",
+ "links": [
+  {
+   "label": "rom link",
+   "url": "https://tmearn.net/link/riM9"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is HyperOS 3 for the Xiaomi Pad 5 official?",
+   "a": "No. It is an unofficial beta port based on the Xiaomi Pad 6S Pro ROM, using the official nabu vendor. Treat it as a test build rather than something Xiaomi supports."
+  },
+  {
+   "q": "Does this HyperOS 3 port fix the refresh rate on the Pad 5?",
+   "a": "Yes, the refresh rate issue is listed as fully fixed. That is the headline change and the one people notice most, because scrolling finally runs the way the panel should."
+  },
+  {
+   "q": "How do I fix the -999 error when installing apps in HyperOS 3?",
+   "a": "Boot the tablet into fastboot from your PC and run `fastboot erase frp` using platform tools. That clears the factory reset protection flag, which also fixes being unable to set a lockscreen password."
+  },
+  {
+   "q": "Is root included in this port?",
+   "a": "Yes. KernelSU 0.9.4 is already built into the kernel, so you do not need to patch and flash a boot image. SELinux is running in enforcing mode."
+  },
+  {
+   "q": "Does Super Island work on the Xiaomi Pad 5 in this ROM?",
+   "a": "Yes, Xiaomi Super Island is unlocked in this port. It can overlap the three-dot window controls, but Super Island takes priority, so the controls shift instead."
+  }
+ ]
+}

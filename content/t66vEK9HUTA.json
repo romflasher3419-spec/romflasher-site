@@ -1,0 +1,49 @@
+{
+ "id": "t66vEK9HUTA",
+ "slug": "derpfest-rom-on-xiaomi-11t-pro-bugs-battery-camera-test",
+ "title": "DerpFest ROM on Xiaomi 11T Pro Bugs, Battery & Camera Test",
+ "blurb": "DerpFest on the Xiaomi 11T Pro — a close look at the bugs, the battery behaviour and the camera on this AOSP based build.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "DerpFest",
+ "android": "",
+ "views": 1511,
+ "published": "2023-02-17",
+ "url": "https://youtu.be/t66vEK9HUTA",
+ "tags": [
+  "DerpFest",
+  "Xiaomi 11T Pro",
+  "Battery",
+  "Gaming",
+  "Camera"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "DerpFest on the Xiaomi 11T Pro — a close look at the bugs, the battery behaviour and the camera on this AOSP based build.\n\nHere's the honest version. The build runs smooth, genuinely smooth, with no stutter and no random glitches once it settles. But some things need fixing, and a few of them will decide whether this can be your daily driver. Play Certification is missing, so Google Photos won't hand you the unlimited storage treatment. Banking apps behave as if the phone is rooted, even though it isn't. That one bothers people more than any benchmark number ever will.\n\nThe battery story is a split decision. Charging is slow — it feels like you're plugged into a 33W brick, and that part is annoying. Endurance is the opposite: with voice calls, GPS on and brightness high, I still got around 13 to 14 hours of comfortable use out of it. Games run at the usual 60fps, the same as any normal ROM, so gaming isn't the problem here.\n\n📱 Device  : Xiaomi 11T Pro (vili)\n🧩 ROM     : DerpFest (AOSP based)\n\n📌 What I Tested\n• Play Certification status and how banking apps react\n• Google Photos behaviour on this build\n• Gaming, where titles hold the usual 60fps\n• Call recording, which is present but doesn't always record on its own\n• Charging speed and real battery backup\n• Camera, where the MIUI app isn't there but the included camera takes decent shots and records at 60fps\n\n🔍 Good And Not So Good\n• Good: smooth performance, solid battery backup, 60fps gaming, workable camera\n• Missing: face unlock is not available here\n• Needs fixing: call recording quirks and that slow charging",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "twrp for k50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "twrp for mi 11x",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for aosp rom",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "ofox for mi11t pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

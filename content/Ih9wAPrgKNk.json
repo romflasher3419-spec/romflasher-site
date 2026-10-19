@@ -1,0 +1,57 @@
+{
+ "id": "Ih9wAPrgKNk",
+ "slug": "realmeui-android-12-1-on-xiaomi-11t-pro-full-rom-review",
+ "title": "RealmeUI Android 12.1 on Xiaomi 11T Pro Full ROM Review",
+ "blurb": "RealmeUI RUI3 with Android 12.1, running on a Xiaomi 11T Pro — a full review of the port and whether it's more than a novelty.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "Pixel Experience",
+ "android": "",
+ "views": 2741,
+ "published": "2023-02-21",
+ "url": "https://youtu.be/Ih9wAPrgKNk",
+ "tags": [
+  "Pixel Experience",
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Install",
+  "Kernel"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "RealmeUI RUI3 with Android 12.1, running on a Xiaomi 11T Pro — a full review of the port and whether it's more than a novelty.\n\nCross branded ROMs are a strange kind of fun. RealmeUI on a Xiaomi device only exists because someone put in the work to port it, and the first thing you notice is how much of it is not Xiaomi. The interface changes, the settings layout changes, the whole tone of the software changes. On the 11T Pro the hardware can carry it, so the real question is whether the port behaves itself once the novelty wears off.\n\n📱 Device  : Xiaomi MI 11T Pro (vili)\n🧩 ROM     : RealmeUI RUI3 · Android 12.1\n📦 Build   : updated 17/02/2023\n\n📌 What I Looked At\n• Boot and first setup on the 11T Pro\n• RealmeUI's own apps and how they sit on Xiaomi hardware\n• Everyday smoothness once the initial setup settles\n• What tends to break in a port like this, because something usually does\n\n🔍 Worth Knowing Before You Flash\n• A ported ROM lives and dies by its kernel, and the kernel link is in the list below\n• Some Xiaomi specific features never make the trip across\n• Read the flashing steps twice, then once more\n• Back up your data first. Always.",
+ "links": [
+  {
+   "label": "rom link",
+   "url": "https://xpshort.com/tlUao"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "kernal link",
+   "url": "https://xpshort.com/CkDZGGAU"
+  },
+  {
+   "label": "platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "twrp for k50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "twrp for mi 11x",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for aosp rom",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "ofox for mi11t pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

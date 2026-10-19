@@ -1,0 +1,41 @@
+{
+ "id": "7hyU0vvBh8A",
+ "slug": "redmi-k50i-stag-os-android-12-1-gsi-fastboot-install-guide",
+ "title": "Redmi K50i + Stag OS Android 12.1 GSI Fastboot Install Guide",
+ "blurb": "Redmi K50i running Stag OS Android 12.1 as a GSI — what this build actually gives you, what it doesn't, and the honest notes before you flash.",
+ "device": "Redmi K50i",
+ "rom": "TWRP",
+ "android": "",
+ "views": 1591,
+ "published": "2022-12-06",
+ "url": "https://youtu.be/7hyU0vvBh8A",
+ "tags": [
+  "TWRP",
+  "Redmi K50i",
+  "Flash",
+  "Install",
+  "Kernel"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Redmi K50i running Stag OS Android 12.1 as a GSI — what this build actually gives you, what it doesn't, and the honest notes before you flash.\n\nStag OS arrived here as a generic system image, Android 12.1, phh-treble based. That last part matters more than people think: a GSI is only half the story. The ROM side is Stag OS, the hardware side is your vendor and kernel, so camera quality, signal and sensor behaviour come from what's already sitting on your phone. Two people can flash the same file and get two different experiences — that's normal, not a broken build.\n\n🧩 What You Get\n• Android 12.1 base\n• Generic system image, phh-treble\n• Architectures: ARM64 AB\n• GApps flavour available\n• Vanilla flavour available for a Google-free setup\n• Slim: not available for this one\n• SELinux: enforcing and permissive both work\n• Bugs inside the ROM: none reported\n• Device-side issues: depend on your vendor and kernel\n• Maintainer: @TheAtt1la\n\n❓ Common Questions\n• GApps or Vanilla — which one? GApps if you want Google apps straight away, Vanilla if you'd rather add your own package.\n• Do I need vbmeta? Yes, with verity and verification disabled.\n• Where do updates come from? The official groups carry updates and changelogs, and the maintainer group is noted as unknown, so keep an eye on the official channels.",
+ "links": [
+  {
+   "label": "Stag OS Android 12.1 (GSI)",
+   "url": "https://xpshort.com/45HMo"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "vbmeta",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "Platform Tools",
+   "url": "https://xpshort.com/q3zAO"
+  }
+ ],
+ "faq": []
+}

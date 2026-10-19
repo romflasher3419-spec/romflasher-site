@@ -1,0 +1,41 @@
+{
+ "id": "emg2Zh9uSrY",
+ "slug": "project-blaze-12l-gsi-on-xiaomi-11t-pro-install-first-look",
+ "title": "Project Blaze 12L GSI on Xiaomi 11T Pro Install & First Look",
+ "blurb": "Project Blaze OS on Android 12L as a GSI for the Xiaomi 11T Pro — a quick flash, a cold boot, and a straight answer about what a GSI means for the rest of...",
+ "device": "Xiaomi 11T Pro",
+ "rom": "Kernel",
+ "android": "",
+ "views": 1293,
+ "published": "2022-12-25",
+ "url": "https://youtu.be/emg2Zh9uSrY",
+ "tags": [
+  "Kernel",
+  "Xiaomi 11T Pro",
+  "Flash",
+  "Install",
+  "Custom ROM"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Project Blaze OS on Android 12L as a GSI for the Xiaomi 11T Pro — a quick flash, a cold boot, and a straight answer about what a GSI means for the rest of your phone.\n\nThis is the light version of a ROM review. One image, one flash, and the part that actually matters: how it behaves once your vendor layer is in the mix. Project Blaze on Android 12L is the base here, and only an ARM64 AB image is published for it.\n\n📱 Device  : Xiaomi 11T Pro\n🧩 ROM     : Project Blaze OS (GSI, phh-treble)\n🤖 Android : 12L\n👤 Credits : @ChonDoe\n\n🎬 In This Clip\n• Flashing the GSI over fastboot, start to finish.\n• Cold boot and first setup.\n• A look around the ROM, then the honest part about device-side behavior.\n• The downloads, so you can run the same flash.\n\n❓ Common Questions\n• Do I have to wipe data? Yes, and it's step six for a reason — skipping it usually ends in a bootloop.\n• Which image should I download? ARM64 AB. That's the only architecture published for this release.\n• Is there a vanilla build? No. This release is GApps or slim.\n• Do I need to be on a specific vendor? Not a specific one, but a recent vendor and kernel gives you far fewer hardware surprises.\n• What about bugs? Nothing is listed inside the ROM. On the device side it depends on your vendor and kernel, so results differ per phone.\n\n📦 Install Order\n1. fastboot reboot fastboot\n2. fastboot --disable-verity --disable-verification flash vbmeta\n3. fastboot erase system\n4. fastboot flash system\n5. fastboot reboot recovery\n6. Wipe data in Mi Recovery, then reboot",
+ "links": [
+  {
+   "label": "Project Blaze OS GSI download",
+   "url": "https://xpshort.com/hIEch"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "vbmeta",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "Platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  }
+ ],
+ "faq": []
+}

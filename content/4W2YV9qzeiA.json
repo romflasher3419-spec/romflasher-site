@@ -1,0 +1,29 @@
+{
+ "id": "4W2YV9qzeiA",
+ "slug": "moto-s30-pro-myui-4-1-port-on-mi-11x-poco-f3-flash-guide",
+ "title": "Moto S30 Pro MYUI 4.1 Port on MI 11X & POCO F3 Flash Guide",
+ "blurb": "A Motorola port running on a Xiaomi phone — MYUI 4.1 from the Moto S30 Pro, flashed on the MI 11X, POCO F3 and Redmi K40.",
+ "device": "POCO F3",
+ "rom": "",
+ "android": "",
+ "views": 435,
+ "published": "2022-10-02",
+ "url": "https://youtu.be/4W2YV9qzeiA",
+ "tags": [
+  "POCO F3",
+  "Flash",
+  "Bootloader",
+  "Recovery",
+  "Backup"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "A Motorola port running on a Xiaomi phone — MYUI 4.1 from the Moto S30 Pro, flashed on the MI 11X, POCO F3 and Redmi K40.\n\nPorts are a different kind of flashing. Somebody takes a firmware from one phone and makes it run on another, and if it boots at all, that's already a win. This one brings MYUI 4.1 from the Moto S30 Pro over to alioth, which is the shared hardware behind the MI 11X, the POCO F3 and the Redmi K40. Why would you want a Motorola interface on a Xiaomi phone? Because it's genuinely different: the launcher, the settings layout, the whole personality of the software changes. In the video I flash it and then walk through what you actually end up with.\n\n📱 Device  : MI 11X / POCO F3 / Redmi K40 (alioth)\n🧩 ROM     : MYUI 4.1 (Moto S30 Pro port)\n\n🛠️ What You Need\n• Unlocked bootloader on the alioth.\n• A custom recovery to flash the port zip.\n• The MYUI 4.1 port file built for alioth specifically.\n• A firmware base that matches what the port expects.\n• Backups, because ports are less predictable than mainline builds.\n\n📝 Steps\n1. Download the port zip and check it's the alioth version.\n2. Boot to recovery and take a full backup.\n3. Wipe data, cache and Dalvik.\n4. Flash the port zip and let it complete.\n5. Format data if the build requires it.\n6. Reboot and give the first boot plenty of time.\n7. Go through setup and test the basics before you rely on it.\n\n⚠️ Where People Get Stuck\n• Flashing a port built for a different phone and expecting it to boot.\n• Assuming every Motorola feature carries over. Some depend on hardware the Xiaomi doesn't have.\n• Not keeping a way back. With ports, you want the stock ROM on hand.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

@@ -1,0 +1,77 @@
+name: Build and publish the site
+
+# Every push to main rebuilds dist/ from content/ and publishes it to GitHub
+# Pages. Nothing is ever uploaded by hand - the repo is the single source.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  # Where the site really lives. While the domain is not pointing here yet, the
+  # canonical URLs / sitemap must match the GitHub Pages address, otherwise
+  # search engines drop the pages for pointing at a dead domain.
+  #
+  # WHEN romflasher.com IS LIVE: change the line below to
+  #   ROMFLASHER_SITE_URL: https://romflasher.com
+  # and uncomment the CNAME line under it.
+  ROMFLASHER_SITE_URL: https://romflasher3419-spec.github.io/romflasher-site
+  # ROMFLASHER_DOMAIN: romflasher.com
+
+  # Optional IDs - everything stays switched off while these are empty, so the
+  # site never ships half-configured. Uncomment + fill in when you have them.
+  # ROMFLASHER_GA4: ${{ vars.ROMFLASHER_GA4 }}
+  # ROMFLASHER_ADS: ${{ vars.ROMFLASHER_ADS }}
+  # ROMFLASHER_AMAZON: ${{ vars.ROMFLASHER_AMAZON }}
+  # ROMFLASHER_GOOGLE: ${{ vars.ROMFLASHER_GOOGLE }}
+  # ROMFLASHER_BING: ${{ vars.ROMFLASHER_BING }}
+
+jobs:
+  build:
+    name: Build dist/
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build the site
+        run: python build.py
+
+      - name: Structured data + SEO check
+        run: python _seocheck.py
+
+      - name: Internal link check
+        run: python qa.py --links
+
+      - name: Note how many articles are still waiting
+        run: python set_article.py --missing || true
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Publish to Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

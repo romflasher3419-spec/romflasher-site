@@ -1,0 +1,49 @@
+{
+ "id": "7UAo_5y7V0g",
+ "slug": "setup-termux-for-twrp-fastboot-rom-no-pc-flashing-guide",
+ "title": "Setup Termux for TWRP & Fastboot ROM No PC Flashing Guide",
+ "blurb": "Setting up Termux on Android so you can flash TWRP, fastboot ROMs and GSIs from the phone itself — the whole install, permissions and command list.",
+ "device": "Channel",
+ "rom": "TWRP",
+ "android": "",
+ "views": 3822,
+ "published": "2025-10-25",
+ "url": "https://youtu.be/7UAo_5y7V0g",
+ "tags": [
+  "TWRP",
+  "Channel",
+  "Flash",
+  "Install",
+  "Root"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Setting up Termux on Android so you can flash TWRP, fastboot ROMs and GSIs from the phone itself — the whole install, permissions and command list.\n\nThis is the video everything else leans on. Before you can flash anything from Termux, Termux itself has to be installed with the right version for your Android release, given storage and API permissions, and then loaded with the tool from GitHub. Skip any of those and the flash tool opens and finds nothing.\n\nTwo things trip people up every time. First, the Play Protect warning during install — you have to pause Play Protect for a minute, or the APK just refuses to install. Second, permission to storage, which you grant once when Termux asks. After that it's copy, paste, enter, one command at a time from the tool page. Nothing clever, just order.\n\n🔧 What You Need\n• Termux — pick the APK that matches your Android version, the older one for Android 13 and below\n• Termux:API — you need this one alongside Termux, and both want their permissions\n• The Termux Root Recovery Tool from its GitHub page\n• A phone or tablet with enough free storage for the ROM files\n• Patience for Play Protect complaining about an app from outside the store\n\n📝 Steps\n1. Install Termux and Termux:API. If Play Protect blocks it, pause protection for a moment and continue.\n2. Open Termux:API and accept the permissions it asks for, including notification access.\n3. Open Termux and run the commands from the GitHub page one at a time, not all at once.\nyes | pkg update && upgrade\ntermux-setup-storage\npkg install termux-api\nyes | pkg install git\nyes | pkg install android-tools\ngit clone https://github.com/Ishu43642/Termux-Root-Recovery-Tool.git\ncd Termux-Root-Recovery-Tool\nchmod -R +x .\ncurl -s https://raw.githubusercontent.com/nohajc/termux-adb/master/install.sh | bash\n./flash.sh\n4. Grant storage permission when Termux asks — that's the termux-setup-storage step.\n5. Install the ADB helper at the end so the tool can talk to a device over USB.\n6. Run the flash script and you're ready to start flashing ROMs and recoveries.\n\n⚠️ Where People Get Stuck\n• Installing the wrong Termux build for the Android version and getting errors on the first command.\n• Skipping Termux:API, which breaks the storage and notification bits the tool relies on.\n• Pasting all the commands at once instead of one line at a time, so a failure gets buried.\n\n❓ Common Questions\nDoes this need root? No. Termux itself doesn't need root for this setup.\nWhich Termux do I install? The version that matches your Android — newer builds for Android 14 and up.\nDo I need a PC for this part? No, everything here happens on the device.",
+ "links": [
+  {
+   "label": "",
+   "url": "https://github.com/Ishu43642/Termux-Root-Recovery-Tool.git"
+  },
+  {
+   "label": "",
+   "url": "https://raw.githubusercontent.com/nohajc/termux-adb/master/install.sh"
+  },
+  {
+   "label": "Termux Root Recovery Tool",
+   "url": "https://github.com/Ishu43642/Termux-Root-Recovery-Tool"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB & Fastboot Tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB & Fastboot Driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

@@ -1,0 +1,29 @@
+{
+ "id": "LAXODi6Imho",
+ "slug": "unlock-bootloader-xiaomi-11t-pro-mi-unlock-tool-step-by-step",
+ "title": "Unlock Bootloader Xiaomi 11T Pro Mi Unlock Tool, Step by Step",
+ "blurb": "Unlocking the bootloader on the Xiaomi 11T Pro with the Mi Unlock Tool — the exact steps, plus the wait nobody warns you about.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "Bootloader unlock",
+ "android": "",
+ "views": 11768,
+ "published": "2022-11-05",
+ "url": "https://youtu.be/LAXODi6Imho",
+ "tags": [
+  "Bootloader unlock",
+  "Xiaomi 11T Pro",
+  "Install",
+  "Root",
+  "Unlock"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Unlocking the bootloader on the Xiaomi 11T Pro with the Mi Unlock Tool — the exact steps, plus the wait nobody warns you about.\n\nEvery custom ROM, every recovery, every root guide on the 11T Pro starts here. No unlocked bootloader, no flashing. Full stop. So this is the one step worth doing carefully, because it's the one you can't undo quietly — unlocking wipes the phone.\n\nThe route is Xiaomi's own Mi Unlock Tool on a PC. It's not complicated, it's just picky: it wants the right drivers, the same Mi account on phone and PC, and it wants you to wait. That waiting period is where most people give up and start hunting for shortcuts that don't exist.\n\n🛠️ What You Need\n• Xiaomi 11T Pro with a charged battery and your data backed up\n• A PC with ADB and fastboot drivers installed — grab them if you don't have them\n• The Mi Unlock Tool\n• The same Mi account signed in on both the phone and the tool\n• Patience. The account usually has to sit bound to the phone for 168 hours first\n\n📝 Steps\n1. Reboot to bootloader.\n2. Connect to the PC and install the ADB and fastboot drivers if you need them.\n3. Open the Mi Unlock Tool.\n4. Log in with your Mi account.\n5. Click unlock.\n\nThat's it — those five steps are the whole job once the waiting period is done.\n\n⚠️ Where People Get Stuck\n• The 168-hour wait. Fresh account binding, and there's no way around it. Start the clock early if you know you'll flash something.\n• Driver trouble. If the tool doesn't see the phone, it's almost always the drivers or the cable, not the phone.\n• A different Mi account on the PC than on the phone. It will refuse, and it won't always say why.\n• The data wipe. Unlocking erases the phone, so back up before step one, not after.\n\n❓ Common Questions\nQ: Does unlocking wipe the phone?\nA: Yes. Everything goes, so back up first.\nQ: Can I unlock without a PC?\nA: Not with the official tool. The Mi Unlock Tool runs on Windows.\nQ: Does unlocking void the warranty?\nA: It changes the support situation on Xiaomi phones — know that before you click.\nQ: Can I relock it later?\nA: Yes, but relocking a phone running a custom ROM is a good way to brick it. Don't do that casually.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

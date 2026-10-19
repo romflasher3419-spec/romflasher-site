@@ -1,0 +1,49 @@
+{
+ "id": "dQIcVhjFl70",
+ "slug": "eu-miui-14-0-1-0-rom-review-on-xiaomi-11t-pro-is-it-worth",
+ "title": "EU MIUI 14.0.1.0 ROM Review on Xiaomi 11T Pro Is It Worth Flashing?",
+ "blurb": "EU MIUI 14.0.1.0 running on the Xiaomi 11T Pro — a full look at the build, what it changes, and who it actually suits.",
+ "device": "Xiaomi 11T Pro",
+ "rom": "MIUI",
+ "android": "",
+ "views": 1585,
+ "published": "2023-02-24",
+ "url": "https://youtu.be/dQIcVhjFl70",
+ "tags": [
+  "MIUI",
+  "Xiaomi 11T Pro",
+  "Unlock",
+  "Bootloader",
+  "Camera"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "EU MIUI 14.0.1.0 running on the Xiaomi 11T Pro — a full look at the build, what it changes, and who it actually suits.\n\nThe EU builds are a community take on MIUI rather than a stock global package, so the expectations going in are a little different. What I care about is what the ROM does to the things I touch every hour: the notification shade, the launcher, the camera app, and how quickly the whole thing wakes up from a cold start. A version number on a page tells you nothing. Time on the device tells you everything.\n\n📱 Device  : Xiaomi 11T Pro (vili)\n🧩 ROM     : EU MIUI 14.0.1.0\n\n📌 What I Went Through\n• A clean boot and setup on the 11T Pro\n• The MIUI features EU builds tend to unlock\n• Everyday behaviour instead of a static features list\n• What stays genuinely stock and what doesn't\n\n🧭 Who This Rom Suits\n• Someone who wants MIUI, not AOSP, and is tired of the stock preload\n• Anyone who wants the EU feature set without learning a whole new interface\n• People who are fine with a custom build and the small upkeep it brings\n\n❓ Quick Answers\n• Do I need an unlocked bootloader? Yes. There's no way around it.\n• Will it wipe my data? Yes — treat it as a fresh start and back up first.\n• Does it need root? No. Root is optional here.\n• Can I go back to stock MIUI? Yes, a fastboot package is the route back.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "twrp for k50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "twrp for mi 11x",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for aosp rom",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "ofox for mi11t pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

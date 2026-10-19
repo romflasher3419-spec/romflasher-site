@@ -1,0 +1,45 @@
+{
+ "id": "3vdXtHpGrNw",
+ "slug": "dyper-os-3-eea-on-poco-x7-pro-full-rw-system-mods-test",
+ "title": "dyper OS 3 EEA on Poco X7 Pro Full RW System & Mods Test",
+ "blurb": "dyper OS 3 on the Poco X7 Pro — a HyperOS 3 based build with full read-write system access, modded apps, and a stack of tweaks already dialled in.",
+ "device": "Channel",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 351,
+ "published": "2025-11-22",
+ "url": "https://youtu.be/3vdXtHpGrNw",
+ "tags": [
+  "HyperOS",
+  "Channel",
+  "Install",
+  "MIUI",
+  "Update"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "dyper OS 3 on the Poco X7 Pro — a HyperOS 3 based build with full read-write system access, modded apps, and a stack of tweaks already dialled in.\n\nThis is the one for people who want to actually get inside the ROM. The system partition is decrypted with full read-write access, which is the whole point — it's what makes deeper modding possible instead of just editing what you're allowed to touch.\n\nThe base is HyperOS 3.0.2.0.WOJEUXM, so it's current, and the modifications run through the whole system. Gboard comes with the enhanced keyboard features enabled, the stock MIUI dialer and messaging apps are kept in place, and signature verification is disabled so modded apps install cleanly. There's Google Photos support without the usual storage ceiling, plus game spoof and modded system apps.\n\nIt also ships with a couple of practical touches: the CPU governor is set to schedutil with CPU idle TEO, and the thermal tweaks are back to default rather than left wide open.\n\n📱 Device  : POCO X7 Pro (rodin)\n🧩 ROM     : dyper OS 3 (EEA)\n🧩 Base    : HyperOS 3.0.2.0.WOJEUXM\n🤖 Android : 16\n\n🎯 What It Does\n• Decrypted system with full read-write access\n• Gboard with the enhanced keyboard features enabled\n• MIUI dialer and messaging apps kept in place\n• Signature verification disabled, so modded apps install cleanly\n• Google Photos support without the usual storage ceiling\n• Game spoof and modded system apps\n• Schedutil CPU governor with CPU idle TEO, thermals back to default\n\n💡 Best Part\n• The read-write system is the real draw — it's what makes serious modding possible.\n• Stock dialer and messaging instead of the Google replacements.\n• Tweaks come balanced out of the box, not left wide open.\n\n🚫 What It Doesn't Do\n• It won't rescue a bad flash — clean flash still applies.\n• Signature checks being off is convenient, but you have to trust what you install.\n• If Google login hangs during setup, the lock screen is the usual culprit.",
+ "links": [
+  {
+   "label": "ROM link",
+   "url": "https://tmearn.net/link/bfkW"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Mirror",
+   "url": "https://tmearn.net/link/yjuGh"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

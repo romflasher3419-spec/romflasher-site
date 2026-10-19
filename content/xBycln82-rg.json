@@ -1,0 +1,29 @@
+{
+ "id": "xBycln82-rg",
+ "slug": "pixel-experience-on-mi-11x-review-install-guide-step-by-step",
+ "title": "Pixel Experience on MI 11X Review + Install Guide Step by Step",
+ "blurb": "Pixel Experience on the MI 11X — the full install walkthrough plus a straight look at whether this Pixel-style ROM still deserves a spot on your alioth phone.",
+ "device": "Mi 11X",
+ "rom": "Pixel Experience",
+ "android": "",
+ "views": 114,
+ "published": "2022-10-02",
+ "url": "https://youtu.be/xBycln82-rg",
+ "tags": [
+  "Pixel Experience",
+  "Mi 11X",
+  "Install",
+  "Bootloader",
+  "Recovery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Pixel Experience on the MI 11X — the full install walkthrough plus a straight look at whether this Pixel-style ROM still deserves a spot on your alioth phone.\n\nPixel Experience is the ROM people recommend to a friend who just wants their phone to feel like a Pixel. Clean launcher, Google apps already in place, no clutter, no twenty toggles hidden in a menu. On the MI 11X — same alioth hardware as the POCO F3 and Redmi K40 — that's a big change from MIUI. In the video I install it from start to finish and then talk about what you're left with: the launcher, the camera, the feel, and the parts that made me raise an eyebrow. If you've never flashed anything before, follow along slowly. If you have, you already know what this ROM is about and you're mostly here for the steps.\n\n📱 Device  : MI 11X / POCO F3 / Redmi K40 (alioth)\n🧩 ROM     : Pixel Experience\n\n🛠️ What You Need\n• An unlocked bootloader on the alioth.\n• A working custom recovery — OrangeFox or TWRP.\n• The Pixel Experience zip built for your exact device. Alioth builds only.\n• No separate GApps package, this ROM includes the Google apps already.\n• Matching firmware and a full backup of your internal storage.\n\n📝 Steps\n1. Copy the ROM zip into internal storage.\n2. Boot into recovery and back up everything you care about.\n3. Wipe data, cache and Dalvik for a clean flash.\n4. Flash the ROM zip and wait for it to finish.\n5. Format data if the ROM asks for it, then reboot.\n6. Let the first boot run its course. It's slow the first time.\n7. Complete setup and give it a day before judging battery.\n\n⚠️ Where People Get Stuck\n• Flashing an alioth build on a phone that isn't alioth. It will not boot.\n• Skipping the data format and landing in a bootloop.\n• Stacking a GApps package on top of a ROM that already includes them.\n\n❓ Common Questions\nQ: Does Pixel Experience include Google apps? A: Yes, they're built in.\nQ: Will the camera magically get better? A: No. Expect the Google camera experience, not a hardware upgrade.\nQ: Can I go back to MIUI? A: Yes, with a fastboot flash of the stock ROM.\nQ: Is the bootloader unlock required? A: Always, on every custom ROM.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

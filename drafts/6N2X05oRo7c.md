@@ -1,0 +1,89 @@
+::summary
+Evolution X on the Redmi K50i is an unofficial Android 12.1 build, and it changes how the phone feels because stock MIUI never let this hardware breathe. The flash is unlock, flash, format data, reboot. Treat it as community work, back up first, and give it a real week before you judge it.
+
+::body
+Evolution X on the Redmi K50i looks scary until you have done it once. The K50i is a quick phone and the stock software never really let it stretch. An Android 12.1 custom ROM like this is a genuine change in how the thing feels under your thumb, not a cosmetic update.
+
+I kept it simple. Unlock the bootloader, flash the build, format data, reboot, then actually use the phone instead of deciding it is great after five minutes.
+
+## What it looks like when it boots
+
+The first thing you notice is how clean the boot is. No weird setup loop, no bootloop drama on the first flash. It goes up, the setup wizard arrives, and you are setting up a phone rather than troubleshooting one.
+
+Then you look around. There is almost nothing on the phone you did not put there. The stock MIUI pile of apps is gone — no store pushing recommendations, no background services you never asked about. The home screen is yours.
+
+The feel is fast in a way that is hard to describe without holding it. Apps open without a pause. Scrolling is smooth. It is the same chip as before, doing the same work, with far less standing in front of it.
+
+## What actually changed
+
+- **The app list is short.** AOSP plus Evolution X's own additions, and nothing else.
+- **The animations are quick.** Things respond on the first tap, not the second.
+- **You get proper customisation.** That is the point of Evolution X — the extras are there to be used, not hidden.
+- **Battery behaviour settles after a few days.** It looks worse on the first charge. That is every new ROM, not just this one.
+
+## What you need
+
+- The Evolution X Android 12.1 zip for the Redmi K50i, from the link in the downloads section.
+- An unlocked bootloader on the phone.
+- A PC with ADB and fastboot working, and a USB cable you trust.
+- A full backup of your internal storage.
+- A charged battery. Do not start this at 20 percent.
+
+## Step 1 - back up, and mean it
+
+Photos, chats, authenticator codes, banking app logins. Formatting data wipes internal storage and there is no undo button. Do this the night before, not while the phone is plugged in and waiting.
+
+## Step 2 - get into fastboot or recovery
+
+Whichever your setup uses. Check first that your PC actually sees the phone before you start flashing anything. If fastboot does not list a device, sort the driver out now.
+
+## Step 3 - flash the package the way the build expects
+
+No shortcuts, no skipping files. If the build wants a particular file flashed separately, flash it separately. If it wants a specific recovery, use that recovery. Improvising here is how people turn a twenty-minute job into an evening.
+
+## Step 4 - format data when recovery asks
+
+This is the step that prevents most bootloops, and it is the one people try to skip because it sounds optional. It is not optional. Formatting removes the encryption from the old system so the new one can set up its own.
+
+## Step 5 - reboot and let it finish
+
+First boots are slow. That is normal and it is not a sign of failure. Give it minutes, not seconds.
+
+## Step 6 - test before you rely on it
+
+Set the phone up, then check the things you actually need. Calls, mobile data, Wi-Fi, the camera, your banking app. Ten minutes of testing now saves you discovering a problem on a train tomorrow.
+
+## What is broken, honestly
+
+This is an unofficial Evolution X build, so treat it like community work, not a company release. You flash it because you want to test it, not because you want a warranty. Some builds have bugs the maintainer has not fixed yet, and you will find them the same way everyone else did.
+
+Play Integrity is the practical one to expect. Banking and payment apps often refuse to run on an unlocked bootloader with a custom ROM, and there is no guaranteed fix for that. If your bank app is the reason you need the phone, check it early, before you have moved all your data across.
+
+## Who should install it
+
+- **Install it if** you want to see how this hardware actually behaves, you are comfortable with a wipe and a reflash, and you can live without every app passing integrity checks.
+- **Skip it if** you need one phone that simply works for banking, work email and payments, and you have no patience for troubleshooting.
+
+## Where people get stuck
+
+- **Flashing without formatting data.** The phone sits on the boot animation forever, and you conclude the ROM is broken. It is not. You skipped a step.
+- **A dodgy USB cable failing mid-write.** Write failures look like a bad ROM. They are usually a bad cable.
+- **Expecting an unofficial build to be finished.** It is community work. Some things are still rough, and that is the honest trade for how fast it feels.
+
+If the driver side of getting your PC ready is the annoying part, the free Rom Flasher tool on GitHub bundles the ADB and fastboot driver install into a couple of clicks. The link is in the downloads section.
+
+::faq
+Q: Is Evolution X on the Redmi K50i official or unofficial?
+A: It is unofficial. The build comes from the community rather than from the Evolution X team as an official device release, so expect the odd rough edge and no warranty. Flash it to test it, not to depend on it.
+
+Q: Why does my Redmi K50i stay on the boot animation after flashing Evolution X?
+A: You almost certainly skipped formatting data. Coming from MIUI or another ROM, recovery has to format data before the new build can boot. Go back, format, and flash again.
+
+Q: Does Evolution X fix the overheating on the Redmi K50i?
+A: It does not change the hardware, but it strips out a lot of background load that stock MIUI carries. In normal use the phone runs cooler simply because it is doing less behind your back.
+
+Q: Can I flash Evolution X on a locked bootloader?
+A: No. The bootloader has to be unlocked first, and unlocking wipes the phone. Do that job before you download the ROM, and back up on the same day you unlock.
+
+Q: Will banking apps work on Evolution X Android 12.1?
+A: Often they will not. Payment and banking apps commonly check integrity and refuse to run on an unlocked bootloader with a custom ROM. Test your banking app right after setup, before you move your data across.

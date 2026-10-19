@@ -1,0 +1,28 @@
+{
+ "id": "FHqbuiLTZQ8",
+ "slug": "elite-rom-miui-14-stable-eea-on-xiaomi-11t-pro-full-review",
+ "title": "Elite ROM MIUI 14 Stable EEA on Xiaomi 11T Pro Full Review",
+ "blurb": "Elite ROM on MIUI 14 Stable EEA for the Xiaomi 11T Pro — the EliteMod v1.0 changelog, the features that genuinely change daily use, and an honest look at...",
+ "device": "Xiaomi 11T Pro",
+ "rom": "MIUI",
+ "android": "",
+ "views": 7300,
+ "published": "2023-01-23",
+ "url": "https://youtu.be/FHqbuiLTZQ8",
+ "tags": [
+  "MIUI",
+  "Xiaomi 11T Pro",
+  "Battery",
+  "Update"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Elite ROM on MIUI 14 Stable EEA for the Xiaomi 11T Pro — the EliteMod v1.0 changelog, the features that genuinely change daily use, and an honest look at what's still plain MIUI.\n\nThis one arrived on 20 January 2023, built on the EEA stable branch. So underneath you've got a Xiaomi base with Android 13, and on top of it a long list of Elite customizations that normally need three separate Magisk modules. I went through the settings, kicked the tires on the parts I actually use, and here's the honest read.\n\n📱 Device  : Xiaomi 11T Pro\n🧩 ROM     : Elite ROM (MIUI 14 Stable EEA based)\n🤖 Android : 13\n📦 Build   : 20 Jan 2023\n🧬 Mod     : EliteMod v1.0\n\n🔬 What Stands Out\n• Dual statusbar with left and right sides configured separately, plus clock, network speed, battery and notification icon customization — size, color, scaling, font and font style.\n• Blur options for folders and recents backgrounds, list animations and list interpolation choices.\n• Screenshot in secured apps is allowed, and global dark mode can be toggled for every app at once.\n• Google unlimited photos enabled in storage saver, so uploads stay free without resizing tricks.\n• Brightness lowering issue solved. It no longer dims itself mid gaming session.\n• AOD deep sleep fixed, with a disable-AOD-in-a-dark-room toggle and show/hide for AOD notification icons.\n• Anti flicker mode on, WiFi region unlocked, and the permission timer removed.\n• Super icons, the new MIUI 14 launcher, and a package installer that handles different signature apps.\n\n📦 Under The Hood\n• Fully deodexed and debloated. The useless stuff is gone, so it feels lighter than the stock EEA build.\n• R/W system, and the ROM is fully decrypted.\n• Edges effects and charging animations on the statusbar and sides.\n\n📊 Verdict\nThe customizations are the real product here. If you like tuning your statusbar and hate being locked to stock layouts, this is the reason to flash it. The base underneath is still MIUI, so don't expect Pixel smoothness in animations. The Elite Customizations menu is deep — it takes an evening to set up properly, and the folders shrink if you push icon size too far, which they fixed but you'll still notice on extreme values. Quick Reply was pulled from Settings because it was buggy on the base side. Everything else felt stable in normal use.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

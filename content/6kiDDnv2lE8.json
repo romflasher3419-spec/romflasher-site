@@ -1,0 +1,74 @@
+{
+ "id": "6kiDDnv2lE8",
+ "slug": "lineageos-20-android-13-on-mi-pad-5-fastboot-install-guide",
+ "title": "LineageOS 20 Android 13 on Mi Pad 5 Fastboot Install Guide",
+ "blurb": "LineageOS 20 with Android 13 on the Mi Pad 5 — a weekly test build, plus the fastboot install route it needs.",
+ "device": "Xiaomi Pad 5",
+ "rom": "LineageOS",
+ "android": "",
+ "views": 15522,
+ "published": "2023-02-19",
+ "url": "https://youtu.be/6kiDDnv2lE8",
+ "tags": [
+  "LineageOS",
+  "Xiaomi Pad 5",
+  "Flash",
+  "Install",
+  "Root"
+ ],
+ "summary": "LineageOS 20 brings Android 13 to the Xiaomi Pad 5 as a weekly test build. This one installs through fastboot, not recovery sideload, and the route differs depending on whether you are coming from MIUI or another custom ROM. Gapps are already baked in, so you only add Magisk and the safetynet fix afterwards if you want Play Certification.",
+ "body": "You want LineageOS on the Pad 5, and this particular build has a quirk worth knowing before you start: it goes on with fastboot, not with a recovery sideload. Future builds for this tablet arrive as OTA packages you flash in recovery, but this one still needs the fastboot route.\n\nThe build is a weekly test build from source, and it can work as a daily driver. It ships with Gapps already baked in, so you skip a separate flash. If you want Play Certification to behave, you add Magisk and the safetynet props afterwards, and that combination does the heavy lifting.\n\n## What changed in this build\n\n- Partition sizes aligned with stock firmware, which avoids the space surprises older builds had.\n- A boot failure caused by magiskinit is fixed.\n- Bluetooth audio HAL updated.\n- Controls added for adjusting the refresh rate.\n- Power button glitches fixed.\n- Xiaomi Pen and stylus support added.\n- Double tap to wake added.\n- Aligned with the latest LineageOS source.\n\nThe pen support is the one people notice. The Pad 5 is often bought as a note-taking tablet, and a build without working stylus input is a non-starter for that job.\n\n## What you need\n\n- The ROM zip from the link below.\n- Latest platform tools on your PC.\n- The ADB and Fastboot driver installed, so fastboot sees the tablet.\n- A charged battery and a backup, because whatever route you take, the tablet gets wiped.\n\n## If you are coming from MIUI\n\nPull `boot` and `vendor_boot` out of the ROM zip and flash them from the bootloader. This is fastboot proper, not fastbootd — the normal bootloader screen, not the fastboot mode inside recovery. Getting those two mixed up is the most common reason people think the flash failed.\n\nOnce the images are in, reboot and continue with the build.\n\n## If you are coming from another custom ROM\n\n1. Reboot to the bootloader.\n2. Run `fastboot -w` to wipe.\n3. Reboot to fastbootd.\n4. Flash the update package.\n\nThe wipe matters more than people expect when moving between custom ROMs. Different builds write different vendor content, and skipping the wipe leaves you with a tablet that boots to the logo and hangs there.\n\n## Step by step, both routes\n\n1. Download the LineageOS zip from the link below.\n2. Keep the latest platform tools ready.\n3. From MIUI: reboot to bootloader, flash boot and vendor_boot from the zip.\n4. From another custom ROM: reboot to bootloader, run `fastboot -w`, reboot to fastbootd, flash the update package.\n5. Let it boot fully before you set anything up. Do not rush the setup wizard while the tablet is still settling.\n6. Add Magisk and the safetynet props afterwards if you want Play Certification.\n\n## Where people get stuck\n\n- **Confusing fastboot with fastbootd.** From MIUI, the boot images go on from the real bootloader. fastbootd is the recovery-side mode and it will not accept the same set of commands.\n- **Skipping the wipe when crossing between custom ROMs.** You get a boot loop or a hang at the logo, and it looks like a broken ROM when it is really a dirty install.\n- **Setting the tablet up too quickly.** Finish the first boot, then configure. Adding accounts and restoring during the initial boot makes any early problem much harder to read.\n\n## One honest note\n\nThis is a weekly test build, which means the maintainers are still moving things around. That is fine for daily use most of the time, but do not expect the polish of a stable channel. Keep a working package around so you can go back if a weekly build misbehaves.\n\nThe free Rom Flasher tool on GitHub handles the ADB and fastboot driver install for you, so the platform tools side is two clicks instead of a Device Manager hunt. It is free, and the link is with the others on this page.\n\n## Who should install it\n\nInstall it if you want LineageOS 20 on the tablet without flashing Gapps separately, and you can live with a test build. Skip it if you cannot tolerate the occasional rough weekly, or if you want the stable channel and nothing else.",
+ "video_description": "LineageOS 20 with Android 13 on the Mi Pad 5 — a weekly test build, plus the fastboot install route it needs.\n\nThis one is a source built vendor build, and it can work as a daily driver if you set it up with Magisk, safteynetprops and krdragon's safteynet fix. That combination does the heavy lifting, so don't skip it and then wonder why Play Certification looks unhappy. It also ships with baked in Gapps (Partner gapps), which saves you a separate flash.\n\n📱 Device  : Xiaomi Mi Pad 5 (nabu)\n🧩 ROM     : LineageOS 20 (weekly test build)\n🤖 Android : 13\n👤 Credits : krdragon's safteynet fix\n\n📋 What Changed In This Build\n• Partition sizes aligned with stock firmware\n• Boot failure with magiskinit fixed\n• Bluetooth audio HAL updated to 2.1\n• Controls added for refresh rate adjustment\n• Power button glitches fixed\n• Xiaomi Pen and Stylus support added\n• Double tap to wake support added\n• Aligned with the latest LineageOS source\n\n🛠️ How To Flash It\n1. Download the zip from the link below\n2. Keep the latest platform tools ready on your PC\n3. Coming from MIUI: pull boot and vendor_boot out of the zip and flash them from the bootloader, which is fastboot proper and not fastbootd\n4. Coming from another custom ROM: reboot to bootloader, run fastboot -w, reboot to fastbootd, then flash the update package\n5. Let it boot fully before you set anything up\n6. Add Magisk and the safetynet props afterwards if you want Play Certification\n\nNote: future LineageOS builds for this device arrive as OTA packages to flash with recovery, but this particular build still goes on with fastboot.",
+ "links": [
+  {
+   "label": "LINK",
+   "url": "https://xpshort.com/dolx"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "twrp for k50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "twrp for mi 11x",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for aosp rom",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "ofox for mi11t pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Do I need to flash Gapps with LineageOS 20 on the Mi Pad 5?",
+   "a": "No. This build ships with Partner Gapps baked in, so you skip the separate flash. You only add Magisk and the safetynet props afterwards if you want Play Certification to pass."
+  },
+  {
+   "q": "Is this build fastboot or recovery?",
+   "a": "This one goes on with fastboot. The build images go on from the bootloader. Later LineageOS builds for this tablet arrive as OTA packages you flash in recovery instead."
+  },
+  {
+   "q": "How do I get Play Certification working?",
+   "a": "Set it up with Magisk, the safetynet props and the safetynet fix that comes with this build. That combination is what makes Play Certification behave. Do it after the ROM has booted fully."
+  },
+  {
+   "q": "Does the Xiaomi Pen work on LineageOS 20 for the Pad 5?",
+   "a": "Yes. Pen and stylus support was added in this build, along with double tap to wake. Refresh rate controls were added too, so you can adjust that from the settings."
+  },
+  {
+   "q": "Will flashing this wipe the tablet?",
+   "a": "Yes. If you come from MIUI the images replace the system, and if you come from another custom ROM the wipe is part of the process. Back up anything you care about before you start."
+  }
+ ]
+}

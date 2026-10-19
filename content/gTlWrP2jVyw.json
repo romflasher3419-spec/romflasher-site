@@ -1,0 +1,45 @@
+{
+ "id": "gTlWrP2jVyw",
+ "slug": "mistos-v4-3-on-poco-x7-pro-android-16-test-flash-guide",
+ "title": "MistOS v4.3 on Poco X7 Pro Android 16 Test & Flash Guide",
+ "blurb": "MistOS v4.3 on the Poco X7 Pro — Android 16, a fastboot vendor flash, then a sideload of the ROM.",
+ "device": "Any Android",
+ "rom": "Pixel Experience",
+ "android": "",
+ "views": 865,
+ "published": "2025-12-01",
+ "url": "https://youtu.be/gTlWrP2jVyw",
+ "tags": [
+  "Pixel Experience",
+  "Flash",
+  "Recovery",
+  "Custom ROM",
+  "Backup"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "MistOS v4.3 on the Poco X7 Pro — Android 16, a fastboot vendor flash, then a sideload of the ROM. Here's the whole thing in order.\n\nMistOS is one of those builds that feels close to AOSP but keeps enough of its own character that you notice. On Android 16 the base is fresh, and the first boot is quick if you do the vendor step correctly.\n\nThe catch is the vendor partition. Skip it and you'll be staring at a recovery that won't mount anything. Flash vendor_boot first, boot to recovery, format data, then sideload. That's the order, and it doesn't like being rushed.\n\nIf you don't have a PC, you can do this from a terminal app on the phone — the commands are identical, just typed on the device.\n\n📱 Device  : POCO X7 Pro (rodin)\n🧩 ROM     : MistOS v4.3 (Unofficial)\n🤖 Android : 16\n👤 Credits : ido@rexprjkt (flashing guide)\n\n🛠️ What You Need\n• The ROM zip and the vendor_boot image\n• adb and fastboot on a PC (or a terminal app)\n• A data USB cable\n• Recovery access and a backup you don't mind losing\n\n📝 Steps\n1. Flash the vendor image: fastboot flash vendor_boot --slot=all vendor_boot.img\n2. Reboot and hold volume up the moment the screen goes dark.\n3. In recovery, format data.\n4. Sideload the ROM with adb sideload, or drag the zip into the terminal window.\n5. Choose yes when it asks, then flash GApps or Magisk if you want them.\n6. Reboot to system and be patient on that first boot.\n\n⚠️ Where People Get Stuck\n• Booting to system with the vendor image missing, which ends in a recovery that mounts nothing.\n• Not holding volume up fast enough and missing the recovery window.\n• Dirty flashing over another ROM and then blaming the build.\n\n⚠️ Always back up your IMEI and data before a clean flash. Clean flash is mandatory on this build.",
+ "links": [
+  {
+   "label": "ROM file",
+   "url": "https://tmearn.net/link/ZcwzCh"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Vendor",
+   "url": "https://tmearn.net/link/ptB9xHKr"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

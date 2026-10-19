@@ -1,0 +1,49 @@
+{
+ "id": "SgCVobhX-fY",
+ "slug": "elite-rom-on-redmi-k50i-miui-based-custom-rom-full-review",
+ "title": "Elite ROM on Redmi K50i MIUI-Based Custom ROM Full Review",
+ "blurb": "Elite ROM on the Redmi K50i — a MIUI based custom ROM that keeps the stock look and adds its own layer of tweaks on top of it.",
+ "device": "Redmi K50i",
+ "rom": "AOSP",
+ "android": "",
+ "views": 439,
+ "published": "2023-02-24",
+ "url": "https://youtu.be/SgCVobhX-fY",
+ "tags": [
+  "AOSP",
+  "Redmi K50i",
+  "Flash",
+  "Bootloader",
+  "Recovery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Elite ROM on the Redmi K50i — a MIUI based custom ROM that keeps the stock look and adds its own layer of tweaks on top of it.\n\nI keep coming back to MIUI based ROMs on this phone, because the stock camera and the stock feel are hard to give up. Elite ROM is that kind of project. You don't get a completely foreign interface pushed at you. You get the MIUI you already know, cleaned up, plus the extra settings a stock build never bothers to hand you. If you've run AOSP based ROMs on the K50i, you know the trade: clean and quick, but the MIUI camera is gone and half the familiar bits are missing. This one doesn't ask you to pay that price.\n\n📱 Device  : Redmi K50i\n🧩 ROM     : Elite ROM (MIUI based)\n\n📌 What Stood Out\n• MIUI base, so the camera app and the launcher habits stay where they were\n• Customisation settings that stock MIUI keeps hidden under the surface\n• A preload that tends to feel lighter than a stock build, without losing the MIUI tools\n• Runs like it belongs on the K50i instead of fighting the hardware\n\n⚙️ Before You Flash\n• Unlocked bootloader is step zero — there's no way around it\n• platform tools installed on your PC\n• A working TWRP or OrangeFox recovery\n• The ROM zip sitting on internal storage, not on a pendrive\n• A backup, because flashing wipes your data\n\n❓ Quick Answers\n• Do I need to format data? Coming from another ROM, yes. Clean install, clean boot.\n• Is root required? No, it's optional. The ROM boots fine without it.\n• Can I go back to stock MIUI? Yes, a fastboot package is the way home.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "twrp for k50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "twrp for mi 11x",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for aosp rom",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "ofox for mi11t pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

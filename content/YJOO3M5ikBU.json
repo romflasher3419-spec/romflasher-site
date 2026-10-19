@@ -1,0 +1,41 @@
+{
+ "id": "YJOO3M5ikBU",
+ "slug": "install-any-aosp-rom-on-xiaomi-poco-no-pc-no-termux-2-phones",
+ "title": "Install Any AOSP ROM on Xiaomi & POCO No PC, No Termux, 2 Phones",
+ "blurb": "Installing an AOSP ROM on a Xiaomi or POCO phone without a PC — two Android phones, one tool and a sideload at the end.",
+ "device": "",
+ "rom": "AOSP",
+ "android": "",
+ "views": 513,
+ "published": "2026-08-31",
+ "url": "https://youtu.be/YJOO3M5ikBU",
+ "tags": [
+  "AOSP",
+  "Flash",
+  "Install",
+  "Root",
+  "Unlock"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Installing an AOSP ROM on a Xiaomi or POCO phone without a PC — two Android phones, one tool and a sideload at the end. I walk the full path with Pixel Infinity.\n\nThe trick is that you don't need a laptop or Termux when the ROM ships a recovery-based build. You flash vendor_boot (or boot, depending on the model) from the helper Android phone, boot into recovery, format data, then sideload the ROM zip. The same flow covers Pixel Infinity, crDroid, LineageOS, Evolution X, PixelOS and most other AOSP builds that come with a recovery image.\n\nOne honest note: in my run the ROM zip I had was corrupt, so there's a gap in the footage where I re-downloaded it. That's exactly the mistake to dodge — check the file hash before you start, not after.\n\n🛠️ What You Need\n- Two Android phones: the one being flashed, plus a helper\n- A USB cable that actually holds a connection\n- The vendor_boot or boot image that matches your ROM\n- The ROM zip built for your exact device\n- Rom Flasher Tool installed on the helper phone\n\n📝 Steps\n1. Connect both phones and let the tool detect the device.\n2. Flash the vendor_boot or boot image for your model.\n3. Reboot into recovery from the advanced reboot menu.\n4. Format data, then go back.\n5. Choose Apply update, then Apply from ADB.\n6. Sideload the ROM zip and let it run all the way.\n7. Answer No to extra packages, then reboot to system.\n\n❓ Common Questions\nQ: Do I really not need a PC? A: Not on this route — the whole flash runs from the helper Android phone.\nQ: Will it work on my Xiaomi or POCO? A: Only if a recovery-based build exists for your exact device.\nQ: Do I need an unlocked bootloader? A: Yes, and flashing a custom recovery normally needs it too.\nQ: Can I keep my data? A: No. Formatting data is part of the process, so back up first.\nQ: What if the ROM zip is corrupt? A: Re-download it. Sideload stops or fails on a broken file.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "My Tool Link",
+   "url": "https://tm-earn.com/rFb2HgVh"
+  },
+  {
+   "label": "ADB & Fastboot Tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB & Fastboot Driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

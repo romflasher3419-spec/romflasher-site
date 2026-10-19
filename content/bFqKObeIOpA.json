@@ -1,0 +1,29 @@
+{
+ "id": "bFqKObeIOpA",
+ "slug": "orangefox-recovery-on-mi-11x-poco-f3-k40-android-12-guide",
+ "title": "OrangeFox Recovery on MI 11X, POCO F3 & K40 Android 12 Guide",
+ "blurb": "OrangeFox (OFOX) Recovery for Android 12 on the MI 11X, POCO F3 and Redmi K40 — what this recovery actually does, and how to get it running on your alioth...",
+ "device": "POCO F3",
+ "rom": "OrangeFox",
+ "android": "",
+ "views": 44,
+ "published": "2022-10-02",
+ "url": "https://youtu.be/bFqKObeIOpA",
+ "tags": [
+  "OrangeFox",
+  "POCO F3",
+  "Flash",
+  "Install",
+  "Recovery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "OrangeFox (OFOX) Recovery for Android 12 on the MI 11X, POCO F3 and Redmi K40 — what this recovery actually does, and how to get it running on your alioth phone.\n\nIf you flash ROMs at all, the recovery is the tool you touch the most. OrangeFox is the one I keep coming back to: full touch controls, it handles zip packages properly, and it doesn't make you fight the interface when you're tired and it's 1 AM. This is the Android 12 build, set up for the MI 11X and its POCO F3 and Redmi K40 twins. There's nothing exotic here — it's a recovery, it flashes things, that's the job. The real question is whether it behaves reliably on a 12 base, and that's what you see on screen.\n\n📱 Device  : MI 11X / POCO F3 / Redmi K40 (alioth)\n🧩 Tool    : OrangeFox Recovery (Android 12 build)\n🤖 Android : 12\n\n🎯 What It Does\n• Full touch recovery that replaces whatever you're running now.\n• Flashes custom ROMs, GApps packages and Magisk zips.\n• Backs up and restores boot, data and system partitions.\n• Built-in file manager, terminal access and USB OTG support.\n• Handles the zip and ROM packages you'd normally flash on this device.\n\n💡 Best Part\nIt's the small things. The password prompt, the option to keep recovery after flashing a ROM, the way it asks before wiping instead of assuming. When a flash fails late at night, a recovery that stays out of your way matters more than a flashy theme.\n\n🚫 What It Doesn't Do\n• It won't unlock your bootloader. That happens first, before any of this.\n• It won't rescue a corrupted firmware base or a hard brick on its own.\n• It's not a ROM. Flashing it doesn't change Android at all.\n\n❓ Common Questions\nQ: Do I need root first? A: No. Fastboot flashing a recovery doesn't need root.\nQ: Will it replace TWRP? A: Yes, it overwrites the existing recovery.\nQ: Can I flash Android 12 ROMs with it? A: That's exactly what this build is for.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

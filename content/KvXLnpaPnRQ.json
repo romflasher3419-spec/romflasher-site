@@ -1,0 +1,29 @@
+{
+ "id": "KvXLnpaPnRQ",
+ "slug": "miui-13-abhix-rog-edition-on-android-12-gamer-rom-first-look",
+ "title": "MIUI 13 AbhiX ROG Edition on Android 12 Gamer ROM First Look",
+ "blurb": "A MIUI 13 build with a ROG coat of paint on top, sitting on an Android 12 base.",
+ "device": "",
+ "rom": "MIUI",
+ "android": "",
+ "views": 668,
+ "published": "2022-10-05",
+ "url": "https://youtu.be/KvXLnpaPnRQ",
+ "tags": [
+  "MIUI",
+  "Flash",
+  "Recovery",
+  "Gaming",
+  "Update"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "A MIUI 13 build with a ROG coat of paint on top, sitting on an Android 12 base. If you like your phone loud, this is that ROM. Here's what you actually get and what you'll be living with afterwards.\n\n🧩 ROM     : MIUI 13 AbhiX ROG Edition\n🤖 Android : 12\n🔧 Flash   : TWRP recovery\n\n🎯 What It Does\n• Dresses MIUI 13 up in ROG styling, so the whole UI reads gamer instead of stock\n• ROG boot animation and system sounds to sell the theme\n• ROG-style wallpapers and theme pieces already baked in\n• Keeps the MIUI 13 base, so the settings, gestures and notifications feel familiar\n• Runs on an Android 12 base, so app compatibility is still solid\n\n💡 Best Part\nIt's the same MIUI you already know, with a personality. If you're bored of the stock look and don't want to learn a whole new ROM, this is the lowest-effort way to make the phone feel new. Flash it in TWRP like any other zip.\n\n🚫 What It Doesn't Do\n• It doesn't turn the phone into a gaming beast. No ROM does that. Thermals and chipset set the ceiling.\n• It's a modded MIUI build, not an official Xiaomi release, so updates depend on whoever maintains it.\n• ROG styling includes ROG sounds. Some people turn those off within a day.\n• Banking and DRM apps can still detect a modified build.\n\n📝 Before You Flash\n1. Unlock the bootloader if it isn't already.\n2. Install TWRP and take a full backup of system and data.\n3. Move the ROM zip to internal storage.\n4. Wipe system, data, cache and dalvik, then flash the zip.\n5. Wipe cache and dalvik again, then reboot and wait out the first boot.\n\n❓ Common Questions\nQ. Is this the same as MIUI 13 stock? The base is MIUI 13, the theming and tweaks are the mod.\nQ. Will my warranty survive? Bootloader unlocking changes your support situation.\nQ. Can I go back? Yes, flash a stock MIUI build with the flash tool.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

@@ -1,0 +1,49 @@
+{
+ "id": "w-OcgyGyNm4",
+ "slug": "risingos-revived-8-1-1-on-poco-x7-pro-android-16-flash",
+ "title": "RisingOS-Revived 8.1.1 on Poco X7 Pro — Android 16 Flash",
+ "blurb": "RisingOS-Revived 8.1.1 is now booting on my Poco X7 Pro with an Android 16 base, and this is the full flash plus what I actually found after it came up.",
+ "device": "Channel",
+ "rom": "RisingOS",
+ "android": "",
+ "views": 543,
+ "published": "2025-11-13",
+ "url": "https://youtu.be/w-OcgyGyNm4",
+ "tags": [
+  "RisingOS",
+  "Channel",
+  "Flash",
+  "Install",
+  "Camera"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "RisingOS-Revived 8.1.1 is now booting on my Poco X7 Pro with an Android 16 base, and this is the full flash plus what I actually found after it came up.\n\n🔬 What I Tested\n• Boot and first setup — clean install, no loops, straight into RisingOS.\n• Notification shade — this is where the ROM shines. Volume and brightness sit right in the panel, and the whole thing looks sharp.\n• Navigation gestures — responsive, no stutter when I switched modes.\n• Camera — Aperture has a video glitch, and I show the fix on camera.\n• Fingerprint — for the jiiov sensor it's likely still not working, so don't flash this expecting FP to be patched.\n• Play integrity — worth checking with your own setup, as it depends on what you've got installed.\n\n📱 Device  : Poco X7 Pro (rodin)\n🧩 ROM     : RisingOS-Revived 8.1.1\n🤖 Android : 16\n👤 Credits : @rthedream (device tree)\n\n🛠️ Before You Flash\n• This is a Gapps build, signed, with SELinux enforcing — a normal, secure setup rather than a tinkered one.\n• Clean flash is mandatory. Dirty flashing across an Android base is how you get a paperweight.\n• Back up your IMEI. I say it in every video and I mean it.\n• Have ADB fastboot tool and drivers installed before the phone is in bootloader mode.\n\n📝 How The Flash Goes\n1. Connect the phone and enable USB debugging.\n2. Reboot to bootloader from the tool.\n3. Flash vendor_boot to both slots.\n4. Boot into the Rising recovery.\n5. Factory reset, then apply update over ADB.\n6. Sideload the ROM zip — skip extra files unless you want root.\n7. Reboot to system.\n\n📊 Verdict\nIt's the initial build, so the changelog is short and gaming-focused, and the ROM reads that way: fresh, quick, and not yet full of extras. The notification panel is the strong point. The Aperture fix and the FP jiiov issue are the two things to know before you commit. If you can live with those, it's a comfortable daily ride.\n\n🗒 Known Issues\n• You tell me — if you hit something, send logs rather than a one-line complaint.\n• The Aperture in-video recording glitch — fixed in the video.\n• FP jiiov likely still not working.",
+ "links": [
+  {
+   "label": "RisingOS-Revived ROM",
+   "url": "https://tmearn.net/link/SwxDz"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Vendor",
+   "url": "https://tmearn.net/link/wQjoOqUy"
+  },
+  {
+   "label": "ADB fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  },
+  {
+   "label": "rthedream for device tree",
+   "url": "https://github.com/mt6899-rodin"
+  }
+ ],
+ "faq": []
+}

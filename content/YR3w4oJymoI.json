@@ -1,0 +1,45 @@
+{
+ "id": "YR3w4oJymoI",
+ "slug": "xiaomi-pad-5-avium-ui-16-android-16-flyme-windows-install",
+ "title": "Xiaomi Pad 5 Avium UI 16 Android 16 Flyme Windows Install",
+ "blurb": "Avium UI 16 on the Xiaomi Pad 5 — an unofficial Android 16 build that borrows some of the nicer tricks from Flyme.",
+ "device": "Xiaomi Pad 5",
+ "rom": "TWRP",
+ "android": "",
+ "views": 381,
+ "published": "2025-12-04",
+ "url": "https://youtu.be/YR3w4oJymoI",
+ "tags": [
+  "TWRP",
+  "Xiaomi Pad 5",
+  "Install",
+  "Bootloader",
+  "Kernel"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Avium UI 16 on the Xiaomi Pad 5 — an unofficial Android 16 build that borrows some of the nicer tricks from Flyme.\n\nThis one isn't trying to be a stock Pixel clone. It leans into features that make a tablet fun to use: Flyme-style small windows for multitasking, lyrics right in the status bar, and depth-of-field wallpapers that give the home screen some depth. It's a Gapps build, so Google apps are already in there.\n\nUnder the hood it runs kernel 4.14.356 and it's signed with a private key, built as release-keys. That's a small detail on paper, but a signed release build tends to behave more predictably than a debug one.\n\nThe install goes through the modded TWRP for the Pad 5, so have that image ready before you start. I show the whole process in the video, start to finish.\n\n📱 Device  : Xiaomi Pad 5\n🧩 ROM     : Avium UI 16 (Unofficial · Gapps)\n🤖 Android : 16\n🧩 Kernel  : 4.14.356\n👤 Build   : Signed with a private key · release-keys\n\n🛠️ What You Need\n• Unlocked bootloader on the Xiaomi Pad 5\n• adb and fastboot tool plus the driver\n• The modded TWRP image for the Pad 5\n• The Avium UI 16 ROM file\n\n📝 Steps\n1. Back up your data and connect the tablet to your PC.\n2. Boot the modded TWRP recovery.\n3. Format data so you start clean.\n4. Flash the Avium UI 16 ROM file.\n5. Reboot to system and let the first boot settle.\n\n🔥 Features Worth Noting\n• Flyme-style small windows for multitasking\n• Lyrics displayed in the status bar\n• Depth-of-field wallpapers\n• Signed with a private key, built as release-keys\n• Gapps already included",
+ "links": [
+  {
+   "label": "rom file",
+   "url": "https://tmearn.net/link/LcLT24"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "xiaomi pad 5 modded twrp",
+   "url": "https://tmearn.net/link/L5mtfk"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": []
+}

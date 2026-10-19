@@ -1,0 +1,70 @@
+{
+ "id": "eFuNLZ3IA2s",
+ "slug": "project-infinity-x-3-5-on-poco-x7-pro-android-16-install-tour",
+ "title": "Project Infinity X 3.5 on POCO X7 Pro Android 16 Install & Tour",
+ "blurb": "Project Infinity X 3.5 on the POCO X7 Pro - Android 16, the Bluetooth call and front camera fixes, plus a quick tour of what actually changed.",
+ "device": "POCO X7 Pro",
+ "rom": "LineageOS",
+ "android": "",
+ "views": 599,
+ "published": "2025-12-11",
+ "url": "https://youtu.be/eFuNLZ3IA2s",
+ "tags": [
+  "LineageOS",
+  "POCO X7 Pro",
+  "Install",
+  "Root",
+  "Custom ROM"
+ ],
+ "summary": "Project Infinity X 3.5 brings Android 16 to the POCO X7 Pro (rodin) with fixes that matter: Bluetooth calls in Meet, Discord and WhatsApp stopped cutting out, and the front camera now behaves in those same apps. It also swaps in the Infinity dialer and adds Mi Camera. It is a signed GApps userdebug build with SELinux enforcing.",
+ "body": "Some updates are a pile of small changes you never notice. This one is not that. Project Infinity X 3.5 fixes two things that quietly ruin a build if you leave them alone: Bluetooth calls dropping in chat apps, and the front camera misbehaving in those same apps.\n\nIt is Android 16 for the POCO X7 Pro, codename rodin, signed and userdebug, GApps included, SELinux enforcing.\n\n## What changed in 3.5\n\n- Synced with the latest source\n- Fix for Bluetooth calls in Meet, Discord, WhatsApp and similar apps\n- Front camera fix in those same apps\n- The Infinity dialer, replacing the one that used to stutter\n- Mi Camera included\n- Minor changes and improvements underneath\n\nThe dialer swap is the small one that you will actually feel every day. A stutter when you open the dialer sounds minor until you are calling someone back and it lags while you wait.\n\n## Why the fixes matter more than they look\n\nBluetooth calls cutting out is the kind of bug that makes you blame your headphones. You try a different pair, then a different app, then you give up and use the phone against your ear. It was the ROM.\n\nThe front camera fix is the same story in reverse. Video calls look wrong, you assume the lighting is bad, and you never suspect the build. Both of those are now off the list.\n\n## What you need\n\n- A POCO X7 Pro (rodin)\n- vendor_boot.img for this build\n- The Project Infinity X 3.5 ROM zip\n- A PC with ADB and fastboot, plus the driver\n- A backup of your IMEI before you flash\n- Battery above half and a cable you trust\n\n## Step 1 - back up your IMEI first\n\nBack up your IMEI before you flash, not after. It takes a few minutes and it is the one backup people only take once they need it.\n\n## Step 2 - flash vendor_boot to both slots\n\nBoot to fastboot and flash vendor_boot to both slots. Both, not just the active one.\n\n## Step 3 - reboot and hold Volume Up for recovery\n\nReboot, then hold Volume Up to land in recovery.\n\nDo not use fastboot reboot recovery. It can brick the phone on builds like this, and the button hold costs you nothing.\n\n## Step 4 - format data\n\nFormat data in recovery. A dirty flash over a different ROM will not give you the fixes you came for, and it usually gives you new problems instead.\n\n## Step 5 - sideload the ROM\n\nGo to Apply update, then Apply from ADB, and sideload the ROM zip. Choose yes when it asks, then reboot to system.\n\n## Step 6 - let it settle, then judge it\n\nGive the phone a full boot and a normal day before you decide how 3.5 feels. Power behaviour and Bluetooth both show their real character after a few hours of use, not in the first ten minutes.\n\n## Where people get stuck\n\n- Skipping the IMEI backup. Do it before you flash, not after.\n- Using fastboot reboot recovery. It can brick the phone.\n- Dirty flashing over a different ROM and expecting the fixes to behave.\n- Restoring old data before the phone has finished settling, then blaming the ROM for odd behaviour.\n\n## Honest notes\n\nThe build is signed and userdebug, which is a good place to be. Signed means it behaves predictably, and userdebug means the developer can still pull the logs they need from you.\n\nCredit where it belongs: @rthedream for help and the device tree, @ZTV86, @katajaree and @Mnskkyy for testing, @katajaree and @sleepingboys15 for the server, and ido@rexprjkt for the flashing guide.\n\n## Who should install it\n\nInstall it if you are already on Project Infinity X and these bugs have been annoying you. Especially if you take calls on Bluetooth earbuds or use the front camera for work calls, which is most people now.\n\nInstall it clean if you are coming from a different ROM, not as a dirty flash on top. And if you are new to this, take the IMEI backup seriously before anything else.\n\nIf the PC side is what slows you down, the free Rom Flasher tool on GitHub handles the ADB and fastboot driver setup in a couple of clicks. It is free, and the link is in the downloads section.",
+ "video_description": "Project Infinity X 3.5 on the POCO X7 Pro - Android 16, the Bluetooth call and front camera fixes, plus a quick tour of what actually changed.\n\nThis update is mostly fixes, and they're the right ones. Bluetooth calls in Meet, Discord and WhatsApp stopped cutting out, and the front camera finally behaves in those same apps, which is the sort of thing that quietly ruins a build. The source is synced and there are minor changes underneath. The ROM is signed and userdebug, GApps are in, and SELinux is enforcing. The Infinity dialer replaced the one that used to stutter, so dialing feels normal again. Mi Camera is part of this build too, which is a nice bonus on an AOSP base.\n\n🧩 What's New in 3.5\n• Synced with the latest source\n• Fix for Bluetooth calls in Meet, Discord, WhatsApp and similar apps\n• Front camera fix for those same apps\n• Infinity dialer in place of the one that used to stutter\n• Mi Camera included\n• Minor changes and improvements\n\n📱 Device  : POCO X7 Pro (rodin)\n🧩 ROM     : Project Infinity X 3.5 (GApps, signed)\n🤖 Android : 16\n🔐 SELinux : Enforcing\n📝 Note    : Back up your IMEI before flashing\n\n🤝 Thanks\n• @rthedream - help and device tree\n• @ZTV86, @katajaree and @Mnskkyy - testing\n• @katajaree and @sleepingboys15 - server\n• ido@rexprjkt - flashing guide\n\n📝 Steps\n1. Boot to fastboot.\n2. fastboot flash vendor_boot --slot=all vendor_boot.img\n3. fastboot reboot, then hold Volume Up for recovery.\n4. Format data.\n5. Apply update, then Apply from ADB.\n6. adb sideload the ROM zip, choose yes, reboot system.\n\n⚠️ Where People Get Stuck\n• Skipping the IMEI backup. Do it before you flash, not after.\n• Using fastboot reboot recovery - it can brick the phone.\n• Dirty flashing over a different ROM and expecting the fixes to behave.",
+ "links": [
+  {
+   "label": "Project Infinity X 3.5 ROM (POCO X7 Pro)",
+   "url": "https://tmearn.net/link/HBEPBs"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "vendor_boot.img",
+   "url": "https://tmearn.net/link/Q5sZUo"
+  },
+  {
+   "label": "ADB and fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB and fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Does Project Infinity X 3.5 fix Bluetooth calls?",
+   "a": "Yes. Bluetooth calls in Meet, Discord, WhatsApp and similar apps stopped cutting out in this build. If you have been blaming your earbuds, this update is the fix you were looking for."
+  },
+  {
+   "q": "Do I need to clean flash Project Infinity X 3.5?",
+   "a": "Clean flash it. Format data in recovery before sideloading, especially if you are coming from a different ROM. A dirty flash over another ROM will not give you these fixes and usually adds new problems."
+  },
+  {
+   "q": "Can I use fastboot reboot recovery to get into recovery?",
+   "a": "No. It can brick the phone on this build. Reboot normally and hold Volume Up as the phone comes back up to reach recovery safely."
+  },
+  {
+   "q": "Is the front camera fixed in this build?",
+   "a": "Yes. The front camera now behaves in Meet, Discord and WhatsApp, which were the apps that showed the problem. Mi Camera is also included in the build."
+  },
+  {
+   "q": "What is different about the dialer in 3.5?",
+   "a": "The Infinity dialer replaced the one that used to stutter. Opening the dialer and placing calls now feels normal, which is a small change you notice every day."
+  },
+  {
+   "q": "Do I need to back up my IMEI before flashing?",
+   "a": "Yes, do it before you flash. Take the backup first, because a bad flash that damages your IMEI data leaves you without a working network and no easy way back."
+  }
+ ]
+}

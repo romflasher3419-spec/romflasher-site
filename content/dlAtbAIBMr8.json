@@ -1,0 +1,56 @@
+{
+ "id": "dlAtbAIBMr8",
+ "slug": "hyperos-3-port-on-xiaomi-pad-5-based-on-hyperos-2-mod",
+ "title": "HyperOS 3 Port on Xiaomi Pad 5 Based on HyperOS 2 MOD",
+ "blurb": "HyperOS 3 on the Xiaomi Pad 5, built on top of HyperOS 2 — here's the full changelog and how to get this port running.",
+ "device": "Xiaomi Pad 5",
+ "rom": "HyperOS",
+ "android": "",
+ "views": 211,
+ "published": "2025-09-23",
+ "url": "https://youtu.be/dlAtbAIBMr8",
+ "tags": [
+  "HyperOS",
+  "Xiaomi Pad 5",
+  "Install",
+  "Update"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "HyperOS 3 on the Xiaomi Pad 5, built on top of HyperOS 2 — here's the full changelog and how to get this port running.\n\nThis one is a port rather than an official drop, and the changelog is the interesting part. It's HyperOS 3 sitting on a HyperOS 2 base, and whoever put it together went through the system feature by feature — from the Materials 3.0 look down to little things like a working speaker-cleaning tool. Some of it is genuinely useful, some of it is the kind of tweak you only notice when it's missing.\n\nBecause it's a port, treat it like one. Back up the tablet, install the driver, and set aside a bit of time for the first boot — it always takes longer than you'd like.\n\n📱 Device  : Xiaomi Pad 5\n🧩 ROM     : HyperOS 3 port (based on HyperOS 2)\n📟 Type    : Tablet\n\n🔧 What This Build Changes\n• Streamlined system applications\n• High-level Materials 3.0 enabled\n• Flat panel area enabled\n• Bluetooth audio desync fixed\n• Theme AI wallpaper option unlocked\n• Speaker cleaning unlocked\n• Memory expansion off by default\n• Xiaomi Share with no time limit\n• Workbench mode unlocked above 8 GB of RAM\n• HyperOS 3 status bar and desktop icon style, plus the K Pad wallpaper\n• Software installer purity unlimited\n• New Xiaomi camera with normal functionality\n• Mi AI Translate with real-time captioning\n• PC WPS Office kept in\n• Keyboard magnet control switch added\n• MSA and AnalyticsCore removed\n• An attempt to fix animation slowdowns caused by the boot-lock 60 Hz refresh rate",
+ "links": [
+  {
+   "label": "HyperOS 3 Port for Xiaomi Pad 5",
+   "url": "https://tmearn.net/link/qvL5ldY"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB / Fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  },
+  {
+   "label": "Platform Tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "TWRP for K50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "TWRP for Mi 11X",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for AOSP ROM",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "OrangeFox for Mi 11T Pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

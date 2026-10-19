@@ -1,0 +1,29 @@
+{
+ "id": "aZh4yl1IW3o",
+ "slug": "superioros-phoenix-on-redmi-note-5-pro-whyred-flash-test",
+ "title": "SuperiorOS Phoenix on Redmi Note 5 Pro (whyred) Flash & Test",
+ "blurb": "SuperiorOS Phoenix on the Redmi Note 5 Pro.",
+ "device": "Redmi Note 5 Pro",
+ "rom": "AOSP",
+ "android": "",
+ "views": 57,
+ "published": "2022-10-05",
+ "url": "https://youtu.be/aZh4yl1IW3o",
+ "tags": [
+  "AOSP",
+  "Redmi Note 5 Pro",
+  "Flash",
+  "Unlock",
+  "Recovery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "SuperiorOS Phoenix on the Redmi Note 5 Pro. This phone is ancient and it still runs a clean AOSP build better than you'd expect. Here's the flash and what the ROM actually feels like on whyred.\n\n📱 Device  : Redmi Note 5 Pro (whyred)\n🧩 ROM     : SuperiorOS Phoenix\n🔧 Flash   : Custom recovery\n\n🔬 What I Checked\n• Boot time and overall smoothness on this old hardware\n• Whether the camera app actually works, which is the usual weak spot on whyred\n• Battery drain over a normal day\n• Fingerprint unlock and the usual sensors\n• Thermal behaviour when you push it with games\n• The extra settings SuperiorOS layers on top of AOSP\n\n📊 Verdict\nFor a phone this old, a clean AOSP build like Phoenix is the honest way to keep using it. It's lighter than MIUI, there's no junk in the launcher and it doesn't nag you about accounts. The trade is that you leave MIUI's camera processing behind, and on whyred the lineage of camera fixes matters more than the ROM version number. If this is your daily phone, test the camera and calls properly before you rely on it.\n\n⚠️ What to Watch\n• Camera quality depends on the build and the firmware you're on\n• Some apps need more RAM than this phone comfortably has\n• Keep a stable zip and a full backup so you can roll back\n\n📝 Flash Steps\n1. Unlock the bootloader and install a recovery for whyred.\n2. Back up system and data.\n3. Wipe system, data, cache and dalvik.\n4. Flash the SuperiorOS Phoenix zip.\n5. Wipe cache and dalvik, then reboot.\n6. First boot takes a while on this chipset. Give it time.\n\n❓ Common Questions\nQ. Is this official for whyred? Check the release post for the build you download.\nQ. Does VoLTE work? Test it on your carrier before making it your daily ROM.\nQ. Is it better than MIUI here? Lighter, yes. Camera processing, no.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

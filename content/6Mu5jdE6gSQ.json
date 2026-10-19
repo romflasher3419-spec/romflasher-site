@@ -1,0 +1,50 @@
+{
+ "id": "6Mu5jdE6gSQ",
+ "slug": "redmi-k50i-miui-13-beta-13-1-22-9-5-with-twrp-flash-guide",
+ "title": "Redmi K50i: MIUI 13 Beta 13.1.22.9.5 with TWRP Flash Guide",
+ "blurb": "This is the TWRP route to MIUI 13 dev beta 13.1.22.9.5 on the Redmi K50i.",
+ "device": "Redmi K50i",
+ "rom": "MIUI",
+ "android": "",
+ "views": 785,
+ "published": "2022-10-22",
+ "url": "https://youtu.be/6Mu5jdE6gSQ",
+ "tags": [
+  "MIUI",
+  "Redmi K50i",
+  "Flash",
+  "Install",
+  "Bootloader"
+ ],
+ "summary": "You can flash MIUI 13 dev beta 13.1.22.9.5 on the Redmi K50i straight from TWRP, with no PC and no fastboot. Push the zip to internal storage, boot recovery, wipe, format data if recovery cannot read storage, and flash. It is a beta, so expect rough edges.",
+ "body": "This is the lazy route to a developer beta, and on this phone the lazy route is the good one. No fastboot, no platform tools, no PC sitting next to you. You push the zip to the phone, boot recovery, and flash it. You can even keep your data if you want to, though I would not count on that working from every starting point.\n\nThe build here is MIUI 13 dev beta 13.1.22.9.5 on the Redmi K50i. Developer builds are where you see new MIUI features first. They are also where you meet bugs first. Both of those are the deal, and you should know that going in.\n\n## What you need\n\n- Redmi K50i with an unlocked bootloader. There is no flash without this.\n- TWRP for this device, already installed and working. If touch is dead or internal storage reads zero, your recovery is wrong and you should stop.\n- The MIUI 13 dev beta zip sitting on internal storage.\n- 50% battery or better.\n- A backup of your photos and files if you plan to format data. You probably will.\n\n## Step 1 - get the zip onto the phone\n\nDownload the beta zip and copy it to internal storage, somewhere you can find it easily. Do not put it on a pendrive or leave it on a PC. Recovery reads it from the phone, and internal storage is the path with the fewest surprises.\n\nDo not extract it. Recovery flashes the zip as-is.\n\n## Step 2 - back up before you wipe\n\nDo this now, not after. Grab your photos, downloads and anything else you would miss and move it off the phone. Copying files out is the only part of this job you cannot undo later.\n\nIf you are upgrading from an older MIUI build you might get away with keeping data. If you are coming from a custom ROM, do not even try. You will be formatting.\n\n## Step 3 - boot into TWRP\n\nPower the phone off and boot into recovery with your device combo. You should land in TWRP with working touch and readable storage.\n\nTake a second here and look at the storage line on the main screen. If it shows zero or a nonsense number, TWRP cannot see internal storage, and that changes the next step.\n\n## Step 4 - wipe, and format data if storage is not readable\n\nFor a clean install, wipe system, data, cache and dalvik. That clears the way for the new build.\n\nThen the part people skip. If TWRP cannot read internal storage, or you are coming from another ROM, you need to format data, not just wipe it. Format data is the option that actually removes encryption. After a format, internal storage will be empty, and the zip you copied earlier is gone.\n\nThat is the trap. If you format data, you have to push the ROM zip again before you can flash. Plan for it — either keep a copy on a USB drive you can read from recovery, or be ready to push the file over from a PC. This is the one step where a PC still helps, even on the no-PC method.\n\n## Step 5 - flash the ROM zip\n\nBack in TWRP, tap Install, pick the MIUI 13 dev beta zip, and confirm. It takes several minutes. Let the progress bar finish on its own. Do not tap anything, do not reboot early, do not conclude it is stuck because the bar has not moved in a minute.\n\nWhen it finishes, wipe cache and dalvik once more, then reboot to system.\n\n## Step 6 - the first boot and what to expect\n\nThe first boot after a MIUI flash is slow. Several minutes of a boot animation is normal. Do not pull the cable, do not hold power, do not assume it is dead. Interrupting this is how people turn a working flash into a bootloop.\n\n## What to expect from this build\n\n- The MIUI 13 look, with the newer widgets and the side bar.\n- Developer beta behavior. Features land here first, and so do bugs. An app crash here and there is part of the package.\n- Battery life that needs two or three charge cycles before it settles into a pattern.\n- Updates that you flash manually. Nobody is pushing these to you over the air.\n\n## Where people get stuck\n\n- **Flashing without formatting data**, then bootlooping straight back into TWRP. If you are coming from a different ROM base, format data.\n- **The wrong TWRP for this device**, so touch is dead or internal storage shows zero. A mismatched recovery is worse than no recovery, because it lets you start something you cannot finish.\n- **Interrupting the first boot** because it looked stuck for thirty seconds. That thirty seconds can stretch to five minutes and still be fine.\n- **Formatting data after copying the zip**, and then finding nothing to flash. Push the file again before you go back to the Install menu.\n\n## Who should try this\n\nFlash this if you want to see MIUI 13 features early and you are comfortable with recovery. Keep your expectations honest, because a developer beta is not a daily driver guarantee.\n\nIf your phone is your work phone and everything has to work tomorrow morning, the stable India build is the safer place to be. Going back is simple — flash the stable zip the same way.\n\nIf the driver and recovery side is where you normally stall, the free Rom Flasher tool on GitHub puts the ADB and fastboot driver install into a couple of clicks. It is free, and the link is in the downloads section.",
+ "video_description": "This is the TWRP route to MIUI 13 dev beta 13.1.22.9.5 on the Redmi K50i. No fastboot, no PC. You push the zip to storage, boot into recovery and flash it. Cleaner, and you can keep your data if you want to.\n\n📱 Device  : Redmi K50i\n🧩 ROM     : MIUI 13 DEV BETA 13.1.22.9.5\n🔧 Method  : TWRP recovery flash\n\n🛠️ What You Need\n• Redmi K50i with an unlocked bootloader\n• TWRP for the K50i already up and running\n• The MIUI 13 dev beta zip sitting on internal storage\n• 50% battery or better, and a backup if you plan to format data\n\n📝 Steps\n1. Download the beta zip and move it to the phone.\n2. Copy your photos and files out if you're going to format data.\n3. Reboot into TWRP.\n4. Wipe system, data, cache and dalvik for a clean install.\n5. Format data if TWRP can't read internal storage.\n6. Flash the ROM zip and wait. It takes a few minutes.\n7. Wipe cache and dalvik again, then reboot to system.\n\n📊 What to Expect\n• The MIUI 13 look with new widgets and the side bar\n• Developer beta builds ship rough edges, that's the deal with DEV builds\n• Battery life needs two or three charge cycles before it settles\n• The first boot is slow. Don't panic and don't pull the cable.\n\n⚠️ Where People Get Stuck\n• Flashing without formatting data, then bootlooping straight back into TWRP.\n• The wrong TWRP for this device, so touch is dead or storage shows zero.\n• Interrupting the first boot because it looked stuck for 30 seconds.\n\n❓ Common Questions\nQ. Do I lose my data? If you format data, yes. Back up first.\nQ. Can I go back to the stable India build? Yes, flash the stable zip the same way.\nQ. Is it daily-driver ready? It's a beta. Expect the odd bug and app crash.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Do I lose my data flashing this MIUI 13 beta?",
+   "a": "If you format data, yes, and internal storage is cleared. Copy your photos and files off first. If you are upgrading from an older MIUI build without formatting, you may keep your data, but that option is not available coming from another ROM."
+  },
+  {
+   "q": "Can I flash this without a PC?",
+   "a": "Yes. The whole method is recovery-based. Copy the zip to internal storage, boot TWRP and flash. The only time you may want a PC is if you format data and need to push the ROM zip back onto the phone."
+  },
+  {
+   "q": "Can I go back to the stable India MIUI build?",
+   "a": "Yes. Flash the stable zip the same way through TWRP. Coming from the beta, format data first so you are not carrying beta leftovers into a stable install."
+  },
+  {
+   "q": "Why does TWRP show zero internal storage on my K50i?",
+   "a": "Your recovery is not the right one for this device, or it cannot read the encrypted storage. Flash the correct TWRP for the K50i, and remember that if you need to format data, the zip on internal storage will be erased too."
+  },
+  {
+   "q": "Is MIUI 13 dev beta daily-driver ready?",
+   "a": "It is a beta, so expect the odd bug and app crash, and give battery life a few charge cycles before judging it. If you need everything to be reliable right now, use the stable build instead."
+  }
+ ]
+}

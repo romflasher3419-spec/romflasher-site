@@ -1,0 +1,74 @@
+{
+ "id": "xENXLM3Cfus",
+ "slug": "mica-os-16-qpr2-on-poco-x7-pro-install-fingerprint-fix",
+ "title": "Mica OS 16 QPR2 on POCO X7 Pro Install & Fingerprint Fix",
+ "blurb": "Mica OS 16 QPR2 on the POCO X7 Pro (rodin) — the full install with vendor_boot and ADB sideload, plus the fingerprint calibration that Jiiov users have...",
+ "device": "POCO X7 Pro",
+ "rom": "AOSP",
+ "android": "",
+ "views": 644,
+ "published": "2026-01-01",
+ "url": "https://youtu.be/xENXLM3Cfus",
+ "tags": [
+  "AOSP",
+  "POCO X7 Pro",
+  "Flash",
+  "Install",
+  "Recovery"
+ ],
+ "summary": "Mica OS 16 QPR2 on the POCO X7 Pro (rodin) installs from fastboot and ADB sideload: flash vendor_boot to both slots, reboot and hold Volume Up for recovery, format data, then sideload the ROM zip. It is a signed GApps build on Android 16, and it is the first QPR2 release, so the maintainer says to expect bugs. Jiiov users can finally calibrate the fingerprint on an AOSP base.",
+ "body": "Mica OS skips QPR1 and goes straight to QPR2, so the feature set is ahead of the builds doing the rounds on other phones. The flip side is that this is the initial release, and the maintainer says it plainly: expect bugs.\n\nIt is Android 16, a signed GApps build dated 27 Dec 2025, credited to @rthedream, and it is built for the POCO X7 Pro, codename rodin. Signed and GApps together is why it is easier to live with day to day than some AOSP builds.\n\n## The fingerprint part is the real news\n\nIf your POCO X7 Pro uses the Jiiov sensor, this is the build you were waiting for. You can finally calibrate the fingerprint on an AOSP base, and there is a guide linked below with the exact steps. I tested that part myself, and it is the reason this video exists.\n\nBefore you flash, remove your lock screen and delete your registered fingerprints. Leaving a fingerprint registered during the flash is how sensor problems start, and then you are troubleshooting something you caused at step zero.\n\n## What you need\n\n- The Mica OS 16 QPR2 ROM zip for rodin\n- vendor_boot.img for this exact build\n- A PC with ADB and Fastboot, plus the driver installed\n- Lock screen and fingerprint settings removed before you start\n- A backup, because a factory reset and format data are part of this install\n\n## Step 1 - fastboot, and check the PC sees the phone\n\nBoot the phone into fastboot and connect it to the PC. Run a devices check before you flash anything. If the PC cannot see the phone here, it will not see it in the middle of the install either.\n\n## Step 2 - flash vendor_boot to both slots\n\nFlash vendor_boot to both slots. Both, not just the active one. Skipping the inactive slot is a common reason a phone behaves differently after switching slots later.\n\n## Step 3 - reboot and hold Volume Up for recovery\n\nReboot the phone and hold Volume Up as it comes back up to land in recovery.\n\nDo not use the fastboot reboot recovery shortcut here. It can leave you in a state you did not plan for, and the button hold is only a few seconds of your time.\n\n## Step 4 - factory reset, then format data\n\nDo the factory reset, then format data. Both steps, in that order. Formatting data is what clears the encryption from the old system, and skipping it is the usual cause of a setup that never completes.\n\n## Step 5 - sideload the ROM\n\nGo to Apply update, then Apply from ADB, and sideload the ROM zip from the PC. Let it run to the end without touching either device.\n\n## Step 6 - the question after sideloading\n\nAfter the sideload finishes it asks whether you want GApps or Magisk. On the GApps build, skip it. This build already has Google in it, so choosing again just adds a step you do not need.\n\n## Step 7 - reboot to system\n\nReboot into the system and let setup finish. If you are on a Jiiov sensor and your fingerprint misbehaves, the calibration guide linked below is the next thing to read, not a reason to reflash.\n\n## Where people get stuck\n\n- Treating this as a finished release. It is the first QPR2 build, so bugs are part of the deal.\n- Flashing root out of habit. If you do not need it, skip it and keep the setup simple.\n- Leaving the fingerprint registered before flashing, which is how sensor problems start.\n- Using the fastboot reboot recovery shortcut instead of holding Volume Up.\n\n## One known issue\n\nThe fingerprint placement screen gets distracted by the \"Do it later\" button. Registration still works, so do not panic when it happens. Any other problem, the maintainer wants a log, and the note about that is short and blunt.\n\n## Who should install this\n\nInstall it if you want newer than QPR1, you are on a Jiiov sensor and have been stuck without a fingerprint fix, or you like a signed GApps build with Google already in place.\n\nWait if you cannot tolerate a bug list on your only phone. First-release builds are for people who enjoy reporting things as much as using them.\n\nThe PC side is the usual bottleneck, and the free Rom Flasher tool on GitHub sets up the ADB and fastboot driver in a couple of clicks. It is free, and the link is in the downloads section.",
+ "video_description": "Mica OS 16 QPR2 on the POCO X7 Pro (rodin) — the full install with vendor_boot and ADB sideload, plus the fingerprint calibration that Jiiov users have been waiting for.\n\nMica OS skips straight to QPR2, so the feature set is newer than the QPR1 builds doing the rounds. This is the initial release though, and the maintainer says it plainly — expect some bugs. It's a signed GApps build, which makes it easier to live with day to day.\n\nOne genuinely good detail: Jiiov users can finally calibrate their fingerprint on AOSP, and the exact steps are linked below. I tested that part myself.\n\n📱 Device  : POCO X7 Pro (rodin)\n🧩 ROM     : Mica OS 16 (QPR2, Android 16, GApps)\n📦 Build   : 27 Dec 2025\n👤 Credited: @rthedream\n\n🛠️ What You Need\n• Mica OS 16 QPR2 ROM zip\n• vendor_boot.img for this build\n• A PC with ADB and Fastboot\n• Lock screen and fingerprint settings removed before you begin\n\n📝 Steps\n1. Boot the phone into Fastboot and connect it to the PC.\n2. Flash vendor_boot to both slots.\n3. fastboot reboot, then hold Volume Up for recovery. Never use the fastboot reboot recovery shortcut here.\n4. Factory reset, then Format data.\n5. Apply update → Apply from ADB, then sideload the ROM zip.\n6. Choose yes after sideloading if you want GApps or Magisk. Skip it on the GApps build.\n7. Reboot to system and finish setup.\n\n⚠️ Where People Get Stuck\n• Treating this as a finished release. It's the first QPR2 build, so bugs are part of the deal.\n• Flashing root out of habit — if you don't need it, skip it and keep the setup simple.\n• Leaving the fingerprint registered before flashing, which is how sensor problems start.\n\n🐞 Known Issues\n• The fingerprint placement screen gets distracted by the \"Do it later\" button. Registration still works, so don't panic.\n• Anything else the maintainer wants in the form of a log — the note is short and blunt.",
+ "links": [
+  {
+   "label": "Mica OS 16 QPR2 ROM",
+   "url": "https://tmearn.net/link/f9N3"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Vendor Boot",
+   "url": "https://tmearn.net/link/UxEyjjRg"
+  },
+  {
+   "label": "Termux flash file",
+   "url": "https://tmearn.net/link/lQ5Lhx2G"
+  },
+  {
+   "label": "Jiiov fingerprint calibration guide",
+   "url": "https://telegra.ph/POCO-X7-Pro---The-EXACT-fingerprint-calibration-for-jiiov-12-27"
+  },
+  {
+   "label": "ADB & Fastboot Tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB & Fastboot Driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "How do I fix the fingerprint on Mica OS 16 for the POCO X7 Pro?",
+   "a": "If your phone uses the Jiiov sensor, use the calibration guide linked below. It walks through the exact steps on this AOSP base. Register your fingerprint after the ROM is running, not before the flash."
+  },
+  {
+   "q": "Why should I remove my fingerprint and lock screen before flashing?",
+   "a": "Because a fingerprint left registered during the flash is how sensor problems start afterwards. Delete the registered fingerprints and remove the lock screen before you begin, then set them up again once the ROM has booted."
+  },
+  {
+   "q": "Can I use fastboot reboot recovery on this install?",
+   "a": "No. Use the reboot, then hold Volume Up, method instead. The fastboot reboot recovery shortcut can put the phone in a state you did not plan for on this build."
+  },
+  {
+   "q": "Do I need to flash Magisk after sideloading?",
+   "a": "Not if you do not want root. When it asks, skip it. The build is already signed with GApps included, so choosing to add them again just adds a step you do not need."
+  },
+  {
+   "q": "Is Mica OS 16 QPR2 stable enough for daily use?",
+   "a": "It is the initial QPR2 release, and the maintainer says to expect bugs. Many things work well, but treat it as a build for people who do not mind reporting problems. Keep a backup before you start."
+  }
+ ]
+}

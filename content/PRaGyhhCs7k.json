@@ -1,0 +1,33 @@
+{
+ "id": "PRaGyhhCs7k",
+ "slug": "xiaomi-mi-11x-elitegaming-miui-13-gaming-rom-build-notes",
+ "title": "Xiaomi Mi 11X + EliteGaming MIUI 13 Gaming ROM Build Notes",
+ "blurb": "EliteGaming MIUI 13 on the Xiaomi Mi 11X — what this gaming-tuned MIUI 13 build changes, and the TWRP you want before you flash it.",
+ "device": "Mi 11X",
+ "rom": "MIUI",
+ "android": "",
+ "views": 291,
+ "published": "2022-12-03",
+ "url": "https://youtu.be/PRaGyhhCs7k",
+ "tags": [
+  "MIUI",
+  "Mi 11X",
+  "Flash",
+  "Install",
+  "Kernel"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "EliteGaming MIUI 13 on the Xiaomi Mi 11X — what this gaming-tuned MIUI 13 build changes, and the TWRP you want before you flash it.\n\nEliteGaming MIUI 13 sits on a MIUI 13 base, and the tweaks here are aimed at people who game on their phone: less heat, a tidier launcher, and a few resource-hungry bits cut out. If stock MIUI 13 on the Mi 11X runs warm during long sessions, this is the kind of build worth a try. Flash it clean, though — a MIUI build laid over an old data partition is the classic bootloop.\n\n🧩 What's In The Build\n• Base updated to MIUI 13\n• Dual status bar removed for a cleaner top edge\n• Launcher recent views in different styles\n• Launcher blur options you can pick from\n• Folder blur added\n• Blur option in the recents menu\n• Column count option in the Launcher, added on user requests\n• Heating reduced — and you're free to run your favourite kernel\n• A few resource-hungry little features stripped out\n• 2G / 3G / 4G selection options removed, they misbehave on newer builds\n• New logos and wallpapers\n\n📝 Before You Flash\n1. Copy the ROM zip and the TWRP image somewhere safe — internal storage gets wiped.\n2. Back up everything you care about.\n3. Boot TWRP, format data, then flash the build.\n4. Reboot and give the first boot its time.\n\n⚠️ Where People Get Stuck\n• Skipping the data format, landing in a bootloop, then blaming the ROM.\n• Expecting the removed network options to come back — they're gone by design.\n• Flashing with the battery nearly empty.",
+ "links": [
+  {
+   "label": "TWRP for Xiaomi Mi 11X",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

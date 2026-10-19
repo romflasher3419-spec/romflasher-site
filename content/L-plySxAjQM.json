@@ -1,0 +1,57 @@
+{
+ "id": "L-plySxAjQM",
+ "slug": "miui-14-super-icon-on-any-device-how-to-enable-it-lsposed",
+ "title": "MIUI 14 Super Icon on Any Device How to Enable It (LSPosed)",
+ "blurb": "MIUI 14 Super Icon on any device — the LSPosed route to those big, tile style home screen icons, even when the phone isn't running MIUI 14 out of the box.",
+ "device": "Any Android",
+ "rom": "MIUI",
+ "android": "",
+ "views": 561,
+ "published": "2023-02-13",
+ "url": "https://youtu.be/L-plySxAjQM",
+ "tags": [
+  "MIUI",
+  "Flash",
+  "Install",
+  "Root",
+  "Update"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "MIUI 14 Super Icon on any device — the LSPosed route to those big, tile style home screen icons, even when the phone isn't running MIUI 14 out of the box.\n\nHere's the thing about Super Icons. They look like a theme, but they're really MIUI 14's home screen look, and the reason you can't find a toggle is that MIUI doesn't give you one. So you enable it the other way round: through a module. That means root first, because LSPosed is an Xposed style framework and it won't run without it. Once that's in place the rest is short.\n\n📱 What You Need\n• MIUI on the phone as the base\n• Root with Magisk, set up and settled\n• The MIUI theme manager file and LSPosed, both linked below\n• Five minutes and a reboot or two\n\n🛠️ The Process\n1. Get root working first. No root, no LSPosed, no Super Icon.\n• 2. Install the theme manager file from the link below.\n• 3. Enable the module inside LSPosed and reboot.\n• 4. Pick the Super Icon style and apply it, then reboot again if the icons don't show up right away.\n\n❓ Quick Answers\n• Is root really needed? Yes. LSPosed doesn't run without it.\n• Will this wipe anything? No. It's a module and an app, nothing more.\n• Can it break my phone? Only if you flash random files you don't trust. Stick to what's linked below.\n• Does it survive a reboot? Yes, once the module is enabled it stays on.",
+ "links": [
+  {
+   "label": "miui theme mgr",
+   "url": "https://xpshort.com/vwbeMU"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "lsposed",
+   "url": "https://xpshort.com/3FJEt"
+  },
+  {
+   "label": "platform tools",
+   "url": "https://xpshort.com/q3zAO"
+  },
+  {
+   "label": "twrp for k50i",
+   "url": "https://xpshort.com/v9Rht"
+  },
+  {
+   "label": "twrp for mi 11x",
+   "url": "https://xpshort.com/vntmY"
+  },
+  {
+   "label": "vbmeta for aosp rom",
+   "url": "https://xpshort.com/y4JdIBS6"
+  },
+  {
+   "label": "ofox for mi11t pro",
+   "url": "https://xpshort.com/111U"
+  }
+ ],
+ "faq": []
+}

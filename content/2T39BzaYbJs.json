@@ -1,0 +1,29 @@
+{
+ "id": "2T39BzaYbJs",
+ "slug": "pixel-experience-x-on-redmi-note-5-pro-install-daily-use",
+ "title": "Pixel Experience X on Redmi Note 5 Pro Install & Daily Use",
+ "blurb": "Pixel Experience X on the Redmi Note 5 Pro — how this Pixel-style ROM runs on whyred, plus what to expect once it becomes your daily phone.",
+ "device": "Redmi Note 5 Pro",
+ "rom": "Pixel Experience",
+ "android": "",
+ "views": 83,
+ "published": "2022-10-02",
+ "url": "https://youtu.be/2T39BzaYbJs",
+ "tags": [
+  "Pixel Experience",
+  "Redmi Note 5 Pro",
+  "Install",
+  "MIUI",
+  "Battery"
+ ],
+ "summary": "",
+ "body": "",
+ "video_description": "Pixel Experience X on the Redmi Note 5 Pro — how this Pixel-style ROM runs on whyred, plus what to expect once it becomes your daily phone.\n\nPixel Experience X keeps the clean Pixel feel and adds the extras people keep asking for, and on a Redmi Note 5 Pro \"clean Pixel\" is a real change: no MIUI shell, no preinstalled junk, just the launcher and the apps Google would ship. The whyred is an old phone now, and that's the honest headline. The interface side will feel light, the hardware side won't. In the video I take you through the install and then a normal day on it: setup, the launcher, notifications, the camera, and how it holds up when the phone actually has to work.\n\n📱 Device  : Redmi Note 5 Pro (whyred)\n🧩 ROM     : Pixel Experience X\n\n🔬 What Was Tested\n• First boot, setup and the Pixel-style launcher\n• Notification shade and quick settings\n• Camera app opening and the look of shots\n• Installing apps from the Play Store\n• Battery over a normal day\n• How warm the phone gets during use\n\n📊 Verdict\nAs a light daily driver, this is a solid pick if you like the Pixel look. It's cleaner than stock software, the interface moves fine, and it does the basics without drama. It won't turn old hardware into new hardware — heavy games still push the phone and the camera is limited by the sensor, not the app. Flash it for the experience, not for a performance jump.\n\n❓ Common Questions\nQ: Is a bootloader unlock necessary? A: Yes, same as every other custom ROM.\nQ: Does it need a separate GApps zip? A: No, this ROM already includes the Google apps.\nQ: Will it stay smooth? A: Keep the installed app list small and it behaves better.\nQ: Can I return to stock? A: Yes, with the stock ROM and a fastboot flash.",
+ "links": [
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  }
+ ],
+ "faq": []
+}

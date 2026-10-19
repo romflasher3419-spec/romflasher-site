@@ -1,0 +1,73 @@
+::summary
+HyperOS 3 is out for the Xiaomi Pad 5 as an official build. You download it, flash it from a PC, and reboot into the new tablet layout. The steps are short — the setup decides whether it takes twenty minutes or an evening. Charge the tablet, back up your data, and get the ADB driver working first.
+
+::body
+The Pad 5 is one of those tablets that keeps getting attention long after launch, and an official HyperOS 3 build is a big part of why people still recommend it. You get the reworked tablet layout, the newer control centre, and smoother animation across the big screen.
+
+Flashing a tablet is not scary. It is just different from a phone, because you are working with a bigger device, a slower first boot, and a recovery file that has to match the tablet exactly. Get the driver and the recovery right and the rest is patience.
+
+## What you need
+
+- A PC with the ADB and Fastboot driver installed, so Windows actually sees the tablet.
+- Platform Tools, so the fastboot commands work from your command window.
+- The official HyperOS 3 package for the Xiaomi Pad 5 — not a package for another model.
+- A recovery file that matches the tablet.
+- A full backup and a charged battery. Assume your data will not survive, because it usually will not.
+
+That last bullet is not a formality. Any manual flash is a clean install in practice. If you skip the backup and something goes wrong, there is no undo button.
+
+## Step 1 - get the PC ready before you touch the tablet
+
+Install the ADB and Fastboot driver first, then extract Platform Tools somewhere you can find again. Plug the tablet in once it is in fastboot and confirm your PC can see it. If Windows shows an unknown device, fix that before you download anything else. A missing driver is the number one reason a flash stalls at step three.
+
+If the driver part is what always slows you down, the free Rom Flasher tool on GitHub bundles the ADB and fastboot driver install into a couple of clicks. It is free, and the link is with the others on this page.
+
+## Step 2 - enable developer options and USB debugging
+
+Go to Settings, then About tablet, and tap the build number until developer options unlock. Inside developer options, turn on USB debugging. This is what lets your PC talk to the tablet while it is booted, and it makes rebooting into the bootloader a one-command job instead of a button combo you have to get exactly right.
+
+## Step 3 - boot to fastboot and check the connection
+
+Reboot to the bootloader and plug the tablet in. Then check that the PC sees it before you flash anything. No serial number means no driver, and no amount of retrying the flash will fix that. Sort the driver out now.
+
+## Step 4 - flash the package
+
+Flash the HyperOS 3 package and let it run to the very end. Do not unplug the cable, do not close the window, and do not pick the tablet up to check if it is alive. Big packages take time on a tablet, and the progress bar is not always honest about how far along it is.
+
+If the flash stops partway, leave it plugged in and read the error before you do anything else. Pulling the cable mid-flash is how a recoverable problem turns into a device that does not boot.
+
+## Step 5 - reboot and finish setup
+
+Let the tablet reboot on its own and then walk through the setup wizard. First boot after a clean flash is slow. Give it several minutes and leave it alone. When the wizard appears, sign in and set it up fresh.
+
+## What this update does not fix
+
+- It will not make a slow charger fast. Charging speed is set by the charging hardware and the adapter, not the software.
+- It will not repair hardware problems, like a dead speaker or a worn battery. If a speaker is silent before the flash, it will be silent after.
+- It is still the same tablet underneath. This is a software change, not a new device.
+
+## Where people get stuck
+
+- **The wrong package.** A build for another Pad model can flash and leave the tablet unable to boot. Match the model exactly.
+- **A missing driver.** If the PC never sees the tablet, the flash cannot start. Fix Device Manager before you start downloading.
+- **A recovery file that does not match the tablet.** Flash the wrong recovery and you get errors, or a recovery that cannot read your storage.
+
+## Should you install it
+
+Install it if you want the official HyperOS 3 experience on the Pad 5 and you are comfortable doing a clean flash from a PC. It is the official build, so it behaves like one — updates arrive the normal way afterwards. Skip it if you cannot back up right now, or if you are not ready to lose what is on the tablet.
+
+::faq
+Q: Will my data survive the HyperOS 3 update?
+A: Assume it will not. A manual flash is a clean install, so internal storage gets reset. Back up your photos and files before you start and set the tablet up fresh afterwards.
+
+Q: Do I need an unlocked bootloader for HyperOS 3?
+A: Yes, for anything you flash by hand. Unlocking wipes the tablet as part of the process, so do that with nothing important on it.
+
+Q: Is HyperOS 3 on the Pad 5 stable for daily use?
+A: It is the official build, so it behaves like one. Updates arrive the normal way afterwards. Older custom ROM habits like keeping a spare package around are still a good idea.
+
+Q: Can I install HyperOS 3 without a PC?
+A: No. Flashing a full package needs fastboot and a PC with the driver installed. There is no phone-only route for this.
+
+Q: What if the flash stops halfway through?
+A: Do not unplug anything. Leave the tablet connected and read the message before you act. A flash that stalled on a bad cable or port can usually be rerun once the connection is stable.
