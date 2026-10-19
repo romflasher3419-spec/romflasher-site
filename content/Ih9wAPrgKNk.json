@@ -16,8 +16,8 @@
   "Install",
   "Kernel"
  ],
- "summary": "",
- "body": "",
+ "summary": "RealmeUI RUI3 with Android 12.1 running on a Xiaomi 11T Pro is a port, not a stock build and not an AOSP one. It boots and works, but a port lives and dies by its kernel, and plenty of Xiaomi-specific features do not make the trip across. It is more of a curiosity than a daily driver.",
+ "body": "Cross-branded ROMs are a strange kind of fun. RealmeUI on a Xiaomi phone only exists because somebody put in the work to port it, and the first thing you notice is how much of it is not Xiaomi. The interface changes, the settings layout changes, the whole tone of the software changes. On the 11T Pro the hardware can carry it, so the real question is whether the port behaves itself once the novelty wears off.\n\nShort answer: mostly yes, with caveats that matter.\n\n## What it looks like\n\nYou know you are not on MIUI within about ten seconds. The launcher, the notification shade, the settings tree, the way the quick toggles are laid out — all of it is Realme's version, not Xiaomi's. The build I ran is RealmeUI RUI3 on Android 12.1, updated 17 February 2023, and it is a port rather than an official package, which is worth holding in your head the whole time you use it.\n\nThe device is listed as the Xiaomi MI 11T Pro, codename vili, and the hardware has no trouble running it. The display, the chip and the battery all cope. Nothing here is struggling.\n\n## What I actually looked at\n\n- Boot and first setup on the 11T Pro, from the very beginning rather than a dirty install.\n- RealmeUI's own apps and how they sit on Xiaomi hardware.\n- Everyday smoothness after the initial setup settles, which is a different thing from the first ten minutes.\n- What tends to break in a port like this, because something usually does.\n\nThat last point is the honest part of a review like this. A port inherits the quirks of its base and adds a few of its own, because the base was written for different hardware.\n\n## What is different in daily use\n\nThe feel of the phone changes. RealmeUI has its own rhythm — different animations, a different notification layout, a different set of stock apps. If you have used a Realme device before, you will recognise all of it. If you have not, expect a few days of hunting for settings that used to be one tap away.\n\nThe apps themselves mostly behave. Once the initial setup settles, the phone is usable and does not feel like a demo.\n\n## What is broken or missing\n\n- **Xiaomi-specific features do not come across.** This is the big one. Things that are part of MIUI and tied to Xiaomi services do not exist in RealmeUI. They are not broken, they are simply not there.\n- **The kernel decides everything.** A ported ROM lives and dies by its kernel, and the kernel link is in the downloads list. If you flash the ROM with the wrong kernel, do not expect it to behave.\n- **Ports have rough edges by nature.** Some of them you will hit in the first hour, others show up after a week of real use.\n- **Updates are not a thing.** This is a port. There is no OTA channel, so you watch for a new build and flash it yourself like everyone else running it.\n\n## Should you flash it\n\nIf you are curious about what RealmeUI feels like on hardware you already own, this is a legitimate way to find out, and it is genuinely interesting. The boot works, the setup works, and the phone runs.\n\nAs a long-term daily driver on a Xiaomi phone, though, I would not. You lose the Xiaomi features you are used to, you take on the risks of a ported base, and you give up updates. That is a lot to trade for a different-looking settings menu.\n\nIf you do flash it, read the flashing steps twice and then read them once more. Ports are less forgiving of a skipped step than a well-maintained ROM, simply because fewer people are running them and fewer people have hit the exact failure you are about to hit. And back up your data first. Always.\n\nOne practical point that saves real time: the free Rom Flasher tool on GitHub handles the ADB, fastboot and driver setup in a couple of clicks. It is free, and the link is in the downloads list.\n\n## A note on the extras in the downloads list\n\nThe resource list for this one includes a couple of recovery images for other devices, a vbmeta file, and an OrangeFox build for the 11T Pro. Match the files to your exact device before flashing anything. Grabbing a recovery built for a different model is the fastest way to turn a fun experiment into an expensive evening.",
  "video_description": "RealmeUI RUI3 with Android 12.1, running on a Xiaomi 11T Pro — a full review of the port and whether it's more than a novelty.\n\nCross branded ROMs are a strange kind of fun. RealmeUI on a Xiaomi device only exists because someone put in the work to port it, and the first thing you notice is how much of it is not Xiaomi. The interface changes, the settings layout changes, the whole tone of the software changes. On the 11T Pro the hardware can carry it, so the real question is whether the port behaves itself once the novelty wears off.\n\n📱 Device  : Xiaomi MI 11T Pro (vili)\n🧩 ROM     : RealmeUI RUI3 · Android 12.1\n📦 Build   : updated 17/02/2023\n\n📌 What I Looked At\n• Boot and first setup on the 11T Pro\n• RealmeUI's own apps and how they sit on Xiaomi hardware\n• Everyday smoothness once the initial setup settles\n• What tends to break in a port like this, because something usually does\n\n🔍 Worth Knowing Before You Flash\n• A ported ROM lives and dies by its kernel, and the kernel link is in the list below\n• Some Xiaomi specific features never make the trip across\n• Read the flashing steps twice, then once more\n• Back up your data first. Always.",
  "links": [
   {
@@ -53,5 +53,30 @@
    "url": "https://xpshort.com/111U"
   }
  ],
- "faq": []
+ "faq": [
+  {
+   "q": "Is RealmeUI on the Xiaomi 11T Pro a stable daily driver?",
+   "a": "It runs, and the hardware handles it without strain, but I would not call it a long-term daily driver. It is a port, so it arrives with rough edges, no update channel, and none of the Xiaomi-specific features you are used to."
+  },
+  {
+   "q": "What is RealmeUI RUI3 based on?",
+   "a": "RealmeUI RUI3 on Android 12.1, in the build I looked at updated 17 February 2023. Underneath it behaves like Android 12.1 with Realme's own interface and apps on top."
+  },
+  {
+   "q": "Do I need a special kernel for this port?",
+   "a": "Yes. A ported ROM lives and dies by its kernel, and the kernel is linked in the downloads list for this one. Flashing the ROM without matching the kernel is asking for a build that boots and then misbehaves."
+  },
+  {
+   "q": "Will Xiaomi features still work after flashing RealmeUI?",
+   "a": "No. Xiaomi-specific features and services are tied to MIUI and do not come across to a RealmeUI port. They are not broken, they are simply absent, so do not expect to find them."
+  },
+  {
+   "q": "Does this ROM get updates?",
+   "a": "No. It is a port, so there is no OTA channel. New builds appear when the person maintaining it releases one, and you flash them yourself, exactly like everyone else running it."
+  },
+  {
+   "q": "Can I go back to MIUI after trying this?",
+   "a": "Yes, as long as you keep the stock fastboot package for your model. Going back is a standard flash, so keep the stock files somewhere safe before you start experimenting."
+  }
+ ]
 }

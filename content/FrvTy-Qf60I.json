@@ -16,8 +16,8 @@
   "Custom ROM",
   "Camera"
  ],
- "summary": "",
- "body": "",
+ "summary": "EvolutionX v7.0 has landed as an official beta for the MI 11X, built on Android 13. This is the first boot, the setup, and what the ROM feels like: clean, quick, no junk, with the Pixel-style parts you expect. The honest warning with any beta is that builds move fast and one can regress, so keep a stable zip nearby.",
+ "body": "Android 13 on the MI 11X feels like Android should. Clean, quick, no junk. EvolutionX takes the good parts of Pixel software and adds just enough of its own settings without burying you in menus. This build, v7.0, arrived as an official beta, so I did the first boot on camera to show what you actually get before you commit.\n\nIt is worth saying clearly: this is a beta. That is not a reason to avoid it, but it is a reason to know what you are signing up for.\n\n## What it looks like\n\nThe setup wizard runs like any modern Android first boot. Once you are in, the Android 13 notification shade and quick settings layout are intact, so nothing feels like an older base wearing a new number. The theme engine and the customisation parts EvolutionX is known for are all present, and gesture navigation feels the way you would want it to.\n\nThe whole thing reads as Pixel-adjacent. That is the point of EvolutionX — familiar Google software with a few additions, rather than a completely new interface to learn.\n\n## What I checked\n\n- First boot time and how the setup wizard behaves.\n- Whether the Android 13 notification and quick settings layout arrived intact.\n- The theme engine and the parts EvolutionX is known for.\n- Gesture navigation and the usual system smoothness.\n- Whether the camera app opens and shoots, since that is where custom ROMs fall over.\n- Basic stability over the first hours, because a beta is a beta.\n\nThat camera check matters more than it sounds. Camera quality on a custom ROM always depends on the maintainer, so test it yourself before you make this your only phone. If the camera is your main tool, shoot some real photos on a real subject before you trust it.\n\n## What beta means here\n\n- Features can change or vanish between builds.\n- Some banking and DRM apps may detect an unlocked bootloader.\n- Dirty flashing over an older build can cause bootloops. Clean flash when in doubt.\n\nNone of that is specific to EvolutionX. It is what an official beta means anywhere. If you want a ROM that never surprises you, a stable release is the other path.\n\n## Who should install it\n\n- You want a clean Android 13 feel on the MI 11X with Pixel-style software.\n- You are comfortable with beta movement and can reflash when a build goes sideways.\n- You keep a stable ROM zip nearby as a fallback.\n- You test the camera yourself before relying on it.\n\nIf you need your phone to be bulletproof and never change under you, wait for the stable path. If you enjoy the process, a beta like this is a good way to live on current Android.\n\n## If you want to flash it\n\n1. Unlock the bootloader and install a compatible recovery.\n2. Back up system and data first.\n3. Wipe system, data, cache and dalvik.\n4. Flash the ROM zip, then wipe cache and dalvik.\n5. Reboot and let the first boot finish on its own.\n\nFlash it the way the release post tells you when it comes to Gapps — do not assume. Some builds expect you to add them, and some do not. The release notes are the authority, not a forum comment.\n\nIf the driver side is the part that slows you down, the free Rom Flasher tool on GitHub bundles the ADB and fastboot driver install into a couple of clicks. It is free, and the link is in the downloads section.",
  "video_description": "EvolutionX v7.0 landed as an official beta for the MI 11X, and it's built on Android 13. This is the first boot, the setup and what the ROM feels like before you commit to flashing it.\n\n📱 Device  : MI 11X\n🧩 ROM     : EvolutionX v7.0 (Official Beta)\n🤖 Android : 13\n\n🔬 What I Checked\n• First boot time and how the setup wizard behaves\n• Whether the Android 13 notification and quick settings layout arrived intact\n• Theme engine and the parts EvolutionX is known for\n• Gesture navigation and the usual system smoothness\n• Whether the camera app opens and shoots, since that's where custom ROMs fall over\n• Basic stability over the first hours, because a beta is a beta\n\n📊 Verdict\nAndroid 13 on the MI 11X feels like Android should. Clean, quick, no junk. EvolutionX keeps the good parts of Pixel software and adds just enough of its own settings without burying you. It's an official beta, so the honest warning is that betas move fast and the odd build can regress. For a daily driver I'd keep a stable ROM zip nearby. Camera quality is the part that always depends on the maintainer, so test it yourself before you make this your only phone.\n\n⚠️ What Beta Means Here\n• Features can change or vanish between builds\n• Some banking and DRM apps may detect an unlocked bootloader\n• Dirty flashing over an older build can cause bootloops, clean flash when in doubt\n\n📝 If You Want to Flash It\n1. Unlock the bootloader and install a compatible recovery.\n2. Back up system and data first.\n3. Wipe system, data, cache and dalvik.\n4. Flash the ROM zip, then wipe cache and dalvik.\n5. Reboot and let the first boot finish on its own.\n\n❓ Common Questions\nQ. Is this official? Yes, it's an official beta build.\nQ. Does it need GApps? Flash it the way the release post tells you, don't assume.\nQ. Can I roll back to Android 12? Yes, with a clean flash of the older build.",
  "links": [
   {
@@ -25,5 +25,26 @@
    "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
   }
  ],
- "faq": []
+ "faq": [
+  {
+   "q": "Is EvolutionX v7.0 for the MI 11X an official build?",
+   "a": "Yes, it is an official beta build of EvolutionX v7.0 for the MI 11X. Being official means the maintainer supports it, but a beta still means builds move fast and one can regress."
+  },
+  {
+   "q": "What Android version does it run?",
+   "a": "Android 13. The notification and quick settings layout arrived intact, so it feels like current Android rather than an older base with a new number."
+  },
+  {
+   "q": "Do I need to flash Gapps separately?",
+   "a": "Flash it the way the release post tells you and do not assume. Some builds expect you to add Gapps and some do not, so check the release notes before you start."
+  },
+  {
+   "q": "Can I use it as a daily driver while it is in beta?",
+   "a": "Plenty of people do, since it feels stable and quick on the first boot. The honest advice is to keep a stable ROM zip nearby, because a beta can regress and you want a way back."
+  },
+  {
+   "q": "Can I roll back to Android 12 afterwards?",
+   "a": "Yes. Rolling back means a clean flash of the older build, so back up first. A downgrade is still a flash, and it will wipe your data."
+  }
+ ]
 }

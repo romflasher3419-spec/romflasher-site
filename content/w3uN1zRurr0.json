@@ -14,8 +14,8 @@
   "Flash",
   "Recovery"
  ],
- "summary": "",
- "body": "",
+ "summary": "This was a live session about flashing tools, where each file lives, and the\nquestions that come up while people set their phones up. The useful part is\nseeing the toolkit laid out in one place: the ADB driver, Platform Tools,\nrecovery images and vbmeta for common Xiaomi and POCO devices. Nothing here is a\nmagic fix, just the same steps talked through live.",
+ "body": "This one ran live, so it moves at its own pace and follows the questions instead\nof a script. If you are new to flashing, the part worth your time is seeing the\nwhole toolkit in one place. Those files are the difference between your first\nfastboot command working and the PC staring back at you with no device found.\n\nNothing in the session is a shortcut. It is the same set of steps you see in the\nother videos here, just talked through out loud while people are setting up.\n\n## The toolkit, item by item\n\n- **The ADB and Fastboot driver.** Start here. Without it, Windows sees your\n  phone in fastboot mode as an unknown device, and nothing else you do will help.\n- **Platform Tools.** The files that give your PC the actual adb and fastboot\n  commands. Extract them somewhere permanent instead of opening them from the\n  downloads folder.\n- **Recovery images.** Device specific. A recovery built for one model does not\n  work on another, even when the names look similar.\n- **vbmeta.** The piece people forget, and the reason a ROM installs cleanly and\n  then refuses to boot.\n\nThat last point is where a lot of first attempts end. The install finishes, the\nphone reboots, and it drops straight back into recovery or sits on a black\nscreen. Often enough, the missing piece was vbmeta, or a vbmeta flashed with the\nwrong flags for the ROM being installed.\n\n## Where each file is used\n\nThe driver and Platform Tools are your PC side. You need them before anything\nelse, because everything in fastboot runs through them. Set them up once and they\nare done forever.\n\nRecovery images matter when you are installing a ROM rather than doing a fastboot\nflash of an official package. Take the one built for your exact device.\n\nvbmeta comes into play on AOSP style ROMs, where the build needs verification\ndisabled to boot properly. Follow the instructions that come with your specific\nROM rather than assuming one setting fits every build.\n\n## The files people forget before their first flash\n\n- The **driver**, because they assume the cable is enough\n- **vbmeta**, because the ROM zip does not always shout about it\n- A **backup**, because unlocking the bootloader wipes internal storage and so\n  does a clean flash\n- The **right model**. A file for another variant will flash and then refuse to\n  boot, which is a much longer evening\n\n## What fastboot actually does\n\nFastboot talks to the phone while it is sitting in bootloader mode. It writes\npartitions directly: boot, recovery, vbmeta, super and the rest. There is no\noperating system in the way and no safety net either. What you write is what the\nphone gets.\n\nThat is why the model and the file matter so much. In recovery, there is a\npackage checking what it is installing. In fastboot, you are handing the phone\nraw pieces and telling it where to put them.\n\n## Setting up without flashing anything today\n\nYou do not have to install a ROM to get value out of this. Install the driver,\nextract Platform Tools, run `fastboot devices` with the phone connected in\nfastboot mode, and confirm you get a serial number back. That single check tells\nyou whether your machine is ready, before you are depending on it.\n\nDo that on a quiet evening and you will not be troubleshooting drivers at the\nmoment you are halfway through an install.\n\nIf the driver setup is the part that keeps costing you an evening, the free Rom\nFlasher tool on GitHub bundles the ADB and fastboot driver install into a couple\nof clicks. It is free, and the link sits in the downloads with everything else.",
  "video_description": "Rom Flasher went live — a session around flashing tools, where the files live, and the questions that come up while people set their phones up.\n\nThis was a live one, so it moves at its own pace. If you're new to flashing, the useful part is seeing the toolkit laid out in one place: the ADB driver, Platform Tools, recovery images and vbmeta for the common Xiaomi and POCO devices. Those are the files that decide whether your first fastboot command works or stares back at you with no device found.\n\nNothing here is a magic fix. It's the same set of steps you'll see in the other videos, just talked through live. Grab what you need from the list below and follow along at your own speed.\n\n🎬 In This Clip\n• The flashing toolkit, item by item\n• Where each file is used and why\n• Recovery images for the common Xiaomi and POCO devices\n• The files people forget before their very first flash\n• A quick walk through what fastboot actually does\n\n❓ Common Questions\n• Which file do I need first? Start with the ADB and Fastboot driver, then Platform Tools.\n• Do I have to flash anything today? No — this session is about getting set up.\n• Will the same files work on every phone? No, recovery images are device specific.\n• Is the Rom Flasher Tool free? Yes, completely — just download and use it.",
  "links": [
   {
@@ -43,5 +43,26 @@
    "url": "https://xpshort.com/111U"
   }
  ],
- "faq": []
+ "faq": [
+  {
+   "q": "Which file do I need first before flashing anything?",
+   "a": "The ADB and fastboot driver, then Platform Tools. Without the driver, Windows\ndoes not recognise your phone in fastboot mode, and without the platform files\nthe fastboot command does not exist on your PC."
+  },
+  {
+   "q": "Will the same recovery file work on every phone?",
+   "a": "No. Recovery images are built for a specific device. Take the one made for\nyour exact model, because a recovery for another variant will not work."
+  },
+  {
+   "q": "Why do I need vbmeta for an AOSP ROM?",
+   "a": "On AOSP style builds, verification usually needs to be disabled for the ROM to\nboot properly, and vbmeta is where that happens. Follow the instructions that\ncome with your specific ROM instead of copying settings from another build."
+  },
+  {
+   "q": "My phone installs the ROM and then will not boot. What did I miss?",
+   "a": "A missing or incorrectly flashed vbmeta is one of the usual causes, along with\na file built for a different model. Recheck the install notes for your exact ROM\nand your exact device."
+  },
+  {
+   "q": "Is the Rom Flasher tool free?",
+   "a": "Yes, completely free. Download it and use it. The link is in the downloads\nalong with the platform files and the driver."
+  }
+ ]
 }

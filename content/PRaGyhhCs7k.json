@@ -16,8 +16,8 @@
   "Install",
   "Kernel"
  ],
- "summary": "",
- "body": "",
+ "summary": "EliteGaming MIUI 13 is a gaming-tuned MIUI 13 build for the Xiaomi Mi 11X. It keeps MIUI 13 but cuts heat, tidies the launcher, strips out a few resource-hungry features, and drops the misbehaving 2G/3G/4G selection options. Flash it clean through TWRP — a MIUI build laid over old data is the classic bootloop.",
+ "body": "If stock MIUI 13 runs warm on your Mi 11X during long gaming sessions, this is the kind of build worth trying. EliteGaming MIUI 13 sits on a MIUI 13 base, and every tweak here points at one thing: making the phone less sweaty and less cluttered while you play.\n\nIt is not a new ROM. It is MIUI 13 with the fat trimmed and the launcher cleaned up. That means the settings and gestures you already know are all still there.\n\n## What is in the build\n\n- Base updated to MIUI 13.\n- Dual status bar removed for a cleaner top edge.\n- Launcher recent views in different styles.\n- Launcher blur options you can pick from.\n- Folder blur added.\n- Blur option in the recents menu.\n- Column count option in the Launcher, added on user requests.\n- Heating reduced, and you are free to run your favourite kernel.\n- A few resource-hungry little features stripped out.\n- 2G / 3G / 4G selection options removed, they misbehave on newer builds.\n- New logos and wallpapers.\n\n## What changed, and why it matters\n\nThe heating reduction is the whole reason to be here. It comes from cutting the resource-hungry bits and letting you run the kernel you want, so you can chase the balance of performance and temperature that suits your games.\n\nThe launcher side is the pleasant surprise. Recent view styles, blur options, a recents blur toggle and a column count option are all things people ask for and rarely get from stock. The column count was added on user request, which tells you the maintainer is listening.\n\nThe dual status bar removal is a small visual thing with a real effect: the top edge looks cleaner, and on a phone you game on, less clutter at the edges is welcome.\n\n## What is gone by design\n\nThe 2G, 3G and 4G selection options were removed on purpose. They misbehave on newer builds, so the maintainer cut them instead of leaving a broken menu. Do not flash this and then file a bug because the network mode selector is missing. It is gone by design, and it is not coming back.\n\nSame goes for the stripped features. They were pulled because they eat resources. If one of them was something you used daily, this build will feel like a step back for you.\n\n## Who should install it\n\n- You game on your Mi 11X and battle heat during longer sessions.\n- You want launcher controls like blur, recents styles and column count.\n- You are happy on a MIUI 13 base and do not want to learn a new ROM.\n- You are fine running your own kernel to tune the balance.\n\nIf you need every stock menu item exactly as it was, or you rely on the network mode selector, skip this one.\n\n## Before you flash\n\n1. Copy the ROM zip and the TWRP image somewhere safe — internal storage gets wiped.\n2. Back up everything you care about.\n3. Boot TWRP, format data, then flash the build.\n4. Reboot and give the first boot its time.\n\nThe TWRP you want is linked below. Get the right one for the Mi 11X and have it ready before you start, so you are not hunting for a recovery image halfway through the evening.\n\n## Where people get stuck\n\n- **Skipping the data format.** A MIUI build over old data is the classic bootloop. Format data, then flash, every time.\n- **Expecting removed features back.** The network selection options and the stripped features are gone by design. Asking for them is asking for the build to change.\n- **Flashing on a nearly empty battery.** Do not start a flash at 10 percent. Charge up first.\n\nThe heat improvement is real, but be realistic about what any ROM can do. Your thermals and chipset set the ceiling, and a build like this moves you closer to that ceiling rather than past it.\n\nIf the driver and flashing side is the part you avoid, the free Rom Flasher tool on GitHub bundles the ADB and fastboot driver install into a couple of clicks. It is free, and the link is in the downloads section.",
  "video_description": "EliteGaming MIUI 13 on the Xiaomi Mi 11X — what this gaming-tuned MIUI 13 build changes, and the TWRP you want before you flash it.\n\nEliteGaming MIUI 13 sits on a MIUI 13 base, and the tweaks here are aimed at people who game on their phone: less heat, a tidier launcher, and a few resource-hungry bits cut out. If stock MIUI 13 on the Mi 11X runs warm during long sessions, this is the kind of build worth a try. Flash it clean, though — a MIUI build laid over an old data partition is the classic bootloop.\n\n🧩 What's In The Build\n• Base updated to MIUI 13\n• Dual status bar removed for a cleaner top edge\n• Launcher recent views in different styles\n• Launcher blur options you can pick from\n• Folder blur added\n• Blur option in the recents menu\n• Column count option in the Launcher, added on user requests\n• Heating reduced — and you're free to run your favourite kernel\n• A few resource-hungry little features stripped out\n• 2G / 3G / 4G selection options removed, they misbehave on newer builds\n• New logos and wallpapers\n\n📝 Before You Flash\n1. Copy the ROM zip and the TWRP image somewhere safe — internal storage gets wiped.\n2. Back up everything you care about.\n3. Boot TWRP, format data, then flash the build.\n4. Reboot and give the first boot its time.\n\n⚠️ Where People Get Stuck\n• Skipping the data format, landing in a bootloop, then blaming the ROM.\n• Expecting the removed network options to come back — they're gone by design.\n• Flashing with the battery nearly empty.",
  "links": [
   {
@@ -29,5 +29,26 @@
    "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
   }
  ],
- "faq": []
+ "faq": [
+  {
+   "q": "Does EliteGaming MIUI 13 actually reduce heating on the Mi 11X?",
+   "a": "Yes, that is the main point of the build. It strips resource-hungry features and lets you run your preferred kernel so you can balance performance against temperature. Just remember your thermals and chipset still set the ceiling."
+  },
+  {
+   "q": "Which TWRP should I use for the Xiaomi Mi 11X?",
+   "a": "Use the TWRP linked below that is built for the Mi 11X. Have the image ready and boot into it before you start, so you are not searching for a recovery midway through the flash."
+  },
+  {
+   "q": "Why is the 2G / 3G / 4G network selection option missing?",
+   "a": "It was removed on purpose. Those options misbehave on newer MIUI builds, so the maintainer cut them instead of leaving a broken menu. It is gone by design."
+  },
+  {
+   "q": "Can I flash this over my current MIUI without wiping?",
+   "a": "Do not. A MIUI build laid over an old data partition is the classic bootloop. Copy the zip and TWRP somewhere safe, format data in TWRP, then flash."
+  },
+  {
+   "q": "Can I use my own kernel with this ROM?",
+   "a": "Yes. The build is set up to let you run your favourite kernel, which is part of how you tune the heat and performance balance for your games."
+  }
+ ]
 }

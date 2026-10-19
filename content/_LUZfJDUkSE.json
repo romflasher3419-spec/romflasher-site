@@ -16,8 +16,8 @@
   "Install",
   "Root"
  ],
- "summary": "",
- "body": "",
+ "summary": "LineageOS 19.1 on the Xiaomi 11T Pro installs from recovery in four moves: format data, reboot back into recovery, sideload the ROM zip over ADB, then reboot to system. Google apps and root are a separate second pass afterwards. Step one wipes all internal storage, so take the backup seriously.",
+ "body": "LineageOS 19.1 is the clean pick for the 11T Pro. No vendor skin, no background services you did not ask for, just the system doing its job. This is the exact order I used, and the order is short enough that people rush it — then they end up with a half-broken system and wonder which step they got wrong.\n\nThe one thing I will say twice: step one wipes everything on the phone. Internal storage goes, and there is no undo. Take the backup before you start, not while you are mid-flash.\n\n## Before you flash\n\n- A full backup of your photos, downloads and anything else you care about. Internal storage is wiped and that is not a scare tactic.\n- A custom recovery of your choice. TWRP and OrangeFox both work for this.\n- Platform Tools on the PC, so ADB sideload can talk to the phone.\n- A charged battery, and a cable that is not falling apart. Most mid-flash failures are the cable, not the ROM.\n- The LineageOS 19.1 zip for the 11T Pro, from the link below.\n\n## Step 1 - back up, because everything goes\n\nCopy your photos, your downloads and anything you would be upset to lose off the phone. Then check the copy opened properly on the other side. An unverified backup is not a backup.\n\nThis is the step people skip and then remember during the wipe. Do not be that person.\n\n## Step 2 - format data and reboot recovery\n\nBoot into recovery. Choose format data, which is the full wipe, not the ordinary factory reset option — they are not the same thing. Then reboot back into recovery before doing anything else.\n\nThat reboot in the middle matters. Formatting data can leave the recovery session in a state where a sideload fails or lands oddly. Coming back in fresh avoids the whole class of problem.\n\n## Step 3 - sideload the ROM\n\nWith recovery running again, select apply update from ADB. Then from the PC, in the folder where your ROM zip sits:\n\n`adb sideload <rom zip>`\n\nThe phone shows progress and the terminal shows a percentage. Let it get to the end. The first boot after this takes a while because everything is being built fresh.\n\n## Step 4 - reboot to system\n\nReboot and wait. When the setup wizard appears, LineageOS 19.1 is installed and you are done with the base flash.\n\nSet the phone up enough to check that calls, mobile data and Wi-Fi work before you pile anything else on top. If something is broken, you want to find out now, not after restoring two hours of data.\n\n## Optional pass - Google apps or root\n\nThis is the part people rush. Slow down here.\n\n1. Reboot back into recovery after the ROM flash. Lineage recovery can take a good while to appear and it looks like it has hung. It gets there. Wait.\n2. Select apply update, then apply from ADB, and sideload your Google apps package or your root package. Google apps must match Android 12.1 and ARM64, or you will get a broken Play Services install that is very annoying to unpick.\n3. If Lineage recovery complains about a mismatching signature, that is normal. Tap continue and let the sideload finish.\n4. Reboot to system and you are done.\n\nOrder matters in that second pass. Google apps and root both modify system, and doing them in one recovery session without a clean reboot between the main flash and them is where half-installed builds come from.\n\n## Where people get stuck\n\n- **Flashing Google apps from the wrong Android version.** On Android 12.1 you need a Google apps package built for 12.1 and for ARM64. The wrong architecture or the wrong version gives you a system that boots but has constant Play Services errors.\n- **Missing the recovery reboot.** Sideloading straight after formatting data, without coming back into recovery, is a common source of a failed or partial install.\n- **Panicking at the Lineage recovery screen.** It is slow to appear. Give it time rather than pulling the battery.\n- **Forgetting the backup.** There is no recovery from this one. The wipe is not reversible.\n\n## An honest note\n\nLineageOS 19.1 will not win an award for excitement. It is stable, it is light, and it does what it says. The effort is all in the setup, especially if you want Google apps on top, and that second pass is where the fiddly parts live: version matching, the recovery being slow, and the signature warning that looks scarier than it is.\n\nIf you are not sure yet whether you want Google services, flash the ROM first and live with vanilla for a day. Adding Google apps later is the same sideload, and you get to know whether you need them at all.\n\nIf the PC side of this is where you always stall — ADB, fastboot and the driver — the free Rom Flasher tool on GitHub sets that up in a couple of clicks, and the link is in the downloads list.",
  "video_description": "LineageOS 19.1 on the Xiaomi 11T Pro — the full A12.1 flash, from formatting data to an optional GApps or Magisk sideload.\n\nLineageOS 19.1 is the clean, no-nonsense pick for the 11T Pro, and this is the exact order I used. Format data, reboot recovery, sideload the ROM, done. If you want Google apps or root on top, there's a second pass afterwards — and that's the part people rush, then end up with a half-broken system. Take the backup seriously here, because step one wipes everything on the phone.\n\n🧩 Before You Flash\n• Back up everything — internal storage gets wiped, and there's no undo\n• A recovery of your choice: TWRP or OrangeFox both work\n• Platform Tools on the PC so ADB sideload can talk to the phone\n• A charged battery and a cable you trust\n\n📝 The Order\n1. IMPORTANT: take a backup of all your precious data, because all internal storage will be wiped — then don't blame me for data loss.\n2. Boot into recovery, format data, and reboot recovery.\n3. After the reboot, sideload the ROM: adb sideload ROM-file.zip\n4. Reboot the system. Done.\n\n➕ Optional: GApps or Magisk\n1. Reboot recovery after the ROM flash. LOS recovery can take a good while to appear, but it gets there.\n2. Select Apply Update, then Apply from ADB, and sideload GApps or Magisk. GApps must be for Android 12.1 and ARM64.\n3. If LOS recovery complains about a mismatching signature, that's normal — tap continue.\n4. Reboot the system and you're done.\n\n❓ Common Questions\n• Which recovery should I use? TWRP and OrangeFox both work here.\n• Do I format data once or twice? Format, reboot recovery, then start the sideload from there.\n• Is GApps mandatory? No, LineageOS boots fine without it.",
  "links": [
   {
@@ -33,5 +33,30 @@
    "url": "https://xpshort.com/111U"
   }
  ],
- "faq": []
+ "faq": [
+  {
+   "q": "Which recovery should I use for LineageOS 19.1 on the 11T Pro?",
+   "a": "TWRP and OrangeFox both work here, and Lineage recovery works too since the ROM is sideloaded through it. Use whichever you already trust, as long as it is current for your device."
+  },
+  {
+   "q": "Do I format data once or twice?",
+   "a": "Once. Format data, reboot back into recovery, then start the sideload from that fresh session. The reboot is the part that matters, not a second format."
+  },
+  {
+   "q": "Is Google apps mandatory on LineageOS 19.1?",
+   "a": "No, LineageOS boots and works fine without it. If you do want Google services, the package has to be for Android 12.1 and ARM64, and it is flashed afterwards as a separate sideload."
+  },
+  {
+   "q": "Why does the recovery take so long to appear?",
+   "a": "Lineage recovery is known for a slow start after a ROM flash. It is not hung. Give it time rather than pulling the battery, and it will come up."
+  },
+  {
+   "q": "What does the signature mismatch warning mean during sideload?",
+   "a": "It means the package is signed with a different key than the recovery expected. That is normal for a Google apps or root sideload. Tap continue and let it finish."
+  },
+  {
+   "q": "Will flashing this wipe my photos?",
+   "a": "Yes. Formatting data clears all internal storage, so every photo, download and file on the phone goes. Copy everything off first and check the copy actually opens before you start flashing."
+  }
+ ]
 }

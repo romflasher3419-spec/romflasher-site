@@ -33,6 +33,8 @@ qa.py                    page / summary / link checks  (qa.py --links)
 make_qr.py               regenerates static/upi-qr.png from the app's payload
 make_icons.py            regenerates the PWA / Apple touch icons from app.png
 make_waves.py            rebuilds the wave files + prints progress
+_progress.py             how many guides are written, per wave
+_fix_devices.py          gives a guide its device back from the title
 WRITER.md                the binding writing rules for every article
 ```
 
@@ -51,6 +53,7 @@ C:\Python315\python.exe qa.py --links       # every internal link
 C:\Python315\python.exe set_article.py "--id=<videoId>" "--file=drafts/<videoId>.md"
 C:\Python315\python.exe set_article.py --missing     # what is still empty
 C:\Python315\python.exe make_waves.py --status       # batch progress
+C:\Python315\python.exe _progress.py                 # totals + per-wave table
 ```
 
 The draft format is three sections — `::summary`, `::body`, `::faq` — and the

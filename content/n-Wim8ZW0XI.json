@@ -13,8 +13,8 @@
   "Channel",
   "Performance"
  ],
- "summary": "",
- "body": "",
+ "summary": "Kalyug vs Krishna is a Mahabharat themed rap battle performed and written by\n@OfficialMrSevenMr7. It is a detour from the flashing videos on this channel, pure\naudio with no device and no ROM in it. The verses belong entirely to the artist,\nand that is the part worth supporting.",
+ "body": "This one exists because the idea would not leave me alone. Take the oldest\nargument there is, put both sides on the mic, and let them go at it in rhythm.\nSo that is what happened.\n\nOn one side is the voice of the age we actually live in, the one that gets blamed\nfor everything. On the other is the voice that was always told it stood on the\nright side of the war. The Mahabharat is the frame, and honestly it is the best\nframe available for this, because nobody in that story is a cartoon villain.\nEvery character has a reason. A rap battle is about as close as you get to\nletting two of those reasons argue in public.\n\n## Who did the work\n\nThe bars and the performance belong to @OfficialMrSevenMr7. The verses are\nentirely theirs, and if you like what you hear, that is the name to follow. I put\nthe theme together and pointed the camera. The writing and the delivery are not\nmine to take credit for.\n\n## What is in this clip\n\n- A Kalyug vs Krishna battle built on a Mahabharat theme\n- Written and performed by @OfficialMrSevenMr7\n- Audio only. No device, no ROM, no benchmark run\n- A break from the regular flashing content here\n\n## Why it is on this channel\n\nIf you came here for fastboot and recovery, this will look like it landed in the\nwrong place. Fair. Channels end up with a few things that do not fit the main\ntopic, and this is one of them. It was made because the idea was worth making,\nnot because it was on brand.\n\nMost of what lives here is phone work: unlocking bootloaders, flashing builds,\nchasing down phones that will not boot, and filming the fix properly. Every so\noften something else gets made.\n\n## For anyone who came for the phone content\n\nThe flashing stuff has not gone anywhere. The toolkit is the same as it has\nalways been:\n\n- The free Rom Flasher tool, for both the phone and the PC\n- ADB and Fastboot platform files, so fastboot works on your machine at all\n- The ADB and fastboot driver, so Windows stops showing an unknown device\n- Recovery images and the files people forget before their first flash\n\nThose all sit in the downloads listed with this video, and none of them cost\nanything. If you need a recovery image, remember they are device specific. A\nrecovery built for one model is not going to work on another, no matter how\nsimilar the names look.\n\nOne habit worth keeping, whatever you are flashing: back up first, and confirm\nthe file matches your exact model. A wrong file is how most dead phones happen.\nThe ROM rarely does the damage.",
  "video_description": "Kalyug vs Krishna — a Mahabharat rap battle, with @OfficialMrSevenMr7 on the mic and the verse doing all the talking.\n\nThis is one of those videos I made because the idea wouldn't leave me alone. Take the oldest argument in the book and let both sides go at it in rhythm. On one side, the voice of the age we actually live in, the one people blame for everything. On the other, the voice that was always told it stood on the right side of the war. The Mahabharat is the frame, and honestly it's the best possible frame for this, because nobody in that story is a cartoon villain. Every character has a reason, and a rap battle is about as close as you get to letting two of those reasons argue in public.\n\nThe bars and the performance belong to @OfficialMrSevenMr7. The credit for the verses is entirely theirs, and that's the part worth supporting.\n\n🎬 In This Clip\n• Kalyug vs Krishna, built on a Mahabharat theme\n• Performed and written by @OfficialMrSevenMr7\n• Pure audio battle — no device, no ROM, no benchmark run\n• A detour from the regular flashing content on this channel",
  "links": [
   {
@@ -42,5 +42,26 @@
    "url": "https://xpshort.com/111U"
   }
  ],
- "faq": []
+ "faq": [
+  {
+   "q": "Who performed Kalyug vs Krishna?",
+   "a": "The bars and the performance are by @OfficialMrSevenMr7. The verses are\nentirely theirs, and they are the name to follow if you liked the track."
+  },
+  {
+   "q": "Is this video about flashing a phone?",
+   "a": "No. It is a rap battle with a Mahabharat theme, with no device, no ROM and no\ninstall in it. It is a detour from the regular content on this channel."
+  },
+  {
+   "q": "Why is a rap video on a phone flashing channel?",
+   "a": "Because the idea would not leave me alone. Sometimes something gets made\nbecause it is worth making, not because it fits the main topic."
+  },
+  {
+   "q": "Where do I find the flashing tools you normally use?",
+   "a": "In the downloads listed with this video. The free Rom Flasher tool, the ADB\nand fastboot files and the driver pack are all there, and they are free."
+  },
+  {
+   "q": "Are the recovery images in the downloads usable on any phone?",
+   "a": "No. Recovery images are built for a specific device. Always take the one for\nyour exact model, because a mismatched recovery will not work on your phone."
+  }
+ ]
 }

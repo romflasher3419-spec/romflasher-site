@@ -1,29 +1,50 @@
 {
- "id": "KvXLnpaPnRQ",
- "slug": "miui-13-abhix-rog-edition-on-android-12-gamer-rom-first-look",
- "title": "MIUI 13 AbhiX ROG Edition on Android 12 Gamer ROM First Look",
- "blurb": "A MIUI 13 build with a ROG coat of paint on top, sitting on an Android 12 base.",
- "device": "",
- "rom": "MIUI",
- "android": "",
- "views": 668,
- "published": "2022-10-05",
- "url": "https://youtu.be/KvXLnpaPnRQ",
- "tags": [
-  "MIUI",
-  "Flash",
-  "Recovery",
-  "Gaming",
-  "Update"
- ],
- "summary": "",
- "body": "",
- "video_description": "A MIUI 13 build with a ROG coat of paint on top, sitting on an Android 12 base. If you like your phone loud, this is that ROM. Here's what you actually get and what you'll be living with afterwards.\n\n🧩 ROM     : MIUI 13 AbhiX ROG Edition\n🤖 Android : 12\n🔧 Flash   : TWRP recovery\n\n🎯 What It Does\n• Dresses MIUI 13 up in ROG styling, so the whole UI reads gamer instead of stock\n• ROG boot animation and system sounds to sell the theme\n• ROG-style wallpapers and theme pieces already baked in\n• Keeps the MIUI 13 base, so the settings, gestures and notifications feel familiar\n• Runs on an Android 12 base, so app compatibility is still solid\n\n💡 Best Part\nIt's the same MIUI you already know, with a personality. If you're bored of the stock look and don't want to learn a whole new ROM, this is the lowest-effort way to make the phone feel new. Flash it in TWRP like any other zip.\n\n🚫 What It Doesn't Do\n• It doesn't turn the phone into a gaming beast. No ROM does that. Thermals and chipset set the ceiling.\n• It's a modded MIUI build, not an official Xiaomi release, so updates depend on whoever maintains it.\n• ROG styling includes ROG sounds. Some people turn those off within a day.\n• Banking and DRM apps can still detect a modified build.\n\n📝 Before You Flash\n1. Unlock the bootloader if it isn't already.\n2. Install TWRP and take a full backup of system and data.\n3. Move the ROM zip to internal storage.\n4. Wipe system, data, cache and dalvik, then flash the zip.\n5. Wipe cache and dalvik again, then reboot and wait out the first boot.\n\n❓ Common Questions\nQ. Is this the same as MIUI 13 stock? The base is MIUI 13, the theming and tweaks are the mod.\nQ. Will my warranty survive? Bootloader unlocking changes your support situation.\nQ. Can I go back? Yes, flash a stock MIUI build with the flash tool.",
- "links": [
-  {
-   "label": "Rom Flasher tool (free)",
-   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
-  }
- ],
- "faq": []
+  "id": "KvXLnpaPnRQ",
+  "slug": "miui-13-abhix-rog-edition-on-android-12-gamer-rom-first-look",
+  "title": "MIUI 13 AbhiX ROG Edition on Android 12 Gamer ROM First Look",
+  "blurb": "A MIUI 13 build with a ROG coat of paint on top, sitting on an Android 12 base.",
+  "device": "Any Android",
+  "rom": "MIUI",
+  "android": "",
+  "views": 668,
+  "published": "2022-10-05",
+  "url": "https://youtu.be/KvXLnpaPnRQ",
+  "tags": [
+    "MIUI",
+    "Flash",
+    "Recovery",
+    "Gaming",
+    "Update"
+  ],
+  "summary": "MIUI 13 AbhiX ROG Edition is a MIUI 13 build with ROG styling laid over an Android 12 base. You get ROG boot animation, system sounds, wallpapers and theme pieces on top of the MIUI you already know, flashed through TWRP like any other zip. It is a look and feel ROM, not a performance boost — thermals and your chipset still set the ceiling.",
+  "body": "You are bored of how your phone looks. That is the honest reason most people end up here. AbhiX ROG Edition takes MIUI 13 and dresses it up in ROG gear: the boot animation, the system sounds, the wallpapers, the theme pieces. If you like your phone loud, this is that build.\n\nThe base underneath is still MIUI 13, on Android 12. That is the clever part. Your settings, gestures and notification shade behave exactly as before, so you are not learning a new ROM. You are changing its clothes.\n\n## What it looks like\n\nTurn it on and the first thing you see is the ROG boot animation. The system sounds carry the same theme, so taps, locks and notifications all sound different. The wallpapers and theme pieces are baked in rather than something you sideload afterwards.\n\nOnce you are inside, the whole UI reads gamer instead of stock. The MIUI layout is untouched, so nothing feels like a puzzle. It is the same phone you know, wearing a different jacket.\n\n## What changed\n\n- MIUI 13 dressed up in ROG styling, so the interface reads gamer instead of stock.\n- ROG boot animation and system sounds to sell the theme.\n- ROG-style wallpapers and theme pieces already baked in.\n- Keeps the MIUI 13 base, so settings, gestures and notifications feel familiar.\n- Runs on an Android 12 base, so app compatibility is still solid.\n\nThat last point matters more than it sounds. A lot of flashy theme builds sit on old bases and start dropping apps. Android 12 still runs what you need.\n\n## What it does not do\n\nThis is where I want to be straight with you, because theme ROMs get oversold.\n\n- It does not turn your phone into a gaming beast. No ROM does that. Your thermals and chipset set the ceiling, and software tweaks will not move them much.\n- It is a modded MIUI build, not an official Xiaomi release, so updates depend on whoever maintains it. If they stop, the build stops.\n- ROG styling means ROG sounds. Plenty of people turn those off within a day. That is fine, but know it going in.\n- Banking and DRM apps can still detect a modified build. An unlocked bootloader is an unlocked bootloader, whatever the theme.\n\nIf you came here expecting better fps in games, you will be disappointed. If you came here to make a phone you already like feel new, you are in the right place.\n\n## Who should install it\n\n- You like the MIUI 13 feel and do not want to relearn a whole new ROM.\n- You want the cheapest-effort way to make your phone feel new.\n- You are happy on an Android 12 base.\n- You understand this is a themed MIUI, not a performance upgrade.\n\nIf any of that sounds like you, it is a low-risk flash. If you want raw gaming gains or long-term official updates, skip it.\n\n## Before you flash it\n\n1. Unlock the bootloader if it is not already unlocked. This wipes your data, so do it first.\n2. Install TWRP and take a full backup of system and data.\n3. Move the ROM zip to internal storage.\n4. Wipe system, data, cache and dalvik, then flash the zip.\n5. Wipe cache and dalvik again, then reboot and wait out the first boot.\n\nThat first boot can sit on the boot animation longer than you expect. Let it run. Fighting it by rebooting early is how people end up thinking the ROM failed.\n\nIf the flashing side is the part you do not enjoy, the free Rom Flasher tool on GitHub bundles the ADB and fastboot driver setup into a couple of clicks. It is free, and the link is in the downloads section.",
+  "video_description": "A MIUI 13 build with a ROG coat of paint on top, sitting on an Android 12 base. If you like your phone loud, this is that ROM. Here's what you actually get and what you'll be living with afterwards.\n\n🧩 ROM     : MIUI 13 AbhiX ROG Edition\n🤖 Android : 12\n🔧 Flash   : TWRP recovery\n\n🎯 What It Does\n• Dresses MIUI 13 up in ROG styling, so the whole UI reads gamer instead of stock\n• ROG boot animation and system sounds to sell the theme\n• ROG-style wallpapers and theme pieces already baked in\n• Keeps the MIUI 13 base, so the settings, gestures and notifications feel familiar\n• Runs on an Android 12 base, so app compatibility is still solid\n\n💡 Best Part\nIt's the same MIUI you already know, with a personality. If you're bored of the stock look and don't want to learn a whole new ROM, this is the lowest-effort way to make the phone feel new. Flash it in TWRP like any other zip.\n\n🚫 What It Doesn't Do\n• It doesn't turn the phone into a gaming beast. No ROM does that. Thermals and chipset set the ceiling.\n• It's a modded MIUI build, not an official Xiaomi release, so updates depend on whoever maintains it.\n• ROG styling includes ROG sounds. Some people turn those off within a day.\n• Banking and DRM apps can still detect a modified build.\n\n📝 Before You Flash\n1. Unlock the bootloader if it isn't already.\n2. Install TWRP and take a full backup of system and data.\n3. Move the ROM zip to internal storage.\n4. Wipe system, data, cache and dalvik, then flash the zip.\n5. Wipe cache and dalvik again, then reboot and wait out the first boot.\n\n❓ Common Questions\nQ. Is this the same as MIUI 13 stock? The base is MIUI 13, the theming and tweaks are the mod.\nQ. Will my warranty survive? Bootloader unlocking changes your support situation.\nQ. Can I go back? Yes, flash a stock MIUI build with the flash tool.",
+  "links": [
+    {
+      "label": "Rom Flasher tool (free)",
+      "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is MIUI 13 AbhiX ROG Edition the same as stock MIUI 13?",
+      "a": "The base is MIUI 13, but the theming and tweaks on top are what make it different. Think of it as the MIUI you know with a gamer skin and a set of mods, not an official Xiaomi release."
+    },
+    {
+      "q": "Will this actually make my phone faster for gaming?",
+      "a": "No, and be suspicious of anything that claims it will. The theme does not change your thermals or chipset, and those set the ceiling. Software tweaks on a themed MIUI will not move real gaming performance much."
+    },
+    {
+      "q": "How do I flash it?",
+      "a": "Through TWRP, like any other zip. Install TWRP, back up system and data, move the zip to internal storage, wipe system, data, cache and dalvik, flash the zip, then wipe cache and dalvik again and reboot."
+    },
+    {
+      "q": "Which Android version is it based on?",
+      "a": "Android 12, with a MIUI 13 base on top. That means app compatibility is still solid, which is a real plus for a themed build."
+    },
+    {
+      "q": "Can I go back to stock MIUI afterwards?",
+      "a": "Yes. Flash a stock MIUI build with the flash tool and you are back. Just remember that going back also means another wipe, so keep your backup somewhere safe."
+    }
+  ]
 }

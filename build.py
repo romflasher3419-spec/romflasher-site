@@ -1391,6 +1391,9 @@ def build_article(item, items):
                    % (heading, "".join(card(x, up) for x in picked)))
     else:
         heading = ("More for %s" % device) if device else "Keep reading"
+        # "More for Any Android" reads like a bug - general guides just say this.
+        if device and device.lower().startswith("any"):
+            heading = "More guides like this"
         out.append('<h2>%s</h2><div class="grid">%s</div>'
                    % (html.escape(heading), "".join(card(x, up) for x in picked)))
     if steps:
