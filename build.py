@@ -309,20 +309,52 @@ def newest_thumb(rows):
 
 
 def analytics_head():
-    """Analytics + AdSense loaders, but only once the IDs are configured."""
-    out = []
-    if GA4_ID:
-        out.append('<link rel="preconnect" href="https://www.googletagmanager.com">')
-        out.append('<script async src="https://www.googletagmanager.com/gtag/js?'
-                   'id=%s"></script>' % GA4_ID)
-        out.append("<script>window.dataLayer=window.dataLayer||[];function gtag()"
-                   "{dataLayer.push(arguments);}gtag('js',new Date());"
-                   "gtag('config','%s');</script>" % GA4_ID)
-    if ADS_PUBLISHER:
-        out.append('<script async src="https://pagead2.googlesyndication.com/'
-                   'pagead/js/adsbygoogle.js?client=ca-%s" crossorigin="anonymous">'
-                   '</script>' % ADS_PUBLISHER)
-    return "\n".join(out)
+    """Analytics + AdSense, loaded only after the visitor says yes.
+
+    Nothing is fetched, no cookie is set, and no banner is even shown while the
+    IDs below are empty - so the site stays completely clean until it is
+    actually earning something.
+    """
+    if not (GA4_ID or ADS_PUBLISHER):
+        return ""
+    return """<script>
+(function(){
+  var GA=%(ga)s, ADS=%(ads)s, KEY='rf-consent';
+  function load(){
+    if(GA){var s=document.createElement('script');s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      window.gtag=function(){dataLayer.push(arguments);};
+      gtag('js',new Date());gtag('config',GA);}
+    if(ADS){var a=document.createElement('script');a.async=true;
+      a.crossOrigin='anonymous';
+      a.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-'+ADS;
+      document.head.appendChild(a);}
+  }
+  var choice=null;
+  try{choice=localStorage.getItem(KEY);}catch(e){}
+  if(choice==='yes'){load();return;}
+  if(choice==='no'){return;}
+  function banner(){
+    var b=document.createElement('div');
+    b.className='consent';
+    b.innerHTML='<p>This site would like to set cookies for analytics and ads. '\
+      +'They tell me which guides actually helped. Nothing loads until you say yes.</p>'\
+      +'<div class="row"><button type="button" class="btn" id="rf-ok">That is fine</button>'\
+      +'<button type="button" class="btn ghost" id="rf-no">No thanks</button></div>';
+    document.body.appendChild(b);
+    document.getElementById('rf-ok').onclick=function(){
+      try{localStorage.setItem(KEY,'yes');}catch(e){}
+      b.parentNode.removeChild(b);load();};
+    document.getElementById('rf-no').onclick=function(){
+      try{localStorage.setItem(KEY,'no');}catch(e){}
+      b.parentNode.removeChild(b);};
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',banner);}else{banner();}
+})();
+</script>""" % {"ga": json.dumps(GA4_ID), "ads": json.dumps(ADS_PUBLISHER)}
 
 
 def verify_head():
@@ -1379,7 +1411,7 @@ def build_article(item, items):
         "mainEntityOfPage": {"@type": "WebPage", "@id": canon},
         "url": canon,
         "datePublished": pub,
-        "dateModified": BUILT_ON,
+        "dateModified": max(item.get("_mtime") or "", pub) or BUILT_ON,
         "inLanguage": "en",
         "isAccessibleForFree": True,
         "keywords": ", ".join(item.get("tags") or []),
@@ -1591,6 +1623,42 @@ phone to cover next helps this place just as much.</p>
                               "and both keep the free tool free.")
 
 
+def gear_box():
+    """What people actually need to buy after watching a flashing video.
+
+    Honest Amazon searches, never invented product links. The affiliate tag is
+    added only once one is configured, so the same box earns when it can and
+    stays a plain recommendation when it cannot.
+    """
+    tag = ("&tag=" + AMAZON_TAG) if AMAZON_TAG else ""
+    gear = [
+        ("USB-C OTG adapter", "usb+c+otg+adapter",
+         "Turns your phone into the host. This is the little part that decides "
+         "whether the tool can see the other phone at all."),
+        ("USB-C to USB-C cable", "usb+c+to+usb+c+data+cable",
+         "For phones on both ends. Get one rated for data, not just charging "
+         "&mdash; a charge-only cable is the usual reason a device never shows "
+         "up in fastboot."),
+        ("USB-A to USB-C cable", "usb+a+to+usb+c+data+cable",
+         "Still the most reliable cable in the drawer, and the one to keep if "
+         "you also flash from a PC."),
+    ]
+    cards = "".join(
+        '<a class="card" href="https://www.amazon.in/s?k=%s%s" target="_blank" '
+        'rel="nofollow sponsored noopener"><h3>%s</h3><p>%s</p>'
+        '<span class="foot">Search on Amazon</span></a>' % (q, tag, name, note)
+        for name, q, note in gear)
+    if AMAZON_TAG:
+        disc = ('<p class="dis">Those are affiliate links: buying through them '
+                'earns the channel a small commission and does not change the '
+                'price you pay. It is what pays for the phones that get flashed '
+                'on camera.</p>')
+    else:
+        disc = ('<p class="dis">Those are plain search links, not sponsors &mdash; '
+                'buy wherever it is cheapest for you.</p>')
+    return '<div class="grid">%s</div>%s' % (cards, disc)
+
+
 def build_download():
     """The page every Download button opens: what it does + a direct APK pull."""
     faq = [
@@ -1716,6 +1784,11 @@ recovery and sideloading for you &mdash; no PC and no terminal.</p>
 <span class="pill">vivo / iQOO</span><span class="pill">Google Pixel</span>
 <span class="pill">Android 8.0+</span><span class="pill">USB-OTG</span></div>
 
+<h2>The small things that make it work</h2>
+<p>Cables are the number one reason a phone never shows up in fastboot. These are
+the three I actually keep in the drawer.</p>
+{gear}
+
 <h2>Fresh in {ver}</h2>
 <p>This build is lighter and simpler than the first release: the download
 dropped by around 1.3&nbsp;MB, and there is nothing to type in when you open the
@@ -1747,7 +1820,8 @@ and it genuinely decides what I build and film next.</p>
 """.format(apk=APK_URL, rel=RELEASES_URL, yt=CHANNEL_URL, gh=GH_LOGO,
            ver=APP["version"], released=APP["released"], size=APP["size"],
            android=APP["android"], sha=APP["sha256"], feats=feats,
-           faq=faq_html, form=feedback_form(), thanks=donate_strip())
+           faq=faq_html, form=feedback_form(), thanks=donate_strip(),
+           gear=gear_box())
 
     blocks = [{
         "@context": "https://schema.org",
@@ -1872,13 +1946,20 @@ on <a href="%s" rel="noopener">GitHub</a>. New videos land on
 database. Standard server logs (IP address, user agent, page requested) may be
 kept by the host for security and abuse prevention.</p>
 <h2>Cookies and advertising</h2>
-<p>Advertising on this site may be served by third-party vendors, including
-Google. Google uses cookies to serve ads based on your prior visits to this and
-other websites &mdash; that is what makes an ad relevant instead of random.</p>
+<p>Analytics and advertising scripts do not load, and no banner is even shown,
+until you say yes. If you accept, advertising may be served by third-party
+vendors, including Google. Google uses cookies to serve ads based on your prior
+visits to this and other websites &mdash; that is what makes an ad relevant
+instead of random. Say no and the site keeps working exactly the same.</p>
 <p>You can opt out of personalised advertising at
 <a href="https://www.google.com/settings/ads" rel="noopener">Google Ads Settings</a>,
 or opt out of third-party vendor cookies at
 <a href="https://www.aboutads.info" rel="noopener">aboutads.info</a>.</p>
+<h2>Affiliate links</h2>
+<p>Some gear links on the download page are affiliate links. If you buy through
+them, the channel earns a small commission and the price you pay does not
+change. They are never the reason a recommendation exists &mdash; the cable
+recommendations are the ones I use.</p>
 <h2>Embedded videos</h2>
 <p>Pages here embed YouTube players. Once a player loads, YouTube's own terms and
 privacy policy apply, and its cookies may be set.</p>
@@ -1968,6 +2049,13 @@ def load_content():
         data.setdefault("blurb", data.get("title", ""))
         for key in ("tags", "links", "faq"):
             data.setdefault(key, [])
+        # When the written half of this guide was last touched - a real
+        # dateModified, instead of "today" on every single rebuild.
+        try:
+            data["_mtime"] = datetime.fromtimestamp(
+                os.path.getmtime(path)).strftime("%Y-%m-%d")
+        except OSError:
+            data["_mtime"] = ""
         if not data.get("body"):
             problems.append("%s: no body yet" % name)
         elif len(data["body"]) < 1800:

@@ -16,8 +16,8 @@
   "Root",
   "Bootloader"
  ],
- "summary": "",
- "body": "",
+ "summary": "MiuiMix V13 is a community MIUI 13 build running on Android 12 for the Xiaomi 11T Pro. It is not an official Xiaomi release, so there is no warranty and no Xiaomi OTA behind it. You need an unlocked bootloader, a custom recovery like TWRP, and the ROM zip on internal storage, and it wipes your data.",
+ "body": "MiuiMix is a community MIUI build, not something Xiaomi ships. Nothing about it is official, there is no warranty, and the usual Xiaomi over-the-air updates do not arrive on it. Treat it exactly like what it is.\n\nSo why flash it? Because it keeps MIUI where you like MIUI and tunes the parts that annoyed you. You get the familiar launcher and settings, the MIUI apps you already know, and none of the first-day setup dread that comes with a bare AOSP build.\n\nHere is what I actually saw when it came up cold on the 11T Pro.\n\n## What it looks like on first boot\n\nThe boot takes a while — it is a full flash, so the first launch is doing more work than a normal restart. Once it lands you get the MIUI setup flow, and it feels like MIUI. Not a stripped-down imitation of it.\n\nThe launcher is the MIUI launcher. The settings app is the MIUI settings app, laid out the way you remember, with the differences slightly further in. If you have used MIUI before, your fingers already know where everything is.\n\n## What changed from stock\n\nThe differences are in the tuned parts, and you notice them by using the phone rather than by reading a list.\n\n- The interface feels lighter than a stock build on the same hardware.\n- Some of the stock MIUI extras that people find heavy-handed are handled differently.\n- It sits on an Android 12 base underneath the MIUI 13 layer.\n\nThat last point matters. You are not getting Xiaomi's newest code with this build. You are getting a community MIUI 13 experience on Android 12, tuned. If you want the newest Android under MIUI, this is not the build for that.\n\n## What you need before you flash\n\n- An **unlocked bootloader**. Nothing works until that is done, and unlocking wipes the phone.\n- A **custom recovery** like TWRP, already working on the device.\n- The **ROM zip** copied to internal storage, not to your PC.\n- A full backup and a battery above half.\n\n## The flash, in order\n\n1. Copy the ROM zip to internal storage and check it is actually there.\n2. Reboot into recovery.\n3. Wipe data. Moving from one MIUI base to a custom build always means a wipe, so do it before you flash, not after.\n4. Flash the ROM zip.\n5. Reboot to system and let it do its first boot without interference.\n\nThat is the whole job. The order is not complicated, but the order is the thing.\n\n## What is broken or worth knowing\n\nLet me be straight about the trade-offs, because a tuned MIUI build is not free of them.\n\n- **No Xiaomi OTA.** Updates come from the build's own source, on its own schedule. If you want updates the moment Xiaomi ships them, this is the wrong build.\n- **Bank apps depend on the app.** On a clean, unrooted flash most of them work fine. Root the phone and some will refuse, because root is what they are checking for.\n- **It is community software.** If something is broken, there is no support line. There is a thread, and there are other people running the same build.\n\nRoot is not required for any of this, by the way. You can run MiuiMix completely unrooted, and doing so keeps the bank-app picture simpler.\n\n## Who should install it\n\nInstall it if you like MIUI and want a version of it that has been tuned, without leaving the MIUI feel behind. Install it if you have used custom ROMs before and you know what a data wipe costs you.\n\nSkip it if you depend on timely security updates, if you want the newest Android base, or if this would be your first flash and you are doing it on your only phone on a Sunday night.\n\nIf the driver and platform tools side is the part you dread, the free Rom Flasher tool on GitHub handles the ADB and fastboot driver install in a couple of clicks. It is free, and the link is in the downloads section.",
  "video_description": "MiuiMix V13 on the Xiaomi 11T Pro — a custom MIUI 13 build running on Android 12, booting it up and walking the setup so you can see what you're downloading before you flash it.\n\nMiuiMix is a community MIUI build, not an official Xiaomi release, so there's no warranty and no Xiaomi OTA behind it. In this clip I flash it on the 11T Pro and let it boot cold, then look through the settings and the launcher. If you're on stock MIUI and you've been wondering whether a tuned MIUI build is worth the evening, this is the quick version.\n\n📱 Device  : Xiaomi 11T Pro\n🧩 ROM     : MiuiMix V13\n🤖 Android : 12\n\n🎬 In This Clip\n• Cold boot on the 11T Pro after the flash.\n• First setup screens and the launcher as it lands.\n• A quick look through settings, the parts that differ from stock MIUI.\n• The download link, so you can grab the same build.\n\n❓ Common Questions\n• What do I need before I flash? An unlocked bootloader, a custom recovery like TWRP, and the ROM zip on internal storage.\n• Will it wipe my phone? Yes. Moving from one MIUI base to a custom build always means a data wipe, so copy your photos off first.\n• Do I need root? No. Root is separate — you can run this build completely unrooted.\n• Is it an official Xiaomi ROM? No. It's a custom MIUI build, so treat it as one.\n• Will bank apps work? That depends on the app and whether you root. On a clean unrooted flash, most work fine.",
  "links": [
   {
@@ -29,5 +29,26 @@
    "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
   }
  ],
- "faq": []
+ "faq": [
+  {
+   "q": "Is MiuiMix an official Xiaomi ROM?",
+   "a": "No. It is a community MIUI build, so there is no Xiaomi warranty, no official support, and no Xiaomi OTA updates behind it. Treat it the same way you would treat any custom ROM and keep your own backups."
+  },
+  {
+   "q": "Will flashing MiuiMix wipe my phone?",
+   "a": "Yes. Moving from one MIUI base to a custom build always means a data wipe, so copy your photos and files off the phone before you start. Expect the setup screens and a fairly long first boot afterwards."
+  },
+  {
+   "q": "Do I need root to use MiuiMix?",
+   "a": "No. Root is completely separate from the ROM, and you can run this build unrooted. Staying unrooted is also the safer choice if you care about bank apps, since several of them check for root specifically."
+  },
+  {
+   "q": "Will banking apps work on this ROM?",
+   "a": "That depends on the app and on whether you root the phone. On a clean unrooted flash, most banking apps work fine. Once you add root, some of them will refuse to open, and that is the app's own check, not a fault in the ROM."
+  },
+  {
+   "q": "Do I need a custom recovery to flash it?",
+   "a": "Yes. You need an unlocked bootloader and a custom recovery like TWRP already working on the device. The ROM zip goes on internal storage, not on your PC, and you flash it from recovery after wiping data."
+  }
+ ]
 }

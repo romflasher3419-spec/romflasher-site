@@ -16,8 +16,8 @@
   "Install",
   "Root"
  ],
- "summary": "",
- "body": "",
+ "summary": "HyperOS 4 has been ported to the Xiaomi Pad 5, and you can install it without a PC, without Termux and without typing a single command. Three taps in the free Rom Flasher tool, confirm the format, and the tablet boots into the new UI. It comes pre-rooted with KernelSU, but the Xiaomi Pen and keyboard do not work yet.",
+ "body": "Every ROM guide starts with a PC, a cable, and a list of commands. This one does not. HyperOS 4 is running on the Xiaomi Pad 5 and you can put it there from the tablet itself, sitting on the couch, with nothing but taps.\n\nThat is a real change in how this feels. No driver to fight, no platform tools, no black window scrolling partition names at you. If you have ever given up halfway through a fastboot guide, this is the install for you.\n\n## What you need\n\n- Xiaomi Pad 5.\n- The HyperOS 4 port for the Pad 5, either as a package or an extracted folder sitting in storage.\n- The free Rom Flasher tool installed on the tablet itself.\n- A backup of anything you care about, because the flash formats the data partition.\n\nThat last one matters. The data format is part of the process, not optional.\n\n## Step 1 — connect and let the tool see the tablet\n\nOpen the free Rom Flasher tool. It picks up the device on its own. If it does not see the tablet, sort that out here rather than pushing through.\n\n## Step 2 — reboot into fastboot and confirm\n\nThe tool sends the tablet to fastboot. You confirm on screen, which is a nice touch — you are not guessing whether it worked.\n\n## Step 3 — pick the ROM in the Flash section\n\nGo to the Flash section and select your HyperOS 4 port. You can point it at either the ROM file or the extracted folder, whichever you have to hand. Then choose the Windows-style flash path when it asks, because the tool is built around that flow.\n\n## Step 4 — confirm the format and let it run\n\nThe tool asks you to confirm the data format. Say yes. Then let the flash run all the way to the end and keep your hands off the tablet while it does.\n\n## Step 5 — first boot\n\nFirst boot takes a few minutes. Let it finish, run through setup, and you are in HyperOS 4.\n\n## What you get\n\n- **Liquid Glass design** across the whole system.\n- **New animations, themes and a reworked Control Center.**\n- **Pre-rooted with KernelSU 1.0.5.80 Legacy**, so root is already in place. No patching a boot image.\n- **InstallerX Revived** replacing the stock HyperOS package installer.\n- **MSA, AnalyticsCore and MiuiTrustService removed**, with Gboard added.\n- **Memory Extension off by default.** Turning Advanced Textures off too makes things noticeably smoother.\n\n## What is broken right now\n\nStraight from the port's own notes, and worth reading before you commit:\n\n- **Xiaomi Pen and the keyboard do not work yet.** If you use the tablet with the keyboard as a laptop replacement, this is a hard stop.\n- **Screen casting is broken.**\n- **Some occasional lag can show up.**\n\n## One honest paragraph\n\nHyperOS 4 on a Pad 5 is a fun thing to have, and the no-PC install makes it harder to mess up than a command-line flash. The catch is that this is a fresh port and the missing pen and keyboard support are not small details on a tablet — they are the reason a lot of people bought the accessory in the first place.\n\nSo treat this as the build you test on the tablet, not the one you rely on. If you mostly watch, read and browse on it, you will probably be happy. If the keyboard lives attached to it, wait for that to get sorted.\n\nCredits where they are due: ported by @hxfuxyyXD, with testing from @FoL4Ik gmd, @antoshkagsm, @AlexeyProger and @Misha_803, vendor from @mytiantian001, debug help from @netusd and @oodze. It is ported from the Xiaomi Pad 8 Pro.",
  "video_description": "HyperOS 4 ported to the Xiaomi Pad 5, and you can put it on without a PC, without Termux and without typing one command. Three taps in the tool, a format confirmation, and the tablet boots into a new UI. Then we take the full tour: Liquid Glass, animations, themes, Control Center, all of it.\n\n🛠️ What You Need\n• Xiaomi Pad 5\n• The HyperOS 4 port for the Pad 5, either as a package or an extracted folder in storage\n• The Rom Flasher Tool installed on the tablet\n• A backup of anything you care about, because the flash formats the data partition\n\n📝 Steps\n1. Connect the tablet and open the tool. It picks up the device.\n2. Reboot into fastboot and confirm on screen.\n3. Go to the Flash section and select either the ROM file or the extracted folder.\n4. Choose the Windows-style flash path when it asks, since the tool is built around that flow.\n5. Confirm the format prompt, then let the flash run to the end.\n6. First boot takes a few minutes. Set up, and you're in HyperOS 4.\n\n🧊 What You Get\n• Liquid Glass design across the system\n• New animations, themes and Control Center layout\n• Pre-rooted with KernelSU 1.0.5.80 Legacy, so root is already in place\n• Stock HyperOS package installer swapped for InstallerX Revived\n• MSA, AnalyticsCore and MiuiTrustService removed, Gboard added\n• Memory Extension off by default, and turning Advanced Textures off makes things smoother\n\n⚠️ Current Issues (straight from the port's own notes)\n• Xiaomi Pen and the keyboard don't work yet\n• Screen casting is broken\n• Some occasional lag can show up\n\n❤️ Credits\nPorted by @hxfuxyyXD. Testing: @FoL4Ik gmd, @antoshkagsm, @AlexeyProger, @Misha_803. Vendor: @mytiantian001. Debug help: @netusd & @oodze. Ported from the Xiaomi Pad 8 Pro.",
  "links": [
   {
@@ -33,5 +33,26 @@
    "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
   }
  ],
- "faq": []
+ "faq": [
+  {
+   "q": "Can I install HyperOS 4 on the Xiaomi Pad 5 without a PC?",
+   "a": "Yes. The free Rom Flasher tool runs on the tablet itself, so there is no PC, no Termux and no commands to type. You select the ROM in the Flash section, confirm the format, and let it run."
+  },
+  {
+   "q": "Does this HyperOS 4 port wipe the Xiaomi Pad 5?",
+   "a": "Yes. The flash formats the data partition, so internal storage is cleared. Back up your photos and files before you start, and expect to run through setup afterwards."
+  },
+  {
+   "q": "Is HyperOS 4 pre-rooted on the Pad 5?",
+   "a": "Yes. This port ships pre-rooted with KernelSU 1.0.5.80 Legacy, so root is already active and you do not need to patch and flash a boot image yourself."
+  },
+  {
+   "q": "Do the Xiaomi Pen and keyboard work on this HyperOS 4 port?",
+   "a": "Not yet. The port's own notes list the Xiaomi Pen and the keyboard as not working, along with screen casting. If you rely on the keyboard, hold off on this build."
+  },
+  {
+   "q": "The tablet feels laggy after installing HyperOS 4. What can I do?",
+   "a": "The port notes mention occasional lag. Memory Extension is off by default, and turning Advanced Textures off as well makes things smoother. Give a fresh port a reboot or two before you judge it."
+  }
+ ]
 }

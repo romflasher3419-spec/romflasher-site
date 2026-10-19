@@ -11,6 +11,28 @@ pages = sorted(glob.glob(os.path.join(DIST, "**", "*.html"), recursive=True))
 bad_ld, no_kw, no_desc, no_canon, types = [], [], [], [], {}
 total_blocks = 0
 
+
+def count_types(node, bag):
+    """Count every @type in a block, including the nested ones.
+
+    A CollectionPage carries its ItemList inside mainEntity and a FAQPage hides
+    its Questions - those are the rich results that matter, so the report has to
+    be able to see them.
+    """
+    if isinstance(node, dict):
+        value = node.get("@type")
+        if isinstance(value, str):
+            bag[value] = bag.get(value, 0) + 1
+        elif isinstance(value, list):
+            for one in value:
+                bag[one] = bag.get(one, 0) + 1
+        for child in node.values():
+            count_types(child, bag)
+    elif isinstance(node, list):
+        for child in node:
+            count_types(child, bag)
+
+
 for p in pages:
     t = io.open(p, encoding="utf-8").read()
     rel = os.path.relpath(p, DIST)
@@ -22,7 +44,7 @@ for p in pages:
         except Exception as e:
             bad_ld.append("%s: %s" % (rel, e))
             continue
-        types[obj.get("@type")] = types.get(obj.get("@type"), 0) + 1
+        count_types(obj, types)
     if 'name="keywords"' not in t:
         no_kw.append(rel)
     if 'name="description"' not in t:
