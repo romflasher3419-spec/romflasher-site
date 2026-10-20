@@ -39,7 +39,10 @@ env:
   # Optional IDs - everything stays switched off while these are empty, so the
   # site never ships half-configured. Uncomment + fill in when you have them.
   # ROMFLASHER_GA4: ${{ vars.ROMFLASHER_GA4 }}
-  # ROMFLASHER_ADS: ${{ vars.ROMFLASHER_ADS }}
+  # Publisher id. Setting this ships the AdSense verification tag in <head> on
+  # every page, so the review crawler can find it. No ad, cookie or request is
+  # made before a visitor accepts - see adsense_verify() in build.py.
+  ROMFLASHER_ADS: ${{ vars.ROMFLASHER_ADS }}
   # ROMFLASHER_AMAZON: ${{ vars.ROMFLASHER_AMAZON }}
   # ROMFLASHER_GOOGLE: ${{ vars.ROMFLASHER_GOOGLE }}
   # ROMFLASHER_BING: ${{ vars.ROMFLASHER_BING }}

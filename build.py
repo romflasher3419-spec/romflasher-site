@@ -389,6 +389,27 @@ def verify_head():
     return "\n".join(out)
 
 
+def adsense_verify():
+    """AdSense ownership proof - and ONLY that.
+
+    Google's review crawler looks for the loader tag in the raw HTML, so it has
+    to sit in <head> outside the consent gate. Loading the loader also does not
+    serve or request a single ad: Google keeps every request idle until an
+    <ins class="adsbygoogle"> is pushed, and those are only pushed by
+    ad_slot(), which in turn only renders once the visitor accepts. So the
+    privacy promise stays exactly as written - no cookie, no ad, no tracking
+    before consent.
+
+    Only emitted while ADS_PUBLISHER is set, so a half-finished setup can never
+    ship the tag.
+    """
+    if not ADS_PUBLISHER:
+        return ""
+    return ('<script async src="https://pagead2.googlesyndication.com/pagead/'
+            'js/adsbygoogle.js?client=ca-%s" crossorigin="anonymous"></script>'
+            % html.escape(ADS_PUBLISHER))
+
+
 def heading_ids(html_text):
     """Stable ids on every h2/h3 plus the list the table of contents needs."""
     toc, seen = [], {}
@@ -647,6 +668,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<link rel="preconnect" href="https://i.ytimg.com">',
         '<link rel="dns-prefetch" href="https://www.youtube-nocookie.com">',
         verify_head(),
+        adsense_verify(),
         analytics_head(),
         '<link rel="stylesheet" href="%sstatic/style.css">' % up,
         '<link rel="alternate" type="application/rss+xml" title="%s" '
