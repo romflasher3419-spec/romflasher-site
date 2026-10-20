@@ -102,9 +102,9 @@ APP = {
 #     is not in that list is dropped at build time, with a warning, instead of
 #     silently hiding the wrong thing on people's phones.
 # ---------------------------------------------------------------------------
-APP_REV = 2
-APP_HIDE = ["payloadDumper", "rootWizard", "romDownloader"]          # e.g. ["payloadDumper"] during maintenance
-APP_NOTICE = "Payload Dumper and the ROM Downloader are being rebuilt. Back in a day or two."        # e.g. "Payload Dumper is being rebuilt. Back soon."
+APP_REV = 1
+APP_HIDE = []          # e.g. ["payloadDumper"] during maintenance
+APP_NOTICE = ""        # e.g. "Payload Dumper is being rebuilt. Back soon."
 
 # The switch names the app understands. Keep in step with RemoteConfig.Feature
 # in the Android project - tests catch a drift, but naming them here too makes
