@@ -52,7 +52,7 @@ env:
   # set to the file name Google hands out. build.py then writes that file into
   # dist/ on every build.
   ROMFLASHER_GOOGLE_FILE: ${{ vars.ROMFLASHER_GOOGLE_FILE }}
-  # ROMFLASHER_BING: ${{ vars.ROMFLASHER_BING }}
+  ROMFLASHER_BING: ${{ vars.ROMFLASHER_BING }}
   # IndexNow key. build.py writes <key>.txt into dist/ so the engines can fetch
   # it before trusting a submission; _indexnow.py does the pinging.
   ROMFLASHER_INDEXNOW: ${{ vars.ROMFLASHER_INDEXNOW }}
