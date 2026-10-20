@@ -131,7 +131,7 @@ def app_config_json():
         print("     app-config: rev %d | hiding %s | notice %s"
               % (APP_REV, hide or "nothing",
                  "set" if APP_NOTICE else "none"))
-    return "{ broken json ]]]"
+    return json.dumps(payload, indent=1, ensure_ascii=False) + "\n"
 
 # Where "send me a message" lands. FormSubmit needs no account: the first
 # submission mails an activation link to this address, one click and it is live.
