@@ -102,9 +102,14 @@ APP = {
 #     is not in that list is dropped at build time, with a warning, instead of
 #     silently hiding the wrong thing on people's phones.
 # ---------------------------------------------------------------------------
-APP_REV = 1
-APP_HIDE = []          # e.g. ["payloadDumper"] during maintenance
+APP_REV = 2
+APP_HIDE = []          # e.g. ["payloadDumper"] - card disappears completely
+APP_SOON = []          # e.g. ["payloadDumper"] - card stays, blurred, "coming soon"
 APP_NOTICE = ""        # e.g. "Payload Dumper is being rebuilt. Back soon."
+
+# The line drawn across a card that is in APP_SOON. One string, so the whole
+# app says the same thing and there is nothing to keep in step by hand.
+APP_SOON_LABEL = "\U0001F527 Back with fixes soon"
 
 # The switch names the app understands. Keep in step with RemoteConfig.Feature
 # in the Android project - tests catch a drift, but naming them here too makes
@@ -121,15 +126,28 @@ def app_config_json():
     unknown = [x for x in APP_HIDE if x not in APP_FEATURES]
     for bad in unknown:
         print("  [WARN] app-config: '%s' is not a known feature - dropped" % bad)
+    unknown = [x for x in APP_SOON if x not in APP_FEATURES]
+    for bad in unknown:
+        print("  [WARN] app-config: '%s' is not a known feature - dropped" % bad)
     hide = [x for x in APP_HIDE if x in APP_FEATURES]
+    soon = [x for x in APP_SOON if x in APP_FEATURES]
+    # A card cannot be both gone and blurred; hide wins, and that is worth
+    # saying out loud rather than shipping a config that contradicts itself.
+    for name in soon:
+        if name in hide:
+            print("  [WARN] app-config: '%s' is in both hide and soon - "
+                  "hiding it" % name)
+    soon = [x for x in soon if x not in hide]
     payload = {
         "rev": APP_REV,
         "hide": hide,
+        "soon": soon,
+        "soonLabel": APP_SOON_LABEL,
         "notice": APP_NOTICE,
     }
-    if hide or APP_NOTICE:
-        print("     app-config: rev %d | hiding %s | notice %s"
-              % (APP_REV, hide or "nothing",
+    if hide or soon or APP_NOTICE:
+        print("     app-config: rev %d | hiding %s | soon %s | notice %s"
+              % (APP_REV, hide or "nothing", soon or "nothing",
                  "set" if APP_NOTICE else "none"))
     return json.dumps(payload, indent=1, ensure_ascii=False) + "\n"
 
@@ -163,6 +181,15 @@ PAYPAL_URL = "https://paypal.me/vrohit3419"
 COFFEE_LOGO = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 3H4v10c0 '
              '2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1'
              '.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>')
+
+# The YouTube play mark as it looked for years: a rounded red rectangle with a
+# white triangle. Drawn in one colour (currentColor) so it sits inside the nav
+# button's own fill instead of painting a second, competing red.
+YT_LOGO = ('<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">'
+           '<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4'
+           '.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1'
+           ' 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24'
+           ' 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>')
 
 CARD_LOGO = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6a2 2 0 0 1 '
              '2-2h16a2 2 0 0 1 2 2v1H2V6zm0 3h20v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9zm3 '
@@ -738,16 +765,19 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<header class="top"><div class="wrap">',
         '  <a class="brand" href="%sindex.html"><img class="applogo" '
         'src="%sstatic/app.png" alt="Rom Flasher tool icon" width="30" '
-        'height="30">Rom<b>Flasher</b></a>' % (up, up),
+        'height="30"><span class="brandtx"><span class="brandname">Rom<b>Flasher</b></span>'
+        '<span class="brandsub">All-In-One Android Tool</span></span></a>' % (up, up),
         "  <nav>",
+        "    <span class=\"navplain\">",
         '    <a href="%sindex.html">Home</a>' % up,
         '    <a href="%svideos.html">Guides</a>' % up,
         '    <a href="%sapps.html">Tool</a>' % up,
+        "    </span>",
         '    <a class="navbtn hot" href="%sdownload.html">Download</a>' % up,
         '    <a class="navbtn donate" href="%sdonate.html">%sCoffee</a>' % (up, COFFEE_LOGO),
         '    <a class="navbtn gh" href="%s" rel="noopener" '
         'aria-label="Rom Flasher tool on GitHub">%sGitHub</a>' % (REPO_URL, GH_LOGO),
-        '    <a class="yt" href="%s" rel="noopener">YouTube</a>' % CHANNEL_URL,
+        '    <a class="yt" href="%s" rel="noopener">%sYouTube</a>' % (CHANNEL_URL, YT_LOGO),
         "  </nav>",
         "</div></header>",
     ])
@@ -1986,6 +2016,11 @@ update.</p>
 does not mention stays visible, a broken or missing file hides nothing, and with
 no internet the app just runs on its last good copy. It is never a paywall, and
 right now it hides nothing at all &mdash; your dashboard is exactly what it was.</p>
+<p>A card can also be put <b>on hold instead of removed</b>. It stays exactly where
+it is, blurred, with a line across it, and tapping it does nothing &mdash; so a
+feature under repair never leaves a gap where a familiar button used to be. As
+with everything else here, if the app cannot reach this site it shows every card
+normally, so nobody is ever locked out of a working build.</p>
 <p>The update rule is unchanged too. When a newer Rom Flasher is out, one dialog
 appears with <b>Update</b>, which opens this site, and <b>Close</b>, which closes
 the app. Closing is not a way past it &mdash; open the app again and the same

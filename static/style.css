@@ -28,7 +28,12 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+  /* the page colour, so the strip a mobile browser paints behind the page is
+     the theme colour and not white/black */
+  background-color:var(--bg);
+}
 
 body{
   margin:0;
@@ -37,11 +42,25 @@ body{
   font:16px/1.68 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
   background-color:var(--bg);
+  /* The colour wash lives on a fixed, full-viewport layer drawn BEHIND the page
+     (see body::before) instead of on `background-attachment:fixed`. Mobile
+     browsers handle that attachment badly: it repaints the wash a beat late on a
+     fast flick and the page colour flashes through as black bars top and bottom.
+     A position:fixed pseudo-element is painted once and never scrolls, so there
+     is nothing to lag behind. */
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background-color:var(--bg);
   background-image:
     radial-gradient(1200px 720px at 6% -12%, rgba(108,99,255,.26), transparent 62%),
     radial-gradient(900px 620px at 98% 0%,  rgba(255,45,155,.16), transparent 60%),
     radial-gradient(900px 700px at 54% 110%,rgba(90,200,250,.11), transparent 62%);
-  background-attachment:fixed;
   background-repeat:no-repeat;
 }
 
@@ -81,10 +100,21 @@ header.top .wrap{
   box-shadow:0 0 0 1px rgba(255,255,255,.14),0 12px 30px -14px rgba(108,99,255,.95);
   background:rgba(255,255,255,.05);
 }
+/* the name with its one-line promise stacked underneath */
+.brand .brandtx{display:flex;flex-direction:column;justify-content:center}
+.brand .brandname{display:block}
+.brand .brandsub{
+  display:block;margin-top:-1px;
+  font-size:10.5px;font-weight:700;line-height:1.2;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--dim);
+}
 .brand b{
   background:var(--grad);
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
+}
+@media(max-width:560px){
+  .brand .brandsub{font-size:9px;letter-spacing:.08em}
 }
 
 nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -92,15 +122,23 @@ nav a{
   color:var(--dim);font-size:14px;padding:7px 12px;border-radius:10px;
   border:1px solid transparent;transition:color .18s,background .18s,border-color .18s;
 }
+/* Filled buttons keep no border at all. A transparent 1px border still takes up
+   space under `border-radius` + `overflow:hidden`, and the browser then paints
+   the background inside that inset edge - which shows up as a faint, flickering
+   seam around a gradient. Removing it lets the fill run cleanly to the radius. */
+nav a.navbtn.hot,nav a.navbtn.donate,nav a.yt{border:0}
 nav a:hover{color:var(--fg);text-decoration:none;background:rgba(255,255,255,.06)}
 nav a.navbtn{border-color:var(--line);color:var(--fg)}
+/* The YouTube button wears the channel's classic livery: a flat YouTube red,
+   the way the mark looked for years, rather than the pink-to-red gradient it
+   had grown. Solid colour, one shade, no sweeping ramp. */
 nav a.yt{
   position:relative;overflow:hidden;
   border-color:transparent;color:#fff;font-weight:600;
-  background-image:linear-gradient(120deg,#ff2d55,#ff0033);
-  box-shadow:0 10px 26px -14px rgba(255,0,51,.95);
+  background-image:none;background-color:#ff0000;
+  box-shadow:0 10px 26px -14px rgba(255,0,0,.85);
 }
-nav a.yt:hover{background-image:linear-gradient(120deg,#ff4d70,#ff1a4a)}
+nav a.yt:hover{background-color:#cc0000}
 nav a.yt:hover{text-decoration:none}
 
 /* Every nav button is exactly the same box, whatever sits inside it.
@@ -108,24 +146,39 @@ nav a.yt:hover{text-decoration:none}
    sweep used the sticky header as its box and lit up the whole top bar. */
 nav a.navbtn,nav a.yt,nav a.gh{
   position:relative;overflow:hidden;
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  height:38px;min-width:108px;padding:0 16px;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  height:38px;min-width:112px;padding:0 14px;
   font-size:14px;font-weight:600;line-height:1;
+  /* Keeps the rounded edge crisp. Without it the gradient and the shine sweep
+     are rasterised in the same layer as the border-radius, and the seam between
+     them shimmers as the button lifts on hover. */
+  background-clip:padding-box;
+  isolation:isolate;
 }
 nav a.gh{
   background-image:none;background-color:#161b22;
   border:1px solid rgba(255,255,255,.18);color:#fff;
   box-shadow:0 10px 26px -16px rgba(0,0,0,1);
+  /* A hairline rgba border is drawn at a fractional device pixel on most
+     screens, which leaves a soft, uneven edge. The dark button keeps its
+     outline, but at a crisp 1px so it does not shimmer on hover. */
+  border-width:1px;
 }
 nav a.gh:hover{background-color:#21262d;color:#fff}
 nav a.gh svg{width:17px;height:17px;flex:0 0 auto;fill:currentColor}
+nav a.yt svg{width:18px;height:18px;flex:0 0 auto;fill:currentColor}
 /* the thank-you button, dressed in the same gold the app uses */
 nav a.donate{
   background-image:linear-gradient(115deg,#FFD700,#FF8A00);
-  border-color:transparent;color:#241705;font-weight:700;
+  color:#241705;font-weight:700;
   box-shadow:0 12px 28px -16px rgba(255,180,0,.95);
 }
 nav a.donate:hover{color:#241705;background-color:transparent;filter:saturate(118%)}
+/* The mug icon needs its size spelled out, like the GitHub one above. An SVG
+   with no width/height sizes itself from the line box, so it drifted ~37%
+   larger than the GitHub mark next to it and changed with the font. Pinning it
+   to the same 17px keeps the two icons visually matched. */
+nav a.donate svg{width:17px;height:17px;flex:0 0 auto;fill:currentColor}
 
 /* ------------------------------------------------------------ hero + cards */
 .hero{padding:56px 0 38px;border-bottom:1px solid var(--line)}
@@ -173,6 +226,9 @@ nav a.donate:hover{color:#241705;background-color:transparent;filter:saturate(11
 }
 .btn.gold:hover{color:#241705;filter:saturate(118%);
   box-shadow:0 22px 52px -22px rgba(255,170,0,1)}
+/* Same reasoning as the nav mug: an SVG with no explicit size grows to fill
+   the line box, so the gold button's mug came out bigger than the GitHub mark
+   beside it. Matching .btn.dark's 19px lines the two up. */
 .btn.gold svg{width:19px;height:19px;flex:0 0 auto;fill:currentColor}
 .btn.paypal{
   background-image:linear-gradient(120deg,#0070BA,#005EA6);color:#fff;
@@ -246,7 +302,6 @@ h2:first-child{margin-top:0}
 /* ------------------------------------------------------- download page */
 nav a.navbtn.hot{
   background-image:var(--grad);color:#fff;font-weight:700;
-  border-color:transparent;
   box-shadow:0 12px 28px -16px rgba(108,99,255,1);
 }
 nav a.navbtn.hot:hover{color:#fff;background-color:transparent;filter:saturate(115%)}
@@ -314,6 +369,7 @@ nav a.navbtn.hot:hover{color:#fff;background-color:transparent;filter:saturate(1
 .feat h3{margin:0 0 8px;font-size:15.5px;color:#fff}
 .feat ul{margin:0;padding-left:20px}
 .feat li{color:#d3d9e8;font-size:14.2px;margin-bottom:4px}
+.feat p{margin:0;color:#d3d9e8;font-size:14.2px}
 
 .steps{counter-reset:s;list-style:none;margin:14px 0;padding:0}
 .steps li{
@@ -627,18 +683,25 @@ footer .browse a{color:#cfd7ff;font-weight:500}
 ::selection{background:rgba(108,99,255,.45)}
 
 /* ------------------------------------------------------------ cursor light */
-/* A soft, colourful glow that travels with the pointer. It is fixed and sits at
-   z-index:-1, i.e. above the page's own background gradients but behind every
-   card and line of text - so the glass surfaces blur and tint it instead of
-   covering it up, and nothing ever becomes hard to read.
+/* A soft, colourful glow that travels with the pointer.
+   It has to sit ABOVE the page's background wash (body::before, also fixed at
+   z-index:-1) or the wash's opaque fill paints straight over it and the light
+   never shows. Both were -1, and paint order between two equal z-indexes falls
+   back to DOM order, where the ::before always wins. Lifting the glow to 0 puts
+   it over the wash but still under the page content, which is what makes the
+   glass surfaces blur and tint it instead of hiding it.
    Two layers: a wide slow one that trails, and a bright one that keeps up. */
 .cursorlight{
   /* How bright the light is. 1 = full strength, .7 = 30% softer,
      .49 = 30% softer again. This is the one number to change. */
   --light:.49;
-  position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
   opacity:0;transition:opacity .5s ease;
 }
+/* Content has to paint above the glow. These are the page-level containers the
+   templates actually emit; `position:relative` with z-index:auto lifts them
+   without touching the sticky header or the nav grid. */
+.hero,article,.wrap,footer{position:relative;z-index:1}
 .cursorlight.on{opacity:var(--light)}
 .cursorlight i{
   position:absolute;left:0;top:0;border-radius:50%;
@@ -686,3 +749,116 @@ footer .browse a{color:#cfd7ff;font-weight:500}
    creative from pushing the layout sideways on a narrow phone. */
 .adslot{margin:26px 0;overflow:hidden}
 .adslot ins{display:block;width:100%}
+
+/* ==========================================================================
+   Phones
+   The desktop layout is a wide two-axis thing; on a phone the job is different -
+   one column, predictable sizes, and nothing allowed to poke out sideways and
+   give the page a horizontal scroll. Everything here keys off width, never off
+   a device name, so it holds for any browser that reports a narrow viewport.
+   ========================================================================== */
+
+/* Nothing on a phone should be able to create sideways scroll. Long device
+   names, `code` runs and pasted URLs are the usual culprits. */
+html,body{max-width:100%;overflow-x:hidden}
+img,video,iframe,table{max-width:100%}
+code,pre,.hash{
+  overflow-wrap:anywhere;word-break:break-word;
+}
+
+@media(max-width:820px){
+  /* one column, and the gutters stop eating the content width */
+  .wrap{padding:0 16px}
+  .grid{grid-template-columns:1fr;gap:14px}
+  .dl{grid-template-columns:1fr}
+  .donategrid{grid-template-columns:1fr}
+
+  /* the hero: smaller type so the headline is not five words to a line */
+  .hero{padding:34px 0 26px}
+  .hero h1{font-size:clamp(24px,7vw,32px)}
+  .hero p{font-size:16px}
+
+  /* article body: tighter box, less wasted margin */
+  article{padding:22px 16px 56px}
+  .head h1{font-size:clamp(22px,6.4vw,30px)}
+  .prose h2{font-size:20px}
+  h2{font-size:21px}
+  h3{font-size:17px}
+
+  /* a table on a phone scrolls inside its own box instead of stretching the
+     page - the frame stays put, the table slides */
+  table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+
+@media(max-width:600px){
+  /* The top bar stacks: brand on its own line, then the nav under it, because
+     side by side leaves no room for either. The sticky bar has to stay short -
+     it eats the top of every article - so the brand block and the nav both use
+     tight padding and the plain links shrink to compact pills. */
+  header.top .wrap{
+    min-height:0;padding-top:8px;padding-bottom:8px;
+    gap:6px;row-gap:6px;
+  }
+  .brand{font-size:20px;width:100%;gap:9px}
+  .brand .applogo{width:1.05em;height:1.05em}
+  .brand .brandsub{font-size:9px;letter-spacing:.08em}
+
+  /* The nav wraps instead of scrolling sideways. A hidden scroll strip looked
+     like missing tabs: the last three sat off the right edge with nothing to
+     hint they were there, so now every link is on screen.
+     The markup splits the nav into the plain links (one row) and the four
+     boxed buttons, and a two-column grid lays the buttons out as a true 2x2.
+     A grid cell cannot be rounded up into a wider last slot the way a wrapped
+     flex item can, so Download / Coffee / GitHub / YouTube always come out
+     exactly the same size - no orphaned full-width YouTube at the bottom. */
+  nav{
+    width:100%;gap:6px;row-gap:6px;overflow:visible;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .navplain{
+    grid-column:1/-1;
+    display:flex;flex-wrap:wrap;gap:4px;
+  }
+  nav a{padding:4px 8px;font-size:12.5px;white-space:nowrap}
+  nav a.navbtn,nav a.yt,nav a.gh{
+    height:34px;width:100%;padding:0 10px;
+    font-size:12.5px;gap:7px;
+  }
+  nav a.gh svg{width:15px;height:15px}
+  nav a.donate svg{width:15px;height:15px}
+  nav a.yt svg{width:15px;height:15px}
+
+  /* buttons go full width: a thumb aiming at a 40%-wide button misses it */
+  .btn,.subbtn{width:100%;margin-right:0;text-align:center;justify-content:center}
+  .btn.ghost{margin-top:8px}
+
+  /* tap targets stop being fiddly */
+  .faq summary{padding:14px 14px}
+  .pill{font-size:12.5px;padding:6px 11px}
+
+  /* the video frame keeps its 16:9 box but gets a little less padding */
+  .videobox{padding:12px}
+  .card{padding:15px 15px}
+  .card h3{font-size:16px}
+
+  /* the footer link rows stack cleanly rather than wrapping mid-link */
+  footer .wrap{padding-bottom:26px}
+}
+
+/* Very narrow phones (a 320px iPhone SE, or a zoomed-in browser). */
+@media(max-width:380px){
+  .wrap{padding:0 12px}
+  .hero h1{font-size:22px}
+  .brand{font-size:20px}
+  nav a{padding:4px 7px;font-size:12px}
+  nav a.navbtn,nav a.yt,nav a.gh{padding:0 8px;font-size:12px;gap:6px}
+  nav a.gh svg{width:14px;height:14px}
+  nav a.donate svg{width:14px;height:14px}
+  nav a.yt svg{width:14px;height:14px}
+}
+
+/* Landscape phones: the hero does not need a tall block when height is scarce. */
+@media(max-width:900px) and (orientation:landscape){
+  .hero{padding:22px 0 18px}
+  .hero h1{font-size:clamp(22px,4.4vw,30px)}
+}
