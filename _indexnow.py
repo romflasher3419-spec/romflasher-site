@@ -84,6 +84,12 @@ def submit(urls):
         return e.code
 
 
+# One request carries at most 10,000 URLs, but a batch that big from a host the
+# engine has never seen is often answered 403. Sending them in small groups is
+# both within the spec and accepted in practice.
+BATCH = 100
+
+
 def main():
     if not KEY:
         sys.exit("[X] ROMFLASHER_INDEXNOW is not set")
@@ -98,20 +104,33 @@ def main():
 
     check_key_live()
     print("     submitting %d url(s) to %s" % (len(urls), ENDPOINT))
-    status = submit(urls)
-    if status in (200, 202):
-        print("[OK] IndexNow accepted (%d)" % status)
+    ok = 0
+    bad = []
+    for i in range(0, len(urls), BATCH):
+        chunk = urls[i:i + BATCH]
+        status = submit(chunk)
+        if status in (200, 202):
+            ok += len(chunk)
+        else:
+            bad.append((status, i // BATCH + 1))
+        print("     batch %d/%d (%d urls) -> %s"
+              % (i // BATCH + 1, (len(urls) + BATCH - 1) // BATCH,
+                 len(chunk), status))
+
+    if not bad:
+        print("[OK] IndexNow accepted all %d url(s)" % ok)
         return 0
-    if status == 400:
-        print("[X] 400 - the payload was malformed")
-    elif status == 403:
-        print("[X] 403 - the key file did not match")
-    elif status == 422:
-        print("[X] 422 - the URLs belong to another host, or the key is invalid")
-    elif status == 429:
-        print("[X] 429 - too many submissions, wait and retry")
-    else:
-        print("[X] unexpected status %s" % status)
+    print("[!] %d url(s) accepted, %d batch(es) refused: %s"
+          % (ok, len(bad), ", ".join("#%d->%s" % (b, s) for s, b in bad)))
+    for status, _ in bad:
+        if status == 400:
+            print("    400 - the payload was malformed")
+        elif status == 403:
+            print("    403 - the key file did not match")
+        elif status == 422:
+            print("    422 - the URLs belong to another host, or the key is invalid")
+        elif status == 429:
+            print("    429 - too many submissions, wait and retry")
     return 1
 
 
