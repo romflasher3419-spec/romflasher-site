@@ -114,6 +114,9 @@ and publishes it to GitHub Pages.** The workflow runs `_seocheck.py` and
 
    It lists whatever is still missing, then prints `READY` and exits 0 when the
    domain truly answers from GitHub Pages.
+   `python _flip_status.py` is the read-only counterpart: one screen saying which
+   of these seven steps are actually done, and which still need a hand. It never
+   changes anything, so it is safe to run at any point.
 4. **Register the domain with Pages** - GitHub → **Settings → Pages → Custom
    domain** → `romflasher.in` → **Save**. Wait for *DNS check successful*, then
    tick **Enforce HTTPS**. The certificate is only issued at this point, so
