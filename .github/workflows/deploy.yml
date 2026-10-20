@@ -53,6 +53,9 @@ env:
   # dist/ on every build.
   ROMFLASHER_GOOGLE_FILE: ${{ vars.ROMFLASHER_GOOGLE_FILE }}
   # ROMFLASHER_BING: ${{ vars.ROMFLASHER_BING }}
+  # IndexNow key. build.py writes <key>.txt into dist/ so the engines can fetch
+  # it before trusting a submission; _indexnow.py does the pinging.
+  ROMFLASHER_INDEXNOW: ${{ vars.ROMFLASHER_INDEXNOW }}
 
   # Ad units. ROMFLASHER_ADS is the publisher id (pub-...); each slot is the
   # numeric id AdSense prints for that unit. All three stay off while the

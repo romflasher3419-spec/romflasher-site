@@ -77,6 +77,10 @@ if GOOGLE_FILE_NAME.lower().startswith("google-site-verification:"):
     GOOGLE_FILE_NAME = GOOGLE_FILE_NAME.split(":", 1)[1].strip()
 if GOOGLE_FILE_NAME and not GOOGLE_FILE_NAME.endswith(".html"):
     GOOGLE_FILE_NAME += ".html"
+# IndexNow. It proves ownership by asking for <key>.txt at the site root, and
+# that file must contain the key itself. Any hex string will do; set
+# ROMFLASHER_INDEXNOW to the same value used when pinging the endpoint.
+INDEXNOW_KEY = os.environ.get("ROMFLASHER_INDEXNOW", "").strip()
 TOOL_URL = "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
 REPO_URL = "https://github.com/romflasher3419-spec/rom-flasher-tool"
 CHANNEL_URL = "https://www.youtube.com/@Rom_Flasher"
@@ -2406,6 +2410,10 @@ def main():
     if GOOGLE_FILE_NAME:
         write(GOOGLE_FILE_NAME, "google-site-verification: %s\n"
               % GOOGLE_FILE_NAME)
+
+    # IndexNow ownership file: <key>.txt at the site root, containing the key.
+    if INDEXNOW_KEY:
+        write(INDEXNOW_KEY + ".txt", INDEXNOW_KEY + "\n")
 
     newest_date = max((x.get("published") or BUILT_ON for x in items),
                       default=BUILT_ON)
