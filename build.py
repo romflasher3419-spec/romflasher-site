@@ -749,12 +749,12 @@ pausing the video twenty times.</p>
 <a class="btn ghost" href="videos.html">Browse all %d guides</a>
 </div></section>
 <div class="wrap">
-<div class="ad">Ads appear here once the site is approved</div>
+%s
 <h2>Newest guides</h2>
 <div class="grid">%s</div>
 <h2>Most watched</h2>
 <div class="grid">%s</div>
-</div>""" % (TAGLINE, len(items),
+</div>""" % (TAGLINE, len(items), ad_slot("hub"),
              "".join(card(x) for x in by_date),
              "".join(card(x) for x in by_views))
 

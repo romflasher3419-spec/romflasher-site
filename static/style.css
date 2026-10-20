@@ -511,11 +511,6 @@ details.desc .inner h3{
   border:1px solid rgba(191,90,242,.30);
 }
 
-.ad{
-  border:1px dashed var(--line2);color:var(--dim2);font-size:13.5px;
-  text-align:center;margin:24px 0;
-}
-
 /* --------------------------------------------------------------- controls */
 .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0 10px}
 input[type=search],select{
