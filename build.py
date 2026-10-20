@@ -79,11 +79,11 @@ APK_URL = REPO_URL + "/releases/latest/download/app-release.apk"
 RELEASES_URL = REPO_URL + "/releases"
 
 APP = {
-    "version": "v1.2.2",
+    "version": "v1.2.3",
     "released": "20 Oct 2026",
     "size": "8.3 MB",
-    "bytes": "8708382",
-    "sha256": "38A38F5A4A07F11C4E71B3E14AC05C22690E3C2A0797E09C1789A6E120DD7A7A",
+    "bytes": "8708397",
+    "sha256": "D010C2047963FE37A6BB7E8F1E508733B130D3DC5126EF622E1C1FC5286DB1B6",
     "android": "Android 8.0 or newer",
 }
 
@@ -1978,15 +1978,20 @@ the three I actually keep in the drawer.</p>
 {gear}
 
 <h2>Fresh in {ver}</h2>
-<p>This build keeps the app on the newest version. When a newer Rom Flasher is
-out, one dialog appears with two buttons: <b>Update</b>, which opens this site in
-your browser, and <b>Close</b>, which closes the app. Closing is not a way past
-it &mdash; open the app again and the same dialog is there until you install the
-new build. An app that flashes firmware has no business running months out of
-date.</p>
-<p>Nothing changes if you are already on the newest build: the app opens straight
-to the dashboard. And the check never runs while you are working, so a flash,
-sideload or download is never interrupted by it.</p>
+<p>This build adds a thin control line between this site and the app. The app
+reads one small file here on every launch, so a card can be taken down for repair
+or a short notice shown without a new APK and without asking anyone to
+update.</p>
+<p>That file is an <b>override list</b>, which is what makes it safe: anything it
+does not mention stays visible, a broken or missing file hides nothing, and with
+no internet the app just runs on its last good copy. It is never a paywall, and
+right now it hides nothing at all &mdash; your dashboard is exactly what it was.</p>
+<p>The update rule is unchanged too. When a newer Rom Flasher is out, one dialog
+appears with <b>Update</b>, which opens this site, and <b>Close</b>, which closes
+the app. Closing is not a way past it &mdash; open the app again and the same
+dialog is there until you install the new build. And if the check cannot get a
+straight answer, the app opens normally, so nobody is locked out of a working
+build.</p>
 
 <h2>Questions people ask</h2>
 {faq}
