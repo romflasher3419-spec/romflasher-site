@@ -2436,10 +2436,10 @@ def main():
                 for hub in hubs.values()]
     for kind, kind_hubs in group_hubs.items():
         cfg = HUB_KINDS[kind]
-        entries.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod>'
-                       '<changefreq>weekly</changefreq>'
-                       '<priority>0.6</priority></url>'
-                       % (SITE_URL, cfg["index"], newest_date))
+        # The four hub index pages (brands/roms/years/topics) already appear in
+        # static_urls above, so they are deliberately skipped here. Emitting them
+        # twice puts the same <loc> in the sitemap twice, which Search Console
+        # reports as a duplicate and which dilutes the lastmod signal.
         entries += ['<url><loc>%s/%s/%s.html</loc><lastmod>%s</lastmod>'
                     '<changefreq>weekly</changefreq><priority>0.6</priority></url>'
                     % (SITE_URL, cfg["dir"], hub["slug"],
