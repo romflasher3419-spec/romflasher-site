@@ -4,7 +4,7 @@ The written half of the **Rom Flasher** YouTube channel. Every video on the
 channel gets one page here with the same steps in text, its real description,
 its download links and the questions people actually ask.
 
-**Live:** https://romflasher3419-spec.github.io/romflasher-site/
+**Live:** https://romflasher.in/
 **Repo:** https://github.com/romflasher3419-spec/romflasher-site
 
 | | |
@@ -68,11 +68,18 @@ Nothing is uploaded by hand. **Push to `main` and
 and publishes it to GitHub Pages.** The workflow runs `_seocheck.py` and
 `qa.py --links`, so a broken build never goes live.
 
-### Going live on romflasher.in
+### Going live on romflasher.in — DONE
 
-The site only moves once the domain's DNS answers, and each step below makes the
-next one safe. Skipping ahead - especially writing the CNAME early - takes the
-working site offline.
+> **Status: live.** `romflasher.in` is registered at Hostinger (DNS served by
+> `horizon/orbit.dns-parking.com`), the nine records below are in place, the
+> custom domain is set on Pages, and the repo variable `ROMFLASHER_DOMAIN` is
+> `romflasher.in`. The site answers on **https://romflasher.in/** and every
+> canonical, sitemap and structured-data URL points there.
+>
+> The steps are kept here because the same order is what makes a domain move
+> safe: DNS first, then Pages, then the variable that rewrites the URLs, then
+> the app. Skipping ahead - especially writing the CNAME early - takes the
+> working site offline.
 
 1. **Buy `romflasher.in`** at a registrar that takes UPI (Hostinger, GoDaddy
    India, BigRock and Namecheap all sell `.in`). Turn auto-renew on.
@@ -87,12 +94,17 @@ working site offline.
    AAAA   @      2606:50c0:8001::153
    AAAA   @      2606:50c0:8002::153
    AAAA   @      2606:50c0:8003::153
-   CNAME  www    romflasher3419-spec.github.io
+   CNAME  www    romflasher.in
    ```
 
    The apex goes to GitHub's four addresses, **not** to a CNAME of the
    `github.io` host - an apex CNAME breaks the mail and any other records on the
-   same name.
+   same name. (A `www` CNAME of `romflasher3419-spec.github.io` also works, and
+   is what GitHub's own docs show; the apex must still be the four A records.)
+   On Hostinger the parking record is an `A` for `@` pointing at `2.57.91.91` -
+   that one has to be edited, not left alongside the new four, or half the
+   visitors land on the parking page. TTL must be 60-86400 there; `0` is
+   rejected.
 3. **Wait, then check.** DNS spreads in minutes, but a slow resolver can take an
    hour.
 
@@ -105,7 +117,15 @@ working site offline.
 4. **Register the domain with Pages** - GitHub → **Settings → Pages → Custom
    domain** → `romflasher.in` → **Save**. Wait for *DNS check successful*, then
    tick **Enforce HTTPS**. The certificate is only issued at this point, so
-   HTTPS failing before here is normal, not a fault.
+   HTTPS failing before here is normal, not a fault. Both can be done from the
+   CLI instead (the endpoint is `PUT`, not `PATCH`, and the body field is
+   `https_enforcement`, while the response calls it `https_enforced`):
+
+   ```powershell
+   gh api -X PUT repos/romflasher3419-spec/romflasher-site/pages `
+     -F cname=romflasher.in -F https_enforcement=true
+   gh api repos/romflasher3419-spec/romflasher-site/pages/health   # DNS verdict
+   ```
 5. **Switch the site over** - GitHub → **Settings → Secrets and variables →
    Actions → Variables → New variable**:
 
@@ -115,7 +135,9 @@ working site offline.
 
    Then push anything (or re-run *Build and publish the site*). That single
    variable writes `dist/CNAME` and points every canonical URL, sitemap entry
-   and structured-data `url` at the new home. Nothing else needs editing.
+   and structured-data `url` at the new home. Nothing else needs editing. From
+   the CLI: `gh variable set ROMFLASHER_DOMAIN --body romflasher.in`, then
+   `gh workflow run deploy.yml`.
 6. **Tell the app** - one line in the tool repo, at
    `app/src/main/java/com/romflasher/tool/ui/SiteLink.kt`:
 
@@ -143,6 +165,9 @@ variables: *Settings → Secrets and variables → Actions → Variables*).
 | `ROMFLASHER_SITE_URL` | overrides just the URLs, when they differ from the domain |
 | `ROMFLASHER_GA4` | Google Analytics 4 — **only after the visitor says yes** |
 | `ROMFLASHER_ADS` | AdSense: the loader **and** a correct `ads.txt` |
+| `ROMFLASHER_SLOT_ARTICLE` | ad unit at the end of every guide article |
+| `ROMFLASHER_SLOT_LIST` | ad unit under the guides table |
+| `ROMFLASHER_SLOT_HUB` | ad unit on the home page and the hub pages |
 | `ROMFLASHER_AMAZON` | adds your Associates tag to the gear links |
 | `ROMFLASHER_GOOGLE` | Search Console verification meta tag |
 | `ROMFLASHER_BING` | Bing Webmaster verification meta tag |
@@ -153,6 +178,28 @@ site behaves exactly the same.
 
 `ads.txt` is only written when `ROMFLASHER_ADS` is set — a wrong `ads.txt` on a
 real AdSense site is worse than no file at all.
+
+### Ad placements
+
+The three `ROMFLASHER_SLOT_*` values are the numeric unit ids AdSense shows next
+to each ad unit you create (Ads → By ad unit → the id in the snippet). Each unit
+is off on its own, and all of them stay off while `ROMFLASHER_ADS` is empty, so
+a half-set-up account cannot publish units that 404.
+
+```powershell
+gh variable set ROMFLASHER_ADS          --body "pub-0000000000000000"
+gh variable set ROMFLASHER_SLOT_ARTICLE --body "1234567890"
+gh variable set ROMFLASHER_SLOT_LIST    --body "1234567891"
+gh variable set ROMFLASHER_SLOT_HUB     --body "1234567892"
+gh workflow run deploy.yml
+```
+
+The markup is Google's own snippet, unchanged, because the queue push is what
+fills the box. That push only writes into a plain array — before
+`adsbygoogle.js` loads there is no request, no cookie and no Google script on the
+page, and the consent gate only loads that script after the visitor accepts.
+Decline and each `<ins>` is an empty zero-height block, so no gap is left where
+an ad would have been. With the switches empty, no wrapper is emitted at all.
 
 ## Search engines
 

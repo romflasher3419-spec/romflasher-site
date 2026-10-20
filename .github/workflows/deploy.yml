@@ -44,6 +44,14 @@ env:
   # ROMFLASHER_GOOGLE: ${{ vars.ROMFLASHER_GOOGLE }}
   # ROMFLASHER_BING: ${{ vars.ROMFLASHER_BING }}
 
+  # Ad units. ROMFLASHER_ADS is the publisher id (pub-...); each slot is the
+  # numeric id AdSense prints for that unit. All three stay off while the
+  # publisher id is empty, so an approved-but-unfinished account cannot publish
+  # units that 404. Uncomment once the units exist.
+  # ROMFLASHER_SLOT_ARTICLE: ${{ vars.ROMFLASHER_SLOT_ARTICLE }}
+  # ROMFLASHER_SLOT_LIST: ${{ vars.ROMFLASHER_SLOT_LIST }}
+  # ROMFLASHER_SLOT_HUB: ${{ vars.ROMFLASHER_SLOT_HUB }}
+
 jobs:
   build:
     name: Build dist/
