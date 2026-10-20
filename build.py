@@ -69,6 +69,14 @@ AD_SLOTS = {
 AMAZON_TAG = os.environ.get("ROMFLASHER_AMAZON", "")   # "romflasher-21"
 GOOGLE_VERIFY = os.environ.get("ROMFLASHER_GOOGLE", "")  # Search Console token
 BING_VERIFY = os.environ.get("ROMFLASHER_BING", "")      # Bing Webmaster token
+# Search Console can also verify by serving a file at the site root. Either the
+# file name ("google8e8e....html") or the whole "google-site-verification: ..."
+# line is accepted here; only the name survives into the built file.
+GOOGLE_FILE_NAME = os.environ.get("ROMFLASHER_GOOGLE_FILE", "").strip()
+if GOOGLE_FILE_NAME.lower().startswith("google-site-verification:"):
+    GOOGLE_FILE_NAME = GOOGLE_FILE_NAME.split(":", 1)[1].strip()
+if GOOGLE_FILE_NAME and not GOOGLE_FILE_NAME.endswith(".html"):
+    GOOGLE_FILE_NAME += ".html"
 TOOL_URL = "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
 REPO_URL = "https://github.com/romflasher3419-spec/rom-flasher-tool"
 CHANNEL_URL = "https://www.youtube.com/@Rom_Flasher"
@@ -2388,6 +2396,16 @@ def main():
               % ADS_PUBLISHER)
     if CUSTOM_DOMAIN:
         write("CNAME", CUSTOM_DOMAIN + "\n")
+
+    # Google Search Console, "HTML file" method. The file is a single line -
+    # "google-site-verification: google<hex>.html" - and has to be served at the
+    # site root under exactly the name Google issued, so it is written here
+    # rather than committed, which also keeps dist/ the single source of truth.
+    # Set ROMFLASHER_GOOGLE_FILE to the file name (or the whole line) and the
+    # file appears on the next build.
+    if GOOGLE_FILE_NAME:
+        write(GOOGLE_FILE_NAME, "google-site-verification: %s\n"
+              % GOOGLE_FILE_NAME)
 
     newest_date = max((x.get("published") or BUILT_ON for x in items),
                       default=BUILT_ON)

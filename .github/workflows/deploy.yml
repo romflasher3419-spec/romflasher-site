@@ -45,6 +45,10 @@ env:
   ROMFLASHER_ADS: ${{ vars.ROMFLASHER_ADS }}
   # ROMFLASHER_AMAZON: ${{ vars.ROMFLASHER_AMAZON }}
   # ROMFLASHER_GOOGLE: ${{ vars.ROMFLASHER_GOOGLE }}
+  # Search Console's "HTML file" method: repo variable ROMFLASHER_GOOGLE_FILE
+  # set to the file name Google hands out. build.py then writes that file into
+  # dist/ on every build.
+  ROMFLASHER_GOOGLE_FILE: ${{ vars.ROMFLASHER_GOOGLE_FILE }}
   # ROMFLASHER_BING: ${{ vars.ROMFLASHER_BING }}
 
   # Ad units. ROMFLASHER_ADS is the publisher id (pub-...); each slot is the
