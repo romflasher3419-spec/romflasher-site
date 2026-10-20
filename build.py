@@ -1,4 +1,4 @@
-"""Rom Flasher static site builder.
+﻿"""Rom Flasher static site builder.
 
     python build.py                 # dist/ from content/
     python build.py --serve 8080    # local preview server
@@ -86,6 +86,52 @@ APP = {
     "sha256": "38A38F5A4A07F11C4E71B3E14AC05C22690E3C2A0797E09C1789A6E120DD7A7A",
     "android": "Android 8.0 or newer",
 }
+
+# ---------------------------------------------------------------------------
+# Remote feature flags for the app  ->  dist/app-config.json
+#
+# The app reads this on every launch. Edit APP_HIDE to switch cards off, and
+# APP_NOTICE to put a line under the header. Bump APP_REV so the change is
+# easy to spot in the log.
+#
+# House rules:
+#   * APP_HIDE lists what to HIDE. Anything not listed stays visible, so an
+#     empty list - the normal state - shows every card in the app.
+#   * APP_NOTICE is "" in normal times.
+#   * Valid names are exactly the keys in app_config_json() below. A name that
+#     is not in that list is dropped at build time, with a warning, instead of
+#     silently hiding the wrong thing on people's phones.
+# ---------------------------------------------------------------------------
+APP_REV = 1
+APP_HIDE = []          # e.g. ["payloadDumper"] during maintenance
+APP_NOTICE = ""        # e.g. "Payload Dumper is being rebuilt. Back soon."
+
+# The switch names the app understands. Keep in step with RemoteConfig.Feature
+# in the Android project - tests catch a drift, but naming them here too makes
+# the two sides readable together.
+APP_FEATURES = [
+    "fastboot", "sideload", "customImage", "advancedReboot", "slotManager",
+    "tools", "payloadDumper", "appManager", "rootWizard", "kernel",
+    "fileManager", "romDownloader",
+]
+
+
+def app_config_json():
+    """Build dist/app-config.json, warning loudly about unknown switch names."""
+    unknown = [x for x in APP_HIDE if x not in APP_FEATURES]
+    for bad in unknown:
+        print("  [WARN] app-config: '%s' is not a known feature - dropped" % bad)
+    hide = [x for x in APP_HIDE if x in APP_FEATURES]
+    payload = {
+        "rev": APP_REV,
+        "hide": hide,
+        "notice": APP_NOTICE,
+    }
+    if hide or APP_NOTICE:
+        print("     app-config: rev %d | hiding %s | notice %s"
+              % (APP_REV, hide or "nothing",
+                 "set" if APP_NOTICE else "none"))
+    return json.dumps(payload, indent=1, ensure_ascii=False) + "\n"
 
 # Where "send me a message" lands. FormSubmit needs no account: the first
 # submission mails an activation link to this address, one click and it is live.
@@ -1745,7 +1791,7 @@ expected, and it never changes a single thing about what you get.</p>
 <li>Fewer evenings lost to dead mirrors and broken packages</li>
 </ul>
 
-<p>Thank you for keeping this going. &nbsp;💛</p>
+<p>Thank you for keeping this going. &nbsp;ðŸ’›</p>
 <p>If money is not the thing right now, that is completely fine &mdash; the
 <a href="download.html#talk-to-me">message box</a> is open. Telling me which
 phone to cover next helps this place just as much.</p>
@@ -2288,6 +2334,12 @@ def main():
         ],
     }, indent=1))
     write(".nojekyll", "")
+
+    # The app's remote feature flags. Read by Rom Flasher on every launch; see
+    # RemoteConfig.kt. Kept here so the file the app fetches and the file we
+    # shipped are always the same one, and so a typo is caught at build time
+    # rather than silently hiding a card from everyone.
+    write("app-config.json", app_config_json())
 
     if ADS_PUBLISHER:
         # Written only when the AdSense publisher really exists - a wrong ads.txt
