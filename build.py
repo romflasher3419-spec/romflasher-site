@@ -51,6 +51,21 @@ SITE_URL = (os.environ.get("ROMFLASHER_SITE_URL", "").strip()
 # Paste the value, rebuild, and that one feature turns itself on.
 GA4_ID = os.environ.get("ROMFLASHER_GA4", "")          # "G-XXXXXXXXXX"
 ADS_PUBLISHER = os.environ.get("ROMFLASHER_ADS", "")   # "pub-0000000000000000"
+
+# AdSense hands out a numeric slot id per ad unit you create in the dashboard.
+# Each placement here is off until its own id is set, and all of them stay off
+# while ADS_PUBLISHER is empty - so a half-set-up account can never ship a
+# broken unit. One value, one placement:
+#
+#     ROMFLASHER_SLOT_ARTICLE  -> end of every guide article
+#     ROMFLASHER_SLOT_LIST     -> the guides table page
+#     ROMFLASHER_SLOT_HUB      -> brand / ROM / device / year hub pages
+#
+AD_SLOTS = {
+    "article": os.environ.get("ROMFLASHER_SLOT_ARTICLE", "").strip(),
+    "list": os.environ.get("ROMFLASHER_SLOT_LIST", "").strip(),
+    "hub": os.environ.get("ROMFLASHER_SLOT_HUB", "").strip(),
+}
 AMAZON_TAG = os.environ.get("ROMFLASHER_AMAZON", "")   # "romflasher-21"
 GOOGLE_VERIFY = os.environ.get("ROMFLASHER_GOOGLE", "")  # Search Console token
 BING_VERIFY = os.environ.get("ROMFLASHER_BING", "")      # Bing Webmaster token
@@ -855,6 +870,8 @@ ROM or anything in the title.</p>
 <table><thead><tr><th>Guide</th><th>Device</th><th>Released</th><th>Views</th></tr></thead>
 <tbody id="rows">%s</tbody></table>
 
+%s
+
 <h2 style="font-size:20px;margin:28px 0 0">Browse by phone</h2>
 <p class="dis">A page per device, collecting every guide for it.</p>
 <div class="chips">%s</div>
@@ -918,7 +935,8 @@ all %d guides</button></p>
   if (pre) { q.value = pre; }
   sortRows(); apply();
 })();
-</script>""" % (len(items), chips, "\n".join(rows), device_chips, browse, len(items))
+</script>""" % (len(items), chips, "\n".join(rows), ad_slot("list"), device_chips,
+                   browse, len(items))
     newest = sorted(items, key=lambda x: x.get("published") or "", reverse=True)
     block = {
         "@context": "https://schema.org",
@@ -1189,6 +1207,8 @@ live. %(devices)s</p>
 <h2>More ways to browse</h2>
 <div class="chips">%(other)s</div>
 
+%(ad)s
+
 <h2>Related %(word)ss</h2>
 <div class="chips">%(siblings)s</div>
 </section></div>""" % {
@@ -1197,6 +1217,7 @@ live. %(devices)s</p>
             sorted({clean_device(x.get("device")) for x in rows
                     if clean_device(x.get("device"))})[:10]))) if kind != "year" else "",
         "up": up, "total": total, "table": table, "faq": faq_html,
+        "ad": ad_slot("hub", up),
         "other": other_kinds, "word": cfg["word"], "siblings": siblings}
 
     blocks = [{
@@ -1287,6 +1308,32 @@ def build_hub_index(kind, hubs, total, items):
                 cfg["index"], extra_head=head,
                 keywords=keywords_for(extra=(head_line[0],
                                              cfg["label"].lower())))
+
+
+def ad_slot(place, up=""):
+    """One AdSense unit, or nothing at all while its slot id is unset.
+
+    The markup is Google's own snippet, unchanged, because the queue push is
+    what actually fills the box. The push only writes into a plain array, so
+    before adsbygoogle.js loads there is no request, no cookie and no script
+    from Google on the page - and the consent gate in analytics_head() only
+    loads adsbygoogle.js after the visitor says yes. Decline, and the <ins> is
+    an empty block with zero height: no gap where an ad would have been.
+
+    Fenced off behind the publisher id as well, so an approved-but-unfinished
+    account cannot publish units that 404.
+    """
+    slot = AD_SLOTS.get(place, "")
+    if not (slot and ADS_PUBLISHER):
+        return ""
+    return (
+        '<div class="adslot" data-ad-place="%s">'
+        '<ins class="adsbygoogle" style="display:block" '
+        'data-ad-client="ca-%s" data-ad-slot="%s" '
+        'data-ad-format="auto" data-full-width-responsive="true"></ins>'
+        '<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>'
+        '</div>' % (html.escape(place), html.escape(ADS_PUBLISHER),
+                    html.escape(slot)))
 
 
 def build_article(item, items):
@@ -1419,6 +1466,8 @@ def build_article(item, items):
                            % (inline(f.get("q", "")), md(f.get("a", "")))
                            for f in faq)
         out.append("<h2>Common questions</h2>%s" % faq_html)
+
+    out.append(ad_slot("article", up))
 
     out.append('<div class="links"><h2>Before you flash</h2><ul>'
                "<li>Back up everything you would miss &mdash; unlocking and "
@@ -1869,6 +1918,8 @@ flashing, tools, the stock ROM downloader and backups.</p>
 <h2>Questions people ask</h2>
 {faq}
 
+{ad}
+
 <h2>Before you flash</h2>
 <p class="dis">Flashing firmware is risky. Back up first, keep a way to recover,
 and only flash files built for your exact model. Rom Flasher is not affiliated
@@ -1891,8 +1942,8 @@ and it genuinely decides what I build and film next.</p>
 """.format(apk=APK_URL, rel=RELEASES_URL, yt=CHANNEL_URL, gh=GH_LOGO,
            ver=APP["version"], released=APP["released"], size=APP["size"],
            android=APP["android"], sha=APP["sha256"], feats=feats,
-           faq=faq_html, form=feedback_form(), thanks=donate_strip(),
-           gear=gear_box())
+           faq=faq_html, ad=ad_slot("hub", ""), form=feedback_form(),
+           thanks=donate_strip(), gear=gear_box())
 
     blocks = [{
         "@context": "https://schema.org",

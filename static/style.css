@@ -685,3 +685,9 @@ footer .browse a{color:#cfd7ff;font-weight:500}
   *{transition:none!important;animation:none!important}
   .card:hover,.btn:hover,.chip:hover{transform:none}
 }
+
+/* AdSense units. The box is only in the page when a slot id is set, so with
+   ads off there is no wrapper to leave a gap. `overflow:hidden` keeps a wide
+   creative from pushing the layout sideways on a narrow phone. */
+.adslot{margin:26px 0;overflow:hidden}
+.adslot ins{display:block;width:100%}
