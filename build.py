@@ -79,11 +79,11 @@ APK_URL = REPO_URL + "/releases/latest/download/app-release.apk"
 RELEASES_URL = REPO_URL + "/releases"
 
 APP = {
-    "version": "v1.2.0",
-    "released": "19 Oct 2026",
-    "size": "8.29 MB",
-    "bytes": "8692031",
-    "sha256": "C0507AB2E3334C8B7130B9F01FA954DAACF5598476EF0C0C4F36305323D8CCAD",
+    "version": "v1.2.2",
+    "released": "20 Oct 2026",
+    "size": "8.3 MB",
+    "bytes": "8708382",
+    "sha256": "38A38F5A4A07F11C4E71B3E14AC05C22690E3C2A0797E09C1789A6E120DD7A7A",
     "android": "Android 8.0 or newer",
 }
 
@@ -1932,10 +1932,15 @@ the three I actually keep in the drawer.</p>
 {gear}
 
 <h2>Fresh in {ver}</h2>
-<p>This build is lighter and simpler than the first release: the download
-dropped by around 1.3&nbsp;MB, and there is nothing to type in when you open the
-app &mdash; install it and use it. Everything else is the app you already know:
-flashing, tools, the stock ROM downloader and backups.</p>
+<p>This build keeps the app on the newest version. When a newer Rom Flasher is
+out, one dialog appears with two buttons: <b>Update</b>, which opens this site in
+your browser, and <b>Close</b>, which closes the app. Closing is not a way past
+it &mdash; open the app again and the same dialog is there until you install the
+new build. An app that flashes firmware has no business running months out of
+date.</p>
+<p>Nothing changes if you are already on the newest build: the app opens straight
+to the dashboard. And the check never runs while you are working, so a flash,
+sideload or download is never interrupted by it.</p>
 
 <h2>Questions people ask</h2>
 {faq}
