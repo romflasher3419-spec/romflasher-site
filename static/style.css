@@ -239,8 +239,10 @@ nav a.donate svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
 .homerow .homecol{min-width:0}
 .adrail{min-width:0}
 /* If the ad does not actually fill (ad blocker, no consent or no fill),
-   the column is wasted and the cards should spread across the whole page. */
-.homerow.withad:has(.adrail .adslot:not(:has(ins[data-ad-status="filled"]))){
+   the column is wasted and the cards should spread across the whole page.
+   The test is one level deep on purpose: a :has() inside another :has()
+   is not allowed by the browser. */
+.homerow.withad:has(.adrail .adslot ins:not([data-ad-status="filled"])){
   grid-template-columns:minmax(0,1fr);
 }
 @media(max-width:1040px){
@@ -791,6 +793,9 @@ details.faq .ans p:last-child{margin-bottom:0}
 .dlopts{
   display:grid;gap:12px;margin:18px 0 6px;
   grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+  /* Two tiles on a wide screen would stretch to half the page each. The row
+     stops at a size where the text still reads as a card. */
+  max-width:980px;
 }
 .dlopt{
   display:block;padding:15px 17px;border-radius:14px;text-decoration:none;
@@ -1178,6 +1183,9 @@ footer .browse a{color:#cfd7ff;font-weight:500}
 .adslot ins{display:block;width:100%;max-height:0;overflow:hidden}
 .adslot:has(ins[data-ad-status="filled"]){max-height:none;margin:26px 0}
 .adslot:has(ins[data-ad-status="filled"]) ins{max-height:none;overflow:visible}
+/* The rail is 320px wide, so the unit inside it must not stretch to the full
+   width of the row while the row is still one column wide. */
+.adrail .adslot{max-width:320px}
 
 /* ==========================================================================
    Phones
@@ -1238,11 +1246,16 @@ code,pre,.hash{
   .links .dlshort{display:inline}
 }
 
-@media(max-width:600px){
-  /* On a phone the header does not stick: it scrolls away with the page so
-     the content gets every pixel, and the menu button drops the five pills
-     into a single drop-down panel - the same three-line mark every Android
-     app puts in its top bar. */
+/* The header and the menu button. Below 760px the five pills cannot sit on one
+   line - they either wrap into a second row or, on a phone, used to stack as a
+   2x2 block under the logo - so they all fold into one menu button instead:
+   the same three-line mark every Android app puts in its top bar. The panel
+   opens over the page rather than pushing the content down.
+
+   The header also stops sticking here. Pinned, it would hold a slice of every
+   screen away from the content, and on a phone the panel would float over
+   the text it covers. */
+@media(max-width:760px){
   header.top{position:relative}
   header.top .wrap{
     min-height:0;padding-top:8px;padding-bottom:8px;
@@ -1294,7 +1307,9 @@ code,pre,.hash{
   nav a.yt svg{width:14px;height:14px}
   nav a.navbtn.hot svg{width:14px;height:14px}
   nav a.navbtn.guides svg{width:14px;height:14px}
+}
 
+@media(max-width:600px){
   /* buttons go full width: a thumb aiming at a 40%-wide button misses it */
   .btn,.subbtn{width:100%;margin-right:0;text-align:center;justify-content:center}
   .btn.ghost{margin-top:8px}
@@ -1332,13 +1347,6 @@ code,pre,.hash{
   .wrap{padding:0 12px}
   .hero h1{font-size:22px}
   .brand{font-size:20px}
-  nav a{padding:4px 7px;font-size:12px}
-  nav a.navbtn,nav a.yt,nav a.gh{padding:0 7px;font-size:11.5px;gap:4px}
-  nav a.gh svg{width:12px;height:12px}
-  nav a.donate svg{width:12px;height:12px}
-  nav a.yt svg{width:11px;height:11px}
-  nav a.navbtn.hot svg{width:11px;height:11px}
-  nav a.navbtn.guides svg{width:11px;height:11px}
 }
 
 /* Landscape phones: the hero does not need a tall block when height is scarce. */

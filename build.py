@@ -894,7 +894,7 @@ NAV_JS = """<script>
 
   // A wider screen gets the button row back, so the open state is dropped.
   try{
-    var wide = window.matchMedia('(min-width:601px)');
+    var wide = window.matchMedia('(min-width:761px)');
     var onChange = function(){ if(wide.matches) setOpen(false); };
     if(wide.addEventListener) wide.addEventListener('change', onChange);
     else if(wide.addListener) wide.addListener(onChange);
