@@ -2515,7 +2515,7 @@ DOWNLOADER_JS = r"""
       if(hint){
         hint.textContent = "The phone index could not be loaded (" +
           (e && e.message ? e.message : "network error") +
-          "). The brand list further down still works.";
+          "). Reload the page and it will be back.";
       }
     });
   }
@@ -2961,16 +2961,39 @@ moment you tap the button.</p>
 </div>
 
 <h2>Pick a download</h2>
-<p>Four routes, depending on what you need on the phone:</p>
+<p>Three routes, depending on what you need on the phone:</p>
 <div class="dlopts">
   <a class="dlopt" href="#stock"><b>Stock ROM download</b>
     <span>Your phone's own firmware, so you can go back to how it shipped.</span></a>
-  <a class="dlopt" href="#magisk"><b>Magisk</b>
-    <span>Root by patching the boot image &mdash; the one that hides best.</span></a>
-  <a class="dlopt" href="#kernelsu"><b>KernelSU</b>
-    <span>Kernel-level root, built into a kernel instead of patched in.</span></a>
-  <a class="dlopt" href="#rom"><b>ROM download</b>
-    <span>Custom ROMs, recoveries and GApps for your exact model.</span></a>
+  <div class="dlopt dloptcard" id="gh-magisk">
+    <b>Magisk</b>
+    <span>Root by patching the boot image &mdash; the one that hides best. The
+      boot image is inside your stock ROM; patch it in the Magisk app and flash
+      it back over USB-OTG.</span>
+    <p class="ghstate" id="gh-magisk-state">Checking GitHub for the latest
+      release&hellip;</p>
+    <div class="ghbtns">
+      <button class="btn" type="button" id="gh-magisk-btn" disabled>Download latest</button>
+      <a class="btn ghost" href="https://github.com/topjohnwu/Magisk/releases"
+         rel="noopener">All releases</a>
+      <a class="btn ghost" href="https://topjohnwu.github.io/Magisk/"
+         rel="noopener">Docs</a>
+    </div>
+  </div>
+  <div class="dlopt dloptcard" id="gh-kernelsu">
+    <b>KernelSU</b>
+    <span>Kernel-level root, built into a kernel instead of patched in. On a
+      GKI phone it is the cleanest route &mdash; flash a patched kernel and you
+      are done.</span>
+    <p class="ghstate" id="gh-kernelsu-state">Checking GitHub for the latest
+      release&hellip;</p>
+    <div class="ghbtns">
+      <button class="btn" type="button" id="gh-kernelsu-btn" disabled>Download latest</button>
+      <a class="btn ghost" href="https://github.com/tiann/KernelSU/releases"
+         rel="noopener">All releases</a>
+      <a class="btn ghost" href="https://kernelsu.org/" rel="noopener">Docs</a>
+    </div>
+  </div>
 </div>
 
 %(ad)s
@@ -2997,83 +3020,6 @@ comes out below &mdash; the Recovery ROM and the Fastboot ROM for each region,
 newest first, each button pointing straight at the file. Nothing is hosted
 here: the download starts on Xiaomi's own servers or on the public mirrors
 beside them.</p>
-
-<h2 id="magisk">Magisk</h2>
-<div class="ghcards">
-  <div class="ghcard" id="gh-magisk">
-    <div style="display:flex;align-items:center;gap:11px">
-      <span class="ghlogo">M</span>
-      <h3>Magisk</h3>
-    </div>
-    <p class="ghstate" id="gh-magisk-state">Checking GitHub for the latest
-    release&hellip;</p>
-    <div class="ghbtns">
-      <button class="btn" type="button" id="gh-magisk-btn" disabled>Download latest</button>
-      <a class="btn ghost" href="https://github.com/topjohnwu/Magisk/releases"
-         rel="noopener">All releases</a>
-    </div>
-  </div>
-</div>
-<p><strong>Magisk</strong> is the root method most people end up on, because it
-keeps root out of the system partition: you patch the phone's own
-<code>boot</code> or <code>init_boot</code> image, flash that back, and the
-system stays untouched. That is what lets banking apps and Play Integrity
-survive.</p>
-<ul>
-  <li><a href="https://github.com/topjohnwu/Magisk/releases" rel="noopener">Magisk
-  releases on GitHub</a> &mdash; download the <code>.apk</code> from the latest
-  release, not from a mirror.</li>
-  <li><a href="https://topjohnwu.github.io/Magisk/" rel="noopener">Magisk
-  documentation</a> &mdash; the install steps, straight from the author.</li>
-</ul>
-<p>Grab the boot image for your exact build first (it is inside the factory image
-or the OTA zip above), patch it in the Magisk app, then flash the patched file
-with the free Rom Flasher tool over USB-OTG &mdash; no PC needed.</p>
-
-<h2 id="kernelsu">KernelSU</h2>
-<div class="ghcards">
-  <div class="ghcard" id="gh-kernelsu">
-    <div style="display:flex;align-items:center;gap:11px">
-      <span class="ghlogo">K</span>
-      <h3>KernelSU</h3>
-    </div>
-    <p class="ghstate" id="gh-kernelsu-state">Checking GitHub for the latest
-    release&hellip;</p>
-    <div class="ghbtns">
-      <button class="btn" type="button" id="gh-kernelsu-btn" disabled>Download latest</button>
-      <a class="btn ghost" href="https://github.com/tiann/KernelSU/releases"
-         rel="noopener">All releases</a>
-    </div>
-  </div>
-</div>
-<p><strong>KernelSU</strong> is the other modern root route, and it works
-differently: root lives inside the kernel itself, so you flash a patched kernel
-rather than patching a boot image. On phones with a GKI kernel it is the cleanest
-option, and some custom kernels ship with it already built in.</p>
-<ul>
-  <li><a href="https://github.com/tiann/KernelSU/releases" rel="noopener">KernelSU
-  releases on GitHub</a></li>
-  <li><a href="https://kernelsu.org/" rel="noopener">KernelSU
-  documentation</a> &mdash; which kernels are supported and how to install</li>
-</ul>
-<p>Whichever of the two you pick, keep a copy of the stock boot or kernel image
-you replaced. That copy is what gets you out of a bootloop later.</p>
-
-<h2 id="rom">ROM download</h2>
-<p>For custom ROMs and the recovery that installs them, the project's own page is
-always the right source &mdash; it is the only one that is current on which device
-codename a build supports.</p>
-<ul>
-  <li><a href="https://download.lineageos.org/" rel="noopener">LineageOS
-  downloads</a> &mdash; builds per codename, plus the recovery</li>
-  <li><a href="https://twrp.me/Devices/" rel="noopener">TWRP devices</a> &mdash;
-  the official recovery list</li>
-  <li><a href="https://sourceforge.net/projects/evolution-x/" rel="noopener">Evolution
-  X</a> and <a href="https://sourceforge.net/projects/crdroid/" rel="noopener">crDroid</a>
-  on SourceForge</li>
-  <li><a href="https://nikgapps.com/" rel="noopener">NikGApps</a> &mdash; Google
-  apps packages that match your Android version</li>
-</ul>
 <p>Then follow the <a href="videos.html">written guide for your phone</a> on this
 site &mdash; every step, in the same order as the video.</p>
 
@@ -3164,7 +3110,7 @@ has one; it is just named differently each time.</p></details>
         "isAccessibleForFree": True,
         "isPartOf": {"@type": "WebSite", "name": SITE, "url": SITE_URL},
         "publisher": {"@type": "Organization", "name": SITE, "url": SITE_URL},
-        "mainEntity": {"@type": "ItemList", "numberOfItems": 4,
+        "mainEntity": {"@type": "ItemList", "numberOfItems": 3,
                        "name": "Ways to get firmware",
                        "itemListElement": [
                            {"@type": "ListItem", "position": 1,
@@ -3172,17 +3118,13 @@ has one; it is just named differently each time.</p></details>
                             "url": "%s/downloader.html#stock" % SITE_URL},
                            {"@type": "ListItem", "position": 2,
                             "name": "Magisk",
-                            "url": "%s/downloader.html#magisk" % SITE_URL},
+                            "url": "https://github.com/topjohnwu/Magisk/releases"},
                            {"@type": "ListItem", "position": 3,
                             "name": "KernelSU",
-                            "url": "%s/downloader.html#kernelsu" % SITE_URL},
-                           {"@type": "ListItem", "position": 4,
-                            "name": "Custom ROM download",
-                            "url": "%s/downloader.html#rom" % SITE_URL}]},
+                            "url": "https://github.com/tiann/KernelSU/releases"}]},
         "significantLink": ["%s/downloader.html#stock" % SITE_URL,
-                            "%s/downloader.html#magisk" % SITE_URL,
-                            "%s/downloader.html#kernelsu" % SITE_URL,
-                            "%s/downloader.html#rom" % SITE_URL],
+                            "https://github.com/topjohnwu/Magisk/releases",
+                            "https://github.com/tiann/KernelSU/releases"],
     }, {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
