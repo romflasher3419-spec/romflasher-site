@@ -99,70 +99,6 @@ APP = {
     "android": "Android 8.0 or newer",
 }
 
-# ---------------------------------------------------------------------------
-# Remote feature flags for the app  ->  dist/app-config.json
-#
-# The app reads this on every launch. Edit APP_HIDE to switch cards off, and
-# APP_NOTICE to put a line under the header. Bump APP_REV so the change is
-# easy to spot in the log.
-#
-# House rules:
-#   * APP_HIDE lists what to HIDE. Anything not listed stays visible, so an
-#     empty list - the normal state - shows every card in the app.
-#   * APP_NOTICE is "" in normal times.
-#   * Valid names are exactly the keys in app_config_json() below. A name that
-#     is not in that list is dropped at build time, with a warning, instead of
-#     silently hiding the wrong thing on people's phones.
-# ---------------------------------------------------------------------------
-APP_REV = 2
-APP_HIDE = []          # e.g. ["payloadDumper"] - card disappears completely
-APP_SOON = []          # e.g. ["payloadDumper"] - card stays, blurred, "coming soon"
-APP_NOTICE = ""        # e.g. "Payload Dumper is being rebuilt. Back soon."
-
-# The line drawn across a card that is in APP_SOON. One string, so the whole
-# app says the same thing and there is nothing to keep in step by hand.
-APP_SOON_LABEL = "\U0001F527 Back with fixes soon"
-
-# The switch names the app understands. Keep in step with RemoteConfig.Feature
-# in the Android project - tests catch a drift, but naming them here too makes
-# the two sides readable together.
-APP_FEATURES = [
-    "fastboot", "sideload", "customImage", "advancedReboot", "slotManager",
-    "tools", "payloadDumper", "appManager", "rootWizard", "kernel",
-    "fileManager", "romDownloader",
-]
-
-
-def app_config_json():
-    """Build dist/app-config.json, warning loudly about unknown switch names."""
-    unknown = [x for x in APP_HIDE if x not in APP_FEATURES]
-    for bad in unknown:
-        print("  [WARN] app-config: '%s' is not a known feature - dropped" % bad)
-    unknown = [x for x in APP_SOON if x not in APP_FEATURES]
-    for bad in unknown:
-        print("  [WARN] app-config: '%s' is not a known feature - dropped" % bad)
-    hide = [x for x in APP_HIDE if x in APP_FEATURES]
-    soon = [x for x in APP_SOON if x in APP_FEATURES]
-    # A card cannot be both gone and blurred; hide wins, and that is worth
-    # saying out loud rather than shipping a config that contradicts itself.
-    for name in soon:
-        if name in hide:
-            print("  [WARN] app-config: '%s' is in both hide and soon - "
-                  "hiding it" % name)
-    soon = [x for x in soon if x not in hide]
-    payload = {
-        "rev": APP_REV,
-        "hide": hide,
-        "soon": soon,
-        "soonLabel": APP_SOON_LABEL,
-        "notice": APP_NOTICE,
-    }
-    if hide or soon or APP_NOTICE:
-        print("     app-config: rev %d | hiding %s | soon %s | notice %s"
-              % (APP_REV, hide or "nothing", soon or "nothing",
-                 "set" if APP_NOTICE else "none"))
-    return json.dumps(payload, indent=1, ensure_ascii=False) + "\n"
-
 # Where "send me a message" lands. FormSubmit needs no account: the first
 # submission mails an activation link to this address, one click and it is live.
 CONTACT_EMAIL = "vrohit3419@gmail.com"
@@ -202,6 +138,12 @@ YT_LOGO = ('<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">'
            '.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1'
            ' 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24'
            ' 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>')
+
+# a list mark, for the Guides button - three ruled lines with a dot each
+GUIDES_LOGO = ('<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">'
+               '<circle cx="4.5" cy="6.5" r="1.6"/><circle cx="4.5" cy="12" r="1.6"/>'
+               '<circle cx="4.5" cy="17.5" r="1.6"/>'
+               '<path d="M9 5h12v3H9zM9 10.5h12v3H9zM9 16h12v3H9z"/></svg>')
 
 CARD_LOGO = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6a2 2 0 0 1 '
              '2-2h16a2 2 0 0 1 2 2v1H2V6zm0 3h20v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9zm3 '
@@ -347,6 +289,27 @@ def topic_map(items, minimum=3):
     return out
 
 
+def tag_map(items, minimum=1):
+    """{tag: hub} for every real tag in the content, newest guide first.
+
+    The topic pages only cover the curated jobs (Root, Recovery...). This is the
+    wider net - any tag the scraper found, as long as it is used more than once.
+    Nothing is invented here: a page is only ever built for a tag that a guide
+    actually carries.
+    """
+    buckets = {}
+    for x in items:
+        for tag in (x.get("tags") or []):
+            name = str(tag or "").strip()
+            if len(name) < 2 or slugify(name) == "":
+                continue
+            buckets.setdefault(name, []).append(x)
+    return {name: {"slug": slugify(name),
+                   "rows": sorted(rows, key=lambda r: r.get("published") or "",
+                                  reverse=True)}
+            for name, rows in buckets.items() if len(rows) >= minimum}
+
+
 def year_map(items, minimum=1):
     out = {}
     for x in items:
@@ -367,6 +330,7 @@ def all_hubs(items):
         "rom": group_map(items, rom_family_of, 2),
         "year": year_map(items),
         "topic": topic_map(items, 3),
+        "tag": tag_map(items, 2),
     }
 
 
@@ -387,6 +351,35 @@ def cached_all_hubs(items):
     if key not in _CACHE:
         _CACHE[key] = all_hubs(items)
     return _CACHE[key]
+
+
+def tag_href(tag, up=""):
+    """Link a tag chip only when its archive page really exists.
+
+    Tag pages are built for tags used by two or more guides; a tag that appears
+    once gets no page (a one-guide page is thin content). Rendering those chips
+    as plain text keeps every link on the site resolving. The set of real tag
+    pages is filled once per run by tag_hubs(), below.
+    """
+    name = str(tag or "").strip()
+    hub = _TAG_HUBS.get(name)
+    if hub:
+        return '<a class="tag" href="%stag/%s.html">%s</a>' % (
+            up, hub["slug"], html.escape(name))
+    return '<span class="tag">%s</span>' % html.escape(name)
+
+
+# Every tag that earned an archive page this run, filled in main() from the full
+# content list - so a chip drawn inside a 6-item related grid still resolves
+# against the whole site instead of that little slice.
+_TAG_HUBS = {}
+
+
+def tag_hubs(items):
+    """Fill _TAG_HUBS from the full content list and return it."""
+    _TAG_HUBS.clear()
+    _TAG_HUBS.update(tag_map(items, 2))
+    return _TAG_HUBS
 
 
 def brand_of(item):
@@ -517,8 +510,38 @@ def toc_html(toc):
         return ""
     items = "".join('<li><a href="#%s">%s</a></li>' % (anchor, html.escape(text))
                     for anchor, text in toc)
-    return ('<nav class="toc" aria-label="On this page"><b>On this page</b>'
-            "<ol>%s</ol></nav>" % items)
+    return ('<nav class="toc" aria-labelledby="toc-h">'
+            '<p class="toc-h" id="toc-h">On this page</p><ol>%s</ol></nav>'
+            % items)
+
+
+# The one link whose label means "the Rom Flasher tool itself". Those rows do
+# not get a URL line - they get a button that opens our own download page, so a
+# reader lands on the tool's home instead of a bare release page.
+TOOL_LINK_LABEL = "Rom Flasher tool (free)"
+
+
+def link_row(l, up):
+    """One row of an article's Links / Downloads list.
+
+    Everything is rendered exactly as the video gave it - label and URL, the
+    original characters - except the Rom Flasher tool row, which points at the
+    tool's own site instead of a bare GitHub release page. No button here: the
+    "download the tool" call already sits in the panel beside the video, and two
+    invitations to the same page read as nagging.
+    """
+    label = l.get("label") or ""
+    url = l.get("url") or ""
+    if label == TOOL_LINK_LABEL:
+        return ('<li><strong>%s</strong> &mdash; '
+                '<a href="%s" rel="noopener">%s</a></li>'
+                % (html.escape(label), SITE_URL + "/", SITE_URL + "/"))
+    if label:
+        return ('<li><strong>%s</strong> &mdash; '
+                '<a href="%s" rel="nofollow noopener">%s</a></li>'
+                % (html.escape(label), html.escape(url), html.escape(url)))
+    return ('<li><a href="%s" rel="nofollow noopener">%s</a></li>'
+            % (html.escape(url), html.escape(url)))
 
 
 def steps_from_md(body):
@@ -553,6 +576,37 @@ STEPS_JS = """<script>
       if(navigator.clipboard){navigator.clipboard.writeText(txt).then(done,done);}else{done();}
     });
   });
+})();
+</script>"""
+
+
+# Browsers do honour a muted autoplay, but an iframe that was laid out before it
+# reached the viewport can sit idle - especially after a client-side restore of
+# the scroll position. So the player is asked to start over postMessage, which is
+# the YouTube embed's own control channel. Nothing else is touched: no cookie,
+# no API script, and if it never answers the poster inside the player is still
+# there and one tap starts it.
+YT_JS = """<script>
+(function(){
+  var f=document.querySelector('.videobox .frame iframe');
+  if(!f)return;
+  function nudge(){
+    try{
+      f.contentWindow.postMessage(JSON.stringify({event:'command',
+        func:'playVideo',args:[]}),'*');
+      f.contentWindow.postMessage(JSON.stringify({event:'command',
+        func:'mute',args:[]}),'*');
+    }catch(e){}
+  }
+  // ready, in case the player finished loading before this ran
+  nudge();
+  // and once more when it reports itself ready
+  window.addEventListener('message',function(e){
+    if(typeof e.data!=='string'||e.data.indexOf('onReady')<0)return;
+    nudge();
+  });
+  // and when the page is shown again from the back/forward cache
+  window.addEventListener('pageshow',nudge);
 })();
 </script>"""
 
@@ -647,6 +701,24 @@ def desc_to_md(text):
     return "\n".join(out)
 
 
+def crumbs_html(items_paths):
+    """A visible trail: [('Home','index.html'), ('Guides','videos.html'), ...].
+
+    The last entry is plain text - it is where the visitor already is, so
+    linking it back to itself would only be a trap.
+    """
+    parts = []
+    for i, (label, href) in enumerate(items_paths):
+        if i:
+            parts.append('<span class="sep">&rsaquo;</span>')
+        if href and i < len(items_paths) - 1:
+            parts.append('<a href="%s">%s</a>' % (href, html.escape(label)))
+        else:
+            parts.append('<span class="here">%s</span>' % html.escape(label))
+    return ('<nav class="crumbs" aria-label="Breadcrumb">%s</nav>'
+            % "".join(parts))
+
+
 def nice_date(value):
     m = re.match(r"^(\d{4})-(\d{2})-(\d{2})", str(value or ""))
     if not m:
@@ -660,6 +732,66 @@ def nice_date(value):
 def video_id_of(url):
     tail = (url or "").rstrip("/").split("/")[-1]
     return tail.split("=")[-1].split("&")[0]
+
+
+# Filler that eats characters in a search result without adding meaning. The
+# replacements carry the case they should appear in; everything else is left
+# exactly as the guide wrote it.
+TITLE_RULES = [
+    (r"\bStep[\s-]?by[\s-]?Step\b", ""),
+    (r"\bFull Flash Guide\b", "Flash"),
+    (r"\bFull Install Guide\b", "Install"),
+    (r"\bFull Unbrick Guide\b", "Unbrick"),
+    (r"\bFull Flash\b", "Flash"),
+    (r"\bFull Install\b", "Install"),
+    (r"\bFull ROM Review\b", "ROM Review"),
+    (r"\bFull Review\b", "Review"),
+    (r"\bFull Tour\b", "Tour"),
+    (r"\bComplete Walkthrough\b", ""),
+    (r"\bWalkthrough\b", ""),
+    (r"\bStart to Finish\b", ""),
+    (r"\bfor Beginners\b", ""),
+    (r"\bNo Script and No Cuts\b", ""),
+    (r"\bNo Script\b", ""),
+    (r"\bNo Cuts\b", ""),
+    (r"\bFull\b", ""),
+    (r"\bFlash Guide\b", "Flash"),
+    (r"\bInstall Guide\b", "Install"),
+    (r"\bUnbrick Guide\b", "Unbrick"),
+    (r"\bReview Guide\b", "Review"),
+    (r"\bGuide\b", ""),
+    (r"#\w+", ""),
+]
+
+
+def display_title(title, limit=60):
+    """The <title> a search result shows: same words, trimmed to fit.
+
+    Search shows roughly 60 characters before it starts clipping for the reader,
+    and a clipped word ("...Smoothnes") looks broken. So filler that adds no
+    meaning is dropped first, then the line is cut back to a whole word. The H1
+    and the card keep the guide's full title, so nothing is lost on the page.
+    """
+    t = str(title or "").replace("\u2014", "-").replace("\u2013", "-")
+    t = re.sub(r"\s*\+\s*", " + ", t)
+    t = re.sub(r"\s+", " ", t).strip()
+    for pat, rep in TITLE_RULES:
+        t = re.sub(pat, rep, t, flags=re.I)
+    t = re.sub(r"\s{2,}", " ", t).strip()
+    t = re.sub(r"\s*&\s*$", "", t)
+    t = t.strip(" -,:;+")
+    if len(t) <= limit:
+        return t
+    head = t[:limit]
+    # Prefer a real break - a dash, a comma, a bracket - when one fits, so the
+    # result reads as a phrase rather than a chopped-off sentence.
+    for sep in [" - ", ", ", " (", " + "]:
+        if sep not in head:
+            continue
+        cut = head.rsplit(sep, 1)[0].strip(" -,:;+&")
+        if len(cut) >= 32:
+            return cut
+    return head.rsplit(" ", 1)[0].strip(" -,:;+&")
 
 
 # ------------------------------------------------------------------ layout
@@ -721,12 +853,26 @@ CURSOR_LIGHT_JS = """<script>
 </script>"""
 
 
+def clip(text, limit=158):
+    """Trim a description to a length Google shows whole, ending on a word.
+
+    Blurbs double as card and feed text, where running long is fine, so the cut
+    happens here - once, at the point the meta tag is written - rather than in
+    the stored content.
+    """
+    text = re.sub(r"\s+", " ", (text or "").strip())
+    if len(text) <= limit:
+        return text
+    cut = text[:limit].rsplit(" ", 1)[0].rstrip(" ,;:-")
+    return cut + "\u2026"
+
+
 def page(title, description, body, path="", extra_head="", keywords="",
          og_type="website", image=None):
     """Assemble a full page. `path` is where it will live inside dist/."""
     up = "../" * path.count("/")
     canon = "%s/%s" % (SITE_URL, path) if path else SITE_URL + "/"
-    desc = html.escape((description or title)[:300])
+    desc = html.escape(clip(description or title))
     title_esc = html.escape(title)
     img = image or (SITE_URL + "/static/app.png")
 
@@ -751,7 +897,6 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<link rel="manifest" href="%ssite.webmanifest">' % up,
         '<link rel="preconnect" href="https://www.youtube.com">',
         '<link rel="preconnect" href="https://i.ytimg.com">',
-        '<link rel="dns-prefetch" href="https://www.youtube-nocookie.com">',
         verify_head(),
         adsense_verify(),
         analytics_head(),
@@ -780,16 +925,20 @@ def page(title, description, body, path="", extra_head="", keywords="",
         'height="30"><span class="brandtx"><span class="brandname">Rom<b>Flasher</b></span>'
         '<span class="brandsub">All-In-One Android Tool</span></span></a>' % (up, up),
         "  <nav>",
-        "    <span class=\"navplain\">",
-        '    <a href="%sindex.html">Home</a>' % up,
-        '    <a href="%svideos.html">Guides</a>' % up,
-        '    <a href="%sapps.html">Tool</a>' % up,
-        "    </span>",
-        '    <a class="navbtn hot" href="%sdownload.html">Download</a>' % up,
-        '    <a class="navbtn donate" href="%sdonate.html">%sCoffee</a>' % (up, COFFEE_LOGO),
+        # Guides wears the same pill as the four on its right, so the row reads
+        # as one set of buttons. The logo on the left already goes home, so there
+        # is no separate Home link, and the boxed Download button covers the tool.
+        '    <a class="navbtn guides" href="%svideos.html">%sGuides</a>'
+        % (up, GUIDES_LOGO),
+        '    <a class="navbtn hot" href="%sdownloader.html" '
+        'aria-label="ROM downloader: stock ROMs, Magisk and KernelSU">%sDownloader</a>'
+        % (up, DL_LOGO),
         '    <a class="navbtn gh" href="%s" rel="noopener" '
         'aria-label="Rom Flasher tool on GitHub">%sGitHub</a>' % (REPO_URL, GH_LOGO),
-        '    <a class="yt" href="%s" rel="noopener">%sYouTube</a>' % (CHANNEL_URL, YT_LOGO),
+        '    <a class="yt" href="%s" rel="noopener" '
+        'aria-label="Rom Flasher on YouTube">%sYouTube</a>' % (CHANNEL_URL, YT_LOGO),
+        '    <a class="navbtn donate" href="%sdonate.html" '
+        'aria-label="Buy me a coffee">%sCoffee</a>' % (up, COFFEE_LOGO),
         "  </nav>",
         "</div></header>",
     ])
@@ -803,8 +952,9 @@ def page(title, description, body, path="", extra_head="", keywords="",
               '<a href="%sroms.html">ROMs</a> &middot; '
               '<a href="%svideos.html">All guides</a> &middot; '
               '<a href="%syears.html">By year</a> &middot; '
-              '<a href="%stopics.html">Topics</a></p>'
-              % ((up,) * 5))
+              '<a href="%stopics.html">Topics</a> &middot; '
+              '<a href="%stags.html">Tags</a></p>'
+              % ((up,) * 6))
     foot = """<footer><div class="wrap">
   <p><strong>%s</strong> &middot; %s</p>
   %s
@@ -814,6 +964,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
     <a href="%sprivacy.html">Privacy</a> &middot;
     <a href="%sterms.html">Terms</a> &middot;
     <a href="%sdownload.html">Download the tool</a> &middot;
+    <a href="%sdownloader.html">ROM downloader</a> &middot;
     <a href="%sdonate.html">Buy me a coffee</a> &middot;
     <a href="%sdownload.html#talk-to-me">Send a message</a> &middot;
     <a href="%s" rel="noopener">YouTube channel</a>
@@ -823,7 +974,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
 </div></footer>
 </body>
 </html>
-""" % (SITE, TAGLINE, browse, up, up, up, up, up, up, up, CHANNEL_URL, up)
+""" % (SITE, TAGLINE, browse, up, up, up, up, up, up, up, up, CHANNEL_URL, up)
 
     # the pointer light is moved by a script, so it belongs at the end of body
     foot = foot.replace("</body>", CURSOR_LIGHT_JS + "\n</body>")
@@ -831,8 +982,15 @@ def page(title, description, body, path="", extra_head="", keywords="",
 
 
 def card(item, up=""):
-    tags = "".join('<span class="tag">%s</span>' % html.escape(t)
-                   for t in (item.get("tags") or [])[:3])
+    """A guide tile. The whole card is clickable, and the tag chips work too.
+
+    The card cannot itself be an <a>: HTML forbids nesting one link inside
+    another, and the browser hoists the inner tag links out, which spills them
+    across the grid as giant pills. So the card is a plain <div> and the title
+    carries a stretched link that covers it - same big tap target, no nesting.
+    """
+    tags = ("".join(tag_href(t, up) for t in (item.get("tags") or [])[:3]))
+    tags = '<div class="cardtags">%s</div>' % tags if tags else ""
     foot = []
     if clean_device(item.get("device")):
         foot.append(html.escape(clean_device(item["device"])))
@@ -840,8 +998,9 @@ def card(item, up=""):
         foot.append(nice_date(item["published"]))
     else:
         foot.append("%s views" % item.get("views", 0))
-    return ('<a class="card" href="%srom/%s.html">'
-            "<h3>%s</h3><p>%s</p>%s<span class=\"foot\">%s</span></a>"
+    return ('<div class="card">'
+            '<h3><a class="cardlink" href="%srom/%s.html">%s</a></h3>'
+            "<p>%s</p>%s<span class=\"foot\">%s</span></div>"
             % (up, html.escape(item["slug"]), html.escape(item["title"]),
                html.escape(item.get("blurb") or ""), tags,
                " &middot; ".join(foot)))
@@ -906,8 +1065,11 @@ pausing the video twenty times.</p>
     head = "\n".join('<script type="application/ld+json">%s</script>'
                      % json.dumps(b, ensure_ascii=False) for b in blocks)
 
-    return page("%s \u2014 %s" % (SITE, TAGLINE), TAGLINE, body, path,
-                extra_head=head, keywords=keywords_for())
+    return page("%s \u2014 Android ROM &amp; flash guides" % SITE,
+                "Every custom ROM, root and flashing guide from the Rom Flasher "
+                "channel, written as text and tested on real phones. Plus a free "
+                "Android flashing tool that works with no PC.",
+                body, path, extra_head=head, keywords=keywords_for())
 
 
 def build_guides(items, path="videos.html"):
@@ -1127,22 +1289,31 @@ def build_device_page(name, hub, total, all_hubs):
     faq_html, faq = build_hub_faq("brand", name, rows)
 
     body = """<div class="wrap"><section style="padding:32px 0 0">
-<h1>%s &mdash; custom ROM and flashing guides (%d)</h1>
-<p class="dis">Every <strong>%s</strong> video on the Rom Flasher channel, newest
-first, with the date it went live. %s %s</p>
-<p><a class="btn" href="%sdownload.html">Download the free Rom Flasher tool</a>
-<a class="btn ghost" href="%svideos.html">All %d guides</a></p>
+%(crumbs)s
+<h1>%(name)s &mdash; custom ROM and flashing guides (%(count)d)</h1>
+<p class="dis">Every <strong>%(name)s</strong> video on the Rom Flasher channel,
+newest first, with the date it went live. %(rom_line)s %(brand_line)s</p>
+<p><a class="btn" href="%(up)sdownload.html">Download the free Rom Flasher tool</a>
+<a class="btn ghost" href="%(up)svideos.html">All %(total)d guides</a></p>
+
+%(ad)s
 
 <table><thead><tr><th>Guide</th><th>Released</th><th>Views</th></tr></thead>
-<tbody>%s</tbody></table>
+<tbody>%(table)s</tbody></table>
 
 <h2>Questions people ask</h2>
-%s
+%(faq)s
 
 <h2>Other phones</h2>
-<div class="chips">%s</div>
-</section></div>""" % (html.escape(name), count, html.escape(name), rom_line,
-                       brand_line, up, up, total, table, faq_html, siblings)
+<div class="chips">%(siblings)s</div>
+</section></div>""" % {
+        "crumbs": crumbs_html([("Home", up + "index.html"),
+                               ("Guides", up + "videos.html"),
+                               (name, "")]),
+        "name": html.escape(name), "count": count, "rom_line": rom_line,
+        "brand_line": brand_line, "up": up, "total": total, "table": table,
+        "faq": faq_html, "siblings": siblings, "ad": ad_slot("hub", up),
+    }
 
     blocks = [{
         "@context": "https://schema.org", "@type": "CollectionPage",
@@ -1180,8 +1351,7 @@ first, with the date it went live. %s %s</p>
     head = "\n".join('<script type="application/ld+json">%s</script>'
                      % json.dumps(b, ensure_ascii=False) for b in blocks)
 
-    return page("%s flashing guides \u2014 custom ROM, root, recovery | %s"
-                % (name, SITE),
+    return page("%s guides \u2014 ROM, root, recovery | %s" % (name, SITE),
                 "All %d Rom Flasher guides for the %s: custom ROMs, fastboot "
                 "flashing, root and recovery, newest first with dates."
                 % (count, name),
@@ -1193,20 +1363,24 @@ first, with the date it went live. %s %s</p>
 HUB_KINDS = {
     "brand": {"dir": "brand", "index": "brands.html", "word": "brand",
               "h1": "%s &mdash; flashing guides (%d)",
-              "title": "%s flashing guides \u2014 custom ROM, root, recovery",
+              "title": "%s custom ROM &amp; flashing guides",
               "label": "Brands"},
     "rom": {"dir": "roms", "index": "roms.html", "word": "ROM",
             "h1": "%s &mdash; guides and installs (%d)",
-            "title": "%s guides \u2014 install, download, fixes",
+            "title": "%s install guide, download &amp; fixes",
             "label": "ROMs"},
     "year": {"dir": "year", "index": "years.html", "word": "year",
              "h1": "Flashing guides from %s (%d)",
-             "title": "Android flashing and custom ROM guides from %s",
+             "title": "Android flashing guides from %s",
              "label": "Years"},
     "topic": {"dir": "topic", "index": "topics.html", "word": "topic",
               "h1": "%s &mdash; Android guides (%d)",
-              "title": "%s guides \u2014 Android root, ROM and recovery",
+              "title": "%s &mdash; Android guide &amp; steps",
               "label": "Topics"},
+    "tag": {"dir": "tag", "index": "tags.html", "word": "tag",
+            "h1": "%s &mdash; flashing guides (%d)",
+            "title": "%s &mdash; guides &amp; downloads",
+            "label": "Tags"},
 }
 
 
@@ -1238,13 +1412,21 @@ def hub_faq(kind, name, rows):
         covered = ("Which phones and ROMs show up in %s?" % name,
                    "%s." % ", ".join((roms + devices)[:8]) if (roms or devices)
                    else "A mix of phones and ROMs.")
-    else:
+    elif kind == "topic":
         first = ("What do these %s guides cover?" % name,
                  "%d guides on this one job, across every phone it has been "
                  "done on." % count)
         covered = ("Which phones do these %s guides cover?" % name,
                    "%s." % ", ".join(devices[:8]) if devices else
                    "Whatever is listed above.")
+    else:
+        first = ("What is tagged %s here?" % name,
+                 "%d guide%s carry this tag. They are listed above newest first, "
+                 "with the date each one went live."
+                 % (count, "" if count == 1 else "s"))
+        covered = ("Which phones and ROMs show up under %s?" % name,
+                   "%s." % ", ".join((devices + roms)[:8])
+                   if (devices or roms) else "A mix of phones and ROMs.")
 
     out = [first, covered,
            ("Will I lose my data?",
@@ -1265,8 +1447,10 @@ def hub_faq(kind, name, rows):
 
 def build_hub_faq(kind, name, rows):
     faq = hub_faq(kind, name, rows)
-    return "".join('<div class="faq"><h3>%s</h3><p>%s</p></div>' % (q, a)
-                   for q, a in faq), faq
+    return "".join(
+        '<details class="faq"><summary>%s</summary>'
+        '<div class="ans"><p>%s</p></div></details>' % (q, a)
+        for q, a in faq), faq
 
 
 def build_hub_page(kind, name, hub, all_hubs, total, items):
@@ -1299,9 +1483,10 @@ def build_hub_page(kind, name, hub, all_hubs, total, items):
     other_kinds = "".join(
         '<a class="chip" href="%s%s">%s</a>' % (up, HUB_KINDS[k]["index"],
                                                HUB_KINDS[k]["label"])
-        for k in ("brand", "rom", "year", "topic") if k != kind)
+        for k in ("brand", "rom", "year", "topic", "tag") if k != kind)
 
     body = """<div class="wrap"><section style="padding:32px 0 0">
+%(crumbs)s
 <h1>%(h1)s</h1>
 <p class="dis">Every guide that belongs here, newest first, with the date it went
 live. %(devices)s</p>
@@ -1322,6 +1507,9 @@ live. %(devices)s</p>
 <h2>Related %(word)ss</h2>
 <div class="chips">%(siblings)s</div>
 </section></div>""" % {
+        "crumbs": crumbs_html([("Home", up + "index.html"),
+                               (cfg["label"], up + cfg["index"]),
+                               (name, "")]),
         "h1": cfg["h1"] % (html.escape(name), count),
         "devices": ("Covers: <strong>%s</strong>." % html.escape(", ".join(
             sorted({clean_device(x.get("device")) for x in rows
@@ -1361,7 +1549,7 @@ live. %(devices)s</p>
     head = "\n".join('<script type="application/ld+json">%s</script>'
                      % json.dumps(b, ensure_ascii=False) for b in blocks)
 
-    return page("%s | %s" % (cfg["title"] % html.escape(name), SITE),
+    return page(cfg["title"] % html.escape(name),
                 "Every Rom Flasher guide for %s: custom ROMs, root, recovery and "
                 "fastboot steps, newest first with dates. %d in total."
                 % (name, count),
@@ -1392,12 +1580,19 @@ def build_hub_index(kind, hubs, total, items):
                  "went live."),
         "topic": ("Browse by topic", "Root, recovery, bootloader, kernels, "
                   "battery, camera and more."),
+        "tag": ("Browse by tag", "Every tag used across the guides, from the "
+                "phones and ROMs to the jobs they are used for."),
     }[kind]
 
     body = ('<div class="wrap"><section style="padding:32px 0 0">'
+            '%s'
             "<h1>%s</h1><p class=\"dis\">%s</p><div class=\"grid\">%s</div>"
+            "%s"
             "<p><a class=\"btn ghost\" href=\"videos.html\">All %d guides</a></p>"
-            "</section></div>" % (head_line[0], head_line[1], cards, total))
+            "</section></div>" % (crumbs_html([("Home", "index.html"),
+                                               (head_line[0], "")]),
+                                  head_line[0], head_line[1], cards,
+                                  ad_slot("hub"), total))
 
     block = {
         "@context": "https://schema.org", "@type": "CollectionPage",
@@ -1414,7 +1609,20 @@ def build_hub_index(kind, hubs, total, items):
     }
     head = ('<script type="application/ld+json">%s</script>'
             % json.dumps(block, ensure_ascii=False))
-    return page("%s \u2014 %s" % (head_line[0], SITE), head_line[1], body,
+    index_desc = {
+        "brand": "Every phone brand with a flashing guide on Rom Flasher, from "
+                 "POCO and Redmi to Xiaomi, Pixel, OnePlus and more.",
+        "rom": "Every custom ROM covered on Rom Flasher - HyperOS, MIUI, "
+               "LineageOS, Evolution X, PixelOS and the rest, with install "
+               "guides.",
+        "year": "Rom Flasher guides by year: every custom ROM, root and flashing "
+                "video the channel published, newest first.",
+        "topic": "Browse Rom Flasher guides by topic: bootloader unlock, root, "
+                 "recovery, kernels, battery, camera and more.",
+        "tag": "Every tag used across the Rom Flasher guides, from the phones "
+               "and ROMs to the jobs they are used for.",
+    }[kind]
+    return page("%s \u2014 %s" % (head_line[0], SITE), index_desc, body,
                 cfg["index"], extra_head=head,
                 keywords=keywords_for(extra=(head_line[0],
                                              cfg["label"].lower())))
@@ -1465,16 +1673,28 @@ def build_article(item, items):
         meta.append("%s views" % item["views"])
 
     out = ['<article>', '<div class="prose">',
+           crumbs_html([("Home", up + "index.html"),
+                        ("Guides", up + "videos.html"),
+                        (item["title"], "")]),
            '<div class="head">', avatar_html, "<div>",
            "<h1>%s</h1>" % html.escape(item["title"]),
            '<p class="meta"><span class="who">Rom Flasher</span> &middot; %s</p>'
            % " &middot; ".join(meta),
            "</div></div>"]
 
+    device_name = clean_device(item.get("device"))
+    if device_name:
+        tested = (device_name if not device_name.lower().startswith("any")
+                  else "a real device")
+        out.append(
+            '<div class="tested"><span class="tick" aria-hidden="true">&#10003;</span>'
+            '<span>Written and <strong>tested on %s</strong> &mdash; the steps '
+            'below are what actually worked, not a copy of the spec sheet.</span>'
+            '</div>' % html.escape(tested))
+
     if item.get("tags"):
         out.append('<div class="tags"><span class="tagslabel">Tags</span>%s</div>'
-                   % "".join('<span class="tag">%s</span>' % html.escape(t)
-                             for t in item["tags"]))
+                   % "".join(tag_href(t, up) for t in item["tags"]))
 
     hubs = cached_all_hubs(items)
     links = []
@@ -1496,17 +1716,29 @@ def build_article(item, items):
     if item.get("summary"):
         out.append('<div class="summary">%s</div>' % md(item["summary"]))
 
+    body = (item.get("body") or "").strip()
+    desc = (item.get("video_description") or "").strip()
+    steps = steps_from_md(body)
+    rendered, toc = ("", [])
+    if body:
+        rendered, toc = heading_ids(md(body))
+
+    # The video and the two side tabs share one row on a wide screen: the player
+    # takes the left half, the tabs take the right. On a phone the row becomes a
+    # single column, player first, so nothing is ever squeezed.
+    left = []
     if item.get("url"):
         vid = video_id_of(item["url"])
         watch = html.escape(item["url"])
-        out.append(
+        embed = ("https://www.youtube.com/embed/%s?autoplay=1&amp;mute=1"
+                 "&amp;loop=1&amp;playlist=%s&amp;rel=0&amp;playsinline=1"
+                 "&amp;modestbranding=1" % (html.escape(vid), html.escape(vid)))
+        left.append(
             '<div class="videobox"><div class="frame">'
-            '<iframe frameborder="0" src="https://www.youtube.com/embed/%s'
-            '?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=%s&amp;rel=0'
-            '&amp;modestbranding=1&amp;playsinline=1" title="%s" '
-            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; '
-            'gyroscope; picture-in-picture" allowfullscreen '
-            'referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
+            '<iframe frameborder="0" src="%s" title="%s" '
+            'allow="autoplay; encrypted-media; picture-in-picture; web-share" '
+            'allowfullscreen referrerpolicy="strict-origin-when-cross-origin">'
+            '</iframe></div>'
             '<p class="hint">The video starts muted so it does not blast at you '
             '&mdash; tap the speaker to hear it, or '
             '<a href="%s" rel="noopener">open it on YouTube</a>.</p>'
@@ -1516,35 +1748,32 @@ def build_article(item, items):
             'a.style.backgroundImage="url(https://i.ytimg.com/vi/%s/hqdefault.jpg)";'
             'a.innerHTML="<span>Play it on YouTube</span>";f.replaceWith(a);}}'
             '</script></div>'
-            % (html.escape(vid), html.escape(vid), html.escape(item["title"]),
-               watch, watch, html.escape(vid)))
+            % (embed, html.escape(item["title"]), watch, watch, html.escape(vid)))
 
-    out.append(
-        '<div class="cta"><div class="ctatext"><strong>No PC in the room?</strong>'
-        '<span>The free Rom Flasher tool runs the whole flash from the phone in '
-        'your hand &mdash; USB-OTG cable, no laptop, no command line.</span></div>'
-        '<a class="btn dark" href="%sdownload.html">%sDownload the free Rom '
-        'Flasher tool</a></div>' % (up, DL_LOGO))
-
-    body = (item.get("body") or "").strip()
-    desc = (item.get("video_description") or "").strip()
-    steps = steps_from_md(body)
-    toc = []
+    toc_panel = toc_html(toc) if toc else ""
+    if left or toc_panel:
+        right = ('<div class="sidepanel">'
+                 '<div class="cta"><div class="ctatext">'
+                 '<strong>No PC in the room?</strong>'
+                 '<span>The free Rom Flasher tool runs the whole flash from the '
+                 'phone in your hand &mdash; USB-OTG cable, no laptop, no command '
+                 'line.</span></div>'
+                 '<a class="btn dark" href="%sdownload.html">%sDownload the free '
+                 'Rom Flasher tool</a></div>%s</div>'
+                 % (up, DL_LOGO, toc_panel))
+        out.append('<div class="mediarow">%s%s</div>'
+                   % ("".join(left), right))
 
     if body:
-        rendered, toc = heading_ids(md(body))
-        tools = [toc_html(toc)]
         if len(steps) >= 3:
-            tools.append(
-                '<button class="copybtn steps" type="button" '
-                'data-label="Copy the %d steps" data-steps="%s">Copy the %d '
-                'steps</button>'
-                % (len(steps),
-                   html.escape(json.dumps(steps, ensure_ascii=False), quote=True),
-                   len(steps)))
-        tools = [t for t in tools if t]
-        if tools:
-            out.append('<div class="arttools">%s</div>' % "".join(tools))
+            out.append('<div class="arttools">'
+                       '<button class="copybtn steps" type="button" '
+                       'data-label="Copy the %d steps" data-steps="%s">Copy the '
+                       '%d steps</button></div>'
+                       % (len(steps),
+                          html.escape(json.dumps(steps, ensure_ascii=False),
+                                      quote=True),
+                          len(steps)))
         out.append(rendered)
     elif desc:
         out.append('<div class="notice">This page is the video in text form. '
@@ -1554,12 +1783,7 @@ def build_article(item, items):
 
     links = item.get("links") or []
     if links:
-        rows = "\n".join(
-            "<li>%s<a href=\"%s\" rel=\"nofollow noopener\">%s</a></li>"
-            % (("<strong>%s</strong> &mdash; " % html.escape(l["label"]))
-               if l.get("label") else "",
-               html.escape(l["url"]), html.escape(l["url"]))
-            for l in links)
+        rows = "\n".join(link_row(l, up) for l in links)
         out.append('<div class="links"><h2>Links / Downloads</h2><ul>%s</ul>'
                    '<p class="dis">Use the file built for your exact model and '
                    'region. A package for another variant is the quickest way to '
@@ -1572,9 +1796,14 @@ def build_article(item, items):
 
     faq = item.get("faq") or []
     if faq:
-        faq_html = "".join('<div class="faq"><h3>%s</h3>%s</div>'
-                           % (inline(f.get("q", "")), md(f.get("a", "")))
-                           for f in faq)
+        # Each question is a <details> so it opens on a tap and stays closed
+        # otherwise - a page with six answers showing at once buries the guide
+        # the reader actually came for.
+        faq_html = "".join(
+            '<details class="faq"><summary>%s</summary>'
+            '<div class="ans">%s</div></details>'
+            % (inline(f.get("q", "")), md(f.get("a", "")))
+            for f in faq)
         out.append("<h2>Common questions</h2>%s" % faq_html)
 
     out.append(ad_slot("article", up))
@@ -1625,6 +1854,8 @@ def build_article(item, items):
                    % (html.escape(heading), "".join(card(x, up) for x in picked)))
     if steps:
         out.append(STEPS_JS)
+    if item.get("url"):
+        out.append(YT_JS)
     out.append("</div></article>")
 
     canon = "%s/%s" % (SITE_URL, path)
@@ -1646,7 +1877,12 @@ def build_article(item, items):
         "isAccessibleForFree": True,
         "keywords": ", ".join(item.get("tags") or []),
         "articleSection": item.get("device") or "Flashing guides",
-        "author": {"@type": "Organization", "name": SITE, "url": SITE_URL},
+        "author": {
+            "@type": "Person",
+            "name": "Rom Flasher",
+            "url": SITE_URL + "/about.html",
+            "sameAs": [CHANNEL_URL, REPO_URL],
+        },
         "publisher": {"@type": "Organization", "name": SITE, "url": SITE_URL,
                       "logo": logo},
         "image": [thumb or (SITE_URL + "/static/app.png")],
@@ -1670,6 +1906,8 @@ def build_article(item, items):
             "isFamilyFriendly": True,
             "publisher": {"@type": "Organization", "name": SITE,
                           "url": SITE_URL, "logo": logo},
+            "author": {"@type": "Person", "name": "Rom Flasher",
+                       "url": SITE_URL + "/about.html"},
         })
         if desc:
             blocks[-1]["transcript"] = plain_text(desc)
@@ -1707,16 +1945,38 @@ def build_article(item, items):
     head = "\n".join('<script type="application/ld+json">%s</script>'
                      % json.dumps(b, ensure_ascii=False) for b in blocks)
 
-    return page(item["title"], item.get("blurb") or item["title"],
+    return page(display_title(item["title"]),
+                item.get("blurb") or item["title"],
                 "\n".join(out), path, extra_head=head,
                 keywords=keywords_for(item), og_type="article",
                 image=thumb or (SITE_URL + "/static/app.png"))
 
 
+def ld(block):
+    """One JSON-LD <script> for a schema.org block."""
+    return ('<script type="application/ld+json">%s</script>'
+            % json.dumps(block, ensure_ascii=False))
+
+
 def simple(path, h1, title, block, description=None, keywords="", extra_head="",
-           og_type="website"):
-    body = ('<article><div class="prose"><h1>%s</h1>\n%s\n</div></article>'
-            % (h1, block))
+           og_type="website", schema=None, crumbs=None, ad=False):
+    trail = crumbs or [("Home", "index.html"), (h1, "")]
+    # ad=False by default: the flat pages are the ones a visitor reads once and
+    # leaves, and a unit there earns a fraction of what the same unit earns on a
+    # guide, so a page opts in only where there is something to read above it.
+    tail = ad_slot("hub") if ad else ""
+    body = ('<article><div class="prose">%s<h1>%s</h1>\n%s%s\n</div></article>'
+            % (crumbs_html(trail), h1, block, tail))
+    if schema is not None:
+        blocks = [schema, {
+            "@context": "https://schema.org", "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": i + 1, "name": label,
+                 "item": ("%s/%s" % (SITE_URL, href) if href else
+                          "%s/%s" % (SITE_URL, path))}
+                for i, (label, href) in enumerate(trail)],
+        }]
+        extra_head = ("\n".join(ld(b) for b in blocks) + "\n" + extra_head)
     return page(title, description or h1, body, path, extra_head=extra_head,
                 keywords=keywords, og_type=og_type)
 
@@ -1828,12 +2088,12 @@ expected, and it never changes a single thing about what you get.</p>
 <h2>What a thank-you turns into</h2>
 <ul>
 <li>Another phone borrowed or bought just to test a ROM properly before filming</li>
-<li>More devices and regions added to the stock ROM downloader</li>
+<li>More devices and brands kept current on the <a href="downloader.html">ROM downloader</a></li>
 <li>Faster fixes when a build misbehaves on one exact model</li>
 <li>Fewer evenings lost to dead mirrors and broken packages</li>
 </ul>
 
-<p>Thank you for keeping this going. &nbsp;ðŸ’›</p>
+<p>Thank you for keeping this going. &nbsp;&#128155;</p>
 <p>If money is not the thing right now, that is completely fine &mdash; the
 <a href="download.html#talk-to-me">message box</a> is open. Telling me which
 phone to cover next helps this place just as much.</p>
@@ -1847,10 +2107,24 @@ phone to cover next helps this place just as much.</p>
         "upi romflasher@naviaxis", "paypal.me/vrohit3419",
         "thank the developer", "free android flashing tool"))
     return simple("donate.html", "Buy me a coffee", "Buy me a coffee \u2014 %s" % SITE,
-                  block, keywords=keywords,
+                  block, keywords=keywords, ad=True,
                   description="If a Rom Flasher guide saved your evening, you can "
                               "say thanks with UPI or PayPal. Both are optional, "
-                              "and both keep the free tool free.")
+                              "and both keep the free tool free.",
+                  schema={
+                      "@context": "https://schema.org",
+                      "@type": "WebPage",
+                      "name": "Buy me a coffee",
+                      "url": "%s/donate.html" % SITE_URL,
+                      "inLanguage": "en",
+                      "isPartOf": {"@type": "WebSite", "name": SITE,
+                                   "url": SITE_URL},
+                      "potentialAction": {
+                          "@type": "DonateAction",
+                          "name": "Support Rom Flasher",
+                          "target": "https://paypal.me/vrohit3419",
+                          "recipient": {"@type": "Person",
+                                        "name": "Rom Flasher"}}})
 
 
 def gear_box():
@@ -1929,14 +2203,6 @@ def build_download():
             "App installer for <code>.apk</code>, <code>.xapk</code> and <code>.apkm</code>",
             "Debloater, file manager, full device info, live command terminal",
         ]),
-        ("Stock ROM downloader", [
-            "Region-wise stock ROMs for Xiaomi, POCO, OnePlus, OPPO, realme, "
-            "vivo / iQOO and Google Pixel",
-            "Recovery and fastboot packages from one picker",
-            "Parallel multi-segment downloads, fastest mirror picked for you, "
-            "with failover",
-            "An IDM-style download popup so you can carry on using the app",
-        ]),
         ("Extras", [
             "Payload dumper with SHA-256 verification",
             "ROM-wise backup picker",
@@ -1949,8 +2215,10 @@ def build_download():
         % (name, "".join("<li>%s</li>" % line for line in lines))
         for name, lines in features)
 
-    faq_html = "".join('<div class="faq"><h3>%s</h3><p>%s</p></div>' % (q, a)
-                       for q, a in faq)
+    faq_html = "".join(
+        '<details class="faq"><summary>%s</summary>'
+        '<div class="ans"><p>%s</p></div></details>' % (q, a)
+        for q, a in faq)
 
     body = """<h1>Download Rom Flasher</h1>
 <p>One free Android app that flashes the <em>other</em> phone. This phone runs
@@ -2013,6 +2281,14 @@ recovery and sideloading for you &mdash; no PC and no terminal.</p>
 <span class="pill">OPPO</span><span class="pill">realme</span>
 <span class="pill">vivo / iQOO</span><span class="pill">Google Pixel</span>
 <span class="pill">Android 8.0+</span><span class="pill">USB-OTG</span></div>
+
+<h2>Where do I get the ROM?</h2>
+<p>The tool flashes the files &mdash; it does not host them. Firmware goes stale
+within weeks and belongs to the manufacturer, so fetching it lives here on the
+site instead, where it can be kept current: <a href="downloader.html">open the
+ROM downloader</a>, type your phone, and it takes you to that brand's own
+Recovery ROM and Fastboot ROM download page. Magisk and KernelSU are linked
+there too.</p>
 
 <h2>The small things that make it work</h2>
 <p>Cables are the number one reason a phone never shows up in fastboot. These are
@@ -2112,14 +2388,496 @@ and it genuinely decides what I build and film next.</p>
     return page("Download Rom Flasher \u2014 free Android flashing tool (v%s)"
                 % APP["version"].lstrip("v"),
                 "Download the free Rom Flasher tool for Android. Flash fastboot "
-                "ROMs, sideload packages, back up kernels and pull stock ROMs over "
-                "USB-OTG \u2014 no PC, no sign-in, %s." % APP["size"],
+                "ROMs, sideload packages, back up kernels and flash custom "
+                "images over USB-OTG \u2014 no PC, no sign-in, %s." % APP["size"],
                 '<article><div class="prose">%s</div></article>' % body,
                 "download.html", extra_head=head,
                 keywords=keywords_for(item={"tags": [
                     "download rom flasher", "rom flasher apk",
                     "rom flasher latest version", "free rom flasher tool",
                     "android rom flasher apk", "flash rom apk", "otg flasher"]}),
+                image=SITE_URL + "/static/app.png")
+
+
+
+def build_downloader():
+    """The ROM downloader: pick a device, get the official firmware page.
+
+    Why it works this way: no site can host or mirror phone firmware without
+    stepping on the manufacturer's licence, and a hard-coded mirror URL rots
+    within months. So this page keeps the *route* instead of the file - one
+    entry per brand pointing at that brand's own public firmware download page -
+    and it lets the visitor search by the name they actually know ("poco x7
+    pro", "redmi note 13", "CPH2451") rather than a codename they do not.
+
+    Every link here is a public support / download page. Nothing on this site
+    hosts, rewrites or proxies a firmware file.
+    """
+
+    # One row per brand: how the visitor names it, where its firmware lives, and
+    # what both flash formats are called there. `keys` is the search index - the
+    # words a visitor is likely to type.
+    BRANDS = [
+        {
+            "name": "Xiaomi / Redmi / POCO",
+            "keys": "xiaomi redmi poco mi miui hyperos note k20 k30 k40 k50 k60 "
+                    "k70 k80 9 10 11 12 13 14 15 16 pro plus turbo civi pad "
+                    "redmi 9 10 12 13 14 note 4 5 6 7 8 9 10 11 12 13 14 poco "
+                    "x2 x3 x4 x5 x6 x7 f1 f2 f3 f4 f5 f6 f7 m2 m3 m4 m5 m6 c3 "
+                    "c40 c50 c55 c65 c75 c85 x6 pro x7 pro f7 pro",
+            "recovery": ("MIUI / HyperOS recovery ROM &mdash; the full zip you "
+                         "flash in the phone's own updater or in recovery"),
+            "fastboot": ("Fastboot ROM &mdash; the <code>.tgz</code> package "
+                         "that contains the <code>flash_all</code> script"),
+            "page": "https://miuirom.org/",
+            "page_label": "miuirom.org &mdash; official Xiaomi / HyperOS firmware index",
+            "official": "https://www.mi.com/global/support/",
+            "official_label": "Xiaomi official support",
+            "note": "Pick your exact model, then the region (Global, India, EEA, "
+                    "China). The codename must match the one on your phone's "
+                    "bootloader screen.",
+        },
+        {
+            "name": "OnePlus",
+            "keys": "oneplus one plus 9 10 11 12 13 15 nord ce n10 n20 n30 ace "
+                    "3 3t 5 5t 6 6t 7 7t 8 8t 9r 9rt pro open oxygenos",
+            "recovery": ("OxygenOS / ColorOS full OTA zip &mdash; local install "
+                         "from the phone's own update screen"),
+            "fastboot": ("Fastboot ROM &mdash; the full signed package with "
+                         "<code>flash-all.bat</code>"),
+            "page": "https://www.oneplus.com/in/support/softwareupgrade",
+            "page_label": "OnePlus Downloads &amp; Updates (India)",
+            "official": "https://www.oneplus.com/global/support/softwareupgrade",
+            "official_label": "OnePlus global software upgrade",
+            "note": "OnePlus lists them as Downloads &amp; Updates. Match your "
+                    "exact model and region, because an EU build and an IN build "
+                    "are not interchangeable.",
+        },
+        {
+            "name": "Google Pixel",
+            "keys": "google pixel nexus 4 5 6 7 8 9 10 pro xl a fold tablet "
+                    "factory image ota",
+            "recovery": ("Full OTA image &mdash; sideload it from recovery, no "
+                         "data wipe needed"),
+            "fastboot": ("Factory image &mdash; the <code>flash-all</code> "
+                         "package for fastboot"),
+            "page": "https://developers.google.com/android/images",
+            "page_label": "Factory Images for Nexus and Pixel",
+            "official": "https://developers.google.com/android/ota",
+            "official_label": "Full OTA Images for Pixel",
+            "note": "Google publishes both formats in the open, with the build "
+                    "hash beside each one. Check the anti-rollback warning at the "
+                    "top of the page before going back a version.",
+        },
+        {
+            "name": "realme",
+            "keys": "realme narzo gt c gt2 gt3 gt5 gt6 gt7 neo 1 2 3 5 6 7 8 9 "
+                    "10 11 12 c1 c2 c3 c11 c12 c15 c20 c21 c25 c30 c31 c33 c35 "
+                    "c55 c67 x2 x3 x7 p1 p2 t1 t2 t3 rmui realmeui rmx rmx1 "
+                    "rmx2 rmx3 rmx4 rmx5 rmx6 rmx7 rmx8 rmx9",
+            "recovery": ("realme UI / RMUI OTA zip &mdash; local update from the "
+                         "phone's settings"),
+            "fastboot": ("Flash-tool package &mdash; for the OPPO / realme "
+                         "download tool on a PC"),
+            "page": "https://www.realme.com/in/support/software-update",
+            "page_label": "realme Software &amp; Driver Update (India)",
+            "official": "https://www.realme.com/in/support",
+            "official_label": "realme official support",
+            "note": "Choose your exact product in the list. realme ships most of "
+                    "its images as an update-tool package rather than a plain "
+                    "fastboot zip.",
+        },
+        {
+            "name": "OPPO",
+            "keys": "oppo find x n reno a5 a9 a12 a15 a16 a17 a18 a31 a52 a53 "
+                    "a54 a55 a57 a58 a74 a77 a78 a79 f5 f7 f9 f11 f15 f17 f19 "
+                    "k1 k3 k5 k10 k12 cph cph1 cph2 cph3 cph4 cph5 cph6 cph7 "
+                    "cph8 cph9 coloros cph2451 cph2471 cph2521 cph2565",
+            "recovery": ("ColorOS OTA zip &mdash; local install from the phone"),
+            "fastboot": ("Flash-tool firmware &mdash; for the OPPO / realme "
+                         "download tool on a PC"),
+            "page": "https://www.oppo.com/in/support/",
+            "page_label": "OPPO India support &amp; software updates",
+            "official": "https://www.oppo.com/en/support/",
+            "official_label": "OPPO global support",
+            "note": "Two phones with the same shop name can have different "
+                    "firmware. Match the model code (CPH####), not the nickname.",
+        },
+        {
+            "name": "vivo / iQOO",
+            "keys": "vivo iqoo nex x fold y v s t z 11 15 17 19 20 21 23 25 27 "
+                    "30 40 50 60 70 80 90 100 pro lite se funtouch z1 z3 z6 "
+                    "z7 z9 iqoo 3 5 7 9 11 12 13 neo legend",
+            "recovery": ("Funtouch OS / OriginOS OTA package &mdash; via the "
+                         "built-in software update"),
+            "fastboot": ("Flash-tool firmware &mdash; for the vivo flash tool on "
+                         "a PC"),
+            "page": "https://www.vivo.com/in/support",
+            "page_label": "vivo India support &amp; software",
+            "official": "https://www.vivo.com/en/support",
+            "official_label": "vivo global support",
+            "note": "vivo publishes by model code, and the flash tool is "
+                    "PC-only for most models, so plan for a computer here.",
+        },
+        {
+            "name": "Motorola / Lenovo",
+            "keys": "motorola moto lenovo g e edge razr one fusion g5 g6 g7 g8 "
+                    "g9 g10 g14 g20 g22 g23 g24 g30 g31 g32 g34 g35 g42 g50 "
+                    "g52 g54 g60 g62 g71 g72 g73 g82 g84 g85 edge 20 30 40 50 "
+                    "x30 s30",
+            "recovery": ("Full OTA zip &mdash; sideload from recovery"),
+            "fastboot": ("Factory image &mdash; fastboot package with "
+                         "<code>flashfile.xml</code>"),
+            "page": "https://en-us.support.motorola.com/app/softwareupdates",
+            "page_label": "Motorola software updates &amp; downloads",
+            "official": "https://en-us.support.motorola.com/",
+            "official_label": "Motorola official support",
+            "note": "Motorola's own list is the one that matters here: a lot of "
+                    "mirrors carry region builds that will not match your "
+                    "software channel.",
+        },
+        {
+            "name": "Samsung",
+            "keys": "samsung galaxy s a m note z fold flip 8 9 10 20 21 22 23 "
+                    "24 25 a01 a02 a03 a04 a05 a10 a11 a12 a13 a14 a15 a20 "
+                    "a21 a22 a23 a24 a25 a30 a31 a32 a33 a34 a35 a50 a51 "
+                    "a52 a53 a54 a55 a70 a71 a72 a73 m01 m11 m12 m13 m14 m15 "
+                    "m20 m21 m22 m23 m30 m31 m32 m33 m34 m51 m52 m53 m54 "
+                    "odin firmware",
+            "recovery": ("Full OTA &mdash; through the phone's own update screen"),
+            "fastboot": ("Odin firmware &mdash; the <code>.tar.md5</code> "
+                         "package, flashed with Odin, not fastboot"),
+            "page": "https://www.samsung.com/in/support/",
+            "page_label": "Samsung India support &amp; firmware",
+            "official": "https://www.samsung.com/in/support/",
+            "official_label": "Samsung official support",
+            "note": "Samsung does not use fastboot. The equivalent is Odin plus "
+                    "a firmware tar, and the CSC code has to match your region.",
+        },
+        {
+            "name": "Nothing / CMF",
+            "keys": "nothing phone cmf 1 2 2a 2a plus 3 3a pro buds watch",
+            "recovery": ("Full OTA zip &mdash; sideload from recovery"),
+            "fastboot": ("Factory image &mdash; fastboot package"),
+            "page": "https://nothing.tech/pages/support",
+            "page_label": "Nothing support &amp; software downloads",
+            "official": "https://nothing.tech/pages/support",
+            "official_label": "Nothing official support",
+            "note": "Nothing posts both the OTA and the factory image on its own "
+                    "support site, and the builds are versioned openly.",
+        },
+        {
+            "name": "Nokia",
+            "keys": "nokia hmd 2 3 5 6 7 8 9 11 21 22 23 25 30 32 33 43 50 55 "
+                    "63 70 71 72 73 80 81 82 90 91 x10 x20 x30 xr20 g10 g11 "
+                    "g20 g21 g22 g42 g50 g60 c01 c10 c12 c20 c21 c30 c31",
+            "recovery": ("Full OTA &mdash; from the phone's own update screen"),
+            "fastboot": ("Firmware package &mdash; for the HMD / Nokia flashing "
+                         "tool"),
+            "page": "https://www.nokia.com/phones/en_in/support",
+            "page_label": "Nokia phones support &amp; software",
+            "official": "https://www.nokia.com/phones/en_int/support",
+            "official_label": "Nokia phones official support",
+            "note": "Older Nokia Android phones are the ones with public "
+                    "fastboot images; newer HMD models lean on the built-in "
+                    "updater.",
+        },
+        {
+            "name": "Micromax / Lava / Karbonn / Tecno / Infinix / itel",
+            "keys": "micromax lava karbonn tecno infinix itel intex canvas in "
+                    "note spark camon hot pova phantom zero smart 5 6 8 10 11 "
+                    "12 13 15 20 30 nitro",
+            "recovery": ("Full OTA &mdash; through the phone's own updater"),
+            "fastboot": ("Firmware package &mdash; usually a PC flash tool per "
+                         "model"),
+            "page": "https://www.micromaxinfo.com/support/",
+            "page_label": "Micromax support &amp; software",
+            "official": "https://www.micromaxinfo.com/",
+            "official_label": "Micromax official site",
+            "note": "These brands publish far less in the open. The built-in "
+                    "updater is the reliable route; a service centre is the "
+                    "fallback when a phone will not boot at all.",
+        },
+    ]
+
+    # Flat search index for the little client-side box below.
+    index = [{"n": b["name"], "k": b["keys"], "i": i}
+             for i, b in enumerate(BRANDS)]
+
+    cards = []
+    for i, b in enumerate(BRANDS):
+        cards.append(
+            '<article class="dlcard" data-dl="%d">\n'
+            '<h3>%s</h3>\n'
+            '<div class="dlgrid">\n'
+            '  <div class="dlcol"><span class="dltag recovery">Recovery ROM</span>'
+            '<p>%s</p></div>\n'
+            '  <div class="dlcol"><span class="dltag fastboot">Fastboot ROM</span>'
+            '<p>%s</p></div>\n'
+            '</div>\n'
+            '<p class="dlbtns">'
+            '<a class="btn" href="%s" rel="noopener">Firmware downloads</a>'
+            '<a class="btn ghost" href="%s" rel="noopener">%s</a></p>\n'
+            '<p class="dlnote">%s</p>\n'
+            '</article>' % (i, html.escape(b["name"]), b["recovery"], b["fastboot"],
+                            b["page"], b["official"], html.escape(b["page_label"]),
+                            b["note"]))
+
+    body = """<h1>ROM downloader</h1>
+<p class="dis">Type the phone you actually have &mdash; <em>poco x7 pro</em>,
+<em>redmi note 13</em>, <em>CPH2451</em>, whatever is written on the box &mdash;
+and this page takes you straight to that brand's own firmware download page.
+Recovery ROM and Fastboot ROM are both spelled out for each brand, because which
+one you need depends on whether the phone still boots.</p>
+
+<div class="dlsearch">
+  <label for="dlq">Which phone?</label>
+  <input id="dlq" type="search" autocomplete="off" spellcheck="false"
+         placeholder="e.g. POCO X7 Pro, Redmi Note 13, Pixel 8, OnePlus 12">
+  <p class="dlhint" id="dlhint">Start typing &mdash; the list below filters to
+  your brand.</p>
+</div>
+
+<h2>Pick a download</h2>
+<p>Four routes, depending on what you need on the phone:</p>
+<div class="dlopts">
+  <a class="dlopt" href="#stock"><b>Stock ROM download</b>
+    <span>Your phone's own firmware, so you can go back to how it shipped.</span></a>
+  <a class="dlopt" href="#magisk"><b>Magisk</b>
+    <span>Root by patching the boot image &mdash; the one that hides best.</span></a>
+  <a class="dlopt" href="#kernelsu"><b>KernelSU</b>
+    <span>Kernel-level root, built into a kernel instead of patched in.</span></a>
+  <a class="dlopt" href="#rom"><b>ROM download</b>
+    <span>Custom ROMs, recoveries and GApps for your exact model.</span></a>
+</div>
+
+%(ad)s
+
+<h2 id="stock">Stock ROM download</h2>
+<p>A <strong>stock ROM</strong> is the firmware your phone shipped with. You
+want it back when a custom ROM left something broken, when the phone bootloops,
+or when you are selling the phone and want it clean. Two file types show up for
+almost every brand, and picking the wrong one is the usual reason a flash
+fails:</p>
+<ul>
+  <li><strong>Recovery ROM</strong> (also called an OTA or full OTA zip). A big
+  <code>.zip</code> you install from the phone's own updater or from recovery.
+  It keeps your data if the version is newer, and it is the safer one.</li>
+  <li><strong>Fastboot ROM</strong> (also called a factory image). A
+  <code>.tgz</code> or a folder with a <code>flash_all</code> script inside. It
+  writes every partition, so it can rescue a phone that no longer boots &mdash;
+  and it wipes your data.</li>
+</ul>
+<p class="dis">Rule of thumb: phone boots &rarr; Recovery ROM. Phone does not
+boot &rarr; Fastboot ROM.</p>
+
+<div class="dlcards" id="dlcards">
+%(cards)s
+</div>
+
+<h2 id="magisk">Magisk</h2>
+<p><strong>Magisk</strong> is the root method most people end up on, because it
+keeps root out of the system partition: you patch the phone's own
+<code>boot</code> or <code>init_boot</code> image, flash that back, and the
+system stays untouched. That is what lets banking apps and Play Integrity
+survive.</p>
+<ul>
+  <li><a href="https://github.com/topjohnwu/Magisk/releases" rel="noopener">Magisk
+  releases on GitHub</a> &mdash; download the <code>.apk</code> from the latest
+  release, not from a mirror.</li>
+  <li><a href="https://topjohnwu.github.io/Magisk/" rel="noopener">Magisk
+  documentation</a> &mdash; the install steps, straight from the author.</li>
+</ul>
+<p>Grab the boot image for your exact build first (it is inside the factory image
+or the OTA zip above), patch it in the Magisk app, then flash the patched file
+with the free Rom Flasher tool over USB-OTG &mdash; no PC needed.</p>
+
+<h2 id="kernelsu">KernelSU</h2>
+<p><strong>KernelSU</strong> is the other modern root route, and it works
+differently: root lives inside the kernel itself, so you flash a patched kernel
+rather than patching a boot image. On phones with a GKI kernel it is the cleanest
+option, and some custom kernels ship with it already built in.</p>
+<ul>
+  <li><a href="https://github.com/tiann/KernelSU/releases" rel="noopener">KernelSU
+  releases on GitHub</a></li>
+  <li><a href="https://kernelsu.org/" rel="noopener">KernelSU
+  documentation</a> &mdash; which kernels are supported and how to install</li>
+</ul>
+<p>Whichever of the two you pick, keep a copy of the stock boot or kernel image
+you replaced. That copy is what gets you out of a bootloop later.</p>
+
+<h2 id="rom">ROM download</h2>
+<p>For custom ROMs and the recovery that installs them, the project's own page is
+always the right source &mdash; it is the only one that is current on which device
+codename a build supports.</p>
+<ul>
+  <li><a href="https://download.lineageos.org/" rel="noopener">LineageOS
+  downloads</a> &mdash; builds per codename, plus the recovery</li>
+  <li><a href="https://twrp.me/Devices/" rel="noopener">TWRP devices</a> &mdash;
+  the official recovery list</li>
+  <li><a href="https://sourceforge.net/projects/evolution-x/" rel="noopener">Evolution
+  X</a> and <a href="https://sourceforge.net/projects/crdroid/" rel="noopener">crDroid</a>
+  on SourceForge</li>
+  <li><a href="https://nikgapps.com/" rel="noopener">NikGApps</a> &mdash; Google
+  apps packages that match your Android version</li>
+</ul>
+<p>Then follow the <a href="videos.html">written guide for your phone</a> on this
+site &mdash; every step, in the same order as the video.</p>
+
+<h2 id="how">How to find your exact model</h2>
+<p>Half of all failed flashes come down to a codename mismatch. Two minutes of
+checking saves that:</p>
+<ul>
+  <li>On the phone: <strong>Settings &rarr; About phone</strong> shows the model
+  name and often the model code. Tap the build number a few times for developer
+  options if you need the exact build.</li>
+  <li>In fastboot: the codename is printed on the fastboot screen, and
+  <code>fastboot getvar product</code> returns it.</li>
+  <li>In recovery: the filename of the zip you are about to flash should contain
+  that exact codename. If it does not, stop.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+
+<details class="faq"><summary>Why does this page link out instead of hosting the files?</summary>
+<p>Firmware belongs to the manufacturer, and this site does not have a licence to
+redistribute it. Hosting someone else's ROM would also mean serving a file that is
+out of date within weeks. Sending you to the brand's own download page means you
+always get the current build, from the source that signs it.</p></details>
+
+<details class="faq"><summary>Recovery ROM or Fastboot ROM &mdash; which one do I want?</summary>
+<p>If the phone still boots and you just want the stock firmware back, use the
+Recovery ROM. If the phone will not boot, or you want to be certain every
+partition is stock, use the Fastboot ROM &mdash; it wipes data but it is the one
+that rescues a brick.</p></details>
+
+<details class="faq"><summary>Can my phone's bootloader stay locked?</summary>
+<p>For a Recovery ROM from the phone's own updater, yes. For a Fastboot ROM or
+any custom ROM, no &mdash; the bootloader has to be unlocked first, and on most
+brands that erases the phone.</p></details>
+
+<details class="faq"><summary>Do I need a computer?</summary>
+<p>Not for a Recovery ROM, and not for flashing a patched boot image if you use
+<a href="download.html">the free Rom Flasher tool</a> over USB-OTG. A Fastboot
+ROM is easier on a PC, though, because that is what the bundled scripts are
+written for.</p></details>
+
+<details class="faq"><summary>Is my data safe?</summary>
+<p>A Recovery ROM of a newer version keeps your data. A Fastboot ROM wipes it.
+Either way, take a backup first &mdash; and note that unlocking a bootloader
+usually erases the phone on its own.</p></details>
+
+<details class="faq"><summary>What if my brand is not listed?</summary>
+<p>Use the search box and check the closest entry, then go straight to that
+brand's support site and look for a "software", "downloads" or "firmware"
+section. Every manufacturer has one; it is just named differently each time.</p></details>
+""" % {"ad": ad_slot("hub"), "cards": "\n".join(cards)}
+
+    faq = [
+        ("Why does this page link out instead of hosting the files?",
+         "Firmware belongs to the manufacturer, and this site does not have a "
+         "licence to redistribute it. Hosting someone else's ROM would also "
+         "serve a file that is out of date within weeks."),
+        ("Recovery ROM or Fastboot ROM - which one do I want?",
+         "If the phone still boots, use the Recovery ROM. If it will not boot, "
+         "or you want every partition stock, use the Fastboot ROM - it wipes "
+         "data but it rescues a brick."),
+        ("Can my phone's bootloader stay locked?",
+         "For a Recovery ROM from the phone's own updater, yes. For a Fastboot "
+         "ROM or any custom ROM, no - the bootloader has to be unlocked first."),
+        ("Do I need a computer?",
+         "Not for a Recovery ROM, and not for flashing a patched boot image "
+         "with the free Rom Flasher tool over USB-OTG. A Fastboot ROM is easier "
+         "on a PC."),
+        ("Is my data safe?",
+         "A Recovery ROM of a newer version keeps your data. A Fastboot ROM "
+         "wipes it. Take a backup first."),
+        ("What if my brand is not listed?",
+         "Use the search box and check the closest entry, then go to that "
+         "brand's support site and look for a software, downloads or firmware "
+         "section."),
+    ]
+
+    blocks = [{
+        "@context": "https://schema.org", "@type": "WebPage",
+        "name": "ROM downloader",
+        "url": "%s/downloader.html" % SITE_URL,
+        "description": "Find stock firmware for any Android phone - Recovery ROM "
+                       "and Fastboot ROM links for Xiaomi, POCO, Redmi, OnePlus, "
+                       "OPPO, realme, vivo, Pixel, Samsung and more.",
+        "inLanguage": "en",
+        "isAccessibleForFree": True,
+        "isPartOf": {"@type": "WebSite", "name": SITE, "url": SITE_URL},
+        "publisher": {"@type": "Organization", "name": SITE, "url": SITE_URL},
+        "mainEntity": {"@type": "ItemList", "numberOfItems": len(BRANDS),
+                       "itemListElement": [
+                           {"@type": "ListItem", "position": i + 1,
+                            "name": b["name"], "url": b["page"]}
+                           for i, b in enumerate(BRANDS)]},
+        "significantLink": [b["page"] for b in BRANDS],
+    }, {
+        "@context": "https://schema.org", "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer",
+                                "text": re.sub(r"<[^>]+>", "", a)
+                                .replace("&nbsp;", " ").replace("&mdash;", "-")}}
+            for q, a in faq],
+    }, {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home",
+             "item": SITE_URL + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Downloader",
+             "item": SITE_URL + "/downloader.html"},
+        ],
+    }]
+    head = "\n".join('<script type="application/ld+json">%s</script>'
+                     % json.dumps(b, ensure_ascii=False) for b in blocks)
+
+    # The filter. Small, and it degrades to the full list with JS off.
+    # It waits for DOMContentLoaded on purpose: the markup is emitted from <head>
+    # and the input and cards are further down, so looking them up immediately
+    # finds nothing and the box silently stops filtering.
+    head += (
+        '\n<script>window.DL_INDEX=%s;</script>\n'
+        '<script>\n'
+        'window.addEventListener("DOMContentLoaded",function(){\n'
+        '  var q=document.getElementById("dlq"),cards=document.querySelectorAll(".dlcard"),\n'
+        '      hint=document.getElementById("dlhint"),idx=window.DL_INDEX||[];\n'
+        '  if(!q)return;\n'
+        '  function words(s){return s.toLowerCase().replace(/[^a-z0-9]+/g," ").split(" ").filter(Boolean);}\n'
+        '  function run(){\n'
+        '    var t=words(q.value),shown=0;\n'
+        '    cards.forEach(function(c){\n'
+        '      var i=+c.getAttribute("data-dl"),row=idx[i]||{n:"",k:""};\n'
+        '      var hay=(row.n+" "+row.k).toLowerCase();\n'
+        '      var hit=!t.length||t.every(function(w){return hay.indexOf(w)>=0;});\n'
+        '      c.style.display=hit?"":"none";\n'
+        '      if(hit)shown++;\n'
+        '    });\n'
+        '    hint.textContent=!q.value?"Start typing - the list below filters to your brand."\n'
+        '      :(shown?shown+" brand"+(shown===1?"":"s")+" match."\n'
+        '        :"No brand matched. Check the closest entry below and open that brand\'s support page.");\n'
+        '  }\n'
+        '  q.addEventListener("input",run);\n'
+        '});\n'
+        '</script>' % json.dumps(index, ensure_ascii=False))
+
+    return page("ROM downloader \u2014 stock ROM, Magisk, KernelSU links by device"
+                " | %s" % SITE,
+                "Search any Android phone - POCO, Redmi, Xiaomi, OnePlus, OPPO, "
+                "realme, vivo, Pixel, Samsung, Nokia, Micromax - and get its "
+                "official Recovery ROM and Fastboot ROM download pages, plus "
+                "Magisk and KernelSU.",
+                '<article><div class="prose">%s</div></article>' % body,
+                "downloader.html", extra_head=head,
+                keywords=keywords_for(item={"tags": [
+                    "stock rom download", "official firmware download",
+                    "fastboot rom download", "recovery rom download",
+                    "xiaomi firmware", "poco stock rom", "redmi firmware",
+                    "oneplus oxygenos download", "realme firmware",
+                    "magisk download", "kernelsu download", "rom downloader"]}),
                 image=SITE_URL + "/static/app.png")
 
 
@@ -2140,7 +2898,6 @@ and the app drives fastboot, recovery and sideloading for you.</p>
 <code>init_boot</code>, <code>super</code>, <code>vbmeta</code>)</li>
 <li>Sideloads ROMs, GApps and Magisk from recovery</li>
 <li>Backs up and restores IMEI / EFS and kernels, and rescues a boot-loop</li>
-<li>Pulls region-wise stock ROMs without leaving the app</li>
 <li>Roots with KernelSU or Magisk, debloats, and shows the real device info</li>
 <li>Keeps a live command log, so a failure can be pasted into a support thread</li>
 </ul>
@@ -2156,12 +2913,41 @@ and the app drives fastboot, recovery and sideloading for you.</p>
 <a class="btn yt" href="%s" rel="noopener">Videos</a>
 <a class="btn gold" href="donate.html">%sBuy me a coffee</a></p>
 """ % (REPO_URL, GH_LOGO, CHANNEL_URL, COFFEE_LOGO),
+                              description="Rom Flasher is a free Android app "
+                              "that flashes the other phone over USB-OTG: "
+                              "fastboot ROMs, custom images, sideloads and "
+                              "kernels, with no PC and no sign-in.",
+                              ad=True,
+                              schema={
+                                  "@context": "https://schema.org",
+                                  "@type": "SoftwareApplication",
+                                  "name": SITE,
+                                  "alternateName": "Rom Flasher tool",
+                                  "applicationCategory": "UtilitiesApplication",
+                                  "operatingSystem": "Android",
+                                  "url": "%s/apps.html" % SITE_URL,
+                                  "downloadUrl": "%s/download.html" % SITE_URL,
+                                  "softwareVersion": APP["version"].lstrip("v"),
+                                  "offers": {"@type": "Offer", "price": "0",
+                                             "priceCurrency": "USD"},
+                                  "isAccessibleForFree": True,
+                                  "license": "https://opensource.org/licenses/MIT",
+                                  "author": {"@type": "Organization",
+                                             "name": SITE,
+                                             "url": SITE_URL},
+                                  "featureList": [
+                                      "Flashes fastboot ROMs and custom images",
+                                      "Sideloads ROMs, GApps and Magisk from recovery",
+                                      "Backs up and restores IMEI / EFS and kernels",
+                                      "Roots with KernelSU or Magisk and debloats",
+                                  ]},
                               keywords=keywords_for(extra=(
                                   "rom flasher tool", "android flashing app",
                                   "flash rom app", "usb otg flasher",
                                   "app installer apk xapk", "debloater")))
 
     out["download.html"] = build_download()
+    out["downloader.html"] = build_downloader()
     out["donate.html"] = build_donate()
 
     out["about.html"] = simple("about.html", "About", "About \u2014 %s" % SITE, """
@@ -2183,7 +2969,22 @@ parts that are genuinely fiddly.</p>
 <p><a href="download.html">The free Rom Flasher tool</a> is open source and lives
 on <a href="%s" rel="noopener">GitHub</a>. New videos land on
 <a href="%s" rel="noopener">YouTube</a>. %d guides so far.</p>
-""" % (REPO_URL, CHANNEL_URL, n))
+""" % (REPO_URL, CHANNEL_URL, n),
+                              description="About Rom Flasher: who writes these "
+                              "custom ROM and flashing guides, how each one is "
+                              "tested on real hardware, and what the free "
+                              "Rom Flasher Android tool actually does.",
+                              ad=True,
+                              schema={
+                                  "@context": "https://schema.org",
+                                  "@type": "AboutPage",
+                                  "name": "About %s" % SITE,
+                                  "url": "%s/about.html" % SITE_URL,
+                                  "description": "How Rom Flasher guides are "
+                                  "written and tested.",
+                                  "inLanguage": "en",
+                                  "publisher": {"@type": "Organization",
+                                                "name": SITE, "url": SITE_URL}}) 
 
     out["privacy.html"] = simple("privacy.html", "Privacy Policy",
                                  "Privacy \u2014 %s" % SITE, """
@@ -2216,7 +3017,22 @@ This site does not control them and cannot vouch for what they host.</p>
 <h2>Contact</h2>
 <p>Use the <a href="contact.html">contact page</a>. Content removal requests are
 honoured where the claim is valid.</p>
-""" % BUILT_ON)
+""" % BUILT_ON,
+                                 description="How Rom Flasher handles data: no "
+                                 "login, no comment box and no database. What "
+                                 "server logs keep, when analytics and "
+                                 "advertising cookies load, and how to opt out.",
+                                 ad=True,
+                                 schema={
+                                     "@context": "https://schema.org",
+                                     "@type": "WebPage",
+                                     "name": "Privacy Policy",
+                                     "url": "%s/privacy.html" % SITE_URL,
+                                     "inLanguage": "en",
+                                     "isPartOf": {"@type": "WebSite",
+                                                  "name": SITE,
+                                                  "url": SITE_URL},
+                                     "dateModified": BUILT_ON})
 
     out["terms.html"] = simple("terms.html", "Terms of Use", "Terms \u2014 %s" % SITE, """
 <p>By reading and following anything on this site you accept the points below.</p>
@@ -2238,7 +3054,20 @@ recovery or kernel project. All trademarks belong to their owners and their
 licences still apply.</p>
 <h2>Advertising</h2>
 <p>Ads may appear on these pages. An ad is not an endorsement.</p>
-""")
+""",
+                        description="The ground rules for using Rom Flasher: "
+                        "flashing is at your own risk, guides come from real "
+                        "attempts, and download links point to third-party hosts.",
+                        ad=True,
+                        schema={
+                            "@context": "https://schema.org",
+                            "@type": "WebPage",
+                            "name": "Terms of Use",
+                            "url": "%s/terms.html" % SITE_URL,
+                            "inLanguage": "en",
+                            "isPartOf": {"@type": "WebSite", "name": SITE,
+                                         "url": SITE_URL},
+                            "dateModified": BUILT_ON})
 
     out["contact.html"] = simple("contact.html", "Contact", "Contact \u2014 %s" % SITE, """
 <h2>Talk to me</h2>
@@ -2252,14 +3081,43 @@ same thing can find the fix.</p>
 <h2>Guide requests</h2>
 <p>Name the exact model and variant. "Redmi Note 13 Pro 5G, 8/256 global" gets
 picked up long before "do my phone".</p>
-""" % (feedback_form(), REPO_URL))
+""" % (feedback_form(), REPO_URL),
+                        description="Reach the person behind Rom Flasher. Send a "
+                        "guide request, report a bug or ask a flashing question "
+                        "and expect a real answer. Exact model and variant gets "
+                        "picked up fastest.",
+                        ad=True,
+                        schema={
+                            "@context": "https://schema.org",
+                            "@type": "ContactPage",
+                            "name": "Contact %s" % SITE,
+                            "url": "%s/contact.html" % SITE_URL,
+                            "inLanguage": "en",
+                            "publisher": {"@type": "Organization", "name": SITE,
+                                          "url": SITE_URL,
+                                          "email": CONTACT_EMAIL}})
 
     out["404.html"] = simple("404.html", "Page not found",
                              "Not found \u2014 %s" % SITE, """
 <p>That address does not exist here. Try <a href="index.html">the home page</a>
 or <a href="videos.html">the full list of guides</a>.</p>
-""")
+""",
+                             description="That page does not exist on Rom Flasher. "
+                             "Head back to the home page, or open the full list "
+                             "of custom ROM and flashing guides.")
     return out
+
+
+def rfc822(value):
+    """RSS 2.0 wants RFC-822 dates, not ISO. Feed readers reject the ISO form."""
+    m = re.match(r"^(\d{4})-(\d{2})-(\d{2})", str(value or ""))
+    if not m:
+        return ""
+    try:
+        d = datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+    except ValueError:
+        return ""
+    return d.strftime("%a, %d %b %Y 00:00:00 GMT")
 
 
 def build_feed(items):
@@ -2271,7 +3129,7 @@ def build_feed(items):
             "<item><title>%s</title><link>%s</link><guid>%s</guid>"
             "<pubDate>%s</pubDate><description>%s</description></item>"
             % (html.escape(x["title"]), link, link,
-               x.get("published") or BUILT_ON,
+               rfc822(x.get("published")) or rfc822(BUILT_ON),
                html.escape(x.get("blurb") or x["title"])))
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<rss version="2.0"><channel>\n'
@@ -2340,6 +3198,11 @@ def main():
         shutil.rmtree(DIST, ignore_errors=True)
     os.makedirs(os.path.join(DIST, "static"), exist_ok=True)
 
+    # Which tags get an archive page is decided once, from the whole content
+    # list, before any page is rendered - every chip on the site resolves
+    # against this set.
+    tag_hubs(items)
+
     # static/ is the single source of truth: css, icons, avatar
     for name in sorted(os.listdir(STATIC)):
         src = os.path.join(STATIC, name)
@@ -2350,7 +3213,6 @@ def main():
     write("videos.html", build_guides(items))
     for item in items:
         write("rom/%s.html" % item["slug"], build_article(item, items))
-
     hubs = hub_map(items)
     for name, hub in hubs.items():
         write("device/%s.html" % hub["slug"],
@@ -2387,12 +3249,6 @@ def main():
     }, indent=1))
     write(".nojekyll", "")
 
-    # The app's remote feature flags. Read by Rom Flasher on every launch; see
-    # RemoteConfig.kt. Kept here so the file the app fetches and the file we
-    # shipped are always the same one, and so a typo is caught at build time
-    # rather than silently hiding a card from everyone.
-    write("app-config.json", app_config_json())
-
     if ADS_PUBLISHER:
         # Written only when the AdSense publisher really exists - a wrong ads.txt
         # is worse than none at all.
@@ -2423,7 +3279,9 @@ def main():
                    ("roms.html", "0.6", "weekly", newest_date),
                    ("topics.html", "0.6", "weekly", newest_date),
                    ("years.html", "0.5", "monthly", newest_date),
+                   ("tags.html", "0.5", "weekly", newest_date),
                    ("download.html", "0.95", "weekly", BUILT_ON),
+                   ("downloader.html", "0.9", "weekly", BUILT_ON),
                    ("donate.html", "0.4", "monthly", BUILT_ON),
                    ("apps.html", "0.8", "weekly", newest_date),
                    ("about.html", "0.5", "monthly", BUILT_ON),

@@ -1,62 +1,62 @@
 {
-  "id": "RC-4USObAWw",
-  "slug": "robinhood-hyperos-3-on-poco-x7-pro-china-base-flash",
-  "title": "Robinhood HyperOS 3 on Poco X7 Pro — China Base Flash",
-  "blurb": "Robinhood HyperOS 3 is a China-based Android 16 build for the Poco X7 Pro, and the flashing part is genuinely easy — it's a fastboot installer, so no...",
-  "device": "POCO X7 Pro",
-  "rom": "HyperOS",
-  "android": "",
-  "views": 2150,
-  "published": "2025-11-01",
-  "url": "https://youtu.be/RC-4USObAWw",
-  "tags": [
-    "HyperOS",
-    "Flash",
-    "Install",
-    "Root",
-    "Bootloader"
-  ],
-  "summary": "Robinhood HyperOS 3 is a China-based Android 16 build for the Poco X7 Pro, and you flash it with a fastboot installer instead of recovery. Unpack the ROM on your PC, boot the phone into fastboot, run the installer batch file, answer Y for a clean flash, and pick your root option. It is a short job, and the only real trap is running it from inside the zip.",
-  "body": "You have heard about the China-based HyperOS 3 builds and you want to try one on your Poco X7 Pro. Here is the good news first: this one flashes through fastboot, so there is no recovery hopping and no long list of commands to type. You run one script, answer a few prompts, and wait.\n\nHere is the honest part too. Robinhood HyperOS 3 is built on a China base. That means the core system is current and smooth, but the global app lineup is not all there out of the box. You set it up, notice what is missing for your own use, and add the rest yourself. Nothing is broken. It is just a build that assumes you will finish the job.\n\n## What you need before you start\n\n- The Robinhood HyperOS 3 ROM zip, unpacked into a normal folder on your PC.\n- The Poco X7 Pro with an unlocked bootloader, ready to enter fastboot.\n- Working ADB and fastboot drivers on Windows, so the script can see the phone.\n- A full backup, because the installer's clean flash wipes everything.\n- A cable you trust and a battery above 50%.\n\nThat last point sounds like a joke. It is not. Almost every \"the flash ruined my phone\" story is really a cable that dropped halfway through.\n\n## Step 1 — unpack the ROM into a folder\n\nDownload the ROM from the link below and extract it with 7-Zip or WinRAR. Not the built-in Windows extractor — that one sometimes flattens the structure. You want a real folder with the installer script and the image files sitting side by side inside it.\n\nIf you are looking at the contents of the zip file rather than an extracted folder on disk, stop here. Running the installer from inside the archive is the single most common way this goes wrong.\n\n## Step 2 — boot the phone into fastboot and connect it\n\nPower the phone off. Hold Volume Down and Power together until the fastboot screen appears. Plug it into the PC with your good cable.\n\nNow open a command window in your platform tools folder and run:\n\n`fastboot devices`\n\nYou should get a long serial number and the word `fastboot`. No serial number means the driver is missing, and the installer will not find the phone no matter how many times you try. Fix the driver first.\n\n## Step 3 — run the installer\n\nInside the extracted ROM folder, run `Robinhood_os_installer.bat`. Right-click and run it as administrator so nothing gets blocked halfway.\n\nThe script walks you through it:\n\n- It asks whether you want a clean flash. Answer **Y**. That is the intended path for this build.\n- It then asks how you want root, with options 1, 2 or 3. Pick whichever suits you.\n- If you do not want root at all, press **4** and move on.\n\nThat is the whole decision list. There is nothing hidden after it.\n\n## Step 4 — let it finish and keep your hands off the cable\n\nThe installer starts writing partitions and printing the names as it goes. Some steps take a while and the screen can look frozen. It is not. Do not unplug the cable, do not close the window, and do not tap the phone to check if it is awake.\n\nWhen it is done, the phone reboots to the system on its own. You can also tap **S** if you want to send it there yourself. Either way, first boot on a China base takes a few minutes.\n\n## Where people get stuck\n\n- **Running the installer from inside the zip.** It has to run from the extracted folder. If the window opens and dies instantly, this is almost always why.\n- **Missing fastboot drivers.** No serial number in `fastboot devices` means the script has nothing to talk to. Sort the driver before you blame the ROM.\n- **Pulling the cable because it looked stuck.** A long pause is normal. The flash is still running.\n\n## One honest note about the China base\n\nSet the ROM up first, do a full boot, and finish the setup wizard before you start restoring apps and accounts. That way, if something is missing for you, you find it on a clean phone instead of on top of an hour of restored data. Adding a global service or two by hand is normal on China builds. It is the trade-off you accept, and it is worth knowing before you start.\n\nIf the driver side feels like the annoying part, the free Rom Flasher tool bundles the ADB and fastboot driver install into a couple of clicks so you are not digging through Device Manager. It is free, and the link is in the downloads section.\n\n## One small thing that saves time\n\nKeep the ROM folder somewhere easy to find, like a folder in the root of your drive. You will come back to it, and hunting through Downloads for a `Robinhood_os_installer.bat` at 1am is its own kind of bad evening.",
-  "video_description": "Robinhood HyperOS 3 is a China-based Android 16 build for the Poco X7 Pro, and the flashing part is genuinely easy — it's a fastboot installer, so no recovery hopping and no command list to memorise.\n\nHonest heads-up first: it's China-based, so don't expect a full global app lineup out of the box. Set it up, see what's missing for you, and add the rest yourself. That's the trade-off, and it's worth knowing before you start.\n\n🛠️ What You Need\n• The ROM zip, unpacked into a folder on your PC.\n• The Poco X7 Pro with an unlocked bootloader, ready for fastboot.\n• Working ADB and fastboot drivers on Windows.\n• A backup — the installer's clean flash wipes everything.\n\n📝 Steps\n1. Unpack the ROM into a folder on your PC.\n2. Boot the phone into fastboot mode and connect it.\n3. Run Robinhood_os_installer.bat.\n4. Answer Y for a clean flash.\n5. Choose your root method with 1, 2 or 3 — or press 4 if you don't want root.\n6. Wait it out. When it's done it reboots to the system on its own, or you can tap S.\n\n⚠️ Where People Get Stuck\n• Running the installer from inside the zip instead of the extracted folder.\n• Missing fastboot drivers, so the script can't detect the phone.\n• Pulling the cable mid-flash because it looked frozen. It isn't — let it finish.\n\n📝 Notes\n• China-based build, so some global services may need adding by hand.\n• Clean flash is the intended path here.\n• If you're new to fastboot installers, follow the on-screen prompts exactly.",
-  "links": [
-    {
-      "label": "Robinhood HyperOS 3 ROM",
-      "url": "https://tmearn.net/link/ohnDv"
-    },
-    {
-      "label": "Rom Flasher tool (free)",
-      "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
-    },
-    {
-      "label": "ADB fastboot tool",
-      "url": "https://tmearn.net/link/8kQcy"
-    },
-    {
-      "label": "ADB fastboot driver",
-      "url": "https://tmearn.net/link/PSM2"
-    }
-  ],
-  "faq": [
-    {
-      "q": "The installer window opens and closes straight away. What is wrong?",
-      "a": "You are almost certainly running it from inside the zip. Extract the ROM into a real folder with 7-Zip or WinRAR first, then run the installer batch file from that folder as administrator."
-    },
-    {
-      "q": "Does this flash wipe my data?",
-      "a": "Yes. The installer's clean flash is the intended path, and it resets the phone completely. Move your photos and anything you care about off before you start, and expect a fresh setup wizard on first boot."
-    },
-    {
-      "q": "Will this build have all the global apps I use?",
-      "a": "Not straight out of the box. It is a China-based build, so some global services need adding by hand once you are set up. Set it up first, see what is missing for you, and fill in the gaps."
-    },
-    {
-      "q": "Do I need to be rooted to use this ROM?",
-      "a": "No. Root is completely optional here. The installer offers a few root options, and pressing 4 skips root entirely. You can also add it later if you change your mind."
-    },
-    {
-      "q": "The script looks frozen at one step. Should I unplug the cable?",
-      "a": "No. Long pauses are normal while a partition is being written. Unplugging mid-flash is how phones get soft-bricked. Leave it plugged in until the phone reboots on its own."
-    }
-  ]
+ "id": "RC-4USObAWw",
+ "slug": "robinhood-hyperos-3-on-poco-x7-pro-china-base-flash",
+ "title": "Robinhood HyperOS 3 on Poco X7 Pro — China Base Flash",
+ "blurb": "Robinhood HyperOS 3 is a China-based Android 16 build for the Poco X7 Pro, and the flashing part is genuinely easy — it's a fastboot installer, so no...",
+ "device": "POCO X7 Pro",
+ "rom": "HyperOS",
+ "android": "Android 16",
+ "views": 2150,
+ "published": "2025-11-01",
+ "url": "https://youtu.be/RC-4USObAWw",
+ "tags": [
+  "HyperOS",
+  "Flash",
+  "Install",
+  "Root",
+  "Bootloader"
+ ],
+ "summary": "Robinhood HyperOS 3 is a China-based Android 16 build for the Poco X7 Pro, and you flash it with a fastboot installer instead of recovery. Unpack the ROM on your PC, boot the phone into fastboot, run the installer batch file, answer Y for a clean flash, and pick your root option. It is a short job, and the only real trap is running it from inside the zip.",
+ "body": "You have heard about the China-based HyperOS 3 builds and you want to try one on your Poco X7 Pro. Here is the good news first: this one flashes through fastboot, so there is no recovery hopping and no long list of commands to type. You run one script, answer a few prompts, and wait.\n\nHere is the honest part too. Robinhood HyperOS 3 is built on a China base. That means the core system is current and smooth, but the global app lineup is not all there out of the box. You set it up, notice what is missing for your own use, and add the rest yourself. Nothing is broken. It is just a build that assumes you will finish the job.\n\n## What you need before you start\n\n- The Robinhood HyperOS 3 ROM zip, unpacked into a normal folder on your PC.\n- The Poco X7 Pro with an unlocked bootloader, ready to enter fastboot.\n- Working ADB and fastboot drivers on Windows, so the script can see the phone.\n- A full backup, because the installer's clean flash wipes everything.\n- A cable you trust and a battery above 50%.\n\nThat last point sounds like a joke. It is not. Almost every \"the flash ruined my phone\" story is really a cable that dropped halfway through.\n\n## Step 1 — unpack the ROM into a folder\n\nDownload the ROM from the link below and extract it with 7-Zip or WinRAR. Not the built-in Windows extractor — that one sometimes flattens the structure. You want a real folder with the installer script and the image files sitting side by side inside it.\n\nIf you are looking at the contents of the zip file rather than an extracted folder on disk, stop here. Running the installer from inside the archive is the single most common way this goes wrong.\n\n## Step 2 — boot the phone into fastboot and connect it\n\nPower the phone off. Hold Volume Down and Power together until the fastboot screen appears. Plug it into the PC with your good cable.\n\nNow open a command window in your platform tools folder and run:\n\n`fastboot devices`\n\nYou should get a long serial number and the word `fastboot`. No serial number means the driver is missing, and the installer will not find the phone no matter how many times you try. Fix the driver first.\n\n## Step 3 — run the installer\n\nInside the extracted ROM folder, run `Robinhood_os_installer.bat`. Right-click and run it as administrator so nothing gets blocked halfway.\n\nThe script walks you through it:\n\n- It asks whether you want a clean flash. Answer **Y**. That is the intended path for this build.\n- It then asks how you want root, with options 1, 2 or 3. Pick whichever suits you.\n- If you do not want root at all, press **4** and move on.\n\nThat is the whole decision list. There is nothing hidden after it.\n\n## Step 4 — let it finish and keep your hands off the cable\n\nThe installer starts writing partitions and printing the names as it goes. Some steps take a while and the screen can look frozen. It is not. Do not unplug the cable, do not close the window, and do not tap the phone to check if it is awake.\n\nWhen it is done, the phone reboots to the system on its own. You can also tap **S** if you want to send it there yourself. Either way, first boot on a China base takes a few minutes.\n\n## Where people get stuck\n\n- **Running the installer from inside the zip.** It has to run from the extracted folder. If the window opens and dies instantly, this is almost always why.\n- **Missing fastboot drivers.** No serial number in `fastboot devices` means the script has nothing to talk to. Sort the driver before you blame the ROM.\n- **Pulling the cable because it looked stuck.** A long pause is normal. The flash is still running.\n\n## One honest note about the China base\n\nSet the ROM up first, do a full boot, and finish the setup wizard before you start restoring apps and accounts. That way, if something is missing for you, you find it on a clean phone instead of on top of an hour of restored data. Adding a global service or two by hand is normal on China builds. It is the trade-off you accept, and it is worth knowing before you start.\n\nIf the driver side feels like the annoying part, the free Rom Flasher tool bundles the ADB and fastboot driver install into a couple of clicks so you are not digging through Device Manager. It is free, and the link is in the downloads section.\n\n## One small thing that saves time\n\nKeep the ROM folder somewhere easy to find, like a folder in the root of your drive. You will come back to it, and hunting through Downloads for a `Robinhood_os_installer.bat` at 1am is its own kind of bad evening.",
+ "video_description": "Robinhood HyperOS 3 is a China-based Android 16 build for the Poco X7 Pro, and the flashing part is genuinely easy — it's a fastboot installer, so no recovery hopping and no command list to memorise.\n\nHonest heads-up first: it's China-based, so don't expect a full global app lineup out of the box. Set it up, see what's missing for you, and add the rest yourself. That's the trade-off, and it's worth knowing before you start.\n\n🛠️ What You Need\n• The ROM zip, unpacked into a folder on your PC.\n• The Poco X7 Pro with an unlocked bootloader, ready for fastboot.\n• Working ADB and fastboot drivers on Windows.\n• A backup — the installer's clean flash wipes everything.\n\n📝 Steps\n1. Unpack the ROM into a folder on your PC.\n2. Boot the phone into fastboot mode and connect it.\n3. Run Robinhood_os_installer.bat.\n4. Answer Y for a clean flash.\n5. Choose your root method with 1, 2 or 3 — or press 4 if you don't want root.\n6. Wait it out. When it's done it reboots to the system on its own, or you can tap S.\n\n⚠️ Where People Get Stuck\n• Running the installer from inside the zip instead of the extracted folder.\n• Missing fastboot drivers, so the script can't detect the phone.\n• Pulling the cable mid-flash because it looked frozen. It isn't — let it finish.\n\n📝 Notes\n• China-based build, so some global services may need adding by hand.\n• Clean flash is the intended path here.\n• If you're new to fastboot installers, follow the on-screen prompts exactly.",
+ "links": [
+  {
+   "label": "Robinhood HyperOS 3 ROM",
+   "url": "https://tmearn.net/link/ohnDv"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "The installer window opens and closes straight away. What is wrong?",
+   "a": "You are almost certainly running it from inside the zip. Extract the ROM into a real folder with 7-Zip or WinRAR first, then run the installer batch file from that folder as administrator."
+  },
+  {
+   "q": "Does this flash wipe my data?",
+   "a": "Yes. The installer's clean flash is the intended path, and it resets the phone completely. Move your photos and anything you care about off before you start, and expect a fresh setup wizard on first boot."
+  },
+  {
+   "q": "Will this build have all the global apps I use?",
+   "a": "Not straight out of the box. It is a China-based build, so some global services need adding by hand once you are set up. Set it up first, see what is missing for you, and fill in the gaps."
+  },
+  {
+   "q": "Do I need to be rooted to use this ROM?",
+   "a": "No. Root is completely optional here. The installer offers a few root options, and pressing 4 skips root entirely. You can also add it later if you change your mind."
+  },
+  {
+   "q": "The script looks frozen at one step. Should I unplug the cable?",
+   "a": "No. Long pauses are normal while a partition is being written. Unplugging mid-flash is how phones get soft-bricked. Leave it plugged in until the phone reboots on its own."
+  }
+ ]
 }

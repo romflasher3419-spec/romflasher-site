@@ -2,7 +2,7 @@
  "id": "UdSLOPxBUcQ",
  "slug": "redmi-k50i-flash-china-miui-rom-on-the-indian-unit-miui-dialer",
  "title": "Redmi K50i: Flash China MIUI ROM on the Indian Unit MIUI Dialer",
- "blurb": "Here's the short version.",
+ "blurb": "The Redmi K50i in India ships with the Google dialer, so native call recording is missing. This is the short version of flashing a China MIUI build over the Indian one to bring the MIUI dialer and call recording back.",
  "device": "Redmi K50i",
  "rom": "MIUI",
  "android": "",

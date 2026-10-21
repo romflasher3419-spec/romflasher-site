@@ -1,66 +1,66 @@
 {
-  "id": "fazdw9z2TRU",
-  "slug": "crdroid-v12-2-on-poco-x7-pro-android-16-easy-install",
-  "title": "CrDroid v12.2 on Poco X7 Pro — Android 16 Easy Install",
-  "blurb": "CrDroid v12.2 is on the Poco X7 Pro with an Android 16 base, and CrDroid is honestly my favourite ROM family — so this one is me showing the install...",
-  "device": "POCO X7 Pro",
-  "rom": "crDroid",
-  "android": "",
-  "views": 1441,
-  "published": "2025-11-06",
-  "url": "https://youtu.be/fazdw9z2TRU",
-  "tags": [
-    "crDroid",
-    "Channel",
-    "Flash",
-    "Install",
-    "Recovery"
-  ],
-  "summary": "CrDroid v12.2 is on the Poco X7 Pro with an Android 16 base, and it is my favourite ROM family for a reason. The flash is a fastboot-then-sideload job: flash vendor_boot to both slots, boot the CrDroid recovery, factory reset, then sideload the ROM zip. A clean flash is mandatory, and you should back up your IMEI before you start.",
-  "body": "CrDroid keeps earning the top spot for me. This is the build I reach for first, and v12.2 on the Poco X7 Pro with an Android 16 base is a good example of why.\n\nSo this one is the install, done properly, followed by being straight about the small annoyances. Because there are some. There always are.\n\n## What you get\n\nA Vanilla build, signed, with SELinux enforcing. That combination matters. You get a clean base with nothing pushed on top, and you decide what goes onto it afterwards.\n\n- Vanilla — no bundled extras deciding things for you.\n- Signed — the build is properly signed, not a loose unsigned package.\n- SELinux enforcing — the normal, secure configuration rather than a tinkered one.\n- Android 16 base under CrDroid's own layer of customisation.\n\n## What you need before you start\n\n- **ADB fastboot tool** and the **ADB fastboot driver** installed on your PC, working, before the phone ever goes into bootloader mode.\n- An unlocked bootloader.\n- The CrDroid v12.2 ROM zip on your PC, ready to sideload.\n- A backup of your data and **a backup of your IMEI**. Clean flash is mandatory here, and that is not a formality.\n- A cable that is not falling apart.\n\n## Step 1 - enable USB debugging and connect\n\nConnect the phone, enable USB debugging, and confirm your PC can see it. If the driver is not installed yet, do that now. Trying to sort out drivers while the phone is sitting in bootloader mode is a worse evening.\n\n## Step 2 - reboot to bootloader\n\nReboot the phone into bootloader from the tool. Run `fastboot devices` to confirm. You want a serial number back, not an empty line.\n\n## Step 3 - flash vendor_boot to both slots\n\nThis is the step that decides whether the recovery comes up. Flash vendor_boot to both slots, exactly as the instructions say. Flashing one slot and hoping is how people end up staring at a boot logo.\n\n## Step 4 - boot the CrDroid recovery\n\nBoot into the CrDroid recovery. This is the recovery that comes with the build, not a separate one you went and found.\n\n## Step 5 - factory reset\n\nDo the factory reset in recovery before you sideload. Not after. Sideloading before the wipe is the classic route to a phone stuck on the logo, and it is a completely avoidable one.\n\n## Step 6 - sideload the ROM zip\n\nApply the update over ADB and sideload the ROM zip. Let it finish without touching anything. Skip any extra files unless you specifically want root — they are not needed for a working install.\n\n## Step 7 - reboot to system\n\nFirst boot takes a while. Let it. Then you are on CrDroid with a clean base and your own choices ahead of you.\n\n## What is broken or fiddly\n\nTwo things, both fixable in seconds once you know them.\n\n- **The Aperture video-recording glitch.** Aperture has a problem recording video, and the fix is shown in the video. It is quick, but it is not something you would guess.\n- **The blur in recents.** Recents looks wrong because of a blur. Go into the launcher settings and set image transparency to 0 and it clears up.\n- **FP jiiov.** The fingerprint reader using the jiiov sensor is likely still not working. Check which sensor your unit has before you commit, because this one is not a settings fix.\n\n## Who should install it\n\nInstall it if you want a clean, signed, properly secured base that you then build on. Install it if you have flashed before and you accept a mandatory clean flash and an IMEI backup as the cost of entry.\n\nSkip it for now if your fingerprint reader matters more to you than the ROM does and your unit uses the jiiov sensor. Skip it if a dirty flash is what you were hoping for — that is not on offer here.\n\nThe recents blur and the Aperture fixes are both quick once someone tells you what they are. That is most of what makes the first day with a new build annoying, and it is the part the video covers.\n\nIf the driver side of this is the bit you dread, the free Rom Flasher tool on GitHub installs the ADB and fastboot driver in a couple of clicks so you are not hunting through Device Manager while a phone sits in fastboot. It is free, and the link is in the downloads section.\n\n## Before you commit\n\nBack up your IMEI. I will keep saying it. A clean flash is mandatory, and a backup costs you five minutes now and a weekend if you did not take it.",
-  "video_description": "CrDroid v12.2 is on the Poco X7 Pro with an Android 16 base, and CrDroid is honestly my favourite ROM family — so this one is me showing the install properly and then being straight about the small annoyances.\n\nThe flash is a fastboot-then-sideload job. You flash vendor_boot, boot the CrDroid recovery, wipe, then sideload the ROM zip over ADB. Nothing exotic, but the order matters, and leaning on shortcuts here is exactly how people end up with a phone stuck on the logo.\n\n📱 Device  : Poco X7 Pro (rodin)\n🧩 ROM     : CrDroid v12.2 (Android 16)\n🤖 Android : 16\n\n🔬 What I Looked At\n• Fastboot flash of vendor_boot to both slots.\n• CrDroid recovery boot and the factory reset step.\n• ADB sideload of the ROM zip, end to end.\n• First boot and the initial setup.\n• The Aperture video-recording glitch and how to fix it.\n• The blur issue in recents — set image transparency to 0 in the launcher and it clears up.\n• FP jiiov, which is likely still not working.\n\n📊 Verdict\nCrDroid keeps earning the top spot for me. It's a Vanilla build, signed, with SELinux enforcing, so you get a clean base and you decide what goes on top. The recents blur and Aperture fixes are quick once you know them. Expect to back up your IMEI, because clean flash is mandatory.\n\n❗️Known Issues\n• You tell me — bring logs, not vibes.\n• Aperture in-video recording needs the fix shown in the video.\n• Recents blur — set launcher image transparency to 0.\n• FP jiiov likely still not working, so check your fingerprint reader first.\n\n📝 Notes\n• SELinux is enforcing.\n• Vanilla build.\n• Signed build.\n• Back up your IMEI before you start.\n• Clean flash is mandatory.",
-  "links": [
-    {
-      "label": "CrDroid v12.2 ROM",
-      "url": "https://tmearn.net/link/bhMa"
-    },
-    {
-      "label": "Rom Flasher tool (free)",
-      "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
-    },
-    {
-      "label": "ADB fastboot tool",
-      "url": "https://tmearn.net/link/8kQcy"
-    },
-    {
-      "label": "ADB fastboot driver",
-      "url": "https://tmearn.net/link/PSM2"
-    },
-    {
-      "label": "CrDroid changelog",
-      "url": "https://crdroid.net/blog/"
-    }
-  ],
-  "faq": [
-    {
-      "q": "Do I need a clean flash for CrDroid v12.2 on the Poco X7 Pro?",
-      "a": "Yes, clean flash is mandatory here. This build is on an Android 16 base, and dirty flashing across an Android base is how you end up with a phone that will not boot. Wipe before you sideload, not after."
-    },
-    {
-      "q": "What is the Aperture video recording bug?",
-      "a": "Aperture has a glitch when recording video. It does not fix itself with a settings change you would find on your own, and the fix is shown in the video. Once applied, video recording works normally."
-    },
-    {
-      "q": "How do I fix the blur in recents?",
-      "a": "Go into the launcher settings and set image transparency to 0. That clears the blur in the recents view. It is a settings change, not a build problem."
-    },
-    {
-      "q": "Will the fingerprint reader work?",
-      "a": "It depends on your sensor. FP jiiov is likely still not working on this build, so check which fingerprint sensor your unit has before you flash. Other configurations may behave differently."
-    },
-    {
-      "q": "Do I need to back up my IMEI before flashing?",
-      "a": "Yes. It is worth doing every time, and especially here since a clean flash is required. Losing IMEI data is a much bigger problem than losing your photos, and a backup takes only a few minutes."
-    }
-  ]
+ "id": "fazdw9z2TRU",
+ "slug": "crdroid-v12-2-on-poco-x7-pro-android-16-easy-install",
+ "title": "CrDroid v12.2 on Poco X7 Pro — Android 16 Easy Install",
+ "blurb": "CrDroid v12.2 is on the Poco X7 Pro with an Android 16 base, and CrDroid is honestly my favourite ROM family — so this one is me showing the install...",
+ "device": "POCO X7 Pro",
+ "rom": "crDroid",
+ "android": "Android 16",
+ "views": 1441,
+ "published": "2025-11-06",
+ "url": "https://youtu.be/fazdw9z2TRU",
+ "tags": [
+  "crDroid",
+  "Channel",
+  "Flash",
+  "Install",
+  "Recovery"
+ ],
+ "summary": "CrDroid v12.2 is on the Poco X7 Pro with an Android 16 base, and it is my favourite ROM family for a reason. The flash is a fastboot-then-sideload job: flash vendor_boot to both slots, boot the CrDroid recovery, factory reset, then sideload the ROM zip. A clean flash is mandatory, and you should back up your IMEI before you start.",
+ "body": "CrDroid keeps earning the top spot for me. This is the build I reach for first, and v12.2 on the Poco X7 Pro with an Android 16 base is a good example of why.\n\nSo this one is the install, done properly, followed by being straight about the small annoyances. Because there are some. There always are.\n\n## What you get\n\nA Vanilla build, signed, with SELinux enforcing. That combination matters. You get a clean base with nothing pushed on top, and you decide what goes onto it afterwards.\n\n- Vanilla — no bundled extras deciding things for you.\n- Signed — the build is properly signed, not a loose unsigned package.\n- SELinux enforcing — the normal, secure configuration rather than a tinkered one.\n- Android 16 base under CrDroid's own layer of customisation.\n\n## What you need before you start\n\n- **ADB fastboot tool** and the **ADB fastboot driver** installed on your PC, working, before the phone ever goes into bootloader mode.\n- An unlocked bootloader.\n- The CrDroid v12.2 ROM zip on your PC, ready to sideload.\n- A backup of your data and **a backup of your IMEI**. Clean flash is mandatory here, and that is not a formality.\n- A cable that is not falling apart.\n\n## Step 1 - enable USB debugging and connect\n\nConnect the phone, enable USB debugging, and confirm your PC can see it. If the driver is not installed yet, do that now. Trying to sort out drivers while the phone is sitting in bootloader mode is a worse evening.\n\n## Step 2 - reboot to bootloader\n\nReboot the phone into bootloader from the tool. Run `fastboot devices` to confirm. You want a serial number back, not an empty line.\n\n## Step 3 - flash vendor_boot to both slots\n\nThis is the step that decides whether the recovery comes up. Flash vendor_boot to both slots, exactly as the instructions say. Flashing one slot and hoping is how people end up staring at a boot logo.\n\n## Step 4 - boot the CrDroid recovery\n\nBoot into the CrDroid recovery. This is the recovery that comes with the build, not a separate one you went and found.\n\n## Step 5 - factory reset\n\nDo the factory reset in recovery before you sideload. Not after. Sideloading before the wipe is the classic route to a phone stuck on the logo, and it is a completely avoidable one.\n\n## Step 6 - sideload the ROM zip\n\nApply the update over ADB and sideload the ROM zip. Let it finish without touching anything. Skip any extra files unless you specifically want root — they are not needed for a working install.\n\n## Step 7 - reboot to system\n\nFirst boot takes a while. Let it. Then you are on CrDroid with a clean base and your own choices ahead of you.\n\n## What is broken or fiddly\n\nTwo things, both fixable in seconds once you know them.\n\n- **The Aperture video-recording glitch.** Aperture has a problem recording video, and the fix is shown in the video. It is quick, but it is not something you would guess.\n- **The blur in recents.** Recents looks wrong because of a blur. Go into the launcher settings and set image transparency to 0 and it clears up.\n- **FP jiiov.** The fingerprint reader using the jiiov sensor is likely still not working. Check which sensor your unit has before you commit, because this one is not a settings fix.\n\n## Who should install it\n\nInstall it if you want a clean, signed, properly secured base that you then build on. Install it if you have flashed before and you accept a mandatory clean flash and an IMEI backup as the cost of entry.\n\nSkip it for now if your fingerprint reader matters more to you than the ROM does and your unit uses the jiiov sensor. Skip it if a dirty flash is what you were hoping for — that is not on offer here.\n\nThe recents blur and the Aperture fixes are both quick once someone tells you what they are. That is most of what makes the first day with a new build annoying, and it is the part the video covers.\n\nIf the driver side of this is the bit you dread, the free Rom Flasher tool on GitHub installs the ADB and fastboot driver in a couple of clicks so you are not hunting through Device Manager while a phone sits in fastboot. It is free, and the link is in the downloads section.\n\n## Before you commit\n\nBack up your IMEI. I will keep saying it. A clean flash is mandatory, and a backup costs you five minutes now and a weekend if you did not take it.",
+ "video_description": "CrDroid v12.2 is on the Poco X7 Pro with an Android 16 base, and CrDroid is honestly my favourite ROM family — so this one is me showing the install properly and then being straight about the small annoyances.\n\nThe flash is a fastboot-then-sideload job. You flash vendor_boot, boot the CrDroid recovery, wipe, then sideload the ROM zip over ADB. Nothing exotic, but the order matters, and leaning on shortcuts here is exactly how people end up with a phone stuck on the logo.\n\n📱 Device  : Poco X7 Pro (rodin)\n🧩 ROM     : CrDroid v12.2 (Android 16)\n🤖 Android : 16\n\n🔬 What I Looked At\n• Fastboot flash of vendor_boot to both slots.\n• CrDroid recovery boot and the factory reset step.\n• ADB sideload of the ROM zip, end to end.\n• First boot and the initial setup.\n• The Aperture video-recording glitch and how to fix it.\n• The blur issue in recents — set image transparency to 0 in the launcher and it clears up.\n• FP jiiov, which is likely still not working.\n\n📊 Verdict\nCrDroid keeps earning the top spot for me. It's a Vanilla build, signed, with SELinux enforcing, so you get a clean base and you decide what goes on top. The recents blur and Aperture fixes are quick once you know them. Expect to back up your IMEI, because clean flash is mandatory.\n\n❗️Known Issues\n• You tell me — bring logs, not vibes.\n• Aperture in-video recording needs the fix shown in the video.\n• Recents blur — set launcher image transparency to 0.\n• FP jiiov likely still not working, so check your fingerprint reader first.\n\n📝 Notes\n• SELinux is enforcing.\n• Vanilla build.\n• Signed build.\n• Back up your IMEI before you start.\n• Clean flash is mandatory.",
+ "links": [
+  {
+   "label": "CrDroid v12.2 ROM",
+   "url": "https://tmearn.net/link/bhMa"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "ADB fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "ADB fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  },
+  {
+   "label": "CrDroid changelog",
+   "url": "https://crdroid.net/blog/"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Do I need a clean flash for CrDroid v12.2 on the Poco X7 Pro?",
+   "a": "Yes, clean flash is mandatory here. This build is on an Android 16 base, and dirty flashing across an Android base is how you end up with a phone that will not boot. Wipe before you sideload, not after."
+  },
+  {
+   "q": "What is the Aperture video recording bug?",
+   "a": "Aperture has a glitch when recording video. It does not fix itself with a settings change you would find on your own, and the fix is shown in the video. Once applied, video recording works normally."
+  },
+  {
+   "q": "How do I fix the blur in recents?",
+   "a": "Go into the launcher settings and set image transparency to 0. That clears the blur in the recents view. It is a settings change, not a build problem."
+  },
+  {
+   "q": "Will the fingerprint reader work?",
+   "a": "It depends on your sensor. FP jiiov is likely still not working on this build, so check which fingerprint sensor your unit has before you flash. Other configurations may behave differently."
+  },
+  {
+   "q": "Do I need to back up my IMEI before flashing?",
+   "a": "Yes. It is worth doing every time, and especially here since a clean flash is required. Losing IMEI data is a much bigger problem than losing your photos, and a backup takes only a few minutes."
+  }
+ ]
 }

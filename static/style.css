@@ -129,6 +129,15 @@ nav a{
 nav a.navbtn.hot,nav a.navbtn.donate,nav a.yt{border:0}
 nav a:hover{color:var(--fg);text-decoration:none;background:rgba(255,255,255,.06)}
 nav a.navbtn{border-color:var(--line);color:var(--fg)}
+/* Guides is a nav pill in the same set as the four beside it - same box, same
+   radius - but in the quiet glass grey rather than any of the brand fills, so
+   it reads as "somewhere else on this site" instead of a second call to action. */
+nav a.navbtn.guides{
+  border-color:var(--line);color:var(--fg);
+  background-color:rgba(255,255,255,.05);
+}
+nav a.navbtn.guides:hover{color:#fff;background-color:rgba(255,255,255,.11)}
+nav a.navbtn.guides svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
 /* The YouTube button wears the channel's classic livery: a flat YouTube red,
    the way the mark looked for years, rather than the pink-to-red gradient it
    had grown. Solid colour, one shade, no sweeping ramp. */
@@ -143,12 +152,22 @@ nav a.yt:hover{text-decoration:none}
 
 /* Every nav button is exactly the same box, whatever sits inside it.
    position:relative is what keeps the shine inside the button - without it the
-   sweep used the sticky header as its box and lit up the whole top bar. */
+   sweep used the sticky header as its box and lit up the whole top bar.
+
+   Compact and round: an icon with a short label on a pill, rather than a wide
+   slab of text. The four sit in much less width, so the bar has room to
+   breathe, and the icon still says at a glance which door is which. */
 nav a.navbtn,nav a.yt,nav a.gh{
   position:relative;overflow:hidden;
-  display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  height:38px;min-width:112px;padding:0 14px;
-  font-size:14px;font-weight:600;line-height:1;
+  display:inline-flex;align-items:center;justify-content:center;gap:5px;
+  height:29px;padding:0 10px;
+  /* One width for all five, so the row reads as a single set instead of five
+     boxes of five different sizes. It is sized off the widest label - the
+     longest word plus its icon has to clear the padding on both sides, or
+     "Download" would clip. */
+  width:92px;min-width:92px;
+  border-radius:999px;
+  font-size:11.5px;font-weight:600;letter-spacing:.01em;line-height:1;
   /* Keeps the rounded edge crisp. Without it the gradient and the shine sweep
      are rasterised in the same layer as the border-radius, and the seam between
      them shimmers as the button lifts on hover. */
@@ -165,8 +184,8 @@ nav a.gh{
   border-width:1px;
 }
 nav a.gh:hover{background-color:#21262d;color:#fff}
-nav a.gh svg{width:17px;height:17px;flex:0 0 auto;fill:currentColor}
-nav a.yt svg{width:18px;height:18px;flex:0 0 auto;fill:currentColor}
+nav a.gh svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
+nav a.yt svg{width:12px;height:12px;flex:0 0 auto;fill:currentColor}
 /* the thank-you button, dressed in the same gold the app uses */
 nav a.donate{
   background-image:linear-gradient(115deg,#FFD700,#FF8A00);
@@ -178,10 +197,10 @@ nav a.donate:hover{color:#241705;background-color:transparent;filter:saturate(11
    with no width/height sizes itself from the line box, so it drifted ~37%
    larger than the GitHub mark next to it and changed with the font. Pinning it
    to the same 17px keeps the two icons visually matched. */
-nav a.donate svg{width:17px;height:17px;flex:0 0 auto;fill:currentColor}
+nav a.donate svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
 
 /* ------------------------------------------------------------ hero + cards */
-.hero{padding:56px 0 38px;border-bottom:1px solid var(--line)}
+.hero{padding:56px 0 30px;border-bottom:1px solid var(--line)}
 .hero h1{
   margin:0 0 12px;font-size:clamp(28px,4vw,44px);line-height:1.12;letter-spacing:-.02em;
 }
@@ -263,6 +282,18 @@ h2:first-child{margin-top:0}
   display:flex;justify-content:space-between;gap:10px;
 }
 
+/* The card is a <div>, so the title link is stretched to cover it: one big tap
+   target again, while the tag chips stay separately clickable underneath. */
+a.cardlink{
+  color:inherit;text-decoration:none;
+}
+a.cardlink::after{content:"";position:absolute;inset:0;z-index:1}
+.card .tag{position:relative;z-index:2}
+/* Chips inside a card sit in one horizontal row rather than stacking down the
+   column - three tags should cost one line, not three. */
+.cardtags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cardtags .tag{margin:0}
+
 /* Sweep of light across anything interactive.
    The band is painted as a background-image and only its position moves, so it
    always crosses the whole element - big cards and small buttons alike. */
@@ -287,6 +318,16 @@ h2:first-child{margin-top:0}
   padding:1px 8px;margin:9px 5px 0 0;border-radius:999px;
   color:#cfc9ff;background:rgba(108,99,255,.14);
   border:1px solid rgba(108,99,255,.26);
+  text-decoration:none;transition:color .15s,background-color .15s,
+    border-color .15s;
+  /* A chip is a small label wherever it lands. Without this a chip dropped into
+     a grid or flex column stretches to fill it - a 300px pill with 999px
+     corners, which reads as a broken block rather than a tag. */
+  width:auto;max-width:100%;align-self:flex-start;
+}
+a.tag:hover{
+  color:#fff;background:rgba(108,99,255,.3);
+  border-color:rgba(108,99,255,.6);
 }
 
 .tags{
@@ -299,12 +340,44 @@ h2:first-child{margin-top:0}
 }
 .tags .tag{margin-top:6px}
 
+/* Visible breadcrumb trail - the same path the JSON-LD advertises, but on the
+   page, so a visitor can climb back to the hub they came from. */
+.crumbs{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+  font-size:12.5px;color:var(--dim2);margin:0 0 14px;
+}
+.crumbs a{color:var(--dim);text-decoration:none;transition:color .15s}
+.crumbs a:hover{color:var(--fg)}
+.crumbs .sep{opacity:.45}
+.crumbs .here{color:#e7ebff;font-weight:600}
+
+/* "Tested on <device>" evidence strip - the E-E-A-T signal Google looks for:
+   a named device and a named person, not an anonymous wall of text. */
+.tested{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin:0 0 20px;padding:10px 14px;border-radius:12px;
+  background:rgba(108,99,255,.09);border:1px solid rgba(108,99,255,.22);
+  font-size:13px;color:#cfd6ea;
+}
+.tested .tick{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;border-radius:50%;flex:0 0 18px;
+  background:linear-gradient(120deg,var(--violet),#FF2D9B);
+  color:#fff;font-size:11px;font-weight:800;
+}
+.tested strong{color:#fff;font-weight:600}
+.tested a{color:#cfc9ff}
+
 /* ------------------------------------------------------- download page */
 nav a.navbtn.hot{
   background-image:var(--grad);color:#fff;font-weight:700;
   box-shadow:0 12px 28px -16px rgba(108,99,255,1);
 }
 nav a.navbtn.hot:hover{color:#fff;background-color:transparent;filter:saturate(115%)}
+/* the tray arrow is drawn a touch smaller than the other marks: its glyph
+   carries more ink than the mug or the GitHub cat at the same box size, so at
+   13px it read heavier than the two beside it. */
+nav a.navbtn.hot svg{width:12px;height:12px;flex:0 0 auto;fill:currentColor}
 
 .dl{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
   gap:18px;align-items:start;margin:8px 0 6px}
@@ -409,7 +482,7 @@ nav a.navbtn.hot:hover{color:#fff;background-color:transparent;filter:saturate(1
 /* "do it without a PC" strip that sits under the video on every guide */
 .cta{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
-  flex-wrap:wrap;margin:18px 0 6px;padding:16px 18px;border-radius:14px;
+  flex-wrap:wrap;margin:12px 0 0;padding:14px 18px;border-radius:14px;
   background:rgba(255,255,255,.04);border:1px solid var(--line);
 }
 .cta .ctatext{flex:1 1 300px;min-width:220px}
@@ -515,7 +588,7 @@ code{
   background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px;color:#dfe3f5;
 }
 
-.videobox{padding:15px;border-radius:var(--radius)}
+.videobox{padding:15px;border-radius:var(--radius);margin:26px 0 12px}
 .frame{
   position:relative;padding-bottom:56.25%;height:0;
   border-radius:12px;overflow:hidden;background:#000;
@@ -523,6 +596,22 @@ code{
 }
 .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .videobox .hint{color:var(--dim);font-size:13px;margin:11px 2px 0}
+
+/* The player and the side tabs share one row: player on the left half, the
+   "no PC" card and the contents list stacked on the right. Below 900px the row
+   becomes a single column so the player keeps full width on a phone. */
+.mediarow{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;
+  margin:26px 0 18px;
+}
+.mediarow .videobox{margin:0}
+.sidepanel{display:flex;flex-direction:column;gap:12px;min-width:0}
+.sidepanel .cta{margin:0;flex-direction:column;align-items:stretch;gap:12px}
+.sidepanel .cta .ctatext{flex:0 0 auto}
+.sidepanel .toc{margin:0;flex:1}
+@media (max-width:900px){
+  .mediarow{grid-template-columns:1fr;gap:12px}
+}
 
 /* shown instead of the player when the page is opened straight off the disk
    (file://), because YouTube refuses to start there */
@@ -542,15 +631,134 @@ code{
 }
 .ytposter:hover{text-decoration:none;filter:brightness(1.06)}
 
-.links,.box,.faq,.ad,.videobox,details.desc{
+.links,.box,.faq,.ad,details.desc{
   border-radius:var(--radius);padding:18px 22px;margin:26px 0;
 }
+/* The video and the contents box are one unit, so the gap between them is a
+   hairline rather than a paragraph break. */
+.videobox{padding:15px;border-radius:var(--radius);margin:26px 0 12px}
 .links h2,.box h2{margin:0 0 10px;font-size:19px}
 .links ul{margin:10px 0 0;padding-left:22px}
 .links li{margin-bottom:7px;word-break:break-word}
 
-.faq{padding:6px 22px 16px;border-radius:var(--radius)}
-.faq h3{margin:18px 0 6px;color:#fff}
+/* The Rom Flasher row's button. Sits inline in the list so it lands on the
+   same line as its label, and stays a comfortable tap target on a phone. */
+.links li.toolrow{list-style:none;margin-left:-22px;padding:2px 0 8px}
+.links .dlbtn{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:9px;padding:11px 22px;border-radius:999px;
+  font-size:15px;font-weight:700;color:#fff;text-decoration:none;
+  background-image:linear-gradient(120deg,var(--violet),var(--pink));
+  box-shadow:0 8px 22px rgba(108,99,255,.28);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.links .dlbtn::before{content:"\2193";font-size:17px;line-height:1}
+.links .dlshort{display:none}
+.links .dlbtn:hover{
+  color:#fff;text-decoration:none;transform:translateY(-1px);
+  box-shadow:0 12px 28px rgba(255,45,155,.34);
+}
+.links .dlbtn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+/* A question only opens when it is asked. <details> gives that for free, with
+   no script and no lost content - the answer is in the page for search engines
+   either way. */
+.faq{padding:0 22px;border-radius:var(--radius)}
+details.faq{margin:0 0 10px;overflow:hidden}
+details.faq>summary{
+  cursor:pointer;display:flex;align-items:center;gap:10px;
+  padding:15px 0;color:#fff;font-weight:600;font-size:15.5px;
+  list-style:none;
+}
+details.faq>summary::-webkit-details-marker{display:none}
+details.faq>summary::after{
+  content:"+";margin-left:auto;flex:0 0 auto;
+  width:22px;height:22px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;line-height:1;
+  color:#cfc9ff;background:rgba(108,99,255,.18);
+  border:1px solid rgba(108,99,255,.3);
+  transition:transform .2s,background-color .2s;
+}
+details.faq[open]>summary::after{
+  content:"\2212";background:rgba(108,99,255,.34);
+  border-color:rgba(108,99,255,.6);
+}
+details.faq>summary:hover{color:#fff}
+details.faq>summary:hover::after{background:rgba(108,99,255,.32)}
+details.faq .ans{
+  padding:0 0 16px;color:#cbd5de;border-top:1px solid var(--line);
+  padding-top:14px;font-size:14.6px;
+}
+details.faq .ans p{margin:0 0 10px}
+details.faq .ans p:last-child{margin-bottom:0}
+
+/* --- ROM downloader page (downloader.html) -------------------------------
+   A search box, four route tiles, then one card per brand. The cards are the
+   same glass as every other card on the site; the two format columns inside
+   them are what actually answers the Recovery-vs-Fastboot question, so they
+   stay side by side until the screen is too narrow for two honest columns. */
+.dlsearch{
+  margin:22px 0 6px;padding:18px 20px;border-radius:var(--radius);
+  background:rgba(255,255,255,.035);border:1px solid var(--line);
+}
+.dlsearch label{
+  display:block;font-size:12.5px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--dim);margin-bottom:9px;
+}
+.dlsearch input{
+  width:100%;box-sizing:border-box;
+  padding:13px 15px;border-radius:12px;font-size:15.5px;
+  color:var(--fg);background:rgba(5,7,12,.6);
+  border:1px solid var(--line);outline:none;
+  transition:border-color .18s,box-shadow .18s;
+}
+.dlsearch input::placeholder{color:#7b8492}
+.dlsearch input:focus{
+  border-color:rgba(108,99,255,.75);
+  box-shadow:0 0 0 3px rgba(108,99,255,.18);
+}
+.dlhint{margin:10px 0 0;font-size:13px;color:var(--dim)}
+
+.dlopts{
+  display:grid;gap:12px;margin:18px 0 6px;
+  grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+}
+.dlopt{
+  display:block;padding:15px 17px;border-radius:14px;text-decoration:none;
+  background:rgba(255,255,255,.035);border:1px solid var(--line);
+  transition:transform .18s,border-color .18s,box-shadow .18s;
+}
+.dlopt b{display:block;color:#fff;font-size:15px;margin-bottom:5px}
+.dlopt span{display:block;color:#cbd5de;font-size:13.2px;line-height:1.5}
+.dlopt:hover{
+  transform:translateY(-2px);text-decoration:none;
+  border-color:rgba(108,99,255,.55);
+  box-shadow:0 14px 30px rgba(108,99,255,.2);
+}
+
+.dlcards{display:grid;gap:16px;margin:18px 0 10px}
+.dlcard{
+  padding:19px 21px;border-radius:var(--radius);
+  background:rgba(255,255,255,.035);border:1px solid var(--line);
+}
+.dlcard h3{margin:0 0 14px;font-size:17.5px;color:#fff}
+.dlgrid{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.dlcol p{margin:8px 0 0;font-size:13.6px;line-height:1.55;color:#cbd5de}
+.dltag{
+  display:inline-block;padding:3px 10px;border-radius:999px;
+  font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+}
+.dltag.recovery{color:#7ee0b0;background:rgba(52,211,153,.14);
+  border:1px solid rgba(52,211,153,.34)}
+.dltag.fastboot{color:#ffc46b;background:rgba(255,176,32,.14);
+  border:1px solid rgba(255,176,32,.34)}
+.dlbtns{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
+.dlbtns .btn{margin:0}
+.dlnote{
+  margin:13px 0 0;padding-top:12px;border-top:1px solid var(--line);
+  font-size:13.2px;line-height:1.55;color:var(--dim);
+}
 
 details.desc{padding:14px 20px}
 details.desc>summary{cursor:pointer;color:var(--fg);font-weight:600;list-style:revert}
@@ -635,22 +843,40 @@ footer .browse{margin:0 0 10px}
 footer .browse a{color:#cfd7ff;font-weight:500}
 
 /* --------------------------------------------------- table of contents */
+/* One tidy box under the video: the heading on its own line, then the sections
+   laid out across the width in as many columns as fit. It reads as a contents
+   strip - compact, quiet, and out of the way - rather than a second article. */
 .arttools{
-  display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;
-  margin:20px 0 6px;
+  display:flex;flex-direction:column;gap:10px;align-items:stretch;
+  margin:10px 0 0;
 }
 .toc{
-  flex:1 1 320px;min-width:260px;padding:16px 20px;border-radius:var(--radius);
-  background:rgba(255,255,255,.04);border:1px solid var(--line);
+  padding:14px 18px 15px;border-radius:var(--radius);
+  background:rgba(255,255,255,.035);border:1px solid var(--line);
 }
-.toc b{
-  display:block;font-size:12px;text-transform:uppercase;letter-spacing:.09em;
-  color:var(--dim);margin-bottom:10px;
+.toc .toc-h{
+  margin:0 0 11px;font-size:11.5px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--dim2);
 }
-.toc ol{margin:0;padding-left:20px;display:grid;gap:7px}
-.toc li{color:var(--dim);font-size:14.5px}
-.toc a{color:#cfd7ff;text-decoration:none}
-.toc a:hover{color:#fff;text-decoration:underline}
+.toc ol{
+  margin:0;padding:0;list-style:none;width:100%;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:2px 20px;counter-reset:toc;
+}
+.toc li{counter-increment:toc;min-width:0}
+.toc a{
+  display:flex;gap:9px;align-items:baseline;padding:5px 8px 5px 6px;
+  color:#c6cdf0;text-decoration:none;font-size:14px;line-height:1.35;
+  border-radius:7px;transition:color .15s ease,background-color .15s ease;
+  overflow-wrap:anywhere;
+}
+.toc a::before{
+  content:counter(toc,decimal-leading-zero);
+  flex:0 0 auto;font-size:11px;font-weight:600;letter-spacing:.04em;
+  color:var(--dim2);font-variant-numeric:tabular-nums;
+}
+.toc a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.toc a:hover::before{color:var(--pink)}
 .copybtn.steps{flex:0 0 auto;align-self:flex-start}
 .prose :target{
   scroll-margin-top:90px;
@@ -747,8 +973,17 @@ footer .browse a{color:#cfd7ff;font-weight:500}
 /* AdSense units. The box is only in the page when a slot id is set, so with
    ads off there is no wrapper to leave a gap. `overflow:hidden` keeps a wide
    creative from pushing the layout sideways on a narrow phone. */
-.adslot{margin:26px 0;overflow:hidden}
-.adslot ins{display:block;width:100%}
+/* The ad box costs nothing until Google has actually filled it. Without this
+   the home page opens with a few hundred pixels of nothing under the hero,
+   because an unfilled responsive unit still reserves its own height.
+   Google marks the <ins> data-ad-status="filled" the moment an ad lands, so the
+   band appears exactly when the ad does. Until then the box contributes no
+   height to the page - but it is never display:none and never clipped, so the
+   ad still loads and can report itself. */
+.adslot{margin:0;max-height:0;overflow:visible}
+.adslot ins{display:block;width:100%;max-height:0;overflow:hidden}
+.adslot:has(ins[data-ad-status="filled"]){max-height:none;margin:26px 0}
+.adslot:has(ins[data-ad-status="filled"]) ins{max-height:none;overflow:visible}
 
 /* ==========================================================================
    Phones
@@ -759,8 +994,17 @@ footer .browse a{color:#cfd7ff;font-weight:500}
    ========================================================================== */
 
 /* Nothing on a phone should be able to create sideways scroll. Long device
-   names, `code` runs and pasted URLs are the usual culprits. */
-html,body{max-width:100%;overflow-x:hidden}
+   names, `code` runs and pasted URLs are the usual culprits.
+
+   `clip`, not `hidden`: overflow-x:hidden forces the used overflow-y to `auto`,
+   which quietly turns <body> into a scroll container. The page then scrolls on
+   the viewport while the body's own scroll box never moves, and the sticky top
+   bar has nothing to stick to - it just slides away. clip trims the same
+   overflow without creating a scroll box, so the bar stays put. */
+html{max-width:100%;overflow-x:hidden}
+@supports (overflow-x:clip){
+  html,body{overflow-x:clip}
+}
 img,video,iframe,table{max-width:100%}
 code,pre,.hash{
   overflow-wrap:anywhere;word-break:break-word;
@@ -788,13 +1032,26 @@ code,pre,.hash{
   /* a table on a phone scrolls inside its own box instead of stretching the
      page - the frame stays put, the table slides */
   table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* the jump list keeps as many columns as fit, and the tool button fills the
+     width so it is a comfortable tap target rather than a small pill in a
+     corner */
+  .links .dlbtn{
+    width:100%;justify-content:center;
+    padding:12px 16px;font-size:14.5px;text-align:center;
+  }
+  .links .dlfull{display:none}
+  .links .dlshort{display:inline}
 }
 
 @media(max-width:600px){
   /* The top bar stacks: brand on its own line, then the nav under it, because
-     side by side leaves no room for either. The sticky bar has to stay short -
-     it eats the top of every article - so the brand block and the nav both use
-     tight padding and the plain links shrink to compact pills. */
+     side by side leaves no room for either.
+     It does NOT stick here. Stacked, the bar is ~160px tall, which is a fifth
+     of a phone screen - pinned, it would hold that much of every article
+     hostage for the whole scroll. So on a phone it scrolls away with the page
+     and the content gets the screen; on a desktop it stays. */
+  header.top{position:static}
   header.top .wrap{
     min-height:0;padding-top:8px;padding-bottom:8px;
     gap:6px;row-gap:6px;
@@ -805,35 +1062,35 @@ code,pre,.hash{
 
   /* The nav wraps instead of scrolling sideways. A hidden scroll strip looked
      like missing tabs: the last three sat off the right edge with nothing to
-     hint they were there, so now every link is on screen.
-     The markup splits the nav into the plain links (one row) and the four
-     boxed buttons, and a two-column grid lays the buttons out as a true 2x2.
-     A grid cell cannot be rounded up into a wider last slot the way a wrapped
-     flex item can, so Download / Coffee / GitHub / YouTube always come out
-     exactly the same size - no orphaned full-width YouTube at the bottom. */
+     hint they were there, so now every button is on screen.
+     All five pills go into one grid of two columns: Guides takes the first row
+     on its own (it is navigation, not a call to action), then the four brand
+     buttons sit as a true 2x2 underneath. A grid cell cannot be rounded up into
+     a wider last slot the way a wrapped flex item can, so the boxes never come
+     out lopsided - no orphaned full-width button at the bottom. */
   nav{
     width:100%;gap:6px;row-gap:6px;overflow:visible;
     display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
   }
-  .navplain{
-    grid-column:1/-1;
-    display:flex;flex-wrap:wrap;gap:4px;
-  }
+  nav a.navbtn.guides{grid-column:1/-1}
   nav a{padding:4px 8px;font-size:12.5px;white-space:nowrap}
   nav a.navbtn,nav a.yt,nav a.gh{
-    height:34px;width:100%;padding:0 10px;
-    font-size:12.5px;gap:7px;
+    height:32px;width:100%;min-width:0;padding:0 9px;
+    font-size:12px;gap:5px;
   }
-  nav a.gh svg{width:15px;height:15px}
-  nav a.donate svg{width:15px;height:15px}
-  nav a.yt svg{width:15px;height:15px}
+  nav a.gh svg{width:13px;height:13px}
+  nav a.donate svg{width:13px;height:13px}
+  nav a.yt svg{width:12px;height:12px}
+  nav a.navbtn.hot svg{width:12px;height:12px}
+  nav a.navbtn.guides svg{width:12px;height:12px}
 
   /* buttons go full width: a thumb aiming at a 40%-wide button misses it */
   .btn,.subbtn{width:100%;margin-right:0;text-align:center;justify-content:center}
   .btn.ghost{margin-top:8px}
 
   /* tap targets stop being fiddly */
-  .faq summary{padding:14px 14px}
+  .faq{padding:0 15px}
+  details.faq>summary{padding:14px 0;font-size:14.6px}
   .pill{font-size:12.5px;padding:6px 11px}
 
   /* the video frame keeps its 16:9 box but gets a little less padding */
@@ -841,8 +1098,25 @@ code,pre,.hash{
   .card{padding:15px 15px}
   .card h3{font-size:16px}
 
+  /* the contents box: a single column reads better than two cramped ones on a
+     phone, and the box itself loses a little padding so the labels get the
+     width instead */
+  .toc{padding:12px 14px 13px}
+  .toc ol{grid-template-columns:1fr;gap:1px}
+  .toc a{font-size:13.5px;padding:6px 6px}
+
   /* the footer link rows stack cleanly rather than wrapping mid-link */
   footer .wrap{padding-bottom:26px}
+
+  /* ROM downloader: two honest columns only fit when there is width for them,
+     so on a phone the Recovery / Fastboot blocks stack instead of squeezing. */
+  .dlgrid{grid-template-columns:1fr;gap:14px}
+  .dlcard{padding:16px 16px}
+  .dlcard h3{font-size:16.5px}
+  .dlsearch{padding:15px 16px}
+  .dlsearch input{font-size:16px} /* 16px stops iOS zooming the page on focus */
+  .dlopts{grid-template-columns:1fr}
+  .dlbtns .btn{width:100%}
 }
 
 /* Very narrow phones (a 320px iPhone SE, or a zoomed-in browser). */
@@ -851,10 +1125,12 @@ code,pre,.hash{
   .hero h1{font-size:22px}
   .brand{font-size:20px}
   nav a{padding:4px 7px;font-size:12px}
-  nav a.navbtn,nav a.yt,nav a.gh{padding:0 8px;font-size:12px;gap:6px}
-  nav a.gh svg{width:14px;height:14px}
-  nav a.donate svg{width:14px;height:14px}
-  nav a.yt svg{width:14px;height:14px}
+  nav a.navbtn,nav a.yt,nav a.gh{padding:0 7px;font-size:11.5px;gap:4px}
+  nav a.gh svg{width:12px;height:12px}
+  nav a.donate svg{width:12px;height:12px}
+  nav a.yt svg{width:11px;height:11px}
+  nav a.navbtn.hot svg{width:11px;height:11px}
+  nav a.navbtn.guides svg{width:11px;height:11px}
 }
 
 /* Landscape phones: the hero does not need a tall block when height is scarce. */

@@ -5,7 +5,7 @@
  "blurb": "Mica OS 16 QPR2 on the POCO X7 Pro (rodin) — the full install with vendor_boot and ADB sideload, plus the fingerprint calibration that Jiiov users have...",
  "device": "POCO X7 Pro",
  "rom": "AOSP",
- "android": "",
+ "android": "Android 16",
  "views": 644,
  "published": "2026-01-01",
  "url": "https://youtu.be/xENXLM3Cfus",

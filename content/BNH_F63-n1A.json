@@ -1,66 +1,66 @@
 {
-  "id": "BNH_F63-n1A",
-  "slug": "hyperos-3-lite-on-poco-x7-pro-eea-build-flash-features",
-  "title": "HyperOS 3 Lite on Poco X7 Pro EEA Build, Flash & Features",
-  "blurb": "HyperOS 3 Lite on the Poco X7 Pro — the EEA build that swaps the POCO skin for Redmi looks, unlocks refresh rates, and stays light on top of Android 16.",
-  "device": "POCO X7 Pro",
-  "rom": "HyperOS",
-  "android": "",
-  "views": 280,
-  "published": "2025-11-20",
-  "url": "https://youtu.be/BNH_F63-n1A",
-  "tags": [
-    "HyperOS",
-    "Channel",
-    "Flash",
-    "Battery",
-    "Update"
-  ],
-  "summary": "HyperOS 3 Lite on the POCO X7 Pro is an EEA build that replaces the POCO launcher\nand icons with the Redmi HyperOS 3 set, adds real refresh rate and resolution\ncontrol, and keeps things light on top of Android 16. It looks and feels like a\ndifferent phone after a flash, with the usual trade-offs that come with modified\nsystem apps.",
-  "body": "The \"Lite\" tag gets used a lot and usually means very little. This one actually\ndoes something. On the POCO X7 Pro (rodin) the EEA build swaps out the POCO\nlauncher and icon pack for the Redmi HyperOS 3 set, so the first boot genuinely\nlooks like a different device. If the POCO styling has never grown on you, that\nalone is the reason to try it.\n\nIt sits on HyperOS 3.0.2.0-EEA on top of Android 16, and the credits go to\n@Alonejust993. This is a modified build, not an official release, so treat it the\nway you would treat anything that changes system apps.\n\n## What it looks like\n\nRedmi launcher, Redmi icons, Redmi feel. The blur textures and animations have\nbeen turned up, and that is the most obvious change after a flash. It reads as\nmore polished than stock, closer to how the higher tier devices are dressed up.\n\nIf you like a clean, plain interface, this might read as busy. If you have been\nlooking at the same POCO home screen for a year, it will read as a fresh phone.\n\n## What actually changed\n\n- **Launcher and icons.** The POCO set is gone and the Redmi HyperOS 3 set is in\n  its place. This is the headline change.\n- **Refresh rate control.** You can switch between 30, 60, 90 and 120 Hz instead\n  of accepting whatever the build decides for you.\n- **Resolution control.** You can drop the display to 2400x1080 to stretch\n  battery when you need the extra hours.\n- **Heavier blur and advanced animations.** Enabled by default rather than\n  hidden away.\n- **Package Installer V2.** A different installer flow when you sideload.\n- **Core Patch.** Signature verification is disabled. That is what makes the\n  other changes possible, and it is also the part that deserves your attention.\n\nThat display section is the standout for me. Being able to pick 90 Hz on a day\nyou want battery, then 120 Hz when you do not care, is exactly the kind of\ncontrol stock builds tend to bury or remove entirely.\n\n## What is broken or worth knowing\n\nNothing here is a clean, invisible modification. A few honest notes:\n\n- **Signature verification is off.** Disabling signature checks is handy and it\n  is also exactly how a modified system app can be slipped in. Only install from\n  a source you actually trust, and be careful about what else gets installed\n  afterwards.\n- **The blur and animations cost battery.** They look great. They are not free.\n  If you moved to this build hoping for longer screen time, expect the visuals to\n  eat into some of that.\n- **Modified system apps can break things quietly.** Banking apps, payment apps\n  and anything leaning on integrity checks may behave differently than they did\n  on stock. Some will work fine, some will not.\n- **You need an unlocked bootloader** and this is a full flash, so internal\n  storage goes. Back up first. That part is not optional.\n\n## Who should install it\n\nInstall this if you want a visual reset of the X7 Pro and you actually care about\ndisplay controls. The refresh rate and resolution switching is a real feature,\nnot a toggle in a settings list that does nothing.\n\nSkip it if you depend on payment or banking apps working exactly as they do on\nstock, or if you want the longest possible battery life and nothing else. A build\nthat turns extra effects on is not the build for that goal.\n\n## Getting it flashed\n\nBecause this is a modified build rather than an official fastboot ROM, expect to\ngo through recovery rather than Mi Flash Tool. That means an unlocked bootloader,\nthe right recovery for rodin, and a clean format before you install if you are\ncoming from stock. Read the install notes that come with the ROM and follow the\nsequence exactly, then finish the setup wizard before restoring anything.\n\nIf the driver side is where you usually stall, the free Rom Flasher tool bundles\nthe ADB and fastboot driver install into a couple of clicks, and the adb and\nfastboot files sit in the downloads alongside the ROM itself.",
-  "video_description": "HyperOS 3 Lite on the Poco X7 Pro — the EEA build that swaps the POCO skin for Redmi looks, unlocks refresh rates, and stays light on top of Android 16.\n\nThe \"Lite\" tag is the pitch: strip the heavy bits, keep the HyperOS feel. This one goes further than most by replacing the POCO launcher and icons with the Redmi HyperOS 3 set, so the phone looks like a different device after a flash.\n\nThe display options are the standout. Refresh rate switches between 30, 60, 90 and 120 Hz, and you can drop the resolution to 2400x1080 when you want to stretch battery. That kind of control is exactly what stock builds tend to bury.\n\nIt also turns on the heavier blur textures and advanced animations, adds Package Installer V2, and disables signature verification through Core Patch. Expect a more premium-looking UI, but also the usual trade-offs that come with modified system apps.\n\n📱 Device  : POCO X7 Pro (rodin)\n🧩 ROM     : HyperOS 3 Lite (EEA)\n🧩 Base    : HyperOS 3.0.2.0-EEA-A16\n🤖 Android : 16\n👤 Credits : @Alonejust993\n\n🔬 What Was Tested\n• Redmi HyperOS 3 icons and launcher replacing the POCO set\n• Refresh rate switching: 30 / 60 / 90 / 120 Hz\n• Resolution switching to 2400x1080\n• High-end blur textures and advanced animations\n• Package Installer V2 and the Core Patch signature change\n\n📊 Verdict\n• Looks nothing like stock POCO once you're through — in a good way.\n• Real display controls, not decorative toggle options.\n• Core Patch disabling signature checks is handy, but trust whoever you install from.\n• The heavy blur and animations look great, though they do cost a little battery.",
-  "links": [
-    {
-      "label": "ROM link",
-      "url": "https://tmearn.net/link/C4rAr"
-    },
-    {
-      "label": "Rom Flasher tool (free)",
-      "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
-    },
-    {
-      "label": "Mirror",
-      "url": "https://tmearn.net/link/bjm5Wo2U"
-    },
-    {
-      "label": "adb fastboot tool",
-      "url": "https://tmearn.net/link/8kQcy"
-    },
-    {
-      "label": "adb fastboot driver",
-      "url": "https://tmearn.net/link/PSM2"
-    }
-  ],
-  "faq": [
-    {
-      "q": "Does HyperOS 3 Lite on the POCO X7 Pro wipe my data?",
-      "a": "Yes. Moving to a modified build means a clean flash, and internal storage is\nreset. Copy your photos and files off the phone before you start, and expect the\nsetup wizard on the first boot."
-    },
-    {
-      "q": "What is different between this build and stock HyperOS 3 on the X7 Pro?",
-      "a": "The launcher and icons come from the Redmi HyperOS 3 set instead of POCO, and\nyou get refresh rate switching between 30, 60, 90 and 120 Hz plus a resolution\noption at 2400x1080. Blur textures and advanced animations are enabled too."
-    },
-    {
-      "q": "Is it safe that signature verification is disabled?",
-      "a": "It is a trade-off, not a guarantee. Core Patch turns signature checks off so\nmodified system apps can run, and that same hole means you should only install\nfrom a source you trust and be careful about what you flash afterwards."
-    },
-    {
-      "q": "Will this build drain my battery faster?",
-      "a": "The heavier blur and advanced animations do use more power, so you may see\nless screen time than stock. The resolution drop to 2400x1080 and switching to\n60 or 90 Hz are your levers to pull some of that back."
-    },
-    {
-      "q": "Can I go back to stock after flashing this?",
-      "a": "Yes. The official POCO X7 Pro fastboot ROM restores stock, and it will wipe\nthe phone again. Keep that fastboot package saved so you are not hunting for it\nwhile your phone is sitting in fastboot mode."
-    }
-  ]
+ "id": "BNH_F63-n1A",
+ "slug": "hyperos-3-lite-on-poco-x7-pro-eea-build-flash-features",
+ "title": "HyperOS 3 Lite on Poco X7 Pro EEA Build, Flash & Features",
+ "blurb": "HyperOS 3 Lite on the Poco X7 Pro — the EEA build that swaps the POCO skin for Redmi looks, unlocks refresh rates, and stays light on top of Android 16.",
+ "device": "POCO X7 Pro",
+ "rom": "HyperOS",
+ "android": "Android 16",
+ "views": 280,
+ "published": "2025-11-20",
+ "url": "https://youtu.be/BNH_F63-n1A",
+ "tags": [
+  "HyperOS",
+  "Channel",
+  "Flash",
+  "Battery",
+  "Update"
+ ],
+ "summary": "HyperOS 3 Lite on the POCO X7 Pro is an EEA build that replaces the POCO launcher\nand icons with the Redmi HyperOS 3 set, adds real refresh rate and resolution\ncontrol, and keeps things light on top of Android 16. It looks and feels like a\ndifferent phone after a flash, with the usual trade-offs that come with modified\nsystem apps.",
+ "body": "The \"Lite\" tag gets used a lot and usually means very little. This one actually\ndoes something. On the POCO X7 Pro (rodin) the EEA build swaps out the POCO\nlauncher and icon pack for the Redmi HyperOS 3 set, so the first boot genuinely\nlooks like a different device. If the POCO styling has never grown on you, that\nalone is the reason to try it.\n\nIt sits on HyperOS 3.0.2.0-EEA on top of Android 16, and the credits go to\n@Alonejust993. This is a modified build, not an official release, so treat it the\nway you would treat anything that changes system apps.\n\n## What it looks like\n\nRedmi launcher, Redmi icons, Redmi feel. The blur textures and animations have\nbeen turned up, and that is the most obvious change after a flash. It reads as\nmore polished than stock, closer to how the higher tier devices are dressed up.\n\nIf you like a clean, plain interface, this might read as busy. If you have been\nlooking at the same POCO home screen for a year, it will read as a fresh phone.\n\n## What actually changed\n\n- **Launcher and icons.** The POCO set is gone and the Redmi HyperOS 3 set is in\n  its place. This is the headline change.\n- **Refresh rate control.** You can switch between 30, 60, 90 and 120 Hz instead\n  of accepting whatever the build decides for you.\n- **Resolution control.** You can drop the display to 2400x1080 to stretch\n  battery when you need the extra hours.\n- **Heavier blur and advanced animations.** Enabled by default rather than\n  hidden away.\n- **Package Installer V2.** A different installer flow when you sideload.\n- **Core Patch.** Signature verification is disabled. That is what makes the\n  other changes possible, and it is also the part that deserves your attention.\n\nThat display section is the standout for me. Being able to pick 90 Hz on a day\nyou want battery, then 120 Hz when you do not care, is exactly the kind of\ncontrol stock builds tend to bury or remove entirely.\n\n## What is broken or worth knowing\n\nNothing here is a clean, invisible modification. A few honest notes:\n\n- **Signature verification is off.** Disabling signature checks is handy and it\n  is also exactly how a modified system app can be slipped in. Only install from\n  a source you actually trust, and be careful about what else gets installed\n  afterwards.\n- **The blur and animations cost battery.** They look great. They are not free.\n  If you moved to this build hoping for longer screen time, expect the visuals to\n  eat into some of that.\n- **Modified system apps can break things quietly.** Banking apps, payment apps\n  and anything leaning on integrity checks may behave differently than they did\n  on stock. Some will work fine, some will not.\n- **You need an unlocked bootloader** and this is a full flash, so internal\n  storage goes. Back up first. That part is not optional.\n\n## Who should install it\n\nInstall this if you want a visual reset of the X7 Pro and you actually care about\ndisplay controls. The refresh rate and resolution switching is a real feature,\nnot a toggle in a settings list that does nothing.\n\nSkip it if you depend on payment or banking apps working exactly as they do on\nstock, or if you want the longest possible battery life and nothing else. A build\nthat turns extra effects on is not the build for that goal.\n\n## Getting it flashed\n\nBecause this is a modified build rather than an official fastboot ROM, expect to\ngo through recovery rather than Mi Flash Tool. That means an unlocked bootloader,\nthe right recovery for rodin, and a clean format before you install if you are\ncoming from stock. Read the install notes that come with the ROM and follow the\nsequence exactly, then finish the setup wizard before restoring anything.\n\nIf the driver side is where you usually stall, the free Rom Flasher tool bundles\nthe ADB and fastboot driver install into a couple of clicks, and the adb and\nfastboot files sit in the downloads alongside the ROM itself.",
+ "video_description": "HyperOS 3 Lite on the Poco X7 Pro — the EEA build that swaps the POCO skin for Redmi looks, unlocks refresh rates, and stays light on top of Android 16.\n\nThe \"Lite\" tag is the pitch: strip the heavy bits, keep the HyperOS feel. This one goes further than most by replacing the POCO launcher and icons with the Redmi HyperOS 3 set, so the phone looks like a different device after a flash.\n\nThe display options are the standout. Refresh rate switches between 30, 60, 90 and 120 Hz, and you can drop the resolution to 2400x1080 when you want to stretch battery. That kind of control is exactly what stock builds tend to bury.\n\nIt also turns on the heavier blur textures and advanced animations, adds Package Installer V2, and disables signature verification through Core Patch. Expect a more premium-looking UI, but also the usual trade-offs that come with modified system apps.\n\n📱 Device  : POCO X7 Pro (rodin)\n🧩 ROM     : HyperOS 3 Lite (EEA)\n🧩 Base    : HyperOS 3.0.2.0-EEA-A16\n🤖 Android : 16\n👤 Credits : @Alonejust993\n\n🔬 What Was Tested\n• Redmi HyperOS 3 icons and launcher replacing the POCO set\n• Refresh rate switching: 30 / 60 / 90 / 120 Hz\n• Resolution switching to 2400x1080\n• High-end blur textures and advanced animations\n• Package Installer V2 and the Core Patch signature change\n\n📊 Verdict\n• Looks nothing like stock POCO once you're through — in a good way.\n• Real display controls, not decorative toggle options.\n• Core Patch disabling signature checks is handy, but trust whoever you install from.\n• The heavy blur and animations look great, though they do cost a little battery.",
+ "links": [
+  {
+   "label": "ROM link",
+   "url": "https://tmearn.net/link/C4rAr"
+  },
+  {
+   "label": "Rom Flasher tool (free)",
+   "url": "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
+  },
+  {
+   "label": "Mirror",
+   "url": "https://tmearn.net/link/bjm5Wo2U"
+  },
+  {
+   "label": "adb fastboot tool",
+   "url": "https://tmearn.net/link/8kQcy"
+  },
+  {
+   "label": "adb fastboot driver",
+   "url": "https://tmearn.net/link/PSM2"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Does HyperOS 3 Lite on the POCO X7 Pro wipe my data?",
+   "a": "Yes. Moving to a modified build means a clean flash, and internal storage is\nreset. Copy your photos and files off the phone before you start, and expect the\nsetup wizard on the first boot."
+  },
+  {
+   "q": "What is different between this build and stock HyperOS 3 on the X7 Pro?",
+   "a": "The launcher and icons come from the Redmi HyperOS 3 set instead of POCO, and\nyou get refresh rate switching between 30, 60, 90 and 120 Hz plus a resolution\noption at 2400x1080. Blur textures and advanced animations are enabled too."
+  },
+  {
+   "q": "Is it safe that signature verification is disabled?",
+   "a": "It is a trade-off, not a guarantee. Core Patch turns signature checks off so\nmodified system apps can run, and that same hole means you should only install\nfrom a source you trust and be careful about what you flash afterwards."
+  },
+  {
+   "q": "Will this build drain my battery faster?",
+   "a": "The heavier blur and advanced animations do use more power, so you may see\nless screen time than stock. The resolution drop to 2400x1080 and switching to\n60 or 90 Hz are your levers to pull some of that back."
+  },
+  {
+   "q": "Can I go back to stock after flashing this?",
+   "a": "Yes. The official POCO X7 Pro fastboot ROM restores stock, and it will wipe\nthe phone again. Keep that fastboot package saved so you are not hunting for it\nwhile your phone is sitting in fastboot mode."
+  }
+ ]
 }

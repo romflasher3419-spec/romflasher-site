@@ -5,7 +5,7 @@
  "blurb": "Setting up Termux on Android so you can flash TWRP, fastboot ROMs and GSIs from the phone itself — the whole install, permissions and command list.",
  "device": "Channel",
  "rom": "TWRP",
- "android": "",
+ "android": "Android 14",
  "views": 3822,
  "published": "2025-10-25",
  "url": "https://youtu.be/7UAo_5y7V0g",
