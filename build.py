@@ -507,9 +507,20 @@ def heading_ids(html_text):
 
 
 def toc_html(toc):
+    """The list of headings in a guide, as a row of equal-sized entries.
+
+    Every entry is one fixed-height row: the number in a slot of its own on
+    the left, the heading on one line beside it. A heading too long for the
+    row is cut with an ellipsis and the whole line is in the tooltip, so no
+    row ever grows and the list keeps one even rhythm.
+
+    The label sits in a <span> because that is the element the ellipsis has
+    to go on - the flex row itself is the box, not the text.
+    """
     if len(toc) < 3:
         return ""
-    items = "".join('<li><a href="#%s">%s</a></li>' % (anchor, html.escape(text))
+    items = "".join('<li><a href="#%s" title="%s"><span>%s</span></a></li>'
+                    % (anchor, html.escape(text, quote=True), html.escape(text))
                     for anchor, text in toc)
     return ('<nav class="toc" aria-labelledby="toc-h">'
             '<p class="toc-h" id="toc-h">On this page</p><ol>%s</ol></nav>'
@@ -1744,10 +1755,9 @@ def build_article(item, items):
     if item.get("views"):
         meta.append("%s views" % item["views"])
 
+    # No breadcrumb on a guide: the trail ended with the title of the post,
+    # and the title is right under it in the h1. Saying it twice is noise.
     out = ['<article>', '<div class="prose">',
-           crumbs_html([("Home", up + "index.html"),
-                        ("Guides", up + "videos.html"),
-                        (item["title"], "")]),
            '<div class="head">', avatar_html, "<div>",
            "<h1>%s</h1>" % html.escape(item["title"]),
            '<p class="meta"><span class="who">Rom Flasher</span> &middot; %s</p>'

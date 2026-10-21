@@ -140,8 +140,8 @@ header.top .wrap{
    the right edge and no strip of the header is left empty. The buttons
    themselves keep their own size - they do not stretch - so they still read
    as buttons and not as slabs. */
-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1 1 auto;min-width:0;justify-content:flex-end}
-nav a{
+#mainnav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1 1 auto;min-width:0;justify-content:flex-end}
+#mainnav a{
   color:var(--dim);font-size:14px;padding:7px 12px;border-radius:10px;
   border:1px solid transparent;transition:color .18s,background .18s,border-color .18s;
 }
@@ -149,29 +149,29 @@ nav a{
    space under `border-radius` + `overflow:hidden`, and the browser then paints
    the background inside that inset edge - which shows up as a faint, flickering
    seam around a gradient. Removing it lets the fill run cleanly to the radius. */
-nav a.navbtn.hot,nav a.navbtn.donate,nav a.yt{border:0}
-nav a:hover{color:var(--fg);text-decoration:none;background:rgba(255,255,255,.06)}
-nav a.navbtn{border-color:var(--line);color:var(--fg)}
+#mainnav a.navbtn.hot,#mainnav a.navbtn.donate,#mainnav a.yt{border:0}
+#mainnav a:hover{color:var(--fg);text-decoration:none;background:rgba(255,255,255,.06)}
+#mainnav a.navbtn{border-color:var(--line);color:var(--fg)}
 /* Guides is a nav pill in the same set as the four beside it - same box, same
    radius - but in the quiet glass grey rather than any of the brand fills, so
    it reads as "somewhere else on this site" instead of a second call to action. */
-nav a.navbtn.guides{
+#mainnav a.navbtn.guides{
   border-color:var(--line);color:var(--fg);
   background-color:rgba(255,255,255,.05);
 }
-nav a.navbtn.guides:hover{color:#fff;background-color:rgba(255,255,255,.11)}
-nav a.navbtn.guides svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
+#mainnav a.navbtn.guides:hover{color:#fff;background-color:rgba(255,255,255,.11)}
+#mainnav a.navbtn.guides svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
 /* The YouTube button wears the channel's classic livery: a flat YouTube red,
    the way the mark looked for years, rather than the pink-to-red gradient it
    had grown. Solid colour, one shade, no sweeping ramp. */
-nav a.yt{
+#mainnav a.yt{
   position:relative;overflow:hidden;
   border-color:transparent;color:#fff;font-weight:600;
   background-image:none;background-color:#ff0000;
   box-shadow:0 10px 26px -14px rgba(255,0,0,.85);
 }
-nav a.yt:hover{background-color:#cc0000}
-nav a.yt:hover{text-decoration:none}
+#mainnav a.yt:hover{background-color:#cc0000}
+#mainnav a.yt:hover{text-decoration:none}
 
 /* Every nav button is exactly the same box, whatever sits inside it.
    position:relative is what keeps the shine inside the button - without it the
@@ -180,7 +180,7 @@ nav a.yt:hover{text-decoration:none}
    Compact and round: an icon with a short label on a pill, rather than a wide
    slab of text. The four sit in much less width, so the bar has room to
    breathe, and the icon still says at a glance which door is which. */
-nav a.navbtn,nav a.yt,nav a.gh{
+#mainnav a.navbtn,#mainnav a.yt,#mainnav a.gh{
   position:relative;overflow:hidden;
   display:inline-flex;align-items:center;justify-content:center;gap:5px;
   height:29px;padding:0 10px;
@@ -201,9 +201,9 @@ nav a.navbtn,nav a.yt,nav a.gh{
    bar. They never grow: on a wide monitor the empty room goes between the
    brand and the tabs, not inside the buttons. */
 @media(min-width:900px){
-  nav{gap:8px}
+  #mainnav{gap:8px}
 }
-nav a.gh{
+#mainnav a.gh{
   background-image:none;background-color:#161b22;
   border:1px solid rgba(255,255,255,.18);color:#fff;
   box-shadow:0 10px 26px -16px rgba(0,0,0,1);
@@ -212,21 +212,21 @@ nav a.gh{
      outline, but at a crisp 1px so it does not shimmer on hover. */
   border-width:1px;
 }
-nav a.gh:hover{background-color:#21262d;color:#fff}
-nav a.gh svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
-nav a.yt svg{width:12px;height:12px;flex:0 0 auto;fill:currentColor}
+#mainnav a.gh:hover{background-color:#21262d;color:#fff}
+#mainnav a.gh svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
+#mainnav a.yt svg{width:12px;height:12px;flex:0 0 auto;fill:currentColor}
 /* the thank-you button, dressed in the same gold the app uses */
-nav a.donate{
+#mainnav a.donate{
   background-image:linear-gradient(115deg,#FFD700,#FF8A00);
   color:#241705;font-weight:700;
   box-shadow:0 12px 28px -16px rgba(255,180,0,.95);
 }
-nav a.donate:hover{color:#241705;background-color:transparent;filter:saturate(118%)}
+#mainnav a.donate:hover{color:#241705;background-color:transparent;filter:saturate(118%)}
 /* The mug icon needs its size spelled out, like the GitHub one above. An SVG
    with no width/height sizes itself from the line box, so it drifted ~37%
    larger than the GitHub mark next to it and changed with the font. Pinning it
    to the same 17px keeps the two icons visually matched. */
-nav a.donate svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
+#mainnav a.donate svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
 
 /* ------------------------------------------------------- home page rows */
 /* The guide lists and the ad sit side by side. Without an ad the content
@@ -347,7 +347,7 @@ a.cardlink::after{content:"";position:absolute;inset:0;z-index:1}
 /* Sweep of light across anything interactive.
    The band is painted as a background-image and only its position moves, so it
    always crosses the whole element - big cards and small buttons alike. */
-.card::after,.btn::after,.chip::after,.navbtn::after,nav a.yt::after{
+.card::after,.btn::after,.chip::after,.navbtn::after,#mainnav a.yt::after{
   content:"";position:absolute;inset:0;border-radius:inherit;
   background-image:linear-gradient(100deg,transparent 42%,
                                     rgba(255,255,255,.55) 50%,
@@ -359,7 +359,7 @@ a.cardlink::after{content:"";position:absolute;inset:0;z-index:1}
   pointer-events:none;
 }
 .card:hover::after,.btn:hover::after,.chip:hover::after,
-.navbtn:hover::after,nav a.yt:hover::after{
+.navbtn:hover::after,#mainnav a.yt:hover::after{
   background-position:0% 0;
 }
 
@@ -422,12 +422,12 @@ a.tag:hover{
 /* The downloader wears dark green - the colour of the ROM box in the app -
    a shade lighter than the background so it reads as a real button and not
    a hole in the bar. */
-nav a.navbtn.hot{
+#mainnav a.navbtn.hot{
   background-image:linear-gradient(120deg,#1c7a4b,#26a463);
   color:#fff;font-weight:700;
   box-shadow:0 12px 28px -14px rgba(38,164,99,.85);
 }
-nav a.navbtn.hot:hover{
+#mainnav a.navbtn.hot:hover{
   color:#fff;background-color:transparent;
   background-image:linear-gradient(120deg,#218a55,#2eb871);
   filter:saturate(115%);
@@ -435,7 +435,7 @@ nav a.navbtn.hot:hover{
 /* the tray arrow is drawn a touch smaller than the other marks: its glyph
    carries more ink than the mug or the GitHub cat at the same box size, so at
    13px it read heavier than the two beside it. */
-nav a.navbtn.hot svg{width:12px;height:12px;flex:0 0 auto;fill:currentColor}
+#mainnav a.navbtn.hot svg{width:12px;height:12px;flex:0 0 auto;fill:currentColor}
 
 .dl{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
   gap:18px;align-items:start;margin:8px 0 6px}
@@ -674,9 +674,27 @@ code{
   display:flex;flex-direction:column;gap:12px;min-width:0;
   height:0;min-height:100%;
 }
-.sidepanel .cta{margin:0;flex:0 0 auto;flex-direction:column;align-items:stretch;gap:12px}
+/* Both boxes in the panel are built the same way: the same padding, the same
+   radius, the same quiet border. They are a pair, not two different cards. */
+.sidepanel .cta{
+  margin:0;flex:0 0 auto;
+  flex-direction:column;align-items:stretch;gap:12px;
+  padding:15px 16px 16px;border-radius:var(--radius);
+}
 .sidepanel .cta .ctatext{flex:0 0 auto}
+.sidepanel .cta .ctatext strong{font-size:15px;margin-bottom:5px}
+.sidepanel .cta .ctatext span{font-size:13.4px;line-height:1.5}
+.sidepanel .cta .btn{width:100%;justify-content:center}
 .sidepanel .toc{margin:0;flex:1 1 auto;min-height:0;overflow-y:auto}
+/* A guide with many headings does not fit beside the player, so the list
+   scrolls inside its box. The scrollbar is drawn, thin and quiet, so it is
+   clear there is more of the list below. */
+.sidepanel .toc::-webkit-scrollbar{width:6px}
+.sidepanel .toc::-webkit-scrollbar-track{background:transparent}
+.sidepanel .toc::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.16);border-radius:6px;
+}
+.sidepanel .toc::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.3)}
 @media (max-width:900px){
   .mediarow{grid-template-columns:1fr;gap:12px}
   .sidepanel{height:auto;min-height:0}
@@ -1049,32 +1067,50 @@ footer .browse a{color:#cfd7ff;font-weight:500}
   display:flex;flex-direction:column;gap:10px;align-items:stretch;
   margin:10px 0 0;
 }
+/* The contents list that sits beside the player.
+
+   One column, and every entry the same height. The old version laid the
+   entries out in as many columns as fit the box, which in the narrow side
+   panel meant two thin columns: the long headings wrapped onto a second
+   line, so half the rows were taller than the other half and the box read
+   as a ragged stack rather than a list.
+
+   Now each entry is one fixed-height row - the number in a slot of its own
+   on the left, the heading on a single line beside it - and every box in
+   the list is the same size. A heading too long for the row is cut with an
+   ellipsis and the whole line sits in the tooltip, so no row ever grows
+   and breaks the rhythm. */
 .toc{
-  padding:14px 18px 15px;border-radius:var(--radius);
+  padding:15px 16px 16px;border-radius:var(--radius);
   background:rgba(255,255,255,.035);border:1px solid var(--line);
 }
 .toc .toc-h{
-  margin:0 0 11px;font-size:11.5px;font-weight:600;text-transform:uppercase;
-  letter-spacing:.14em;color:var(--dim2);
+  margin:0 0 10px;padding:0 4px;font-size:11.5px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--dim2);
 }
 .toc ol{
   margin:0;padding:0;list-style:none;width:100%;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:2px 20px;counter-reset:toc;
+  display:grid;grid-template-columns:1fr;gap:2px;counter-reset:toc;
 }
 .toc li{counter-increment:toc;min-width:0}
 .toc a{
-  display:flex;gap:9px;align-items:baseline;padding:5px 8px 5px 6px;
-  color:#c6cdf0;text-decoration:none;font-size:14px;line-height:1.35;
-  border-radius:7px;transition:color .15s ease,background-color .15s ease;
-  overflow-wrap:anywhere;
+  display:flex;gap:10px;align-items:center;
+  height:31px;padding:0 10px 0 4px;
+  color:#c6cdf0;text-decoration:none;font-size:13.8px;line-height:1;
+  border-radius:9px;transition:color .15s ease,background-color .15s ease;
+}
+.toc a span{
+  flex:1 1 auto;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
 }
 .toc a::before{
   content:counter(toc,decimal-leading-zero);
-  flex:0 0 auto;font-size:11px;font-weight:600;letter-spacing:.04em;
+  flex:0 0 24px;height:20px;line-height:20px;text-align:center;
+  font-size:10.5px;font-weight:700;letter-spacing:.04em;
   color:var(--dim2);font-variant-numeric:tabular-nums;
+  background:rgba(255,255,255,.06);border-radius:6px;
 }
-.toc a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.toc a:hover{color:#fff;background:rgba(255,255,255,.06)}
 .toc a:hover::before{color:var(--pink)}
 .copybtn.steps{flex:0 0 auto;align-self:flex-start}
 .prose :target{
@@ -1282,7 +1318,7 @@ code,pre,.hash{
   body.navopen .navtoggle .burger i:nth-child(2){opacity:0}
   body.navopen .navtoggle .burger i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
 
-  nav{
+  #mainnav{
     position:absolute;left:0;right:0;top:100%;z-index:40;
     display:none;flex-direction:column;align-items:stretch;
     justify-content:flex-start;gap:4px;width:auto;overflow:visible;
@@ -1292,21 +1328,21 @@ code,pre,.hash{
     -webkit-backdrop-filter:blur(18px) saturate(160%);
     backdrop-filter:blur(18px) saturate(160%);
   }
-  body.navopen nav{display:flex}
-  nav a{
+  body.navopen #mainnav{display:flex}
+  #mainnav a{
     padding:0 14px;font-size:14.5px;white-space:nowrap;
   }
-  nav a.navbtn,nav a.yt,nav a.gh{
+  #mainnav a.navbtn,#mainnav a.yt,#mainnav a.gh{
     height:46px;width:100%;min-width:0;padding:0 14px;
     font-size:14.5px;gap:9px;border-radius:12px;
     justify-content:flex-start;
   }
-  nav a.navbtn.guides{grid-column:auto}
-  nav a.gh svg{width:15px;height:15px}
-  nav a.donate svg{width:15px;height:15px}
-  nav a.yt svg{width:14px;height:14px}
-  nav a.navbtn.hot svg{width:14px;height:14px}
-  nav a.navbtn.guides svg{width:14px;height:14px}
+  #mainnav a.navbtn.guides{grid-column:auto}
+  #mainnav a.gh svg{width:15px;height:15px}
+  #mainnav a.donate svg{width:15px;height:15px}
+  #mainnav a.yt svg{width:14px;height:14px}
+  #mainnav a.navbtn.hot svg{width:14px;height:14px}
+  #mainnav a.navbtn.guides svg{width:14px;height:14px}
 }
 
 @media(max-width:600px){
@@ -1327,9 +1363,10 @@ code,pre,.hash{
   /* the contents box: a single column reads better than two cramped ones on a
      phone, and the box itself loses a little padding so the labels get the
      width instead */
-  .toc{padding:12px 14px 13px}
-  .toc ol{grid-template-columns:1fr;gap:1px}
-  .toc a{font-size:13.5px;padding:6px 6px}
+  .toc{padding:13px 13px 14px}
+  .toc ol{gap:3px}
+  .toc a{height:34px;font-size:13.5px;padding:0 9px 0 3px}
+  .toc a::before{flex:0 0 23px;height:19px;line-height:19px}
 
   /* the footer link rows stack cleanly rather than wrapping mid-link */
   footer .wrap{padding-bottom:26px}
