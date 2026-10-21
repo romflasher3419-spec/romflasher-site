@@ -87,6 +87,8 @@ input,select,.chip,.prose blockquote{
   backdrop-filter:blur(22px) saturate(170%);
 }
 
+.navtoggle{display:none}
+
 /* --------------------------------------------------------------- top bar */
 header.top{
   position:sticky;top:0;z-index:30;
@@ -229,14 +231,18 @@ nav a.donate svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
 /* ------------------------------------------------------- home page rows */
 /* The guide lists and the ad sit side by side. Without an ad the content
    takes the whole window; with one, the column narrows to make room for it
-   and the ad column takes the rest. That is the whole point of the two
-   classes: the page never leaves an empty strip on the left or the right. */
+   and the ad column takes the rest. */
 .homerow{
   display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start;
 }
 .homerow.withad{grid-template-columns:minmax(0,1fr) 320px}
 .homerow .homecol{min-width:0}
 .adrail{min-width:0}
+/* If the ad does not actually fill (ad blocker, no consent or no fill),
+   the column is wasted and the cards should spread across the whole page. */
+.homerow.withad:has(.adrail .adslot:not(:has(ins[data-ad-status="filled"]))){
+  grid-template-columns:minmax(0,1fr);
+}
 @media(max-width:1040px){
   .homerow.withad{grid-template-columns:minmax(0,1fr)}
 }
@@ -1233,44 +1239,61 @@ code,pre,.hash{
 }
 
 @media(max-width:600px){
-  /* The top bar stacks: brand on its own line, then the nav under it, because
-     side by side leaves no room for either.
-     It does NOT stick here. Stacked, the bar is ~160px tall, which is a fifth
-     of a phone screen - pinned, it would hold that much of every article
-     hostage for the whole scroll. So on a phone it scrolls away with the page
-     and the content gets the screen; on a desktop it stays. */
-  header.top{position:static}
+  /* On a phone the header does not stick: it scrolls away with the page so
+     the content gets every pixel, and the menu button drops the five pills
+     into a single drop-down panel - the same three-line mark every Android
+     app puts in its top bar. */
+  header.top{position:relative}
   header.top .wrap{
     min-height:0;padding-top:8px;padding-bottom:8px;
-    gap:6px;row-gap:6px;
+    gap:10px;row-gap:6px;flex-wrap:nowrap;
   }
-  .brand{font-size:20px;width:100%;gap:9px}
+  .brand{font-size:20px;width:auto;flex:1 1 auto;min-width:0;gap:9px}
   .brand .applogo{width:1.05em;height:1.05em}
   .brand .brandsub{font-size:9px;letter-spacing:.08em}
 
-  /* The nav wraps instead of scrolling sideways. A hidden scroll strip looked
-     like missing tabs: the last three sat off the right edge with nothing to
-     hint they were there, so now every button is on screen.
-     All five pills go into one grid of two columns: Guides takes the first row
-     on its own (it is navigation, not a call to action), then the four brand
-     buttons sit as a true 2x2 underneath. A grid cell cannot be rounded up into
-     a wider last slot the way a wrapped flex item can, so the boxes never come
-     out lopsided - no orphaned full-width button at the bottom. */
+  /* One button in the top bar; the full list opens below it. */
+  .navtoggle{
+    display:inline-flex;align-items:center;justify-content:center;
+    flex:0 0 auto;width:42px;height:38px;padding:0;
+    border-radius:11px;cursor:pointer;
+    background:rgba(255,255,255,.05);border:1px solid var(--line);
+    -webkit-tap-highlight-color:transparent;
+  }
+  .navtoggle .burger{display:block;width:19px}
+  .navtoggle .burger i{
+    display:block;height:2px;margin:3px 0;border-radius:2px;
+    background:var(--fg);transition:transform .22s,opacity .18s;
+  }
+  body.navopen .navtoggle .burger i:nth-child(1){transform:translateY(5px) rotate(45deg)}
+  body.navopen .navtoggle .burger i:nth-child(2){opacity:0}
+  body.navopen .navtoggle .burger i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
   nav{
-    width:100%;gap:6px;row-gap:6px;overflow:visible;
-    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    position:absolute;left:0;right:0;top:100%;z-index:40;
+    display:none;flex-direction:column;align-items:stretch;
+    justify-content:flex-start;gap:4px;width:auto;overflow:visible;
+    margin:0;padding:10px 14px 14px;
+    background:rgba(10,14,23,.98);border-bottom:1px solid var(--line);
+    box-shadow:0 22px 34px -18px rgba(0,0,0,.95);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    backdrop-filter:blur(18px) saturate(160%);
   }
-  nav a.navbtn.guides{grid-column:1/-1}
-  nav a{padding:4px 8px;font-size:12.5px;white-space:nowrap}
+  body.navopen nav{display:flex}
+  nav a{
+    padding:0 14px;font-size:14.5px;white-space:nowrap;
+  }
   nav a.navbtn,nav a.yt,nav a.gh{
-    height:32px;width:100%;min-width:0;padding:0 9px;
-    font-size:12px;gap:5px;
+    height:46px;width:100%;min-width:0;padding:0 14px;
+    font-size:14.5px;gap:9px;border-radius:12px;
+    justify-content:flex-start;
   }
-  nav a.gh svg{width:13px;height:13px}
-  nav a.donate svg{width:13px;height:13px}
-  nav a.yt svg{width:12px;height:12px}
-  nav a.navbtn.hot svg{width:12px;height:12px}
-  nav a.navbtn.guides svg{width:12px;height:12px}
+  nav a.navbtn.guides{grid-column:auto}
+  nav a.gh svg{width:15px;height:15px}
+  nav a.donate svg{width:15px;height:15px}
+  nav a.yt svg{width:14px;height:14px}
+  nav a.navbtn.hot svg{width:14px;height:14px}
+  nav a.navbtn.guides svg{width:14px;height:14px}
 
   /* buttons go full width: a thumb aiming at a 40%-wide button misses it */
   .btn,.subbtn{width:100%;margin-right:0;text-align:center;justify-content:center}
@@ -1296,15 +1319,12 @@ code,pre,.hash{
   /* the footer link rows stack cleanly rather than wrapping mid-link */
   footer .wrap{padding-bottom:26px}
 
-  /* ROM downloader: two honest columns only fit when there is width for them,
-     so on a phone the Recovery / Fastboot blocks stack instead of squeezing. */
-  .dlgrid{grid-template-columns:1fr;gap:14px}
+  /* ROM downloader */
   .dlcard{padding:16px 16px}
   .dlcard h3{font-size:16.5px}
   .dlsearch{padding:15px 16px}
   .dlsearch input{font-size:16px} /* 16px stops iOS zooming the page on focus */
   .dlopts{grid-template-columns:1fr}
-  .dlbtns .btn{width:100%}
 }
 
 /* Very narrow phones (a 320px iPhone SE, or a zoomed-in browser). */

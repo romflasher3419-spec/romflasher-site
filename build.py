@@ -854,6 +854,55 @@ CURSOR_LIGHT_JS = """<script>
 </script>"""
 
 
+# The menu button on a phone. The five pills live in the header on a desktop and
+# in this drop-down panel on a phone; the panel is hidden by css and only the
+# button is wired up here, so a desktop never runs any of it.
+NAV_JS = """<script>
+(function(){
+  var btn = document.querySelector('.navtoggle');
+  var nav = document.getElementById('mainnav');
+  if(!btn || !nav) return;
+
+  function setOpen(on){
+    on = !!on;
+    document.body.classList.toggle('navopen', on);
+    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    btn.setAttribute('aria-label', on ? 'Close the menu' : 'Open the menu');
+  }
+
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    setOpen(!document.body.classList.contains('navopen'));
+  });
+
+  // A tap on the page itself closes the menu again.
+  document.addEventListener('click', function(e){
+    if(!document.body.classList.contains('navopen')) return;
+    if(nav.contains(e.target) || btn.contains(e.target)) return;
+    setOpen(false);
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' || e.keyCode === 27) setOpen(false);
+  });
+
+  // Following a link closes the menu before the page goes somewhere else.
+  nav.addEventListener('click', function(e){
+    var t = e.target;
+    if(t && t.closest && t.closest('a')) setOpen(false);
+  });
+
+  // A wider screen gets the button row back, so the open state is dropped.
+  try{
+    var wide = window.matchMedia('(min-width:601px)');
+    var onChange = function(){ if(wide.matches) setOpen(false); };
+    if(wide.addEventListener) wide.addEventListener('change', onChange);
+    else if(wide.addListener) wide.addListener(onChange);
+  }catch(e){}
+})();
+</script>"""
+
+
 def clip(text, limit=158):
     """Trim a description to a length Google shows whole, ending on a word.
 
@@ -925,7 +974,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         'src="%sstatic/app.png" alt="Rom Flasher tool icon" width="30" '
         'height="30"><span class="brandtx"><span class="brandname">Rom<b>Flasher</b></span>'
         '<span class="brandsub">All-In-One Android Tool</span></span></a>' % (up, up),
-        "  <nav>",
+        "  <nav id=\"mainnav\">",
         # Guides wears the same pill as the four on its right, so the row reads
         # as one set of buttons. The logo on the left already goes home, so there
         # is no separate Home link, and the boxed Download button covers the tool.
@@ -941,6 +990,13 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '    <a class="navbtn donate" href="%sdonate.html" '
         'aria-label="Buy me a coffee">%sCoffee</a>' % (up, COFFEE_LOGO),
         "  </nav>",
+        # The menu button only shows on a phone, where the five pills used to
+        # stack under the logo and eat a fifth of the screen. Three lines, the
+        # same mark every Android app puts in its top bar.
+        '  <button class="navtoggle" type="button" aria-expanded="false" '
+        'aria-controls="mainnav" aria-label="Open the menu">'
+        '<span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>'
+        '</button>',
         "</div></header>",
     ])
 
@@ -978,7 +1034,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
 """ % (SITE, TAGLINE, browse, up, up, up, up, up, up, up, up, CHANNEL_URL, up)
 
     # the pointer light is moved by a script, so it belongs at the end of body
-    foot = foot.replace("</body>", CURSOR_LIGHT_JS + "\n</body>")
+    foot = foot.replace("</body>", CURSOR_LIGHT_JS + "\n" + NAV_JS + "\n</body>")
     return head + body + "\n" + foot
 
 
@@ -2961,10 +3017,8 @@ moment you tap the button.</p>
 </div>
 
 <h2>Pick a download</h2>
-<p>Three routes, depending on what you need on the phone:</p>
+<p>Two routes, depending on what you need on the phone:</p>
 <div class="dlopts">
-  <a class="dlopt" href="#stock"><b>Stock ROM download</b>
-    <span>Your phone's own firmware, so you can go back to how it shipped.</span></a>
   <div class="dlopt dloptcard" id="gh-magisk">
     <b>Magisk</b>
     <span>Root by patching the boot image &mdash; the one that hides best. The
