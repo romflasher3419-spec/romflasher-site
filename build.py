@@ -2663,10 +2663,9 @@ DOWNLOADER_JS = r"""
     }).join("");
     el("dlpnote").innerHTML =
       "Every button picks the quickest server that answers and starts the " +
-      "download from there. The files stay on the publisher&#39;s own " +
-      "servers - nothing is re-hosted here. " +
-      '<a href="' + esc(d.page || "#") + '" rel="noopener">See every build ' +
-      'and region on the source page &rarr;</a>';
+      "download from there. The table above is the whole list - every build " +
+      "and every region - and the file comes straight from the publisher&#39;s " +
+      "own server or a public mirror of it. Nothing is re-hosted here.";
     buildRegions();
     renderRoms();
   }
@@ -2786,6 +2785,43 @@ DOWNLOADER_JS = r"""
       });
     }
 
+    /* A link can name the phone it is about:
+         downloader.html?device=poco-x7-pro
+       The phone is then picked straight away, so a guide can send the reader
+       to the table of that one model. */
+    try {
+      var want = "";
+      var parts = String(window.location.search || "").replace(/^\?/, "").split("&");
+      for(var z = 0; z < parts.length; z++){
+        var kv = parts[z].split("=");
+        if(kv[0] === "device") want = decodeURIComponent((kv[1] || "").replace(/\+/g, " "));
+      }
+      want = want.trim().toLowerCase();
+      if(want){
+        loadIndex(function(){
+          if(!data) return;
+          var hit = "";
+          for(var k in data){
+            if(!Object.prototype.hasOwnProperty.call(data, k)) continue;
+            var d = data[k];
+            if(k.toLowerCase() === want ||
+               (d.name || "").toLowerCase() === want ||
+               (d.code || "").toLowerCase() === want){ hit = k; break; }
+          }
+          if(!hit){
+            for(var k2 in data){
+              if(!Object.prototype.hasOwnProperty.call(data, k2)) continue;
+              if(hay(data[k2]).indexOf(want) >= 0){ hit = k2; break; }
+            }
+          }
+          if(hit){
+            q.value = data[hit].name || "";
+            select(hit);
+          }
+        });
+      }
+    } catch(e){}
+
     var tbody = el("dlroms");
     if(tbody){
       tbody.addEventListener("click", function(e){
@@ -2834,18 +2870,34 @@ DOWNLOADER_JS = r"""
 
 
 def build_downloader():
-    """The ROM downloader: pick a device, get the official firmware page.
+    """The ROM downloader: pick a phone, get the firmware.
 
-    Why it works this way: no site can host or mirror phone firmware without
-    stepping on the manufacturer's licence, and a hard-coded mirror URL rots
-    within months. So this page keeps the *route* instead of the file - one
+    For Xiaomi, Redmi and POCO the page holds a real index - every phone, every
+    region, every Recovery and Fastboot build - and the download button goes
+    straight to the file: Xiaomi's own server is asked first and the public
+    mirrors are asked alongside it, and whichever answers first wins. There is
+    no page in front of the file and nothing of ours is in the way.
+
+    For the other brands the page keeps the *route* instead of the file - one
     entry per brand pointing at that brand's own public firmware download page -
     and it lets the visitor search by the name they actually know ("poco x7
     pro", "redmi note 13", "CPH2451") rather than a codename they do not.
 
-    Every link here is a public support / download page. Nothing on this site
-    hosts, rewrites or proxies a firmware file.
+    Nothing on this site hosts, rewrites or proxies a firmware file.
     """
+
+    # How many phones and builds the picker holds right now, so the page can
+    # say it out loud instead of guessing.
+    phone_count = 0
+    build_count = 0
+    try:
+        with open(os.path.join(DATA, "firmware.json"), encoding="utf-8") as fh:
+            index = json.load(fh).get("devices", {})
+        phone_count = len(index)
+        for dev in index.values():
+            build_count += len(dev.get("roms") or [])
+    except Exception:
+        pass
 
     # One row per brand: how the visitor names it, where its firmware lives, and
     # what both flash formats are called there. `keys` is the search index - the
@@ -2862,13 +2914,18 @@ def build_downloader():
                          "flash in the phone's own updater or in recovery"),
             "fastboot": ("Fastboot ROM &mdash; the <code>.tgz</code> package "
                          "that contains the <code>flash_all</code> script"),
-            "page": "https://miuirom.org/",
-            "page_label": "miuirom.org &mdash; official Xiaomi / HyperOS firmware index",
+            "page": SITE_URL + "/downloader.html#dlsearch",
+            "href": "#dlsearch",
+            "btn": "Pick your phone",
+            "page_label": "This page &mdash; every Xiaomi, Redmi and POCO phone, "
+                          "straight from the fastest server",
             "official": "https://www.mi.com/global/support/",
             "official_label": "Xiaomi official support",
-            "note": "Pick your exact model, then the region (Global, India, EEA, "
-                    "China). The codename must match the one on your phone's "
-                    "bootloader screen.",
+            "note": "Use the box at the top of this page: type the phone you "
+                    "have, tap it, and the Recovery ROM or the Fastboot ROM "
+                    "downloads straight to you from the quickest server that "
+                    "answers. The codename on your bootloader screen must match "
+                    "the one shown here, and the region has to match too.",
         },
         {
             "name": "OnePlus",
@@ -3045,11 +3102,13 @@ def build_downloader():
             '<p>%s</p></div>\n'
             '</div>\n'
             '<p class="dlbtns">'
-            '<a class="btn" href="%s" rel="noopener">Firmware downloads</a>'
+            '<a class="btn" href="%s" rel="noopener">%s</a>'
             '<a class="btn ghost" href="%s" rel="noopener">%s</a></p>\n'
             '<p class="dlnote">%s</p>\n'
             '</article>' % (i, html.escape(b["name"]), b["recovery"], b["fastboot"],
-                            b["page"], b["official"], html.escape(b["page_label"]),
+                            b.get("href", b["page"]),
+                            html.escape(b.get("btn", "Firmware downloads")),
+                            b["official"], html.escape(b["page_label"]),
                             b["note"]))
 
     body = """<h1>ROM downloader</h1>
@@ -3060,6 +3119,13 @@ lays out every build it has for that phone, newest first, with the Recovery
 ROM and the Fastboot ROM side by side. <strong>Change region</strong> switches
 between Global, India, EEA and the rest, and every download button picks the
 quickest server that answers and starts the file on its way.</p>
+
+<p class="dis">The picker holds <strong>__PHONE_COUNT__ phones</strong> and
+<strong>__BUILD_COUNT__ builds</strong> of official Xiaomi, Redmi and POCO
+firmware. Every file is asked for on Xiaomi's own servers first and on the
+public mirrors alongside it; the download starts from whichever answers first,
+so there is no waiting page in between &mdash; the file starts coming down the
+moment you tap the button.</p>
 
 <div class="dlsearch">
   <label for="dlq">Which phone?</label>
@@ -3336,7 +3402,9 @@ section. Every manufacturer has one; it is just named differently each time.</p>
                 "realme, vivo, Pixel, Samsung, Nokia, Micromax - and get its "
                 "official Recovery ROM and Fastboot ROM download pages, plus "
                 "Magisk and KernelSU.",
-                '<article><div class="prose">%s</div></article>' % body,
+                '<article><div class="prose">%s</div></article>'
+                % body.replace("__PHONE_COUNT__", str(phone_count))
+                     .replace("__BUILD_COUNT__", str(build_count)),
                 "downloader.html", extra_head=head,
                 keywords=keywords_for(item={"tags": [
                     "stock rom download", "official firmware download",

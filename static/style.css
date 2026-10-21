@@ -134,7 +134,10 @@ header.top .wrap{
   .brand .brandsub{font-size:9px;letter-spacing:.08em}
 }
 
-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+/* The tab row takes the whole rest of the bar, so on a wide monitor the tabs
+   stretch to fill it instead of huddling in the corner with a dead strip
+   beside them. On a narrow screen they go back to their natural size. */
+nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1 1 auto;min-width:0;justify-content:flex-end}
 nav a{
   color:var(--dim);font-size:14px;padding:7px 12px;border-radius:10px;
   border:1px solid transparent;transition:color .18s,background .18s,border-color .18s;
@@ -190,6 +193,16 @@ nav a.navbtn,nav a.yt,nav a.gh{
      them shimmers as the button lifts on hover. */
   background-clip:padding-box;
   isolation:isolate;
+}
+/* On a wide monitor the five tabs share the whole bar: each one grows from
+   its 92px base, so the row ends at the right edge and no strip of the header
+   is left empty. Below 900px they keep their natural size and just pack. */
+@media(min-width:900px){
+  nav{gap:8px}
+  nav a.navbtn,nav a.yt,nav a.gh{
+    width:auto;min-width:92px;max-width:none;
+    flex:1 1 92px;
+  }
 }
 nav a.gh{
   background-image:none;background-color:#161b22;
@@ -1027,6 +1040,10 @@ footer{
   margin-top:52px;padding:34px 0 44px;
   border-top:1px solid var(--line);color:var(--dim);font-size:14px;
 }
+/* The footer text starts hard left, like the top bar does. A centred column
+   left the terms, privacy and the rest floating in the middle of a wide
+   screen with an empty strip on either side. */
+footer .wrap{max-width:100%;margin:0;padding:0 clamp(16px,2.2vw,36px)}
 footer a{color:var(--dim)}
 footer a:hover{color:var(--fg)}
 .dis{color:var(--dim2);font-size:13.5px}

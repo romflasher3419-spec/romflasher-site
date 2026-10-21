@@ -9,6 +9,7 @@ __pycache__/
 .firmware-cache/
 .firmware-build.log
 .tmp_*
+data/preview-*.json
 
 # Editor / OS
 .idea/

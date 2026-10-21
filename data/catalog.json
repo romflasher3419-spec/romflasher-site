@@ -1,877 +1,31 @@
 {
+ "generated": "2026-10-21",
  "devices": [
   {
-   "brand": "Xiaomi",
-   "code": "umi",
-   "count": 7,
-   "models": "Global, India, China",
-   "name": "Mi 10",
-   "regions": [
-    "Global",
-    "EEA",
-    "China",
-    "India",
-    "Indonesia",
-    "Russia",
-    "Turkey"
-   ],
-   "slug": "mi-10"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "monet",
-   "count": 6,
-   "models": "Global, Korea, Japan",
-   "name": "Mi 10 Lite",
-   "regions": [
-    "Global",
-    "EEA",
-    "Taiwan"
-   ],
-   "slug": "mi-10-lite"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "vangogh",
-   "count": 2,
-   "models": "",
-   "name": "Mi 10 Lite Zoom",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-10-lite-zoom"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "cmi",
-   "count": 4,
-   "models": "Global, China",
-   "name": "Mi 10 Pro",
-   "regions": [
-    "Global",
-    "EEA",
-    "China"
-   ],
-   "slug": "mi-10-pro"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "cas",
-   "count": 1,
-   "models": "M2007J1SC",
-   "name": "Mi 10 Ultra",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-10-ultra"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "gauguin",
-   "count": 2,
-   "models": "",
-   "name": "Mi 10I",
-   "regions": [
-    "India"
-   ],
-   "slug": "mi-10i"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "thyme",
-   "count": 2,
-   "models": "M2102J2SC",
-   "name": "Mi 10S",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-10s"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "apollo",
-   "count": 14,
-   "models": "M2007J3SY, M2007J3SP, M2007J3SG, M2007J3SI",
-   "name": "Mi 10T And Mi 10T Pro",
-   "regions": [
-    "Global",
-    "EEA",
-    "India",
-    "Indonesia",
-    "Russia",
-    "Taiwan",
-    "Turkey"
-   ],
-   "slug": "mi-10t-and-mi-10t-pro"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "gauguin",
-   "count": 8,
-   "models": "M2007J17G",
-   "name": "Mi 10T Lite",
-   "regions": [
-    "Global",
-    "EEA",
-    "Taiwan",
-    "Turkey"
-   ],
-   "slug": "mi-10t-lite"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "venus",
-   "count": 14,
-   "models": "M2011K2G, M2011K2C",
-   "name": "Mi 11",
-   "regions": [
-    "Global",
-    "EEA",
-    "China",
-    "Indonesia",
-    "Russia",
-    "Taiwan",
-    "Turkey"
-   ],
-   "slug": "mi-11"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "lisa",
-   "count": 2,
-   "models": "2107119DC",
-   "name": "Mi 11 Le",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-11-le"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "courbet",
-   "count": 10,
-   "models": "M2101K9AG, M2101K9AI",
-   "name": "Mi 11 Lite 4G",
-   "regions": [
-    "Global",
-    "EEA",
-    "India",
-    "Indonesia",
-    "Russia",
-    "Turkey"
-   ],
-   "slug": "mi-11-lite-4g"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "renoir",
-   "count": 11,
-   "models": "M2101K9G, M2101K9C, M2101K9R",
-   "name": "Mi 11 Lite 5G",
-   "regions": [
-    "Global",
-    "EEA",
-    "China",
-    "Japan",
-    "Russia",
-    "Taiwan"
-   ],
-   "slug": "mi-11-lite-5g"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "star",
-   "count": 2,
-   "models": "M2102K1AC",
-   "name": "Mi 11 Pro And Ultra",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-11-pro-and-ultra"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "star",
-   "count": 5,
-   "models": "M2102K1G, M2102K1C",
-   "name": "Mi 11 Ultra",
-   "regions": [
-    "Global",
-    "EEA",
-    "China",
-    "India",
-    "Indonesia"
-   ],
-   "slug": "mi-11-ultra"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "haydn",
-   "count": 2,
-   "models": "M2012K11G",
-   "name": "Mi 11I",
-   "regions": [
-    "Global",
-    "EEA"
-   ],
-   "slug": "mi-11i"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "alioth",
-   "count": 1,
-   "models": "",
-   "name": "Mi 11X",
-   "regions": [
-    "India"
-   ],
-   "slug": "mi-11x"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "haydn",
-   "count": 1,
-   "models": "",
-   "name": "Mi 11X Pro",
-   "regions": [
-    "India"
-   ],
-   "slug": "mi-11x-pro"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "mione",
-   "count": 2,
-   "models": "2012051, 2012053, 2012052",
-   "name": "Mi 1S",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-1s"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "taurus",
-   "count": 2,
-   "models": "",
-   "name": "Mi 2A",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-2a"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "aries",
-   "count": 4,
-   "models": "2013012, 2013021",
-   "name": "Mi 2S",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-2s"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "cancro",
-   "count": 2,
-   "models": "2013062, 2013063",
-   "name": "Mi 3",
-   "regions": [
-    "Global"
-   ],
-   "slug": "mi-3"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "pisces",
-   "count": 2,
-   "models": "2013061",
-   "name": "Mi 3 Td",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-3-td"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "cancro",
-   "count": 2,
-   "models": "2014215, 2014218, 2014216, 2014719",
-   "name": "Mi 4",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-4"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "cancro",
-   "count": 2,
-   "models": "2014726",
-   "name": "Mi 4 Lte Ct",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-4-lte-ct"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "libra",
-   "count": 2,
-   "models": "",
-   "name": "Mi 4C",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-4c"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "ferrari",
-   "count": 4,
-   "models": "2015015",
-   "name": "Mi 4I",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-4i"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "aqua",
-   "count": 2,
-   "models": "",
-   "name": "Mi 4S",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-4s"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "gemini",
-   "count": 4,
-   "models": "2015105, 2015201, 2015628",
-   "name": "Mi 5",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-5"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "meri",
-   "count": 2,
-   "models": "",
-   "name": "Mi 5C",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-5c"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "capricorn",
-   "count": 4,
-   "models": "",
-   "name": "Mi 5S",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-5s"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "natrium",
-   "count": 4,
-   "models": "",
-   "name": "Mi 5S Plus",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-5s-plus"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "tiffany",
-   "count": 2,
-   "models": "",
-   "name": "Mi 5X",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-5x"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "sagit",
-   "count": 4,
-   "models": "",
-   "name": "Mi 6",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-6"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "wayne",
-   "count": 2,
-   "models": "",
-   "name": "Mi 6X",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-6x"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "ursa",
-   "count": 2,
-   "models": "",
-   "name": "Mi 8 Explorer",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-8-explorer"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "platina",
-   "count": 6,
-   "models": "Global, China",
-   "name": "Mi 8 Lite",
-   "regions": [
-    "Global",
-    "China",
-    "Russia"
-   ],
-   "slug": "mi-8-lite"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "equuleus",
-   "count": 6,
-   "models": "",
-   "name": "Mi 8 Pro",
-   "regions": [
-    "Global",
-    "China",
-    "Russia"
-   ],
-   "slug": "mi-8-pro"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "sirius",
-   "count": 2,
-   "models": "M1805E2A",
-   "name": "Mi 8 Se",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-8-se"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "cepheus",
-   "count": 8,
-   "models": "Global, China",
-   "name": "Mi 9",
-   "regions": [
-    "Global",
-    "EEA",
-    "China",
-    "Russia"
-   ],
-   "slug": "mi-9"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "pyxis",
-   "count": 6,
-   "models": "M1904F3BG",
-   "name": "Mi 9 Lite",
-   "regions": [
-    "Global",
-    "EEA",
-    "Russia"
-   ],
-   "slug": "mi-9-lite"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "crux",
-   "count": 2,
-   "models": "M1908F1XE",
-   "name": "Mi 9 Pro 5G",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-9-pro-5g"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "grus",
-   "count": 8,
-   "models": "M1903F2G, M1903F2A",
-   "name": "Mi 9 Se",
-   "regions": [
-    "Global",
-    "EEA",
-    "China",
-    "Russia"
-   ],
-   "slug": "mi-9-se"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "raphael",
-   "count": 6,
-   "models": "M1903F11G",
-   "name": "Mi 9T Pro",
-   "regions": [
-    "Global",
-    "EEA",
-    "Russia"
-   ],
-   "slug": "mi-9t-pro"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "tissot",
-   "count": 2,
-   "models": "MDG2, MDI2",
-   "name": "Mi A1",
-   "regions": [
-    "Global"
-   ],
-   "slug": "mi-a1"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "jasmine",
-   "count": 2,
-   "models": "1804D2SG, M1804D2SI",
-   "name": "Mi A2",
-   "regions": [
-    "Global"
-   ],
-   "slug": "mi-a2"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "daisy",
-   "count": 2,
-   "models": "M1805D1SG",
-   "name": "Mi A2 Lite",
-   "regions": [
-    "Global"
-   ],
-   "slug": "mi-a2-lite"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "laurel",
-   "count": 2,
-   "models": "M1906F9SH, M1906F9SI",
-   "name": "Mi A3",
-   "regions": [
-    "Global",
-    "EEA"
-   ],
-   "slug": "mi-a3"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "pyxis",
-   "count": 2,
-   "models": "",
-   "name": "Mi Cc 9",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-cc-9"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "vela",
-   "count": 2,
-   "models": "",
-   "name": "Mi Cc 9 Meitu Edition",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-cc-9-meitu-edition"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "tucana",
-   "count": 1,
-   "models": "",
-   "name": "Mi Cc 9 Pro",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-cc-9-pro"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "laurus",
-   "count": 2,
-   "models": "",
-   "name": "Mi Cc 9E",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-cc-9e"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "hydrogen",
-   "count": 3,
-   "models": "2016002, 2016001",
-   "name": "Mi Max",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-max"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "oxygen",
-   "count": 4,
-   "models": "MDE40, MDT4, MDI40",
-   "name": "Mi Max 2",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-max-2"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "nitrogen",
-   "count": 6,
-   "models": "",
-   "name": "Mi Max 3",
-   "regions": [
-    "Global",
-    "China",
-    "Russia"
-   ],
-   "slug": "mi-max-3"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "helium",
-   "count": 3,
-   "models": "",
-   "name": "Mi Max Prime",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-max-prime"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "lithium",
-   "count": 4,
-   "models": "",
-   "name": "Mi Mix",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-mix"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "chiron",
-   "count": 4,
-   "models": "",
-   "name": "Mi Mix 2",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-mix-2"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "polaris",
-   "count": 6,
-   "models": "Global, China",
-   "name": "Mi Mix 2S",
-   "regions": [
-    "Global",
-    "China",
-    "Russia"
-   ],
-   "slug": "mi-mix-2s"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "perseus",
-   "count": 6,
-   "models": "M1810E5A, M1810E5E",
-   "name": "Mi Mix 3",
-   "regions": [
-    "Global",
-    "China",
-    "Russia"
-   ],
-   "slug": "mi-mix-3"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "andromeda",
-   "count": 5,
-   "models": "",
-   "name": "Mi Mix 3 5G",
-   "regions": [
-    "Global",
-    "EEA",
-    "China"
-   ],
-   "slug": "mi-mix-3-5g"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "cetus",
-   "count": 1,
-   "models": "M2011J18C",
-   "name": "Mi Mix Fold",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-mix-fold"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "virgo",
-   "count": 4,
-   "models": "2015011, China",
-   "name": "Mi Note",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-note"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "tucana",
-   "count": 8,
-   "models": "M1910F4G, M1910F4S",
-   "name": "Mi Note 10 And Note 10 Pro",
-   "regions": [
-    "Global",
-    "EEA",
-    "Indonesia",
-    "Russia"
-   ],
-   "slug": "mi-note-10-and-note-10-pro"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "toco",
-   "count": 8,
-   "models": "M2002F4LG",
-   "name": "Mi Note 10 Lite",
-   "regions": [
-    "Global",
-    "EEA",
-    "Russia",
-    "Turkey"
-   ],
-   "slug": "mi-note-10-lite"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "scorpio",
-   "count": 4,
-   "models": "Global, China",
-   "name": "Mi Note 2",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-note-2"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "jason",
-   "count": 4,
-   "models": "",
-   "name": "Mi Note 3",
-   "regions": [
-    "Global",
-    "China"
-   ],
-   "slug": "mi-note-3"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "leo",
-   "count": 2,
-   "models": "",
-   "name": "Mi Note Pro",
-   "regions": [
-    "China"
-   ],
-   "slug": "mi-note-pro"
-  },
-  {
-   "brand": "Xiaomi",
-   "code": "lotus",
-   "count": 6,
-   "models": "",
-   "name": "Mi Play",
-   "regions": [
-    "Global",
-    "China",
-    "Russia"
-   ],
-   "slug": "mi-play"
-  },
-  {
-   "brand": "POCO",
-   "code": "angelicain",
-   "count": 2,
-   "models": "M2006C3MI",
+   "slug": "poco-c3",
    "name": "POCO C3",
-   "regions": [
-    "India"
-   ],
-   "slug": "poco-c3"
-  },
-  {
    "brand": "POCO",
    "code": "angelicain",
-   "count": 2,
-   "models": "211033MI",
-   "name": "POCO C31",
    "regions": [
     "India"
    ],
-   "slug": "poco-c31"
+   "builds": 7
   },
   {
+   "slug": "poco-c31",
+   "name": "POCO C31",
+   "brand": "POCO",
+   "code": "angelicain",
+   "regions": [
+    "India"
+   ],
+   "builds": 7
+  },
+  {
+   "slug": "poco-c40",
+   "name": "POCO C40",
    "brand": "POCO",
    "code": "frost",
-   "count": 12,
-   "models": "220333QPG, 220333QPI",
-   "name": "POCO C40",
    "regions": [
     "Global",
     "EEA",
@@ -880,14 +34,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-c40"
+   "builds": 12
   },
   {
+   "slug": "poco-c50",
+   "name": "POCO C50",
    "brand": "POCO",
    "code": "ice",
-   "count": 10,
-   "models": "220733SPI",
-   "name": "POCO C50",
    "regions": [
     "Global",
     "EEA",
@@ -895,14 +48,13 @@
     "Indonesia",
     "Russia"
    ],
-   "slug": "poco-c50"
+   "builds": 14
   },
   {
+   "slug": "poco-c51",
+   "name": "POCO C51",
    "brand": "POCO",
    "code": "water",
-   "count": 12,
-   "models": "Global, India",
-   "name": "POCO C51",
    "regions": [
     "Global",
     "EEA",
@@ -911,14 +63,13 @@
     "Russia",
     "Taiwan"
    ],
-   "slug": "poco-c51"
+   "builds": 17
   },
   {
+   "slug": "poco-c55",
+   "name": "POCO C55",
    "brand": "POCO",
    "code": "earth",
-   "count": 14,
-   "models": "Global, India",
-   "name": "POCO C55",
    "regions": [
     "Global",
     "EEA",
@@ -928,25 +79,23 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-c55"
+   "builds": 20
   },
   {
+   "slug": "poco-c61",
+   "name": "POCO C61",
    "brand": "POCO",
    "code": "blue",
-   "count": 1,
-   "models": "2312BPC51H",
-   "name": "POCO C61",
    "regions": [
     "India"
    ],
-   "slug": "poco-c61"
+   "builds": 1
   },
   {
+   "slug": "poco-c65",
+   "name": "POCO C65",
    "brand": "POCO",
    "code": "gale",
-   "count": 14,
-   "models": "2310FPCA4G, 2310FPCA4I",
-   "name": "POCO C65",
    "regions": [
     "Global",
     "EEA",
@@ -956,14 +105,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-c65"
+   "builds": 18
   },
   {
+   "slug": "poco-c71",
+   "name": "POCO C71",
    "brand": "POCO",
    "code": "serenity",
-   "count": 10,
-   "models": "Global, 25028PC03I, 25028PC03L",
-   "name": "POCO C71",
    "regions": [
     "Global",
     "EEA",
@@ -971,14 +119,13 @@
     "Indonesia",
     "Russia"
    ],
-   "slug": "poco-c71"
+   "builds": 12
   },
   {
+   "slug": "poco-c75",
+   "name": "POCO C75",
    "brand": "POCO",
    "code": "lake",
-   "count": 9,
-   "models": "2410FPCC5G",
-   "name": "POCO C75",
    "regions": [
     "Global",
     "EEA",
@@ -987,41 +134,23 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-c75"
+   "builds": 16
   },
   {
+   "slug": "poco-c75-5g",
+   "name": "POCO C75 5G",
    "brand": "POCO",
    "code": "warm",
-   "count": 2,
-   "models": "24116PCC1I",
-   "name": "POCO C75 5G",
    "regions": [
     "India"
    ],
-   "slug": "poco-c75-5g"
+   "builds": 2
   },
   {
-   "brand": "POCO",
-   "code": "arctic",
-   "count": 11,
-   "models": "25128PC17I",
+   "slug": "poco-c81",
    "name": "POCO C81",
-   "regions": [
-    "Global",
-    "EEA",
-    "India",
-    "Indonesia",
-    "Russia",
-    "Turkey"
-   ],
-   "slug": "poco-c81"
-  },
-  {
    "brand": "POCO",
    "code": "arctic",
-   "count": 11,
-   "models": "25128PC17G, 25128PC17L",
-   "name": "POCO C81 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1030,14 +159,28 @@
     "Russia",
     "Turkey"
    ],
-   "slug": "poco-c81-pro"
+   "builds": 14
   },
   {
+   "slug": "poco-c81-pro",
+   "name": "POCO C81 Pro",
+   "brand": "POCO",
+   "code": "arctic",
+   "regions": [
+    "Global",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Turkey"
+   ],
+   "builds": 14
+  },
+  {
+   "slug": "poco-c81x",
+   "name": "POCO C81X",
    "brand": "POCO",
    "code": "serenity",
-   "count": 10,
-   "models": "26020PCB4I",
-   "name": "POCO C81X",
    "regions": [
     "Global",
     "EEA",
@@ -1045,14 +188,13 @@
     "Indonesia",
     "Russia"
    ],
-   "slug": "poco-c81x"
+   "builds": 12
   },
   {
+   "slug": "poco-c85",
+   "name": "POCO C85",
    "brand": "POCO",
    "code": "dew",
-   "count": 12,
-   "models": "25078PC3EE, 25078PC3EG",
-   "name": "POCO C85",
    "regions": [
     "Global",
     "EEA",
@@ -1061,36 +203,33 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-c85"
+   "builds": 13
   },
   {
+   "slug": "poco-c85-5g",
+   "name": "POCO C85 5G",
    "brand": "POCO",
    "code": "tornado",
-   "count": 2,
-   "models": "2508CPC2BI",
-   "name": "POCO C85 5G",
    "regions": [
     "India"
    ],
-   "slug": "poco-c85-5g"
+   "builds": 2
   },
   {
+   "slug": "poco-c85x-5g",
+   "name": "POCO C85X 5G",
    "brand": "POCO",
    "code": "somalia",
-   "count": 2,
-   "models": "26020PC1AI",
-   "name": "POCO C85X 5G",
    "regions": [
     "India"
    ],
-   "slug": "poco-c85x-5g"
+   "builds": 3
   },
   {
+   "slug": "poco-c95-pro",
+   "name": "POCO C95 Pro",
    "brand": "POCO",
    "code": "leedsa",
-   "count": 13,
-   "models": "2606FPC72Y, 2606FPC72L",
-   "name": "POCO C95 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1100,26 +239,24 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-c95-pro"
+   "builds": 15
   },
   {
+   "slug": "poco-f1",
+   "name": "POCO F1",
    "brand": "POCO",
    "code": "beryllium",
-   "count": 4,
-   "models": "",
-   "name": "POCO F1",
    "regions": [
     "Global",
     "Russia"
    ],
-   "slug": "poco-f1"
+   "builds": 7
   },
   {
+   "slug": "poco-f2-pro",
+   "name": "POCO F2 Pro",
    "brand": "POCO",
    "code": "lmi",
-   "count": 10,
-   "models": "M2004J11G",
-   "name": "POCO F2 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1127,14 +264,13 @@
     "Russia",
     "Turkey"
    ],
-   "slug": "poco-f2-pro"
+   "builds": 13
   },
   {
+   "slug": "poco-f3",
+   "name": "POCO F3",
    "brand": "POCO",
    "code": "alioth",
-   "count": 10,
-   "models": "M2012K11AG",
-   "name": "POCO F3",
    "regions": [
     "Global",
     "EEA",
@@ -1143,25 +279,23 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-f3"
+   "builds": 14
   },
   {
+   "slug": "poco-f3-gt",
+   "name": "POCO F3 Gt",
    "brand": "POCO",
    "code": "ares",
-   "count": 2,
-   "models": "M2104K10I",
-   "name": "POCO F3 Gt",
    "regions": [
     "India"
    ],
-   "slug": "poco-f3-gt"
+   "builds": 2
   },
   {
+   "slug": "poco-f4",
+   "name": "POCO F4",
    "brand": "POCO",
    "code": "munch",
-   "count": 8,
-   "models": "22021211RG, 22021211RI",
-   "name": "POCO F4",
    "regions": [
     "Global",
     "EEA",
@@ -1171,14 +305,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-f4"
+   "builds": 19
   },
   {
+   "slug": "poco-f4-gt",
+   "name": "POCO F4 Gt",
    "brand": "POCO",
    "code": "ingres",
-   "count": 7,
-   "models": "21121210G, 21121210I",
-   "name": "POCO F4 Gt",
    "regions": [
     "Global",
     "EEA",
@@ -1187,14 +320,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-f4-gt"
+   "builds": 17
   },
   {
+   "slug": "poco-f5",
+   "name": "POCO F5",
    "brand": "POCO",
    "code": "marble",
-   "count": 14,
-   "models": "23049PCD8G, 23049PCD8I",
-   "name": "POCO F5",
    "regions": [
     "Global",
     "EEA",
@@ -1204,14 +336,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-f5"
+   "builds": 14
   },
   {
+   "slug": "poco-f5-pro",
+   "name": "POCO F5 Pro",
    "brand": "POCO",
    "code": "mondrian",
-   "count": 10,
-   "models": "3013PC75G",
-   "name": "POCO F5 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1219,14 +350,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-f5-pro"
+   "builds": 11
   },
   {
+   "slug": "poco-f6",
+   "name": "POCO F6",
    "brand": "POCO",
    "code": "peridot",
-   "count": 8,
-   "models": "24069PC21G, 24069PC21I",
-   "name": "POCO F6",
    "regions": [
     "Global",
     "EEA",
@@ -1235,28 +365,26 @@
     "Russia",
     "Taiwan"
    ],
-   "slug": "poco-f6"
+   "builds": 16
   },
   {
+   "slug": "poco-f6-pro",
+   "name": "POCO F6 Pro",
    "brand": "POCO",
    "code": "vermeer",
-   "count": 8,
-   "models": "23113RKC6G, 23113RKC6I",
-   "name": "POCO F6 Pro",
    "regions": [
     "Global",
     "EEA",
     "Russia",
     "Taiwan"
    ],
-   "slug": "poco-f6-pro"
+   "builds": 8
   },
   {
+   "slug": "poco-f7",
+   "name": "POCO F7",
    "brand": "POCO",
    "code": "onyx",
-   "count": 12,
-   "models": "25053PC47G, 25053PC47I",
-   "name": "POCO F7",
    "regions": [
     "Global",
     "EEA",
@@ -1265,14 +393,13 @@
     "Russia",
     "Taiwan"
    ],
-   "slug": "poco-f7"
+   "builds": 12
   },
   {
+   "slug": "poco-f7-pro",
+   "name": "POCO F7 Pro",
    "brand": "POCO",
    "code": "zorn",
-   "count": 12,
-   "models": "24117RK2CG",
-   "name": "POCO F7 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1281,14 +408,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-f7-pro"
+   "builds": 14
   },
   {
+   "slug": "poco-f7-ultra",
+   "name": "POCO F7 Ultra",
    "brand": "POCO",
    "code": "miro",
-   "count": 12,
-   "models": "24122RKC7G",
-   "name": "POCO F7 Ultra",
    "regions": [
     "Global",
     "EEA",
@@ -1297,14 +423,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-f7-ultra"
+   "builds": 14
   },
   {
+   "slug": "poco-f8-pro",
+   "name": "POCO F8 Pro",
    "brand": "POCO",
    "code": "annibale",
-   "count": 12,
-   "models": "2510DPC44G",
-   "name": "POCO F8 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1313,28 +438,26 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-f8-pro"
+   "builds": 12
   },
   {
+   "slug": "poco-f8-ultra",
+   "name": "POCO F8 Ultra",
    "brand": "POCO",
    "code": "myron",
-   "count": 4,
-   "models": "25102PCBEG",
-   "name": "POCO F8 Ultra",
    "regions": [
     "Global",
     "EEA",
     "Indonesia",
     "Taiwan"
    ],
-   "slug": "poco-f8-ultra"
+   "builds": 12
   },
   {
+   "slug": "poco-f9-pro",
+   "name": "POCO F9 Pro",
    "brand": "POCO",
    "code": "athens",
-   "count": 12,
-   "models": "2607APCA5G",
-   "name": "POCO F9 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1343,14 +466,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-f9-pro"
+   "builds": 12
   },
   {
+   "slug": "poco-f9-ultra",
+   "name": "POCO F9 Ultra",
    "brand": "POCO",
    "code": "songyuan",
-   "count": 14,
-   "models": "26077PC53G",
-   "name": "POCO F9 Ultra",
    "regions": [
     "Global",
     "EEA",
@@ -1360,36 +482,33 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-f9-ultra"
+   "builds": 14
   },
   {
+   "slug": "poco-m2",
+   "name": "POCO M2",
    "brand": "POCO",
    "code": "shiva",
-   "count": 2,
-   "models": "M2004J19PI",
-   "name": "POCO M2",
    "regions": [
     "India"
    ],
-   "slug": "poco-m2"
+   "builds": 2
   },
   {
+   "slug": "poco-m2-pro",
+   "name": "POCO M2 Pro",
    "brand": "POCO",
    "code": "gram",
-   "count": 2,
-   "models": "M2003J6CI",
-   "name": "POCO M2 Pro",
    "regions": [
     "India"
    ],
-   "slug": "poco-m2-pro"
+   "builds": 3
   },
   {
+   "slug": "poco-m3",
+   "name": "POCO M3",
    "brand": "POCO",
    "code": "citrus",
-   "count": 14,
-   "models": "M2010J19CG, M2010J19CT, M2010J19CI",
-   "name": "POCO M3",
    "regions": [
     "Global",
     "EEA",
@@ -1399,14 +518,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m3"
+   "builds": 17
   },
   {
+   "slug": "poco-m3-pro",
+   "name": "POCO M3 Pro",
    "brand": "POCO",
    "code": "camellian",
-   "count": 7,
-   "models": "M2103K19PY",
-   "name": "POCO M3 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1415,25 +533,23 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m3-pro"
+   "builds": 17
   },
   {
+   "slug": "poco-m3-pro-5g",
+   "name": "POCO M3 Pro 5G",
    "brand": "POCO",
    "code": "camellia",
-   "count": 2,
-   "models": "M2103K19PI",
-   "name": "POCO M3 Pro 5G",
    "regions": [
     "India"
    ],
-   "slug": "poco-m3-pro-5g"
+   "builds": 2
   },
   {
+   "slug": "poco-m4-5g",
+   "name": "POCO M4 5G",
    "brand": "POCO",
    "code": "light",
-   "count": 14,
-   "models": "22041219PG, 22041219PI",
-   "name": "POCO M4 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1443,14 +559,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m4-5g"
+   "builds": 19
   },
   {
+   "slug": "poco-m4-pro-4g",
+   "name": "POCO M4 Pro 4G",
    "brand": "POCO",
    "code": "fleur",
-   "count": 14,
-   "models": "2201117PG, 2201117PI",
-   "name": "POCO M4 Pro 4G",
    "regions": [
     "Global",
     "EEA",
@@ -1460,14 +575,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m4-pro-4g"
+   "builds": 19
   },
   {
+   "slug": "poco-m4-pro-5g",
+   "name": "POCO M4 Pro 5G",
    "brand": "POCO",
    "code": "evergreen",
-   "count": 10,
-   "models": "21091116AG",
-   "name": "POCO M4 Pro 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1475,14 +589,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m4-pro-5g"
+   "builds": 12
   },
   {
+   "slug": "poco-m5",
+   "name": "POCO M5",
    "brand": "POCO",
    "code": "rock",
-   "count": 14,
-   "models": "22071219CG, 22071219CI",
-   "name": "POCO M5",
    "regions": [
     "Global",
     "EEA",
@@ -1492,14 +605,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m5"
+   "builds": 18
   },
   {
+   "slug": "poco-m5s",
+   "name": "POCO M5S",
    "brand": "POCO",
    "code": "rosemary",
-   "count": 12,
-   "models": "2207117BPG",
-   "name": "POCO M5S",
    "regions": [
     "Global",
     "EEA",
@@ -1508,14 +620,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m5s"
+   "builds": 28
   },
   {
+   "slug": "poco-m6",
+   "name": "POCO M6",
    "brand": "POCO",
    "code": "moon",
-   "count": 10,
-   "models": "2404APC5FG",
-   "name": "POCO M6",
    "regions": [
     "Global",
     "EEA",
@@ -1524,36 +635,33 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m6"
+   "builds": 15
   },
   {
+   "slug": "poco-m6-5g",
+   "name": "POCO M6 5G",
    "brand": "POCO",
    "code": "air",
-   "count": 2,
-   "models": "23128PC33I",
-   "name": "POCO M6 5G",
    "regions": [
     "India"
    ],
-   "slug": "poco-m6-5g"
+   "builds": 2
   },
   {
+   "slug": "poco-m6-plus-5g",
+   "name": "POCO M6 Plus 5G",
    "brand": "POCO",
    "code": "breeze",
-   "count": 2,
-   "models": "24066PC95I",
-   "name": "POCO M6 Plus 5G",
    "regions": [
     "India"
    ],
-   "slug": "poco-m6-plus-5g"
+   "builds": 2
   },
   {
+   "slug": "poco-m6-pro",
+   "name": "POCO M6 Pro",
    "brand": "POCO",
    "code": "emerald",
-   "count": 8,
-   "models": "2312FPCA6G",
-   "name": "POCO M6 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1561,14 +669,13 @@
     "Russia",
     "Turkey"
    ],
-   "slug": "poco-m6-pro"
+   "builds": 21
   },
   {
+   "slug": "poco-m6-pro-5g",
+   "name": "POCO M6 Pro 5G",
    "brand": "POCO",
    "code": "sky",
-   "count": 9,
-   "models": "23076PC4BI",
-   "name": "POCO M6 Pro 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1576,14 +683,13 @@
     "Japan",
     "Taiwan"
    ],
-   "slug": "poco-m6-pro-5g"
+   "builds": 10
   },
   {
+   "slug": "poco-m7",
+   "name": "POCO M7",
    "brand": "POCO",
    "code": "creek",
-   "count": 12,
-   "models": "25062PC34G, 25062PC34E",
-   "name": "POCO M7",
    "regions": [
     "Global",
     "EEA",
@@ -1592,25 +698,23 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m7"
+   "builds": 14
   },
   {
+   "slug": "poco-m7-5g",
+   "name": "POCO M7 5G",
    "brand": "POCO",
    "code": "flame",
-   "count": 1,
-   "models": "24108PCE2I",
-   "name": "POCO M7 5G",
    "regions": [
     "India"
    ],
-   "slug": "poco-m7-5g"
+   "builds": 3
   },
   {
+   "slug": "poco-m7-plus-5g",
+   "name": "POCO M7 Plus 5G",
    "brand": "POCO",
    "code": "spring",
-   "count": 11,
-   "models": "25057PC09I",
-   "name": "POCO M7 Plus 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1619,14 +723,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m7-plus-5g"
+   "builds": 13
   },
   {
+   "slug": "poco-m7-pro-5g",
+   "name": "POCO M7 Pro 5G",
    "brand": "POCO",
    "code": "beryl",
-   "count": 14,
-   "models": "2409FPCC4G",
-   "name": "POCO M7 Pro 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1636,14 +739,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m7-pro-5g"
+   "builds": 14
   },
   {
+   "slug": "poco-m8-5g",
+   "name": "POCO M8 5G",
    "brand": "POCO",
    "code": "kunzite",
-   "count": 9,
-   "models": "25118PC98G, 25118PC98I",
-   "name": "POCO M8 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1651,14 +753,13 @@
     "Russia",
     "Taiwan"
    ],
-   "slug": "poco-m8-5g"
+   "builds": 12
   },
   {
+   "slug": "poco-m8-power-5g",
+   "name": "POCO M8 Power 5G",
    "brand": "POCO",
    "code": "mist",
-   "count": 10,
-   "models": "26021PC18I",
-   "name": "POCO M8 Power 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1667,14 +768,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m8-power-5g"
+   "builds": 13
   },
   {
+   "slug": "poco-m8-pro-5g",
+   "name": "POCO M8 Pro 5G",
    "brand": "POCO",
    "code": "flourite",
-   "count": 7,
-   "models": "2510EPC8BG",
-   "name": "POCO M8 Pro 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1684,72 +784,66 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-m8-pro-5g"
+   "builds": 21
   },
   {
+   "slug": "poco-m8s-5g",
+   "name": "POCO M8S 5G",
    "brand": "POCO",
    "code": "spring",
-   "count": 3,
-   "models": "26067PC09G, 26067PC09E",
-   "name": "POCO M8S 5G",
    "regions": [
     "Global",
     "EEA"
    ],
-   "slug": "poco-m8s-5g"
+   "builds": 5
   },
   {
+   "slug": "poco-m8x-5g",
+   "name": "POCO M8X 5G",
    "brand": "POCO",
    "code": "steppe",
-   "count": 2,
-   "models": "26062PC92I",
-   "name": "POCO M8X 5G",
    "regions": [
     "India"
    ],
-   "slug": "poco-m8x-5g"
+   "builds": 2
   },
   {
+   "slug": "poco-x2",
+   "name": "POCO X2",
    "brand": "POCO",
    "code": "phoenixin",
-   "count": 1,
-   "models": "M1912G7BI",
-   "name": "POCO X2",
    "regions": [
     "India"
    ],
-   "slug": "poco-x2"
+   "builds": 3
   },
   {
+   "slug": "poco-x3",
+   "name": "POCO X3",
    "brand": "POCO",
    "code": "surya",
-   "count": 2,
-   "models": "M2007J20CI",
-   "name": "POCO X3",
    "regions": [
     "India"
    ],
-   "slug": "poco-x3"
+   "builds": 3
   },
   {
+   "slug": "poco-x3-gt",
+   "name": "POCO X3 Gt",
    "brand": "POCO",
    "code": "chopin",
-   "count": 6,
-   "models": "",
-   "name": "POCO X3 Gt",
    "regions": [
     "Global",
     "Indonesia",
     "Turkey"
    ],
-   "slug": "poco-x3-gt"
+   "builds": 8
   },
   {
+   "slug": "poco-x3-nfc",
+   "name": "POCO X3 Nfc",
    "brand": "POCO",
    "code": "surya",
-   "count": 10,
-   "models": "M2007J20CG, M2007J20CT",
-   "name": "POCO X3 Nfc",
    "regions": [
     "Global",
     "EEA",
@@ -1757,14 +851,13 @@
     "Russia",
     "Turkey"
    ],
-   "slug": "poco-x3-nfc"
+   "builds": 13
   },
   {
+   "slug": "poco-x3-pro",
+   "name": "POCO X3 Pro",
    "brand": "POCO",
    "code": "vayu",
-   "count": 14,
-   "models": "M2102J20SG, M2102J20SI",
-   "name": "POCO X3 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1774,30 +867,28 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x3-pro"
+   "builds": 20
   },
   {
+   "slug": "poco-x4-gt",
+   "name": "POCO X4 Gt",
    "brand": "POCO",
    "code": "xaga",
-   "count": 12,
-   "models": "22041216G, 22041216UG",
-   "name": "POCO X4 Gt",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x4-gt"
+   "builds": 17
   },
   {
+   "slug": "poco-x4-pro-5g",
+   "name": "POCO X4 Pro 5G",
    "brand": "POCO",
    "code": "veux",
-   "count": 16,
-   "models": "2201116PG",
-   "name": "POCO X4 Pro 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1808,14 +899,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x4-pro-5g"
+   "builds": 17
   },
   {
+   "slug": "poco-x5-5g",
+   "name": "POCO X5 5G",
    "brand": "POCO",
    "code": "moonstone",
-   "count": 14,
-   "models": "22111317PG, 22111317PI",
-   "name": "POCO X5 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1825,14 +915,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x5-5g"
+   "builds": 16
   },
   {
+   "slug": "poco-x5-pro-5g",
+   "name": "POCO X5 Pro 5G",
    "brand": "POCO",
    "code": "redwood",
-   "count": 14,
-   "models": "22101320G, 22101320I",
-   "name": "POCO X5 Pro 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1842,14 +931,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x5-pro-5g"
+   "builds": 24
   },
   {
+   "slug": "poco-x6-5g",
+   "name": "POCO X6 5G",
    "brand": "POCO",
    "code": "garnet",
-   "count": 14,
-   "models": "23122PCD1G, 23122PCD1I",
-   "name": "POCO X6 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1859,14 +947,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x6-5g"
+   "builds": 16
   },
   {
+   "slug": "poco-x6-neo-5g",
+   "name": "POCO X6 Neo 5G",
    "brand": "POCO",
    "code": "gold",
-   "count": 12,
-   "models": "2312FRAFDI",
-   "name": "POCO X6 Neo 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1875,14 +962,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x6-neo-5g"
+   "builds": 12
   },
   {
+   "slug": "poco-x6-pro-5g",
+   "name": "POCO X6 Pro 5G",
    "brand": "POCO",
    "code": "duchamp",
-   "count": 11,
-   "models": "2311DRK48G, 2311DRK48I",
-   "name": "POCO X6 Pro 5G",
    "regions": [
     "Global",
     "EEA",
@@ -1891,33 +977,30 @@
     "Russia",
     "Taiwan"
    ],
-   "slug": "poco-x6-pro-5g"
+   "builds": 17
   },
   {
+   "slug": "poco-x7",
+   "name": "POCO X7",
    "brand": "POCO",
    "code": "malachite",
-   "count": 16,
-   "models": "24095PCADG, 24095PCADI",
-   "name": "POCO X7",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
-    "Japan",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x7"
+   "builds": 18
   },
   {
+   "slug": "poco-x7-pro",
+   "name": "POCO X7 Pro",
    "brand": "POCO",
    "code": "rodin",
-   "count": 14,
-   "models": "2412DPC0AG, 2412DPC0AI",
-   "name": "POCO X7 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1927,14 +1010,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x7-pro"
+   "builds": 15
   },
   {
+   "slug": "poco-x8",
+   "name": "POCO X8",
    "brand": "POCO",
    "code": "iolite",
-   "count": 14,
-   "models": "2607DPC18G",
-   "name": "POCO X8",
    "regions": [
     "Global",
     "EEA",
@@ -1944,25 +1026,23 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x8"
+   "builds": 14
   },
   {
+   "slug": "poco-x8-power",
+   "name": "POCO X8 Power",
    "brand": "POCO",
    "code": "brussels",
-   "count": 2,
-   "models": "2609FPC74I",
-   "name": "POCO X8 Power",
    "regions": [
     "India"
    ],
-   "slug": "poco-x8-power"
+   "builds": 2
   },
   {
+   "slug": "poco-x8-pro",
+   "name": "POCO X8 Pro",
    "brand": "POCO",
    "code": "klee",
-   "count": 14,
-   "models": "2511FPC34G, 2511FPC34I",
-   "name": "POCO X8 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -1972,14 +1052,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x8-pro"
+   "builds": 14
   },
   {
+   "slug": "poco-x8-pro-max",
+   "name": "POCO X8 Pro Max",
    "brand": "POCO",
    "code": "dash",
-   "count": 12,
-   "models": "2602BPC18G, 2602BPC18I",
-   "name": "POCO X8 Pro Max",
    "regions": [
     "Global",
     "EEA",
@@ -1989,60 +1068,65 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "poco-x8-pro-max"
+   "builds": 16
   },
   {
+   "slug": "redmi-1",
+   "name": "Redmi 1",
+   "brand": "Redmi",
+   "code": "HM2013022",
+   "regions": [
+    "China"
+   ],
+   "builds": 2
+  },
+  {
+   "slug": "redmi-1-2",
+   "name": "Redmi 1",
    "brand": "Redmi",
    "code": "HM2013023",
-   "count": 2,
-   "models": "2013022, 2013023",
-   "name": "Redmi 1",
    "regions": [
-    "Global",
     "China"
    ],
-   "slug": "redmi-1"
+   "builds": 3
   },
   {
-   "brand": "Redmi",
-   "code": "selene",
-   "count": 14,
-   "models": "21061119AG, 21061119DG, 21061119AL",
+   "slug": "redmi-10",
    "name": "Redmi 10",
-   "regions": [
-    "Global",
-    "EEA",
-    "China",
-    "Indonesia",
-    "Russia",
-    "Taiwan",
-    "Turkey"
-   ],
-   "slug": "redmi-10"
-  },
-  {
    "brand": "Redmi",
    "code": "selene",
-   "count": 14,
-   "models": "21121119SG, 22011119UY, 21121119VL",
-   "name": "Redmi 10 2022",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-10-2022"
+   "builds": 19
   },
   {
+   "slug": "redmi-10-2022",
+   "name": "Redmi 10 2022",
+   "brand": "Redmi",
+   "code": "selene",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 19
+  },
+  {
+   "slug": "redmi-10-5g",
+   "name": "Redmi 10 5G",
    "brand": "Redmi",
    "code": "light",
-   "count": 12,
-   "models": "22041219G, 22041219NY",
-   "name": "Redmi 10 5G",
    "regions": [
     "Global",
     "EEA",
@@ -2051,53 +1135,49 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-10-5g"
+   "builds": 16
   },
   {
+   "slug": "redmi-10-prime",
+   "name": "Redmi 10 Prime",
    "brand": "Redmi",
    "code": "selene",
-   "count": 2,
-   "models": "21061119BI, 22011119",
-   "name": "Redmi 10 Prime",
    "regions": [
     "India"
    ],
-   "slug": "redmi-10-prime"
+   "builds": 3
   },
   {
+   "slug": "redmi-10a",
+   "name": "Redmi 10A",
    "brand": "Redmi",
    "code": "dandelion",
-   "count": 14,
-   "models": "220233L2G, 220233L2I, 220233L2C",
-   "name": "Redmi 10A",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan"
    ],
-   "slug": "redmi-10a"
+   "builds": 32
   },
   {
+   "slug": "redmi-10a-sport",
+   "name": "Redmi 10A Sport",
    "brand": "Redmi",
    "code": "dandelion",
-   "count": 2,
-   "models": "220233L2I",
-   "name": "Redmi 10A Sport",
    "regions": [
     "India"
    ],
-   "slug": "redmi-10a-sport"
+   "builds": 5
   },
   {
+   "slug": "redmi-10c",
+   "name": "Redmi 10C",
    "brand": "Redmi",
    "code": "fog",
-   "count": 14,
-   "models": "220333QAG, 220333QL",
-   "name": "Redmi 10C",
    "regions": [
     "Global",
     "EEA",
@@ -2107,69 +1187,63 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-10c"
+   "builds": 16
   },
   {
+   "slug": "redmi-10x-4g",
+   "name": "Redmi 10X 4G",
    "brand": "Redmi",
    "code": "merlin",
-   "count": 2,
-   "models": "M2003J15SC",
-   "name": "Redmi 10X 4G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-10x-4g"
+   "builds": 2
   },
   {
+   "slug": "redmi-10x-5g",
+   "name": "Redmi 10X 5G",
    "brand": "Redmi",
    "code": "atom",
-   "count": 2,
-   "models": "M2004J7AC",
-   "name": "Redmi 10X 5G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-10x-5g"
+   "builds": 7
   },
   {
+   "slug": "redmi-10x-pro",
+   "name": "Redmi 10X Pro",
    "brand": "Redmi",
    "code": "bomb",
-   "count": 2,
-   "models": "M2004J7BC",
-   "name": "Redmi 10X Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-10x-pro"
+   "builds": 7
   },
   {
+   "slug": "redmi-11-prime-4g",
+   "name": "Redmi 11 Prime 4G",
    "brand": "Redmi",
    "code": "rock",
-   "count": 2,
-   "models": "22071219AI",
-   "name": "Redmi 11 Prime 4G",
    "regions": [
     "India"
    ],
-   "slug": "redmi-11-prime-4g"
+   "builds": 3
   },
   {
+   "slug": "redmi-11-prime-5g",
+   "name": "Redmi 11 Prime 5G",
    "brand": "Redmi",
    "code": "light",
-   "count": 2,
-   "models": "22041219I",
-   "name": "Redmi 11 Prime 5G",
    "regions": [
     "India"
    ],
-   "slug": "redmi-11-prime-5g"
+   "builds": 3
   },
   {
+   "slug": "redmi-12",
+   "name": "Redmi 12",
    "brand": "Redmi",
    "code": "fire",
-   "count": 11,
-   "models": "23053RN02A, 23053RN02I, 23053RN02L",
-   "name": "Redmi 12",
    "regions": [
     "Global",
     "EEA",
@@ -2178,14 +1252,13 @@
     "Russia",
     "Turkey"
    ],
-   "slug": "redmi-12"
+   "builds": 15
   },
   {
+   "slug": "redmi-12-5g",
+   "name": "Redmi 12 5G",
    "brand": "Redmi",
    "code": "sky",
-   "count": 10,
-   "models": "23076RN8DY, 23076RN4BI, 23077RABDC, Japan",
-   "name": "Redmi 12 5G",
    "regions": [
     "Global",
     "EEA",
@@ -2193,32 +1266,30 @@
     "Japan",
     "Taiwan"
    ],
-   "slug": "redmi-12-5g"
+   "builds": 10
   },
   {
+   "slug": "redmi-12c",
+   "name": "Redmi 12C",
    "brand": "Redmi",
    "code": "earth",
-   "count": 16,
-   "models": "Global, India, China, 2212ARNC4L",
-   "name": "Redmi 12C",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-12c"
+   "builds": 22
   },
   {
+   "slug": "redmi-13",
+   "name": "Redmi 13",
    "brand": "Redmi",
    "code": "moon",
-   "count": 10,
-   "models": "24040RN64Y, 2404ARN45I, 24049RN28L",
-   "name": "Redmi 13",
    "regions": [
     "Global",
     "EEA",
@@ -2227,25 +1298,23 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-13"
+   "builds": 15
   },
   {
+   "slug": "redmi-13-5g",
+   "name": "Redmi 13 5G",
    "brand": "Redmi",
    "code": "breeze",
-   "count": 2,
-   "models": "2406ERN9CI",
-   "name": "Redmi 13 5G",
    "regions": [
     "India"
    ],
-   "slug": "redmi-13-5g"
+   "builds": 2
   },
   {
+   "slug": "redmi-13c",
+   "name": "Redmi 13C",
    "brand": "Redmi",
    "code": "gale",
-   "count": 14,
-   "models": "23108RN04Y, 23106RN0DA, 2311DRN14I, 23100RN82L",
-   "name": "Redmi 13C",
    "regions": [
     "Global",
     "EEA",
@@ -2255,82 +1324,75 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-13c"
+   "builds": 18
   },
   {
+   "slug": "redmi-13c-5g",
+   "name": "Redmi 13C 5G",
    "brand": "Redmi",
    "code": "air",
-   "count": 8,
-   "models": "23124RN87G, 23124RN87C, 23124RN87I",
-   "name": "Redmi 13C 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Taiwan"
    ],
-   "slug": "redmi-13c-5g"
+   "builds": 8
   },
   {
+   "slug": "redmi-13r-5g",
+   "name": "Redmi 13R 5G",
    "brand": "Redmi",
    "code": "air",
-   "count": 10,
-   "models": "23124RN87C",
-   "name": "Redmi 13R 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Taiwan"
    ],
-   "slug": "redmi-13r-5g"
+   "builds": 10
   },
   {
+   "slug": "redmi-14c",
+   "name": "Redmi 14C",
    "brand": "Redmi",
    "code": "lake",
-   "count": 10,
-   "models": "2409BRN2CA, 2409BRN2CY, 2409BRN2CI, 2409BRN2CC, 409BRN2CL",
-   "name": "Redmi 14C",
    "regions": [
     "Global",
     "EEA",
-    "China",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-14c"
+   "builds": 16
   },
   {
+   "slug": "redmi-14c-5g",
+   "name": "Redmi 14C 5G",
    "brand": "Redmi",
    "code": "flame",
-   "count": 1,
-   "models": "2411DRN47G, 2411DRN47R, 2411DRN47I",
-   "name": "Redmi 14C 5G",
    "regions": [
     "India"
    ],
-   "slug": "redmi-14c-5g"
+   "builds": 3
   },
   {
+   "slug": "redmi-14r-5g",
+   "name": "Redmi 14R 5G",
    "brand": "Redmi",
    "code": "flame",
-   "count": 2,
-   "models": "2411DRN47C",
-   "name": "Redmi 14R 5G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-14r-5g"
+   "builds": 4
   },
   {
+   "slug": "redmi-15",
+   "name": "Redmi 15",
    "brand": "Redmi",
    "code": "creek",
-   "count": 12,
-   "models": "25062RN2DA, 25062RN2DY, 25062RN2DE, 25062RN2DL",
-   "name": "Redmi 15",
    "regions": [
     "Global",
     "EEA",
@@ -2339,14 +1401,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-15"
+   "builds": 14
   },
   {
+   "slug": "redmi-15-5g",
+   "name": "Redmi 15 5G",
    "brand": "Redmi",
    "code": "spring",
-   "count": 11,
-   "models": "25057RN09G, 25057RN09E, 25057RN09I, Japan",
-   "name": "Redmi 15 5G",
    "regions": [
     "Global",
     "EEA",
@@ -2355,25 +1416,23 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-15-5g"
+   "builds": 13
   },
   {
+   "slug": "redmi-15a-5g",
+   "name": "Redmi 15A 5G",
    "brand": "Redmi",
    "code": "somalia",
-   "count": 2,
-   "models": "2602BRNA4I",
-   "name": "Redmi 15A 5G",
    "regions": [
     "India"
    ],
-   "slug": "redmi-15a-5g"
+   "builds": 3
   },
   {
+   "slug": "redmi-15c",
+   "name": "Redmi 15C",
    "brand": "Redmi",
    "code": "dew",
-   "count": 12,
-   "models": "25078RA3EA, 25078RA3EY, 25078RA3EE, 25078RA3EL",
-   "name": "Redmi 15C",
    "regions": [
     "Global",
     "EEA",
@@ -2382,44 +1441,41 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-15c"
+   "builds": 13
   },
   {
-   "brand": "Redmi",
-   "code": "tornado",
-   "count": 10,
-   "models": "2508CRN2BG, 2508CRN2BE, 2508CRN2BI, 2508CRN2BC, 2508CRN2BR",
+   "slug": "redmi-15c-5g",
    "name": "Redmi 15C 5G",
-   "regions": [
-    "Global",
-    "EEA",
-    "China",
-    "India",
-    "Turkey"
-   ],
-   "slug": "redmi-15c-5g"
-  },
-  {
    "brand": "Redmi",
    "code": "tornado",
-   "count": 5,
-   "models": "25082RNC1C",
-   "name": "Redmi 15R 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Turkey"
    ],
-   "slug": "redmi-15r-5g"
+   "builds": 10
   },
   {
+   "slug": "redmi-15r-5g",
+   "name": "Redmi 15R 5G",
+   "brand": "Redmi",
+   "code": "tornado",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Turkey"
+   ],
+   "builds": 10
+  },
+  {
+   "slug": "redmi-17",
+   "name": "Redmi 17",
    "brand": "Redmi",
    "code": "leedsa",
-   "count": 14,
-   "models": "2606FRN72Y, 2606FRN72L",
-   "name": "Redmi 17",
    "regions": [
     "Global",
     "EEA",
@@ -2429,14 +1485,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-17"
+   "builds": 15
   },
   {
+   "slug": "redmi-17-5g",
+   "name": "Redmi 17 5G",
    "brand": "Redmi",
    "code": "steppe",
-   "count": 12,
-   "models": "26062RN92G, 26062RN92I",
-   "name": "Redmi 17 5G",
    "regions": [
     "Global",
     "EEA",
@@ -2445,353 +1500,373 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-17-5g"
+   "builds": 14
   },
   {
+   "slug": "redmi-17-5g-china",
+   "name": "Redmi 17 5G China",
    "brand": "Redmi",
    "code": "somalia",
-   "count": 2,
-   "models": "2602BRNA4C",
-   "name": "Redmi 17 5G China",
    "regions": [
     "China"
    ],
-   "slug": "redmi-17-5g-china"
+   "builds": 3
   },
   {
+   "slug": "redmi-17c",
+   "name": "Redmi 17C",
    "brand": "Redmi",
    "code": "lake",
-   "count": 8,
-   "models": "2409BRN2CC",
-   "name": "Redmi 17C",
    "regions": [
     "Global",
     "EEA",
-    "China",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-17c"
+   "builds": 16
   },
   {
+   "slug": "redmi-17c-5g",
+   "name": "Redmi 17C 5G",
    "brand": "Redmi",
    "code": "tornado",
-   "count": 2,
-   "models": "2607FRNEAG",
-   "name": "Redmi 17C 5G",
    "regions": [
     "Global"
    ],
-   "slug": "redmi-17c-5g"
+   "builds": 2
   },
   {
+   "slug": "redmi-1s",
+   "name": "Redmi 1S",
    "brand": "Redmi",
    "code": "armani",
-   "count": 4,
-   "models": "2013029, 2013028",
-   "name": "Redmi 1S",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-1s"
+   "builds": 8
   },
   {
+   "slug": "redmi-1s-td-3g",
+   "name": "Redmi 1S TD 3G",
+   "brand": "Redmi",
+   "code": "HM2014011",
+   "regions": [
+    "China"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "redmi-1s-td-4g",
+   "name": "Redmi 1S TD 4G",
+   "brand": "Redmi",
+   "code": "HM2014501",
+   "regions": [
+    "China"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "redmi-2",
+   "name": "Redmi 2",
    "brand": "Redmi",
    "code": "wt86047",
-   "count": 4,
-   "models": "2014817, 2014818, 2014819, China",
+   "regions": [
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "redmi-2-2",
    "name": "Redmi 2",
+   "brand": "Redmi",
+   "code": "wt88047",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-2"
+   "builds": 16
   },
   {
+   "slug": "redmi-2-lte",
+   "name": "Redmi 2 LTE",
+   "brand": "Redmi",
+   "code": "HM2014811",
+   "regions": [
+    "China"
+   ],
+   "builds": 1
+  },
+  {
+   "slug": "redmi-2-lte-2",
+   "name": "Redmi 2 LTE",
+   "brand": "Redmi",
+   "code": "HM2014813",
+   "regions": [
+    "China"
+   ],
+   "builds": 1
+  },
+  {
+   "slug": "redmi-2a",
+   "name": "Redmi 2A",
    "brand": "Redmi",
    "code": "lte26007",
-   "count": 2,
-   "models": "2014502, 2014512, 2014055",
-   "name": "Redmi 2A",
    "regions": [
     "China"
    ],
-   "slug": "redmi-2a"
+   "builds": 4
   },
   {
+   "slug": "redmi-3",
+   "name": "Redmi 3",
    "brand": "Redmi",
    "code": "ido",
-   "count": 4,
-   "models": "Global, China, Prime",
-   "name": "Redmi 3",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-3"
+   "builds": 8
   },
   {
+   "slug": "redmi-3s",
+   "name": "Redmi 3S",
    "brand": "Redmi",
    "code": "land",
-   "count": 4,
-   "models": "2016031, 2016037, 2016030, 2016032",
-   "name": "Redmi 3S",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-3s"
+   "builds": 8
   },
   {
+   "slug": "redmi-4",
+   "name": "Redmi 4",
    "brand": "Redmi",
    "code": "prada",
-   "count": 4,
-   "models": "2016090",
-   "name": "Redmi 4",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-4"
+   "builds": 8
   },
   {
+   "slug": "redmi-4-prime",
+   "name": "Redmi 4 Prime",
    "brand": "Redmi",
    "code": "markw",
-   "count": 4,
-   "models": "2016060",
-   "name": "Redmi 4 Prime",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-4-prime"
+   "builds": 6
   },
   {
+   "slug": "redmi-4a",
+   "name": "Redmi 4A",
    "brand": "Redmi",
    "code": "rolex",
-   "count": 4,
-   "models": "Global, India, China",
-   "name": "Redmi 4A",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-4a"
+   "builds": 8
   },
   {
+   "slug": "redmi-4x",
+   "name": "Redmi 4X",
    "brand": "Redmi",
    "code": "santoni",
-   "count": 4,
-   "models": "Global, India, China",
-   "name": "Redmi 4X",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-4x"
+   "builds": 8
   },
   {
+   "slug": "redmi-5",
+   "name": "Redmi 5",
    "brand": "Redmi",
    "code": "rosy",
-   "count": 6,
-   "models": "Global, India, China",
-   "name": "Redmi 5",
    "regions": [
     "Global",
     "China",
     "Russia"
    ],
-   "slug": "redmi-5"
+   "builds": 10
   },
   {
+   "slug": "redmi-5-plus",
+   "name": "Redmi 5 Plus",
    "brand": "Redmi",
    "code": "vince",
-   "count": 6,
-   "models": "Global, China",
-   "name": "Redmi 5 Plus",
    "regions": [
     "Global",
     "China",
     "Russia"
    ],
-   "slug": "redmi-5-plus"
+   "builds": 10
   },
   {
+   "slug": "redmi-5a",
+   "name": "Redmi 5A",
    "brand": "Redmi",
    "code": "riva",
-   "count": 4,
-   "models": "Global, India, China",
-   "name": "Redmi 5A",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-5a"
+   "builds": 8
   },
   {
+   "slug": "redmi-6",
+   "name": "Redmi 6",
    "brand": "Redmi",
    "code": "cereus",
-   "count": 5,
-   "models": "Global, India, China",
-   "name": "Redmi 6",
    "regions": [
     "Global",
     "China",
     "Russia"
    ],
-   "slug": "redmi-6"
+   "builds": 11
   },
   {
+   "slug": "redmi-6-pro",
+   "name": "Redmi 6 Pro",
    "brand": "Redmi",
    "code": "sakura",
-   "count": 4,
-   "models": "M1805D1SI, China",
-   "name": "Redmi 6 Pro",
    "regions": [
-    "Global",
     "China"
    ],
-   "slug": "redmi-6-pro"
+   "builds": 4
   },
   {
+   "slug": "redmi-6a",
+   "name": "Redmi 6A",
    "brand": "Redmi",
    "code": "cactus",
-   "count": 5,
-   "models": "Global, India, China",
-   "name": "Redmi 6A",
    "regions": [
     "Global",
     "China",
     "Russia"
    ],
-   "slug": "redmi-6a"
+   "builds": 11
   },
   {
+   "slug": "redmi-7",
+   "name": "Redmi 7",
    "brand": "Redmi",
    "code": "onclite",
-   "count": 10,
-   "models": "Global, India, China",
-   "name": "Redmi 7",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Russia"
    ],
-   "slug": "redmi-7"
+   "builds": 11
   },
   {
+   "slug": "redmi-7a",
+   "name": "Redmi 7A",
    "brand": "Redmi",
    "code": "pine",
-   "count": 10,
-   "models": "Global, India, China",
-   "name": "Redmi 7A",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Russia"
    ],
-   "slug": "redmi-7a"
+   "builds": 10
   },
   {
+   "slug": "redmi-8",
+   "name": "Redmi 8",
    "brand": "Redmi",
    "code": "olive",
-   "count": 12,
-   "models": "Global, India, China",
-   "name": "Redmi 8",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia"
    ],
-   "slug": "redmi-8"
+   "builds": 12
   },
   {
+   "slug": "redmi-8a",
+   "name": "Redmi 8A",
    "brand": "Redmi",
    "code": "olivelite",
-   "count": 12,
-   "models": "Global, India, China",
-   "name": "Redmi 8A",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia"
    ],
-   "slug": "redmi-8a"
+   "builds": 12
   },
   {
+   "slug": "redmi-8a-dual",
+   "name": "Redmi 8A Dual",
    "brand": "Redmi",
    "code": "olivewood",
-   "count": 2,
-   "models": "M2001C3K3I",
-   "name": "Redmi 8A Dual",
    "regions": [
     "India"
    ],
-   "slug": "redmi-8a-dual"
+   "builds": 2
   },
   {
+   "slug": "redmi-8a-pro",
+   "name": "Redmi 8A Pro",
    "brand": "Redmi",
    "code": "olivewood",
-   "count": 2,
-   "models": "M2001C3K3I",
-   "name": "Redmi 8A Pro",
    "regions": [
     "Indonesia"
    ],
-   "slug": "redmi-8a-pro"
+   "builds": 2
   },
   {
+   "slug": "redmi-9-and-9-activ",
+   "name": "Redmi 9 And 9 Activ",
    "brand": "Redmi",
    "code": "cattail",
-   "count": 2,
-   "models": "M2006C3MII",
-   "name": "Redmi 9 And 9 Activ",
    "regions": [
     "India"
    ],
-   "slug": "redmi-9-and-9-activ"
+   "builds": 2
   },
   {
+   "slug": "redmi-9-power",
+   "name": "Redmi 9 Power",
    "brand": "Redmi",
    "code": "lime",
-   "count": 2,
-   "models": "M2010J19SI",
-   "name": "Redmi 9 Power",
    "regions": [
     "India"
    ],
-   "slug": "redmi-9-power"
+   "builds": 2
   },
   {
+   "slug": "redmi-9-prime",
+   "name": "Redmi 9 Prime",
    "brand": "Redmi",
    "code": "lancelot",
-   "count": 2,
-   "models": "M2004J19I",
-   "name": "Redmi 9 Prime",
    "regions": [
     "India"
    ],
-   "slug": "redmi-9-prime"
+   "builds": 2
   },
   {
+   "slug": "redmi-9a",
+   "name": "Redmi 9A",
    "brand": "Redmi",
    "code": "dandelion",
-   "count": 10,
-   "models": "M2006C3LG",
-   "name": "Redmi 9A",
    "regions": [
     "Global",
     "China",
@@ -2799,63 +1874,58 @@
     "Russia",
     "Turkey"
    ],
-   "slug": "redmi-9a"
+   "builds": 23
   },
   {
+   "slug": "redmi-9a-and-9at",
+   "name": "Redmi 9A And 9At",
    "brand": "Redmi",
    "code": "dandelion",
-   "count": 2,
-   "models": "Global",
-   "name": "Redmi 9A And 9At",
    "regions": [
     "EEA"
    ],
-   "slug": "redmi-9a-and-9at"
+   "builds": 4
   },
   {
+   "slug": "redmi-9a-and-9i-and-9a-sport",
+   "name": "Redmi 9A And 9I And 9A Sport",
    "brand": "Redmi",
    "code": "dandelion",
-   "count": 2,
-   "models": "India, India",
-   "name": "Redmi 9A And 9I And 9A Sport",
    "regions": [
     "India"
    ],
-   "slug": "redmi-9a-and-9i-and-9a-sport"
+   "builds": 5
   },
   {
+   "slug": "redmi-9c",
+   "name": "Redmi 9C",
    "brand": "Redmi",
    "code": "angelica",
-   "count": 8,
-   "models": "M2006C3MG, M2006C3MT",
-   "name": "Redmi 9C",
    "regions": [
     "Global",
     "EEA",
     "Indonesia",
     "Turkey"
    ],
-   "slug": "redmi-9c"
+   "builds": 9
   },
   {
+   "slug": "redmi-9c-nfc",
+   "name": "Redmi 9C Nfc",
    "brand": "Redmi",
    "code": "angelican",
-   "count": 5,
-   "models": "M2006C3MNG",
-   "name": "Redmi 9C Nfc",
    "regions": [
     "Global",
     "EEA",
     "Russia"
    ],
-   "slug": "redmi-9c-nfc"
+   "builds": 6
   },
   {
+   "slug": "redmi-9t",
+   "name": "Redmi 9T",
    "brand": "Redmi",
    "code": "lime",
-   "count": 12,
-   "models": "M2010J19SG, M2010J19SR, M2010J19ST",
-   "name": "Redmi 9T",
    "regions": [
     "Global",
     "EEA",
@@ -2864,14 +1934,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-9t"
+   "builds": 17
   },
   {
+   "slug": "redmi-a1",
+   "name": "Redmi A1",
    "brand": "Redmi",
    "code": "ice",
-   "count": 11,
-   "models": "Global, India, 220733SL",
-   "name": "Redmi A1",
    "regions": [
     "Global",
     "EEA",
@@ -2880,14 +1949,13 @@
     "Russia",
     "Taiwan"
    ],
-   "slug": "redmi-a1"
+   "builds": 17
   },
   {
+   "slug": "redmi-a2",
+   "name": "Redmi A2",
    "brand": "Redmi",
    "code": "water",
-   "count": 12,
-   "models": "Global, India, America",
-   "name": "Redmi A2",
    "regions": [
     "Global",
     "EEA",
@@ -2896,14 +1964,13 @@
     "Russia",
     "Taiwan"
    ],
-   "slug": "redmi-a2"
+   "builds": 17
   },
   {
+   "slug": "redmi-a3",
+   "name": "Redmi A3",
    "brand": "Redmi",
    "code": "blue",
-   "count": 5,
-   "models": "23129RN51X, 23129RN51H, 2312CRNCCL",
-   "name": "Redmi A3",
    "regions": [
     "Global",
     "EEA",
@@ -2911,14 +1978,13 @@
     "Indonesia",
     "Russia"
    ],
-   "slug": "redmi-a3"
+   "builds": 5
   },
   {
+   "slug": "redmi-a3-pro",
+   "name": "Redmi A3 Pro",
    "brand": "Redmi",
    "code": "lake",
-   "count": 9,
-   "models": "2409BRN2CG",
-   "name": "Redmi A3 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -2927,53 +1993,35 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-a3-pro"
+   "builds": 16
   },
   {
+   "slug": "redmi-a3x",
+   "name": "Redmi A3X",
    "brand": "Redmi",
    "code": "klein",
-   "count": 6,
-   "models": "24048RN6CG, 24048RN6CI, 24044RN32L",
-   "name": "Redmi A3X",
    "regions": [
     "Global",
     "India",
     "Russia"
    ],
-   "slug": "redmi-a3x"
+   "builds": 7
   },
   {
+   "slug": "redmi-a4-5g",
+   "name": "Redmi A4 5G",
    "brand": "Redmi",
    "code": "warm",
-   "count": 2,
-   "models": "24116RNC1I",
-   "name": "Redmi A4 5G",
    "regions": [
     "India"
    ],
-   "slug": "redmi-a4-5g"
+   "builds": 2
   },
   {
-   "brand": "Redmi",
-   "code": "serenity",
-   "count": 10,
-   "models": "Global, 25028RN03I, 25028RN03L",
+   "slug": "redmi-a5",
    "name": "Redmi A5",
-   "regions": [
-    "Global",
-    "EEA",
-    "India",
-    "Indonesia",
-    "Russia"
-   ],
-   "slug": "redmi-a5"
-  },
-  {
    "brand": "Redmi",
    "code": "serenity",
-   "count": 10,
-   "models": "26020RNB4A, 26020RNB4I, 26020RNB4L",
-   "name": "Redmi A7",
    "regions": [
     "Global",
     "EEA",
@@ -2981,14 +2029,27 @@
     "Indonesia",
     "Russia"
    ],
-   "slug": "redmi-a7"
+   "builds": 12
   },
   {
+   "slug": "redmi-a7",
+   "name": "Redmi A7",
+   "brand": "Redmi",
+   "code": "serenity",
+   "regions": [
+    "Global",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia"
+   ],
+   "builds": 12
+  },
+  {
+   "slug": "redmi-a7-pro",
+   "name": "Redmi A7 Pro",
    "brand": "Redmi",
    "code": "arctic",
-   "count": 11,
-   "models": "Global, America",
-   "name": "Redmi A7 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -2997,470 +2058,470 @@
     "Russia",
     "Turkey"
    ],
-   "slug": "redmi-a7-pro"
+   "builds": 14
   },
   {
+   "slug": "redmi-a7-pro-5g",
+   "name": "Redmi A7 Pro 5G",
    "brand": "Redmi",
    "code": "somalia",
-   "count": 2,
-   "models": "26020RN1AI",
-   "name": "Redmi A7 Pro 5G",
    "regions": [
     "India"
    ],
-   "slug": "redmi-a7-pro-5g"
+   "builds": 3
   },
   {
+   "slug": "redmi-go",
+   "name": "Redmi Go",
    "brand": "Redmi",
    "code": "tiare",
-   "count": 8,
-   "models": "Global, India",
-   "name": "Redmi Go",
    "regions": [
     "Global",
     "EEA",
     "India",
     "Russia"
    ],
-   "slug": "redmi-go"
+   "builds": 8
   },
   {
+   "slug": "redmi-k-pad",
+   "name": "Redmi K Pad",
+   "brand": "Redmi",
+   "code": "turner",
+   "regions": [
+    "Global",
+    "China",
+    "Taiwan"
+   ],
+   "builds": 7
+  },
+  {
+   "slug": "redmi-k-pad-2",
+   "name": "Redmi K Pad 2",
+   "brand": "Redmi",
+   "code": "yili",
+   "regions": [
+    "China"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "redmi-k100-pro",
+   "name": "Redmi K100 Pro",
    "brand": "Redmi",
    "code": "athens",
-   "count": 1,
-   "models": "M511CD",
-   "name": "Redmi K100 Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k100-pro"
+   "builds": 3
   },
   {
+   "slug": "redmi-k100-pro-max",
+   "name": "Redmi K100 Pro Max",
    "brand": "Redmi",
    "code": "songyuan",
-   "count": 1,
-   "models": "M098FE",
-   "name": "Redmi K100 Pro Max",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k100-pro-max"
+   "builds": 3
   },
   {
+   "slug": "redmi-k20",
+   "name": "Redmi K20",
    "brand": "Redmi",
    "code": "davinci",
-   "count": 4,
-   "models": "China, India",
-   "name": "Redmi K20",
    "regions": [
-    "China",
-    "India"
+    "China"
    ],
-   "slug": "redmi-k20"
+   "builds": 4
   },
   {
+   "slug": "redmi-k20-2",
+   "name": "Redmi K20",
+   "brand": "Redmi",
+   "code": "davinciin",
+   "regions": [
+    "India"
+   ],
+   "builds": 2
+  },
+  {
+   "slug": "redmi-k20-pro",
+   "name": "Redmi K20 Pro",
    "brand": "Redmi",
    "code": "raphael",
-   "count": 4,
-   "models": "China, India",
-   "name": "Redmi K20 Pro",
    "regions": [
-    "China",
-    "India"
+    "China"
    ],
-   "slug": "redmi-k20-pro"
+   "builds": 4
   },
   {
+   "slug": "redmi-k20-pro-2",
+   "name": "Redmi K20 Pro",
+   "brand": "Redmi",
+   "code": "raphaelin",
+   "regions": [
+    "India"
+   ],
+   "builds": 2
+  },
+  {
+   "slug": "redmi-k20-pro-premium-edition",
+   "name": "Redmi K20 Pro Premium Edition",
    "brand": "Redmi",
    "code": "raphaels",
-   "count": 1,
-   "models": "M1903F11A",
-   "name": "Redmi K20 Pro Premium Edition",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k20-pro-premium-edition"
+   "builds": 2
   },
   {
+   "slug": "redmi-k30-4g",
+   "name": "Redmi K30 4G",
    "brand": "Redmi",
    "code": "phoenix",
-   "count": 2,
-   "models": "M1912G7BE, M1912G7BC",
-   "name": "Redmi K30 4G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k30-4g"
+   "builds": 6
   },
   {
+   "slug": "redmi-k30-5g",
+   "name": "Redmi K30 5G",
    "brand": "Redmi",
    "code": "picasso",
-   "count": 2,
-   "models": "China",
-   "name": "Redmi K30 5G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k30-5g"
+   "builds": 12
   },
   {
+   "slug": "redmi-k30-pro",
+   "name": "Redmi K30 Pro",
    "brand": "Redmi",
    "code": "lmi",
-   "count": 1,
-   "models": "M2001J11C",
-   "name": "Redmi K30 Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k30-pro"
+   "builds": 7
   },
   {
+   "slug": "redmi-k30-ultra",
+   "name": "Redmi K30 Ultra",
    "brand": "Redmi",
    "code": "cezanne",
-   "count": 2,
-   "models": "M2006J10C",
-   "name": "Redmi K30 Ultra",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k30-ultra"
+   "builds": 7
   },
   {
+   "slug": "redmi-k30i-5g",
+   "name": "Redmi K30I 5G",
    "brand": "Redmi",
    "code": "picasso",
-   "count": 2,
-   "models": "M2001G7AC",
-   "name": "Redmi K30I 5G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k30i-5g"
+   "builds": 12
   },
   {
+   "slug": "redmi-k30s-ultra",
+   "name": "Redmi K30S Ultra",
    "brand": "Redmi",
    "code": "apollo",
-   "count": 2,
-   "models": "M2007J3SC",
-   "name": "Redmi K30S Ultra",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k30s-ultra"
+   "builds": 7
   },
   {
+   "slug": "redmi-k40",
+   "name": "Redmi K40",
    "brand": "Redmi",
    "code": "alioth",
-   "count": 1,
-   "models": "M2012K11AC",
-   "name": "Redmi K40",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k40"
+   "builds": 7
   },
   {
+   "slug": "redmi-k40-gaming",
+   "name": "Redmi K40 Gaming",
    "brand": "Redmi",
    "code": "ares",
-   "count": 1,
-   "models": "M2012K10C",
-   "name": "Redmi K40 Gaming",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k40-gaming"
+   "builds": 7
   },
   {
+   "slug": "redmi-k40-pro-and-pro-plus",
+   "name": "Redmi K40 Pro And Pro Plus",
    "brand": "Redmi",
    "code": "haydn",
-   "count": 1,
-   "models": "M2012K11C",
-   "name": "Redmi K40 Pro And Pro Plus",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k40-pro-and-pro-plus"
+   "builds": 7
   },
   {
+   "slug": "redmi-k40s",
+   "name": "Redmi K40S",
    "brand": "Redmi",
    "code": "munch",
-   "count": 2,
-   "models": "22021211RC",
-   "name": "Redmi K40S",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k40s"
+   "builds": 4
   },
   {
+   "slug": "redmi-k50",
+   "name": "Redmi K50",
    "brand": "Redmi",
    "code": "rubens",
-   "count": 1,
-   "models": "22041211AC",
-   "name": "Redmi K50",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k50"
+   "builds": 5
   },
   {
+   "slug": "redmi-k50-pro",
+   "name": "Redmi K50 Pro",
    "brand": "Redmi",
    "code": "matisse",
-   "count": 2,
-   "models": "22011211C",
-   "name": "Redmi K50 Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k50-pro"
+   "builds": 5
   },
   {
+   "slug": "redmi-k50-ultra",
+   "name": "Redmi K50 Ultra",
    "brand": "Redmi",
    "code": "diting",
-   "count": 2,
-   "models": "22081212C",
-   "name": "Redmi K50 Ultra",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k50-ultra"
+   "builds": 5
   },
   {
+   "slug": "redmi-k50g",
+   "name": "Redmi K50G",
    "brand": "Redmi",
    "code": "ingres",
-   "count": 1,
-   "models": "21121210C",
-   "name": "Redmi K50G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k50g"
+   "builds": 5
   },
   {
+   "slug": "redmi-k50i",
+   "name": "Redmi K50I",
    "brand": "Redmi",
    "code": "xaga",
-   "count": 2,
-   "models": "22041216I",
-   "name": "Redmi K50I",
    "regions": [
     "India"
    ],
-   "slug": "redmi-k50i"
+   "builds": 2
   },
   {
+   "slug": "redmi-k60",
+   "name": "Redmi K60",
    "brand": "Redmi",
    "code": "mondrian",
-   "count": 2,
-   "models": "23013RK75C",
-   "name": "Redmi K60",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k60"
+   "builds": 5
   },
   {
+   "slug": "redmi-k60-pro",
+   "name": "Redmi K60 Pro",
    "brand": "Redmi",
    "code": "socrates",
-   "count": 2,
-   "models": "22127RK46C",
-   "name": "Redmi K60 Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k60-pro"
+   "builds": 5
   },
   {
+   "slug": "redmi-k60-ultra",
+   "name": "Redmi K60 Ultra",
    "brand": "Redmi",
    "code": "corot",
-   "count": 2,
-   "models": "23078RKD5C",
-   "name": "Redmi K60 Ultra",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k60-ultra"
+   "builds": 3
   },
   {
+   "slug": "redmi-k60e",
+   "name": "Redmi K60E",
    "brand": "Redmi",
    "code": "rembrandt",
-   "count": 2,
-   "models": "22122RK93C",
-   "name": "Redmi K60E",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k60e"
+   "builds": 2
   },
   {
+   "slug": "redmi-k70",
+   "name": "Redmi K70",
    "brand": "Redmi",
    "code": "vermeer",
-   "count": 2,
-   "models": "23113RKC6C",
-   "name": "Redmi K70",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k70"
+   "builds": 2
   },
   {
+   "slug": "redmi-k70-pro",
+   "name": "Redmi K70 Pro",
    "brand": "Redmi",
    "code": "manet",
-   "count": 1,
-   "models": "23117RK66C",
-   "name": "Redmi K70 Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k70-pro"
+   "builds": 4
   },
   {
+   "slug": "redmi-k70-ultra",
+   "name": "Redmi K70 Ultra",
    "brand": "Redmi",
    "code": "rothko",
-   "count": 2,
-   "models": "2407FRK8EC",
-   "name": "Redmi K70 Ultra",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k70-ultra"
+   "builds": 4
   },
   {
+   "slug": "redmi-k70e",
+   "name": "Redmi K70E",
    "brand": "Redmi",
    "code": "duchamp",
-   "count": 2,
-   "models": "2311DRK48C",
-   "name": "Redmi K70E",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k70e"
+   "builds": 3
   },
   {
+   "slug": "redmi-k80",
+   "name": "Redmi K80",
    "brand": "Redmi",
    "code": "zorn",
-   "count": 1,
-   "models": "24117RK2CC",
-   "name": "Redmi K80",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k80"
+   "builds": 3
   },
   {
+   "slug": "redmi-k80-pro",
+   "name": "Redmi K80 Pro",
    "brand": "Redmi",
    "code": "miro",
-   "count": 14,
-   "models": "24122RKC7C, 24127RK2CC",
-   "name": "Redmi K80 Pro",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-k80-pro"
+   "builds": 16
   },
   {
+   "slug": "redmi-k80-ultra",
+   "name": "Redmi K80 Ultra",
    "brand": "Redmi",
    "code": "dali",
-   "count": 2,
-   "models": "25060RK16C",
-   "name": "Redmi K80 Ultra",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k80-ultra"
+   "builds": 3
   },
   {
+   "slug": "redmi-k90",
+   "name": "Redmi K90",
    "brand": "Redmi",
    "code": "annibale",
-   "count": 13,
-   "models": "2510DRK44C",
-   "name": "Redmi K90",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-k90"
+   "builds": 15
   },
   {
+   "slug": "redmi-k90-max",
+   "name": "Redmi K90 Max",
    "brand": "Redmi",
    "code": "prague",
-   "count": 2,
-   "models": "2604FRK1EC",
-   "name": "Redmi K90 Max",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k90-max"
+   "builds": 2
   },
   {
+   "slug": "redmi-k90-pro-max",
+   "name": "Redmi K90 Pro Max",
    "brand": "Redmi",
    "code": "myron",
-   "count": 5,
-   "models": "25102RKBEC, 25102RK69C",
-   "name": "Redmi K90 Pro Max",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Indonesia",
     "Taiwan"
    ],
-   "slug": "redmi-k90-pro-max"
+   "builds": 15
   },
   {
+   "slug": "redmi-k90-ultra",
+   "name": "Redmi K90 Ultra",
    "brand": "Redmi",
    "code": "warsaw",
-   "count": 2,
-   "models": "M332BF",
-   "name": "Redmi K90 Ultra",
    "regions": [
     "China"
    ],
-   "slug": "redmi-k90-ultra"
+   "builds": 3
   },
   {
+   "slug": "redmi-m100",
+   "name": "Redmi M100",
    "brand": "Redmi",
    "code": "steppe",
-   "count": 9,
-   "models": "26062RN92C",
-   "name": "Redmi M100",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-m100"
+   "builds": 16
   },
   {
+   "slug": "redmi-note-1-td",
+   "name": "Redmi Note 1 Td",
    "brand": "Redmi",
    "code": "lcsh92",
-   "count": 1,
-   "models": "2014017, 2013122",
-   "name": "Redmi Note 1 Td",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-1-td"
+   "builds": 6
   },
   {
+   "slug": "redmi-note-10",
+   "name": "Redmi Note 10",
    "brand": "Redmi",
    "code": "mojito",
-   "count": 10,
-   "models": "M2101K7AG, M2101K7AI",
-   "name": "Redmi Note 10",
    "regions": [
     "Global",
     "EEA",
@@ -3469,42 +2530,38 @@
     "Russia",
     "Turkey"
    ],
-   "slug": "redmi-note-10"
+   "builds": 14
   },
   {
+   "slug": "redmi-note-10-5g",
+   "name": "Redmi Note 10 5G",
    "brand": "Redmi",
    "code": "camellian",
-   "count": 9,
-   "models": "M2103K19G, M2103K19Y",
-   "name": "Redmi Note 10 5G",
    "regions": [
     "Global",
     "EEA",
-    "China",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-10-5g"
+   "builds": 17
   },
   {
+   "slug": "redmi-note-10-lite",
+   "name": "Redmi Note 10 Lite",
    "brand": "Redmi",
    "code": "curtana",
-   "count": 2,
-   "models": "2109106A1I",
-   "name": "Redmi Note 10 Lite",
    "regions": [
     "India"
    ],
-   "slug": "redmi-note-10-lite"
+   "builds": 6
   },
   {
+   "slug": "redmi-note-10-pro",
+   "name": "Redmi Note 10 Pro",
    "brand": "Redmi",
    "code": "sweet",
-   "count": 12,
-   "models": "M2101K6G, M2101K6T, M2101K6R",
-   "name": "Redmi Note 10 Pro",
    "regions": [
     "Global",
     "EEA",
@@ -3513,36 +2570,33 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-10-pro"
+   "builds": 26
   },
   {
+   "slug": "redmi-note-10-pro-5g",
+   "name": "Redmi Note 10 Pro 5G",
    "brand": "Redmi",
    "code": "chopin",
-   "count": 2,
-   "models": "M2104K10AC",
-   "name": "Redmi Note 10 Pro 5G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-10-pro-5g"
+   "builds": 7
   },
   {
+   "slug": "redmi-note-10-pro-and-pro-max",
+   "name": "Redmi Note 10 Pro And Pro Max",
    "brand": "Redmi",
    "code": "sweetin",
-   "count": 2,
-   "models": "M2101K6P, M2101K6I",
-   "name": "Redmi Note 10 Pro And Pro Max",
    "regions": [
     "India"
    ],
-   "slug": "redmi-note-10-pro-and-pro-max"
+   "builds": 3
   },
   {
+   "slug": "redmi-note-10s",
+   "name": "Redmi Note 10S",
    "brand": "Redmi",
    "code": "rosemary",
-   "count": 14,
-   "models": "M2101K7BG, M2101K7BNY, M2101K7BI, M2101K7BL",
-   "name": "Redmi Note 10S",
    "regions": [
     "Global",
     "EEA",
@@ -3552,102 +2606,103 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-10s"
+   "builds": 30
   },
   {
+   "slug": "redmi-note-10t",
+   "name": "Redmi Note 10T",
    "brand": "Redmi",
    "code": "lilac",
-   "count": 2,
-   "models": "22021119KR, A101XM",
-   "name": "Redmi Note 10T",
    "regions": [
     "Japan"
    ],
-   "slug": "redmi-note-10t"
+   "builds": 2
   },
   {
+   "slug": "redmi-note-10t-5g",
+   "name": "Redmi Note 10T 5G",
    "brand": "Redmi",
    "code": "camellia",
-   "count": 2,
-   "models": "M2103K19I",
-   "name": "Redmi Note 10T 5G",
    "regions": [
     "India"
    ],
-   "slug": "redmi-note-10t-5g"
+   "builds": 2
   },
   {
+   "slug": "redmi-note-11",
+   "name": "Redmi Note 11",
    "brand": "Redmi",
    "code": "spes",
-   "count": 6,
-   "models": "2201117TG, 2201117TI, 2201117TL",
-   "name": "Redmi Note 11",
    "regions": [
     "Global",
     "India",
     "Turkey"
    ],
-   "slug": "redmi-note-11"
+   "builds": 7
   },
   {
+   "slug": "redmi-note-11-4g",
+   "name": "Redmi Note 11 4G",
    "brand": "Redmi",
    "code": "selenes",
-   "count": 1,
-   "models": "21121119SC",
-   "name": "Redmi Note 11 4G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-11-4g"
+   "builds": 3
   },
   {
+   "slug": "redmi-note-11-5g",
+   "name": "Redmi Note 11 5G",
    "brand": "Redmi",
    "code": "evergo",
-   "count": 2,
-   "models": "21091116AC",
-   "name": "Redmi Note 11 5G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-11-5g"
+   "builds": 7
   },
   {
+   "slug": "redmi-note-11-nfc",
+   "name": "Redmi Note 11 Nfc",
    "brand": "Redmi",
    "code": "spesn",
-   "count": 8,
-   "models": "",
-   "name": "Redmi Note 11 Nfc",
    "regions": [
     "Global",
     "EEA",
     "Indonesia",
     "Russia"
    ],
-   "slug": "redmi-note-11-nfc"
+   "builds": 12
   },
   {
+   "slug": "redmi-note-11-pro-4g",
+   "name": "Redmi Note 11 Pro 4G",
+   "brand": "Redmi",
+   "code": "vida",
+   "regions": [
+    "India"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "redmi-note-11-pro-4g-2",
+   "name": "Redmi Note 11 Pro 4G",
    "brand": "Redmi",
    "code": "viva",
-   "count": 14,
-   "models": "2201116TG, 2201116TI",
-   "name": "Redmi Note 11 Pro 4G",
    "regions": [
     "Global",
     "EEA",
-    "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-11-pro-4g"
+   "builds": 16
   },
   {
+   "slug": "redmi-note-11-pro-5g",
+   "name": "Redmi Note 11 Pro 5G",
    "brand": "Redmi",
    "code": "veux",
-   "count": 16,
-   "models": "2201116SG, 2201116SR",
-   "name": "Redmi Note 11 Pro 5G",
    "regions": [
     "Global",
     "EEA",
@@ -3658,25 +2713,23 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-11-pro-5g"
+   "builds": 17
   },
   {
+   "slug": "redmi-note-11-pro-and-pro-plus",
+   "name": "Redmi Note 11 Pro And Pro Plus",
    "brand": "Redmi",
    "code": "pissarro",
-   "count": 2,
-   "models": "21091116C, 21091116UG, 21091116UC",
-   "name": "Redmi Note 11 Pro And Pro Plus",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-11-pro-and-pro-plus"
+   "builds": 7
   },
   {
+   "slug": "redmi-note-11-pro-plus-5g",
+   "name": "Redmi Note 11 Pro Plus 5G",
    "brand": "Redmi",
    "code": "pissarro",
-   "count": 5,
-   "models": "21091116UG",
-   "name": "Redmi Note 11 Pro Plus 5G",
    "regions": [
     "Global",
     "EEA",
@@ -3684,58 +2737,53 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-11-pro-plus-5g"
+   "builds": 16
   },
   {
+   "slug": "redmi-note-11-se",
+   "name": "Redmi Note 11 Se",
    "brand": "Redmi",
    "code": "rosemary",
-   "count": 2,
-   "models": "22087RA4DI",
-   "name": "Redmi Note 11 Se",
    "regions": [
     "India"
    ],
-   "slug": "redmi-note-11-se"
+   "builds": 2
   },
   {
+   "slug": "redmi-note-11e",
+   "name": "Redmi Note 11E",
    "brand": "Redmi",
    "code": "light",
-   "count": 2,
-   "models": "22041219C",
-   "name": "Redmi Note 11E",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-11e"
+   "builds": 3
   },
   {
+   "slug": "redmi-note-11e-pro",
+   "name": "Redmi Note 11E Pro",
    "brand": "Redmi",
    "code": "veux",
-   "count": 2,
-   "models": "2201116SC",
-   "name": "Redmi Note 11E Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-11e-pro"
+   "builds": 4
   },
   {
+   "slug": "redmi-note-11r",
+   "name": "Redmi Note 11R",
    "brand": "Redmi",
    "code": "lightcm",
-   "count": 2,
-   "models": "22095RA98C",
-   "name": "Redmi Note 11R",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-11r"
+   "builds": 4
   },
   {
+   "slug": "redmi-note-11s",
+   "name": "Redmi Note 11S",
    "brand": "Redmi",
    "code": "fleur",
-   "count": 14,
-   "models": "2201117SG, 2201117SY, 2201117SI, 2201117SL",
-   "name": "Redmi Note 11S",
    "regions": [
     "Global",
     "EEA",
@@ -3745,197 +2793,167 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-11s"
+   "builds": 19
   },
   {
+   "slug": "redmi-note-11s-5g",
+   "name": "Redmi Note 11S 5G",
    "brand": "Redmi",
    "code": "opal",
-   "count": 8,
-   "models": "22031116BG",
-   "name": "Redmi Note 11S 5G",
    "regions": [
     "Global",
     "EEA",
     "Russia",
     "Taiwan"
    ],
-   "slug": "redmi-note-11s-5g"
+   "builds": 9
   },
   {
+   "slug": "redmi-note-11se",
+   "name": "Redmi Note 11Se",
    "brand": "Redmi",
    "code": "camellia",
-   "count": 2,
-   "models": "M2103K19C",
-   "name": "Redmi Note 11Se",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-11se"
+   "builds": 7
   },
   {
+   "slug": "redmi-note-11t-5g",
+   "name": "Redmi Note 11T 5G",
    "brand": "Redmi",
    "code": "evergo",
-   "count": 2,
-   "models": "21091116AI",
-   "name": "Redmi Note 11T 5G",
    "regions": [
     "India"
    ],
-   "slug": "redmi-note-11t-5g"
+   "builds": 2
   },
   {
+   "slug": "redmi-note-11t-pro",
+   "name": "Redmi Note 11T Pro",
    "brand": "Redmi",
    "code": "xaga",
-   "count": 12,
-   "models": "22041216C, 22041216UC",
-   "name": "Redmi Note 11T Pro",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-11t-pro"
+   "builds": 17
   },
   {
+   "slug": "redmi-note-12-4g",
+   "name": "Redmi Note 12 4G",
    "brand": "Redmi",
    "code": "tapas",
-   "count": 6,
-   "models": "Global, 23027RAD4I, 23028RA60L",
-   "name": "Redmi Note 12 4G",
    "regions": [
     "Global",
     "India",
     "Turkey"
    ],
-   "slug": "redmi-note-12-4g"
+   "builds": 7
   },
   {
+   "slug": "redmi-note-12-4g-nfc",
+   "name": "Redmi Note 12 4G Nfc",
    "brand": "Redmi",
    "code": "topaz",
-   "count": 8,
-   "models": "Global",
-   "name": "Redmi Note 12 4G Nfc",
    "regions": [
     "Global",
     "EEA",
     "Indonesia",
     "Russia"
    ],
-   "slug": "redmi-note-12-4g-nfc"
+   "builds": 8
   },
   {
+   "slug": "redmi-note-12-5g",
+   "name": "Redmi Note 12 5G",
    "brand": "Redmi",
    "code": "sunstone",
-   "count": 10,
-   "models": "22111317G, 22101317C, 22111317I",
-   "name": "Redmi Note 12 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Taiwan"
    ],
-   "slug": "redmi-note-12-5g"
+   "builds": 11
   },
   {
+   "slug": "redmi-note-12-discovery",
+   "name": "Redmi Note 12 Discovery",
    "brand": "Redmi",
    "code": "ruby",
-   "count": 2,
-   "models": "22101316UC",
-   "name": "Redmi Note 12 Discovery",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-12-discovery"
+   "builds": 3
   },
   {
+   "slug": "redmi-note-12-pro",
+   "name": "Redmi Note 12 Pro",
    "brand": "Redmi",
    "code": "ruby",
-   "count": 18,
-   "models": "Global, China, India",
-   "name": "Redmi Note 12 Pro",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
-    "SKorea",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-12-pro"
+   "builds": 25
   },
   {
-   "brand": "Redmi",
-   "code": "sweet_k6a",
-   "count": 10,
-   "models": "2209116AG",
-   "name": "Redmi Note 12 Pro 4G",
-   "regions": [
-    "Global",
-    "EEA",
-    "Indonesia",
-    "Russia",
-    "Turkey"
-   ],
-   "slug": "redmi-note-12-pro-4g"
-  },
-  {
+   "slug": "redmi-note-12-pro-speed",
+   "name": "Redmi Note 12 Pro Speed",
    "brand": "Redmi",
    "code": "redwood",
-   "count": 2,
-   "models": "22101320C",
-   "name": "Redmi Note 12 Pro Speed",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-12-pro-speed"
+   "builds": 3
   },
   {
+   "slug": "redmi-note-12-turbo",
+   "name": "Redmi Note 12 Turbo",
    "brand": "Redmi",
    "code": "marble",
-   "count": 1,
-   "models": "China",
-   "name": "Redmi Note 12 Turbo",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-12-turbo"
+   "builds": 4
   },
   {
+   "slug": "redmi-note-12r",
+   "name": "Redmi Note 12R",
    "brand": "Redmi",
    "code": "sky",
-   "count": 2,
-   "models": "23076RA4BC",
-   "name": "Redmi Note 12R",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-12r"
+   "builds": 3
   },
   {
+   "slug": "redmi-note-12r-pro",
+   "name": "Redmi Note 12R Pro",
    "brand": "Redmi",
    "code": "sunstone",
-   "count": 2,
-   "models": "22101317C",
-   "name": "Redmi Note 12R Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-12r-pro"
+   "builds": 3
   },
   {
+   "slug": "redmi-note-12s",
+   "name": "Redmi Note 12S",
    "brand": "Redmi",
    "code": "sea",
-   "count": 10,
-   "models": "2303CRA44A, 23030RAC7Y, 2303ERA42L",
-   "name": "Redmi Note 12S",
    "regions": [
     "Global",
     "EEA",
@@ -3943,53 +2961,49 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-12s"
+   "builds": 12
   },
   {
+   "slug": "redmi-note-12t-pro",
+   "name": "Redmi Note 12T Pro",
    "brand": "Redmi",
    "code": "pearl",
-   "count": 2,
-   "models": "23054RA19C",
-   "name": "Redmi Note 12T Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-12t-pro"
+   "builds": 3
   },
   {
+   "slug": "redmi-note-13",
+   "name": "Redmi Note 13",
    "brand": "Redmi",
    "code": "sapphire",
-   "count": 2,
-   "models": "23129RAA4G, 23129RA5FL",
-   "name": "Redmi Note 13",
    "regions": [
     "Global"
    ],
-   "slug": "redmi-note-13"
+   "builds": 2
   },
   {
+   "slug": "redmi-note-13-5g",
+   "name": "Redmi Note 13 5G",
    "brand": "Redmi",
    "code": "gold",
-   "count": 13,
-   "models": "2312DRAABG, 2312DRAABI, 2312DRAABC",
-   "name": "Redmi Note 13 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-13-5g"
+   "builds": 15
   },
   {
+   "slug": "redmi-note-13-nfc",
+   "name": "Redmi Note 13 Nfc",
    "brand": "Redmi",
    "code": "sapphiren",
-   "count": 11,
-   "models": "23124RA7EO",
-   "name": "Redmi Note 13 Nfc",
    "regions": [
     "Global",
     "EEA",
@@ -3998,32 +3012,30 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-13-nfc"
+   "builds": 14
   },
   {
+   "slug": "redmi-note-13-pro",
+   "name": "Redmi Note 13 Pro",
    "brand": "Redmi",
    "code": "garnet",
-   "count": 16,
-   "models": "2312DRA50G, 2312DRA50I, 2312DRA50C, XIG05",
-   "name": "Redmi Note 13 Pro",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-13-pro"
+   "builds": 19
   },
   {
+   "slug": "redmi-note-13-pro-4g",
+   "name": "Redmi Note 13 Pro 4G",
    "brand": "Redmi",
    "code": "emerald",
-   "count": 8,
-   "models": "23117RA68G",
-   "name": "Redmi Note 13 Pro 4G",
    "regions": [
     "Global",
     "EEA",
@@ -4031,55 +3043,50 @@
     "Russia",
     "Turkey"
    ],
-   "slug": "redmi-note-13-pro-4g"
+   "builds": 21
   },
   {
+   "slug": "redmi-note-13-pro-plus",
+   "name": "Redmi Note 13 Pro Plus",
    "brand": "Redmi",
    "code": "zircon",
-   "count": 17,
-   "models": "23090RA98G, 23090RA98I, 23090RA98C, 24040RA98R",
-   "name": "Redmi Note 13 Pro Plus",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
-    "Japan",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-13-pro-plus"
+   "builds": 17
   },
   {
+   "slug": "redmi-note-13r",
+   "name": "Redmi Note 13R",
    "brand": "Redmi",
    "code": "breeze",
-   "count": 2,
-   "models": "2406ERN9CC",
-   "name": "Redmi Note 13R",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-13r"
+   "builds": 2
   },
   {
+   "slug": "redmi-note-13r-pro",
+   "name": "Redmi Note 13R Pro",
    "brand": "Redmi",
    "code": "gold",
-   "count": 1,
-   "models": "2311FRAFDC",
-   "name": "Redmi Note 13R Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-13r-pro"
+   "builds": 3
   },
   {
+   "slug": "redmi-note-14-4g",
+   "name": "Redmi Note 14 4G",
    "brand": "Redmi",
    "code": "tanzanite",
-   "count": 11,
-   "models": "24117RN76G, 24117RN76O, 24117RN76E, 24117RN76L",
-   "name": "Redmi Note 14 4G",
    "regions": [
     "Global",
     "EEA",
@@ -4088,96 +3095,77 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-14-4g"
+   "builds": 15
   },
   {
+   "slug": "redmi-note-14-5g",
+   "name": "Redmi Note 14 5G",
    "brand": "Redmi",
    "code": "beryl",
-   "count": 16,
-   "models": "24094RAD4G, 24094RAD4C, 24094RAD4I",
-   "name": "Redmi Note 14 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-14-5g"
+   "builds": 16
   },
   {
+   "slug": "redmi-note-14-pro-4g",
+   "name": "Redmi Note 14 Pro 4G",
    "brand": "Redmi",
    "code": "obsidian",
-   "count": 8,
-   "models": "24116RACCG",
-   "name": "Redmi Note 14 Pro 4G",
    "regions": [
     "Global",
     "EEA",
     "Russia",
     "Turkey"
    ],
-   "slug": "redmi-note-14-pro-4g"
+   "builds": 10
   },
   {
+   "slug": "redmi-note-14-pro-5g",
+   "name": "Redmi Note 14 Pro 5G",
    "brand": "Redmi",
    "code": "malachite",
-   "count": 15,
-   "models": "24090RA29G, 24090RA29I, 24090RA29C",
-   "name": "Redmi Note 14 Pro 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-14-pro-5g"
+   "builds": 18
   },
   {
+   "slug": "redmi-note-14-pro-plus-5g",
+   "name": "Redmi Note 14 Pro Plus 5G",
    "brand": "Redmi",
    "code": "amethyst",
-   "count": 14,
-   "models": "24115RA8EG, 24115RA8EI, 24115RA8EC",
-   "name": "Redmi Note 14 Pro Plus 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-14-pro-plus-5g"
+   "builds": 19
   },
   {
-   "brand": "Redmi",
-   "code": "emerald_r",
-   "count": 8,
-   "models": "2502FRA65G",
-   "name": "Redmi Note 14S",
-   "regions": [
-    "Global",
-    "EEA",
-    "Russia",
-    "Turkey"
-   ],
-   "slug": "redmi-note-14s"
-  },
-  {
+   "slug": "redmi-note-15-4g",
+   "name": "Redmi Note 15 4G",
    "brand": "Redmi",
    "code": "spinel",
-   "count": 10,
-   "models": "2510DRA23G, 2510DRA23E, 2510DRA23L",
-   "name": "Redmi Note 15 4G",
    "regions": [
     "Global",
     "EEA",
@@ -4186,49 +3174,46 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-15-4g"
+   "builds": 18
   },
   {
+   "slug": "redmi-note-15-5g",
+   "name": "Redmi Note 15 5G",
    "brand": "Redmi",
    "code": "kunzite",
-   "count": 11,
-   "models": "25098RA98G, 25098RA98E, 25098RA98I, 25098RA98C, 25098RA98T",
-   "name": "Redmi Note 15 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan"
    ],
-   "slug": "redmi-note-15-5g"
+   "builds": 18
   },
   {
+   "slug": "redmi-note-15-pro-4g",
+   "name": "Redmi Note 15 Pro 4G",
    "brand": "Redmi",
    "code": "charoite",
-   "count": 8,
-   "models": "25100RA69G",
-   "name": "Redmi Note 15 Pro 4G",
    "regions": [
     "Global",
     "EEA",
     "Russia",
     "Turkey"
    ],
-   "slug": "redmi-note-15-pro-4g"
+   "builds": 9
   },
   {
+   "slug": "redmi-note-15-pro-5g",
+   "name": "Redmi Note 15 Pro 5G",
    "brand": "Redmi",
    "code": "lapis",
-   "count": 17,
-   "models": "25080RABDG, 25080RABDI, 25080RABDR, 25080RABDC, 25080RABDT",
-   "name": "Redmi Note 15 Pro 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Japan",
@@ -4236,57 +3221,53 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-15-pro-5g"
+   "builds": 22
   },
   {
+   "slug": "redmi-note-15-pro-plus-5g",
+   "name": "Redmi Note 15 Pro Plus 5G",
    "brand": "Redmi",
    "code": "flourite",
-   "count": 9,
-   "models": "2510ERA8BG, 2510ERA8BI, 2510ERA8BC, 25104RADAC, 2510ERA8BT",
-   "name": "Redmi Note 15 Pro Plus 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-15-pro-plus-5g"
+   "builds": 24
   },
   {
+   "slug": "redmi-note-15-se-5g",
+   "name": "Redmi Note 15 Se 5G",
    "brand": "Redmi",
    "code": "kunzite",
-   "count": 1,
-   "models": "26022PCACI",
-   "name": "Redmi Note 15 Se 5G",
    "regions": [
     "India"
    ],
-   "slug": "redmi-note-15-se-5g"
+   "builds": 3
   },
   {
+   "slug": "redmi-note-15r",
+   "name": "Redmi Note 15R",
    "brand": "Redmi",
    "code": "tornado",
-   "count": 8,
-   "models": "25057RA09C",
-   "name": "Redmi Note 15R",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Turkey"
    ],
-   "slug": "redmi-note-15r"
+   "builds": 8
   },
   {
+   "slug": "redmi-note-17-4g",
+   "name": "Redmi Note 17 4G",
    "brand": "Redmi",
    "code": "zephyr",
-   "count": 12,
-   "models": "26012RN62A, 26012RN62Y, 26012RN62L",
-   "name": "Redmi Note 17 4G",
    "regions": [
     "Global",
     "EEA",
@@ -4295,49 +3276,46 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-17-4g"
+   "builds": 12
   },
   {
+   "slug": "redmi-note-17-5g",
+   "name": "Redmi Note 17 5G",
    "brand": "Redmi",
    "code": "mist",
-   "count": 14,
-   "models": "26081RA18G, 26021RN18C, 26021RN18I, 26081RA18L",
-   "name": "Redmi Note 17 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-17-5g"
+   "builds": 16
   },
   {
+   "slug": "redmi-note-17-pro-5g",
+   "name": "Redmi Note 17 Pro 5G",
    "brand": "Redmi",
    "code": "iolite",
-   "count": 16,
-   "models": "2607DRA18G, 2607DRA18C, 2607DRA18I, 2607DRA18T",
-   "name": "Redmi Note 17 Pro 5G",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-17-pro-5g"
+   "builds": 17
   },
   {
+   "slug": "redmi-note-17-pro-max-5g",
+   "name": "Redmi Note 17 Pro Max 5G",
    "brand": "Redmi",
    "code": "brussels",
-   "count": 16,
-   "models": "2609FRA74G, 2609FRA74I, 2609FRA74T",
-   "name": "Redmi Note 17 Pro Max 5G",
    "regions": [
     "Global",
     "EEA",
@@ -4348,254 +3326,243 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-17-pro-max-5g"
+   "builds": 16
   },
   {
+   "slug": "redmi-note-1s-4g",
+   "name": "Redmi Note 1S 4G",
    "brand": "Redmi",
    "code": "gucci",
-   "count": 4,
-   "models": "2014912, China",
-   "name": "Redmi Note 1S 4G",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-note-1s-4g"
+   "builds": 8
   },
   {
+   "slug": "redmi-note-2",
+   "name": "Redmi Note 2",
    "brand": "Redmi",
    "code": "hermes",
-   "count": 4,
-   "models": "16GB, 32GB, 16GB, 32GB",
-   "name": "Redmi Note 2",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-note-2"
+   "builds": 8
   },
   {
+   "slug": "redmi-note-3-mtk",
+   "name": "Redmi Note 3 Mtk",
    "brand": "Redmi",
    "code": "hennessy",
-   "count": 2,
-   "models": "",
-   "name": "Redmi Note 3 Mtk",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-3-mtk"
+   "builds": 4
   },
   {
+   "slug": "redmi-note-3-pro",
+   "name": "Redmi Note 3 Pro",
    "brand": "Redmi",
    "code": "kenzo",
-   "count": 4,
-   "models": "Global, China",
-   "name": "Redmi Note 3 Pro",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-note-3-pro"
+   "builds": 8
   },
   {
+   "slug": "redmi-note-3-se",
+   "name": "Redmi Note 3 Se",
    "brand": "Redmi",
    "code": "kate",
-   "count": 2,
-   "models": "2015161",
-   "name": "Redmi Note 3 Se",
    "regions": [
     "Global"
    ],
-   "slug": "redmi-note-3-se"
+   "builds": 4
   },
   {
+   "slug": "redmi-note-3g",
+   "name": "Redmi Note 3G",
    "brand": "Redmi",
    "code": "lcsh92",
-   "count": 2,
-   "models": "2014018, 2013121",
-   "name": "Redmi Note 3G",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-note-3g"
+   "builds": 10
   },
   {
+   "slug": "redmi-note-4",
+   "name": "Redmi Note 4",
    "brand": "Redmi",
    "code": "mido",
-   "count": 4,
-   "models": "Global, China",
-   "name": "Redmi Note 4",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-note-4"
+   "builds": 8
   },
   {
+   "slug": "redmi-note-4-mtk",
+   "name": "Redmi Note 4 Mtk",
    "brand": "Redmi",
    "code": "nikel",
-   "count": 4,
-   "models": "2016050, 2016051, MBE6A5, MBT6A5",
-   "name": "Redmi Note 4 Mtk",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-note-4-mtk"
+   "builds": 8
   },
   {
+   "slug": "redmi-note-4g",
+   "name": "Redmi Note 4G",
    "brand": "Redmi",
    "code": "dior",
-   "count": 4,
-   "models": "Global, India, China",
-   "name": "Redmi Note 4G",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-note-4g"
+   "builds": 8
   },
   {
+   "slug": "redmi-note-5",
+   "name": "Redmi Note 5",
    "brand": "Redmi",
    "code": "whyred",
-   "count": 6,
-   "models": "MEI7S, Global, China",
-   "name": "Redmi Note 5",
    "regions": [
     "Global",
     "China",
     "Russia"
    ],
-   "slug": "redmi-note-5"
+   "builds": 10
   },
   {
+   "slug": "redmi-note-5a-2gb",
+   "name": "Redmi Note 5A 2Gb",
    "brand": "Redmi",
    "code": "ugglite",
-   "count": 4,
-   "models": "Global, China, MDI6",
-   "name": "Redmi Note 5A 2Gb",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-note-5a-2gb"
+   "builds": 8
   },
   {
+   "slug": "redmi-note-5a-prime",
+   "name": "Redmi Note 5A Prime",
    "brand": "Redmi",
    "code": "ugg",
-   "count": 4,
-   "models": "Global, China, MDI6S",
-   "name": "Redmi Note 5A Prime",
    "regions": [
     "Global",
     "China"
    ],
-   "slug": "redmi-note-5a-prime"
+   "builds": 8
   },
   {
+   "slug": "redmi-note-6-pro",
+   "name": "Redmi Note 6 Pro",
    "brand": "Redmi",
    "code": "tulip",
-   "count": 4,
-   "models": "Global, India",
-   "name": "Redmi Note 6 Pro",
    "regions": [
     "Global",
     "Russia"
    ],
-   "slug": "redmi-note-6-pro"
+   "builds": 6
   },
   {
+   "slug": "redmi-note-7-and-7s",
+   "name": "Redmi Note 7 And 7S",
    "brand": "Redmi",
    "code": "lavender",
-   "count": 10,
-   "models": "Global, China, M1901F7I",
-   "name": "Redmi Note 7 And 7S",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Russia"
    ],
-   "slug": "redmi-note-7-and-7s"
+   "builds": 12
   },
   {
+   "slug": "redmi-note-7-pro",
+   "name": "Redmi Note 7 Pro",
    "brand": "Redmi",
    "code": "violet",
-   "count": 4,
-   "models": "M1901F7S, M1901F7BE",
-   "name": "Redmi Note 7 Pro",
    "regions": [
     "China",
     "India"
    ],
-   "slug": "redmi-note-7-pro"
+   "builds": 6
   },
   {
+   "slug": "redmi-note-8",
+   "name": "Redmi Note 8",
    "brand": "Redmi",
    "code": "ginkgo",
-   "count": 12,
-   "models": "Global, India, China",
-   "name": "Redmi Note 8",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia"
    ],
-   "slug": "redmi-note-8"
+   "builds": 17
   },
   {
+   "slug": "redmi-note-8-2021",
+   "name": "Redmi Note 8 2021",
    "brand": "Redmi",
    "code": "biloba",
-   "count": 3,
-   "models": "M1908C3JGG",
-   "name": "Redmi Note 8 2021",
    "regions": [
     "Global",
     "EEA",
     "Russia"
    ],
-   "slug": "redmi-note-8-2021"
+   "builds": 9
   },
   {
+   "slug": "redmi-note-8-pro",
+   "name": "Redmi Note 8 Pro",
    "brand": "Redmi",
    "code": "begonia",
-   "count": 9,
-   "models": "Global, China, India",
-   "name": "Redmi Note 8 Pro",
    "regions": [
     "Global",
-    "EEA",
     "China",
-    "India",
+    "EEA",
     "Indonesia",
     "Russia"
    ],
-   "slug": "redmi-note-8-pro"
+   "builds": 14
   },
   {
+   "slug": "redmi-note-8-pro-2",
+   "name": "Redmi Note 8 Pro",
+   "brand": "Redmi",
+   "code": "begoniain",
+   "regions": [
+    "India"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "redmi-note-8t",
+   "name": "Redmi Note 8T",
    "brand": "Redmi",
    "code": "willow",
-   "count": 6,
-   "models": "M1908C3XG",
-   "name": "Redmi Note 8T",
    "regions": [
     "Global",
     "EEA",
     "Russia"
    ],
-   "slug": "redmi-note-8t"
+   "builds": 9
   },
   {
+   "slug": "redmi-note-9",
+   "name": "Redmi Note 9",
    "brand": "Redmi",
    "code": "merlin",
-   "count": 12,
-   "models": "M2003J15SS, M2003J15SG, M2003J15SI",
-   "name": "Redmi Note 9",
    "regions": [
     "Global",
     "EEA",
@@ -4605,38 +3572,108 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-9"
+   "builds": 18
   },
   {
+   "slug": "redmi-note-9-4g",
+   "name": "Redmi Note 9 4G",
    "brand": "Redmi",
    "code": "lime",
-   "count": 2,
-   "models": "M2010J19SC",
-   "name": "Redmi Note 9 4G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-9-4g"
+   "builds": 6
   },
   {
+   "slug": "redmi-note-9-5g",
+   "name": "Redmi Note 9 5G",
    "brand": "Redmi",
    "code": "cannon",
-   "count": 2,
-   "models": "M2007J22C",
-   "name": "Redmi Note 9 5G",
    "regions": [
     "China"
    ],
-   "slug": "redmi-note-9-5g"
+   "builds": 7
   },
   {
+   "slug": "redmi-note-9-pro",
+   "name": "Redmi Note 9 Pro",
    "brand": "Redmi",
    "code": "joyeuse",
-   "count": 14,
-   "models": "M2003J6B2G",
-   "name": "Redmi Note 9 Pro",
    "regions": [
     "Global",
+    "EEA",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 15
+  },
+  {
+   "slug": "redmi-note-9-pro-5g",
+   "name": "Redmi Note 9 Pro 5G",
+   "brand": "Redmi",
+   "code": "gauguin",
+   "regions": [
+    "China"
+   ],
+   "builds": 7
+  },
+  {
+   "slug": "redmi-note-9-pro-and-redmi-note-10",
+   "name": "Redmi Note 9 Pro And Redmi Note 10",
+   "brand": "Redmi",
+   "code": "curtana",
+   "regions": [
+    "India"
+   ],
+   "builds": 6
+  },
+  {
+   "slug": "redmi-note-9-pro-max",
+   "name": "Redmi Note 9 Pro Max",
+   "brand": "Redmi",
+   "code": "excalibur",
+   "regions": [
+    "India"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "redmi-note-9s",
+   "name": "Redmi Note 9S",
+   "brand": "Redmi",
+   "code": "curtana",
+   "regions": [
+    "Global",
+    "EEA",
+    "Russia",
+    "Turkey"
+   ],
+   "builds": 11
+  },
+  {
+   "slug": "redmi-note-9t",
+   "name": "Redmi Note 9T",
+   "brand": "Redmi",
+   "code": "cannong",
+   "regions": [
+    "Global",
+    "EEA",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 10
+  },
+  {
+   "slug": "redmi-pad",
+   "name": "Redmi Pad",
+   "brand": "Redmi",
+   "code": "yunluo",
+   "regions": [
+    "Global",
+    "China",
     "EEA",
     "India",
     "Indonesia",
@@ -4644,234 +3681,1147 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-9-pro"
+   "builds": 20
   },
   {
+   "slug": "redmi-pad-2",
+   "name": "Redmi Pad 2",
    "brand": "Redmi",
-   "code": "gauguin",
-   "count": 2,
-   "models": "M2007J17C",
-   "name": "Redmi Note 9 Pro 5G",
-   "regions": [
-    "China"
-   ],
-   "slug": "redmi-note-9-pro-5g"
-  },
-  {
-   "brand": "Redmi",
-   "code": "curtana",
-   "count": 1,
-   "models": "M2003J6A1I, 2109106A1I",
-   "name": "Redmi Note 9 Pro And Redmi Note 10",
-   "regions": [
-    "India"
-   ],
-   "slug": "redmi-note-9-pro-and-redmi-note-10"
-  },
-  {
-   "brand": "Redmi",
-   "code": "excalibur",
-   "count": 2,
-   "models": "M2003J6B1I",
-   "name": "Redmi Note 9 Pro Max",
-   "regions": [
-    "India"
-   ],
-   "slug": "redmi-note-9-pro-max"
-  },
-  {
-   "brand": "Redmi",
-   "code": "curtana",
-   "count": 8,
-   "models": "M2003J6A1G, M2003J6A1R, M2003J6A1I",
-   "name": "Redmi Note 9S",
+   "code": "taiko",
    "regions": [
     "Global",
+    "China",
     "EEA",
-    "Russia",
-    "Turkey"
-   ],
-   "slug": "redmi-note-9s"
-  },
-  {
-   "brand": "Redmi",
-   "code": "cannong",
-   "count": 10,
-   "models": "Global, Japan",
-   "name": "Redmi Note 9T",
-   "regions": [
-    "Global",
-    "EEA",
+    "India",
+    "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-note-9t"
+   "builds": 17
   },
   {
+   "slug": "redmi-pad-2-4g",
+   "name": "Redmi Pad 2 4G",
+   "brand": "Redmi",
+   "code": "koto",
+   "regions": [
+    "Global",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Taiwan"
+   ],
+   "builds": 12
+  },
+  {
+   "slug": "redmi-pad-2-pro",
+   "name": "Redmi Pad 2 Pro",
+   "brand": "Redmi",
+   "code": "flute",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 17
+  },
+  {
+   "slug": "redmi-pad-2-pro-5g",
+   "name": "Redmi Pad 2 Pro 5G",
+   "brand": "Redmi",
+   "code": "organ",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Russia",
+    "Taiwan"
+   ],
+   "builds": 13
+  },
+  {
+   "slug": "redmi-pad-2-se",
+   "name": "Redmi Pad 2 SE",
+   "brand": "Redmi",
+   "code": "guitar",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 15
+  },
+  {
+   "slug": "redmi-pad-2-se-4g",
+   "name": "Redmi Pad 2 SE 4G",
+   "brand": "Redmi",
+   "code": "erhu",
+   "regions": [
+    "Global",
+    "China",
+    "Indonesia",
+    "Russia",
+    "Taiwan"
+   ],
+   "builds": 11
+  },
+  {
+   "slug": "redmi-pad-pro",
+   "name": "Redmi Pad Pro",
+   "brand": "Redmi",
+   "code": "dizi",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 19
+  },
+  {
+   "slug": "redmi-pad-pro-5g",
+   "name": "Redmi Pad Pro 5G",
+   "brand": "Redmi",
+   "code": "ruan",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Russia"
+   ],
+   "builds": 10
+  },
+  {
+   "slug": "redmi-pad-se",
+   "name": "Redmi Pad SE",
+   "brand": "Redmi",
+   "code": "xun",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 17
+  },
+  {
+   "slug": "redmi-pad-se-8-7-4g",
+   "name": "Redmi Pad SE 8.7 4G",
+   "brand": "Redmi",
+   "code": "spark",
+   "regions": [
+    "Global",
+    "EEA",
+    "India",
+    "Russia",
+    "Taiwan"
+   ],
+   "builds": 12
+  },
+  {
+   "slug": "redmi-pad-se-8-7-5g",
+   "name": "Redmi Pad SE 8.7 5G",
+   "brand": "Redmi",
+   "code": "flare",
+   "regions": [
+    "Global",
+    "EEA",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 15
+  },
+  {
+   "slug": "redmi-pro",
+   "name": "Redmi Pro",
    "brand": "Redmi",
    "code": "omega",
-   "count": 2,
-   "models": "2016020, 2016021",
-   "name": "Redmi Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-pro"
+   "builds": 4
   },
   {
-   "brand": "Redmi",
-   "code": "somalia",
-   "count": 2,
-   "models": "26020RN1AC",
+   "slug": "redmi-r70-5g",
    "name": "Redmi R70 5G",
-   "regions": [
-    "China"
-   ],
-   "slug": "redmi-r70-5g"
-  },
-  {
    "brand": "Redmi",
    "code": "somalia",
-   "count": 2,
-   "models": "26020RN1AC",
-   "name": "Redmi R70M",
    "regions": [
     "China"
    ],
-   "slug": "redmi-r70m"
+   "builds": 3
   },
   {
+   "slug": "redmi-r70m",
+   "name": "Redmi R70M",
+   "brand": "Redmi",
+   "code": "somalia",
+   "regions": [
+    "China"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "redmi-s2-and-y2",
+   "name": "Redmi S2 And Y2",
    "brand": "Redmi",
    "code": "ysl",
-   "count": 6,
-   "models": "S2, Y2, S2",
-   "name": "Redmi S2 And Y2",
    "regions": [
     "Global",
     "China",
     "Russia"
    ],
-   "slug": "redmi-s2-and-y2"
+   "builds": 10
   },
   {
+   "slug": "redmi-turbo-3",
+   "name": "Redmi Turbo 3",
    "brand": "Redmi",
    "code": "peridot",
-   "count": 2,
-   "models": "24069RA21C",
-   "name": "Redmi Turbo 3",
    "regions": [
     "China"
    ],
-   "slug": "redmi-turbo-3"
+   "builds": 3
   },
   {
+   "slug": "redmi-turbo-4",
+   "name": "Redmi Turbo 4",
    "brand": "Redmi",
    "code": "rodin",
-   "count": 2,
-   "models": "24129RT7CC",
-   "name": "Redmi Turbo 4",
    "regions": [
     "China"
    ],
-   "slug": "redmi-turbo-4"
+   "builds": 3
   },
   {
+   "slug": "redmi-turbo-4-pro",
+   "name": "Redmi Turbo 4 Pro",
    "brand": "Redmi",
    "code": "onyx",
-   "count": 1,
-   "models": "25053RT47C",
-   "name": "Redmi Turbo 4 Pro",
    "regions": [
     "China"
    ],
-   "slug": "redmi-turbo-4-pro"
+   "builds": 3
   },
   {
+   "slug": "redmi-turbo-5",
+   "name": "Redmi Turbo 5",
    "brand": "Redmi",
    "code": "klee",
-   "count": 16,
-   "models": "2511FRT34C",
-   "name": "Redmi Turbo 5",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "redmi-turbo-5"
+   "builds": 17
   },
   {
+   "slug": "redmi-turbo-5-max",
+   "name": "Redmi Turbo 5 Max",
    "brand": "Redmi",
    "code": "dash",
-   "count": 2,
-   "models": "2602BRT18C",
-   "name": "Redmi Turbo 5 Max",
    "regions": [
     "China"
    ],
-   "slug": "redmi-turbo-5-max"
+   "builds": 3
   },
   {
+   "slug": "redmi-y3",
+   "name": "Redmi Y3",
    "brand": "Redmi",
    "code": "onc",
-   "count": 2,
-   "models": "M1810F6G, M1810F6I",
-   "name": "Redmi Y3",
    "regions": [
     "India"
    ],
-   "slug": "redmi-y3"
+   "builds": 2
   },
   {
+   "slug": "mi-10",
+   "name": "Mi 10",
+   "brand": "Xiaomi",
+   "code": "umi",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Turkey"
+   ],
+   "builds": 25
+  },
+  {
+   "slug": "mi-10-lite",
+   "name": "Mi 10 Lite",
+   "brand": "Xiaomi",
+   "code": "monet",
+   "regions": [
+    "Global",
+    "EEA",
+    "Taiwan"
+   ],
+   "builds": 7
+  },
+  {
+   "slug": "mi-10-lite-zoom",
+   "name": "Mi 10 Lite Zoom",
+   "brand": "Xiaomi",
+   "code": "vangogh",
+   "regions": [
+    "China"
+   ],
+   "builds": 7
+  },
+  {
+   "slug": "mi-10-pro",
+   "name": "Mi 10 Pro",
+   "brand": "Xiaomi",
+   "code": "cmi",
+   "regions": [
+    "Global",
+    "China",
+    "EEA"
+   ],
+   "builds": 13
+  },
+  {
+   "slug": "mi-10-ultra",
+   "name": "Mi 10 Ultra",
+   "brand": "Xiaomi",
+   "code": "cas",
+   "regions": [
+    "China"
+   ],
+   "builds": 7
+  },
+  {
+   "slug": "mi-10i",
+   "name": "Mi 10I",
+   "brand": "Xiaomi",
+   "code": "gauguin",
+   "regions": [
+    "India"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "mi-10s",
+   "name": "Mi 10S",
+   "brand": "Xiaomi",
+   "code": "thyme",
+   "regions": [
+    "China"
+   ],
+   "builds": 7
+  },
+  {
+   "slug": "mi-10t-and-mi-10t-pro",
+   "name": "Mi 10T And Mi 10T Pro",
+   "brand": "Xiaomi",
+   "code": "apollo",
+   "regions": [
+    "Global",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 16
+  },
+  {
+   "slug": "mi-10t-lite",
+   "name": "Mi 10T Lite",
+   "brand": "Xiaomi",
+   "code": "gauguin",
+   "regions": [
+    "Global",
+    "EEA",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 10
+  },
+  {
+   "slug": "mi-11",
+   "name": "Mi 11",
+   "brand": "Xiaomi",
+   "code": "venus",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 23
+  },
+  {
+   "slug": "mi-11-le",
+   "name": "Mi 11 Le",
    "brand": "Xiaomi",
    "code": "lisa",
-   "count": 14,
-   "models": "2109119DG, 2109119DI",
-   "name": "Xiaomi 11 Lite 5G Ne",
+   "regions": [
+    "China"
+   ],
+   "builds": 5
+  },
+  {
+   "slug": "mi-11-lite-4g",
+   "name": "Mi 11 Lite 4G",
+   "brand": "Xiaomi",
+   "code": "courbet",
    "regions": [
     "Global",
     "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Turkey"
+   ],
+   "builds": 15
+  },
+  {
+   "slug": "mi-11-lite-5g",
+   "name": "Mi 11 Lite 5G",
+   "brand": "Xiaomi",
+   "code": "renoir",
+   "regions": [
+    "Global",
     "China",
+    "EEA",
+    "Japan",
+    "Russia",
+    "Taiwan"
+   ],
+   "builds": 17
+  },
+  {
+   "slug": "mi-11-pro-and-ultra",
+   "name": "Mi 11 Pro And Ultra",
+   "brand": "Xiaomi",
+   "code": "star",
+   "regions": [
+    "China"
+   ],
+   "builds": 7
+  },
+  {
+   "slug": "mi-11-ultra",
+   "name": "Mi 11 Ultra",
+   "brand": "Xiaomi",
+   "code": "star",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Indonesia"
+   ],
+   "builds": 19
+  },
+  {
+   "slug": "mi-11i",
+   "name": "Mi 11I",
+   "brand": "Xiaomi",
+   "code": "haydn",
+   "regions": [
+    "Global",
+    "EEA"
+   ],
+   "builds": 6
+  },
+  {
+   "slug": "mi-11x",
+   "name": "Mi 11X",
+   "brand": "Xiaomi",
+   "code": "alioth",
+   "regions": [
+    "India"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "mi-11x-pro",
+   "name": "Mi 11X Pro",
+   "brand": "Xiaomi",
+   "code": "haydn",
+   "regions": [
+    "India"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "mi-1s",
+   "name": "Mi 1S",
+   "brand": "Xiaomi",
+   "code": "mione",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-2a",
+   "name": "Mi 2A",
+   "brand": "Xiaomi",
+   "code": "taurus",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-2s",
+   "name": "Mi 2S",
+   "brand": "Xiaomi",
+   "code": "aries",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-3",
+   "name": "Mi 3",
+   "brand": "Xiaomi",
+   "code": "cancro",
+   "regions": [
+    "Global"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-3-td",
+   "name": "Mi 3 Td",
+   "brand": "Xiaomi",
+   "code": "pisces",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-4",
+   "name": "Mi 4",
+   "brand": "Xiaomi",
+   "code": "cancro",
+   "regions": [
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-4-lte-ct",
+   "name": "Mi 4 Lte Ct",
+   "brand": "Xiaomi",
+   "code": "cancro",
+   "regions": [
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-4c",
+   "name": "Mi 4C",
+   "brand": "Xiaomi",
+   "code": "libra",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-4i",
+   "name": "Mi 4I",
+   "brand": "Xiaomi",
+   "code": "ferrari",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-4s",
+   "name": "Mi 4S",
+   "brand": "Xiaomi",
+   "code": "aqua",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-5",
+   "name": "Mi 5",
+   "brand": "Xiaomi",
+   "code": "gemini",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-5c",
+   "name": "Mi 5C",
+   "brand": "Xiaomi",
+   "code": "meri",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-5s",
+   "name": "Mi 5S",
+   "brand": "Xiaomi",
+   "code": "capricorn",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-5s-plus",
+   "name": "Mi 5S Plus",
+   "brand": "Xiaomi",
+   "code": "natrium",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-5x",
+   "name": "Mi 5X",
+   "brand": "Xiaomi",
+   "code": "tiffany",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-6",
+   "name": "Mi 6",
+   "brand": "Xiaomi",
+   "code": "sagit",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-6x",
+   "name": "Mi 6X",
+   "brand": "Xiaomi",
+   "code": "wayne",
+   "regions": [
+    "China"
+   ],
+   "builds": 5
+  },
+  {
+   "slug": "mi-8",
+   "name": "Mi 8",
+   "brand": "Xiaomi",
+   "code": "dipper",
+   "regions": [
+    "Global",
+    "China",
+    "Russia"
+   ],
+   "builds": 10
+  },
+  {
+   "slug": "mi-8-explorer",
+   "name": "Mi 8 Explorer",
+   "brand": "Xiaomi",
+   "code": "ursa",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-8-lite",
+   "name": "Mi 8 Lite",
+   "brand": "Xiaomi",
+   "code": "platina",
+   "regions": [
+    "Global",
+    "China",
+    "Russia"
+   ],
+   "builds": 10
+  },
+  {
+   "slug": "mi-8-pro",
+   "name": "Mi 8 Pro",
+   "brand": "Xiaomi",
+   "code": "equuleus",
+   "regions": [
+    "Global",
+    "China",
+    "Russia"
+   ],
+   "builds": 11
+  },
+  {
+   "slug": "mi-8-se",
+   "name": "Mi 8 Se",
+   "brand": "Xiaomi",
+   "code": "sirius",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-9",
+   "name": "Mi 9",
+   "brand": "Xiaomi",
+   "code": "cepheus",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "Russia"
+   ],
+   "builds": 12
+  },
+  {
+   "slug": "mi-9-lite",
+   "name": "Mi 9 Lite",
+   "brand": "Xiaomi",
+   "code": "pyxis",
+   "regions": [
+    "Global",
+    "EEA",
+    "Russia"
+   ],
+   "builds": 6
+  },
+  {
+   "slug": "mi-9-pro-5g",
+   "name": "Mi 9 Pro 5G",
+   "brand": "Xiaomi",
+   "code": "crux",
+   "regions": [
+    "China"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "mi-9-se",
+   "name": "Mi 9 Se",
+   "brand": "Xiaomi",
+   "code": "grus",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "Russia"
+   ],
+   "builds": 12
+  },
+  {
+   "slug": "mi-9t-pro",
+   "name": "Mi 9T Pro",
+   "brand": "Xiaomi",
+   "code": "raphael",
+   "regions": [
+    "Global",
+    "EEA",
+    "Russia"
+   ],
+   "builds": 6
+  },
+  {
+   "slug": "mi-a1",
+   "name": "Mi A1",
+   "brand": "Xiaomi",
+   "code": "tissot",
+   "regions": [
+    "Global"
+   ],
+   "builds": 2
+  },
+  {
+   "slug": "mi-a2",
+   "name": "Mi A2",
+   "brand": "Xiaomi",
+   "code": "jasmine",
+   "regions": [
+    "Global"
+   ],
+   "builds": 2
+  },
+  {
+   "slug": "mi-a2-lite",
+   "name": "Mi A2 Lite",
+   "brand": "Xiaomi",
+   "code": "daisy",
+   "regions": [
+    "Global"
+   ],
+   "builds": 2
+  },
+  {
+   "slug": "mi-a3",
+   "name": "Mi A3",
+   "brand": "Xiaomi",
+   "code": "laurel",
+   "regions": [
+    "Global",
+    "EEA"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-cc-9",
+   "name": "Mi Cc 9",
+   "brand": "Xiaomi",
+   "code": "pyxis",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-cc-9-meitu-edition",
+   "name": "Mi Cc 9 Meitu Edition",
+   "brand": "Xiaomi",
+   "code": "vela",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-cc-9-pro",
+   "name": "Mi Cc 9 Pro",
+   "brand": "Xiaomi",
+   "code": "tucana",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-cc-9e",
+   "name": "Mi Cc 9E",
+   "brand": "Xiaomi",
+   "code": "laurus",
+   "regions": [
+    "China"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "mi-max",
+   "name": "Mi Max",
+   "brand": "Xiaomi",
+   "code": "hydrogen",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-max-2",
+   "name": "Mi Max 2",
+   "brand": "Xiaomi",
+   "code": "oxygen",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-max-3",
+   "name": "Mi Max 3",
+   "brand": "Xiaomi",
+   "code": "nitrogen",
+   "regions": [
+    "Global",
+    "China",
+    "Russia"
+   ],
+   "builds": 10
+  },
+  {
+   "slug": "mi-max-prime",
+   "name": "Mi Max Prime",
+   "brand": "Xiaomi",
+   "code": "helium",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-mix",
+   "name": "Mi Mix",
+   "brand": "Xiaomi",
+   "code": "lithium",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-mix-2",
+   "name": "Mi Mix 2",
+   "brand": "Xiaomi",
+   "code": "chiron",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-mix-2s",
+   "name": "Mi Mix 2S",
+   "brand": "Xiaomi",
+   "code": "polaris",
+   "regions": [
+    "Global",
+    "China",
+    "Russia"
+   ],
+   "builds": 10
+  },
+  {
+   "slug": "mi-mix-3",
+   "name": "Mi Mix 3",
+   "brand": "Xiaomi",
+   "code": "perseus",
+   "regions": [
+    "Global",
+    "China",
+    "Russia"
+   ],
+   "builds": 10
+  },
+  {
+   "slug": "mi-mix-3-5g",
+   "name": "Mi Mix 3 5G",
+   "brand": "Xiaomi",
+   "code": "andromeda",
+   "regions": [
+    "Global",
+    "China",
+    "EEA"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-mix-fold",
+   "name": "Mi Mix Fold",
+   "brand": "Xiaomi",
+   "code": "cetus",
+   "regions": [
+    "China"
+   ],
+   "builds": 7
+  },
+  {
+   "slug": "mi-note",
+   "name": "Mi Note",
+   "brand": "Xiaomi",
+   "code": "virgo",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 12
+  },
+  {
+   "slug": "mi-note-10-and-note-10-pro",
+   "name": "Mi Note 10 And Note 10 Pro",
+   "brand": "Xiaomi",
+   "code": "tucana",
+   "regions": [
+    "Global",
+    "EEA",
+    "Indonesia",
+    "Russia"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-note-10-lite",
+   "name": "Mi Note 10 Lite",
+   "brand": "Xiaomi",
+   "code": "toco",
+   "regions": [
+    "Global",
+    "EEA",
+    "Russia",
+    "Turkey"
+   ],
+   "builds": 10
+  },
+  {
+   "slug": "mi-note-2",
+   "name": "Mi Note 2",
+   "brand": "Xiaomi",
+   "code": "scorpio",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-note-3",
+   "name": "Mi Note 3",
+   "brand": "Xiaomi",
+   "code": "jason",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mi-note-pro",
+   "name": "Mi Note Pro",
+   "brand": "Xiaomi",
+   "code": "leo",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-pad-3",
+   "name": "Mi Pad 3",
+   "brand": "Xiaomi",
+   "code": "cappu",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-pad-4-plus",
+   "name": "Mi Pad 4 (Plus)",
+   "brand": "Xiaomi",
+   "code": "clover",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "mi-play",
+   "name": "Mi Play",
+   "brand": "Xiaomi",
+   "code": "lotus",
+   "regions": [
+    "Global",
+    "China",
+    "Russia"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mipad-1",
+   "name": "MiPad 1",
+   "brand": "Xiaomi",
+   "code": "mocha",
+   "regions": [
+    "Global",
+    "China"
+   ],
+   "builds": 8
+  },
+  {
+   "slug": "mipad-2",
+   "name": "MiPad 2",
+   "brand": "Xiaomi",
+   "code": "latte",
+   "regions": [
+    "China"
+   ],
+   "builds": 4
+  },
+  {
+   "slug": "xiaomi-11-lite-5g-ne",
+   "name": "Xiaomi 11 Lite 5G Ne",
+   "brand": "Xiaomi",
+   "code": "lisa",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
     "India",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-11-lite-5g-ne"
+   "builds": 21
   },
   {
-   "brand": "Xiaomi",
-   "code": "pissarroin",
-   "count": 1,
-   "models": "21091116I",
-   "name": "Xiaomi 11I 5G",
-   "regions": [
-    "India"
-   ],
-   "slug": "xiaomi-11i-5g"
-  },
-  {
+   "slug": "xiaomi-11i-hypercharge",
+   "name": "Xiaomi 11I Hypercharge",
    "brand": "Xiaomi",
    "code": "pissarro",
-   "count": 1,
-   "models": "21091116UI",
-   "name": "Xiaomi 11I Hypercharge",
    "regions": [
     "India"
    ],
-   "slug": "xiaomi-11i-hypercharge"
+   "builds": 6
   },
   {
+   "slug": "xiaomi-11t",
+   "name": "Xiaomi 11T",
    "brand": "Xiaomi",
    "code": "agate",
-   "count": 12,
-   "models": "21081111RG",
-   "name": "Xiaomi 11T",
    "regions": [
     "Global",
     "EEA",
@@ -4880,14 +4830,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-11t"
+   "builds": 15
   },
   {
+   "slug": "xiaomi-11t-pro",
+   "name": "Xiaomi 11T Pro",
    "brand": "Xiaomi",
    "code": "vili",
-   "count": 16,
-   "models": "2107113SG, 2107113SR, 2107113SI",
-   "name": "Xiaomi 11T Pro",
    "regions": [
     "Global",
     "EEA",
@@ -4898,31 +4847,29 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-11t-pro"
+   "builds": 18
   },
   {
+   "slug": "xiaomi-12",
+   "name": "Xiaomi 12",
    "brand": "Xiaomi",
    "code": "cupid",
-   "count": 14,
-   "models": "2201123G, 2201123C",
-   "name": "Xiaomi 12",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-12"
+   "builds": 20
   },
   {
+   "slug": "xiaomi-12-lite",
+   "name": "Xiaomi 12 Lite",
    "brand": "Xiaomi",
    "code": "taoyao",
-   "count": 12,
-   "models": "2203129G, 2203129I",
-   "name": "Xiaomi 12 Lite",
    "regions": [
     "Global",
     "EEA",
@@ -4931,76 +4878,70 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-12-lite"
+   "builds": 14
   },
   {
+   "slug": "xiaomi-12-pro",
+   "name": "Xiaomi 12 Pro",
    "brand": "Xiaomi",
    "code": "zeus",
-   "count": 16,
-   "models": "2201122G, 2201122C",
-   "name": "Xiaomi 12 Pro",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-12-pro"
+   "builds": 22
   },
   {
+   "slug": "xiaomi-12-pro-dimensity",
+   "name": "Xiaomi 12 Pro Dimensity",
    "brand": "Xiaomi",
    "code": "daumier",
-   "count": 2,
-   "models": "2207122MC",
-   "name": "Xiaomi 12 Pro Dimensity",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-12-pro-dimensity"
+   "builds": 5
   },
   {
+   "slug": "xiaomi-12s",
+   "name": "Xiaomi 12S",
    "brand": "Xiaomi",
    "code": "mayfly",
-   "count": 2,
-   "models": "2206123SC",
-   "name": "Xiaomi 12S",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-12s"
+   "builds": 5
   },
   {
+   "slug": "xiaomi-12s-pro",
+   "name": "Xiaomi 12S Pro",
    "brand": "Xiaomi",
    "code": "unicorn",
-   "count": 2,
-   "models": "2206122SC",
-   "name": "Xiaomi 12S Pro",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-12s-pro"
+   "builds": 5
   },
   {
+   "slug": "xiaomi-12s-ultra",
+   "name": "Xiaomi 12S Ultra",
    "brand": "Xiaomi",
    "code": "thor",
-   "count": 2,
-   "models": "2203121C",
-   "name": "Xiaomi 12S Ultra",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-12s-ultra"
+   "builds": 5
   },
   {
+   "slug": "xiaomi-12t",
+   "name": "Xiaomi 12T",
    "brand": "Xiaomi",
    "code": "plato",
-   "count": 8,
-   "models": "22071212AG",
-   "name": "Xiaomi 12T",
    "regions": [
     "Global",
     "EEA",
@@ -5009,14 +4950,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-12t"
+   "builds": 19
   },
   {
+   "slug": "xiaomi-12t-pro",
+   "name": "Xiaomi 12T Pro",
    "brand": "Xiaomi",
    "code": "diting",
-   "count": 12,
-   "models": "22081212UG, A201XM, Free",
-   "name": "Xiaomi 12T Pro",
    "regions": [
     "Global",
     "EEA",
@@ -5025,45 +4965,42 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-12t-pro"
+   "builds": 15
   },
   {
+   "slug": "xiaomi-12x",
+   "name": "Xiaomi 12X",
    "brand": "Xiaomi",
    "code": "psyche",
-   "count": 6,
-   "models": "2112123AG, 2112123AC",
-   "name": "Xiaomi 12X",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Russia",
     "Taiwan"
    ],
-   "slug": "xiaomi-12x"
+   "builds": 14
   },
   {
+   "slug": "xiaomi-13",
+   "name": "Xiaomi 13",
    "brand": "Xiaomi",
    "code": "fuxi",
-   "count": 11,
-   "models": "2211133G, 2211133C",
-   "name": "Xiaomi 13",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-13"
+   "builds": 18
   },
   {
+   "slug": "xiaomi-13-lite",
+   "name": "Xiaomi 13 Lite",
    "brand": "Xiaomi",
    "code": "ziyi",
-   "count": 10,
-   "models": "2210129SG",
-   "name": "Xiaomi 13 Lite",
    "regions": [
     "Global",
     "EEA",
@@ -5071,46 +5008,43 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-13-lite"
+   "builds": 12
   },
   {
+   "slug": "xiaomi-13-pro",
+   "name": "Xiaomi 13 Pro",
    "brand": "Xiaomi",
    "code": "nuwa",
-   "count": 14,
-   "models": "2210132G, 2210132C",
-   "name": "Xiaomi 13 Pro",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-13-pro"
+   "builds": 19
   },
   {
+   "slug": "xiaomi-13-ultra",
+   "name": "Xiaomi 13 Ultra",
    "brand": "Xiaomi",
    "code": "ishtar",
-   "count": 10,
-   "models": "2304FPN6DG, 2304FPN6DC",
-   "name": "Xiaomi 13 Ultra",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Russia",
     "Taiwan"
    ],
-   "slug": "xiaomi-13-ultra"
+   "builds": 13
   },
   {
+   "slug": "xiaomi-13t",
+   "name": "Xiaomi 13T",
    "brand": "Xiaomi",
    "code": "aristotle",
-   "count": 12,
-   "models": "2306EPN60G, 2306EPN60R, XIG04",
-   "name": "Xiaomi 13T",
    "regions": [
     "Global",
     "EEA",
@@ -5119,14 +5053,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-13t"
+   "builds": 14
   },
   {
+   "slug": "xiaomi-13t-pro",
+   "name": "Xiaomi 13T Pro",
    "brand": "Xiaomi",
    "code": "corot",
-   "count": 12,
-   "models": "23078PND5G, 23088PND5R, A301XM",
-   "name": "Xiaomi 13T Pro",
    "regions": [
     "Global",
     "EEA",
@@ -5135,82 +5068,76 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-13t-pro"
+   "builds": 14
   },
   {
+   "slug": "xiaomi-14",
+   "name": "Xiaomi 14",
    "brand": "Xiaomi",
    "code": "houji",
-   "count": 16,
-   "models": "23127PN0CG, 23127PN0CC",
-   "name": "Xiaomi 14",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-14"
+   "builds": 19
   },
   {
+   "slug": "xiaomi-14-civi",
+   "name": "Xiaomi 14 Civi",
    "brand": "Xiaomi",
    "code": "chenfeng",
-   "count": 1,
-   "models": "24053PY09I",
-   "name": "Xiaomi 14 Civi",
    "regions": [
     "India"
    ],
-   "slug": "xiaomi-14-civi"
+   "builds": 2
   },
   {
-   "brand": "Xiaomi",
-   "code": "shennong",
-   "count": 2,
-   "models": "23116PN5BC",
+   "slug": "xiaomi-14-pro",
    "name": "Xiaomi 14 Pro",
-   "regions": [
-    "China"
-   ],
-   "slug": "xiaomi-14-pro"
-  },
-  {
    "brand": "Xiaomi",
    "code": "shennong",
-   "count": 1,
-   "models": "2311BPN23C",
-   "name": "Xiaomi 14 Pro Ti Satellite",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-14-pro-ti-satellite"
+   "builds": 6
   },
   {
+   "slug": "xiaomi-14-pro-ti-satellite",
+   "name": "Xiaomi 14 Pro Ti Satellite",
+   "brand": "Xiaomi",
+   "code": "shennong",
+   "regions": [
+    "China"
+   ],
+   "builds": 6
+  },
+  {
+   "slug": "xiaomi-14-ultra",
+   "name": "Xiaomi 14 Ultra",
    "brand": "Xiaomi",
    "code": "aurora",
-   "count": 13,
-   "models": "24030PN60G, 24031PN0DC",
-   "name": "Xiaomi 14 Ultra",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-14-ultra"
+   "builds": 18
   },
   {
+   "slug": "xiaomi-14t",
+   "name": "Xiaomi 14T",
    "brand": "Xiaomi",
    "code": "degas",
-   "count": 11,
-   "models": "2406APNFAG, XIG06",
-   "name": "Xiaomi 14T",
    "regions": [
     "Global",
     "EEA",
@@ -5219,88 +5146,81 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-14t"
+   "builds": 16
   },
   {
+   "slug": "xiaomi-14t-pro",
+   "name": "Xiaomi 14T Pro",
    "brand": "Xiaomi",
    "code": "rothko",
-   "count": 14,
-   "models": "2407FPN8EG, 2407FPN8ER, A402XM",
-   "name": "Xiaomi 14T Pro",
    "regions": [
     "Global",
     "EEA",
-    "Indonesia",
     "Japan",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-14t-pro"
+   "builds": 15
   },
   {
+   "slug": "xiaomi-15",
+   "name": "Xiaomi 15",
    "brand": "Xiaomi",
    "code": "dada",
-   "count": 14,
-   "models": "24129PN74G, 24129PN74I, 24129PN74C",
-   "name": "Xiaomi 15",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan"
    ],
-   "slug": "xiaomi-15"
+   "builds": 15
   },
   {
+   "slug": "xiaomi-15-pro",
+   "name": "Xiaomi 15 Pro",
    "brand": "Xiaomi",
    "code": "haotian",
-   "count": 2,
-   "models": "2410DPN6CC",
-   "name": "Xiaomi 15 Pro",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-15-pro"
+   "builds": 3
   },
   {
+   "slug": "xiaomi-15-ultra",
+   "name": "Xiaomi 15 Ultra",
    "brand": "Xiaomi",
    "code": "xuanyuan",
-   "count": 16,
-   "models": "Global, India, China",
-   "name": "Xiaomi 15 Ultra",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-15-ultra"
+   "builds": 16
   },
   {
+   "slug": "xiaomi-15s-pro",
+   "name": "Xiaomi 15S Pro",
    "brand": "Xiaomi",
    "code": "dijun",
-   "count": 2,
-   "models": "25042PN24C",
-   "name": "Xiaomi 15S Pro",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-15s-pro"
+   "builds": 2
   },
   {
+   "slug": "xiaomi-15t",
+   "name": "Xiaomi 15T",
    "brand": "Xiaomi",
    "code": "goya",
-   "count": 11,
-   "models": "25069PTEBG",
-   "name": "Xiaomi 15T",
    "regions": [
     "Global",
     "EEA",
@@ -5309,14 +5229,13 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-15t"
+   "builds": 14
   },
   {
+   "slug": "xiaomi-15t-pro",
+   "name": "Xiaomi 15T Pro",
    "brand": "Xiaomi",
    "code": "klimt",
-   "count": 11,
-   "models": "2506BPN68G, 2506BPN68R",
-   "name": "Xiaomi 15T Pro",
    "regions": [
     "Global",
     "EEA",
@@ -5326,288 +5245,467 @@
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-15t-pro"
+   "builds": 18
   },
   {
+   "slug": "xiaomi-17",
+   "name": "Xiaomi 17",
    "brand": "Xiaomi",
    "code": "pudding",
-   "count": 13,
-   "models": "25113PN0EG, 25113PN0EC, 25113PN0EI",
-   "name": "Xiaomi 17",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-17"
+   "builds": 24
   },
   {
+   "slug": "xiaomi-17-max",
+   "name": "Xiaomi 17 Max",
    "brand": "Xiaomi",
    "code": "byron",
-   "count": 1,
-   "models": "2605EPN8EC",
-   "name": "Xiaomi 17 Max",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-17-max"
+   "builds": 3
   },
   {
+   "slug": "xiaomi-17-pro",
+   "name": "Xiaomi 17 Pro",
    "brand": "Xiaomi",
    "code": "pandora",
-   "count": 1,
-   "models": "25098PN5AC",
-   "name": "Xiaomi 17 Pro",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-17-pro"
+   "builds": 3
   },
   {
+   "slug": "xiaomi-17-pro-max",
+   "name": "Xiaomi 17 Pro Max",
    "brand": "Xiaomi",
    "code": "popsicle",
-   "count": 1,
-   "models": "2509FPN0BC",
-   "name": "Xiaomi 17 Pro Max",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-17-pro-max"
+   "builds": 3
   },
   {
+   "slug": "xiaomi-17-ultra",
+   "name": "Xiaomi 17 Ultra",
    "brand": "Xiaomi",
    "code": "nezha",
-   "count": 13,
-   "models": "2512BPNDAG, 2512BPNDAC, 2512BPNDAI, 25128PNA1G, 25128PNA1C",
-   "name": "Xiaomi 17 Ultra",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-17-ultra"
+   "builds": 24
   },
   {
+   "slug": "xiaomi-17t",
+   "name": "Xiaomi 17T",
    "brand": "Xiaomi",
    "code": "chagall",
-   "count": 15,
-   "models": "2602DPT53G, 2602DPT53I, M531DA",
-   "name": "Xiaomi 17T",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "India",
     "Indonesia",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-17t"
+   "builds": 18
   },
   {
+   "slug": "xiaomi-17t-pro",
+   "name": "Xiaomi 17T Pro",
    "brand": "Xiaomi",
    "code": "warhol",
-   "count": 14,
-   "models": "2602EPTC0G, 2602EPTC0R, M025EC",
-   "name": "Xiaomi 17T Pro",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Indonesia",
     "Japan",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-17t-pro"
+   "builds": 21
   },
   {
+   "slug": "xiaomi-18-fold",
+   "name": "Xiaomi 18 Fold",
    "brand": "Xiaomi",
    "code": "lhasa",
-   "count": 1,
-   "models": "2608BPX34C",
-   "name": "Xiaomi 18 Fold",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-18-fold"
+   "builds": 3
   },
   {
+   "slug": "xiaomi-18-pro",
+   "name": "Xiaomi 18 Pro",
    "brand": "Xiaomi",
    "code": "hongkong",
-   "count": 1,
-   "models": "2609BPN61G, 2609BPN61I, M610BB",
-   "name": "Xiaomi 18 Pro",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-18-pro"
+   "builds": 3
   },
   {
+   "slug": "xiaomi-18-pro-max",
+   "name": "Xiaomi 18 Pro Max",
    "brand": "Xiaomi",
    "code": "madrid",
-   "count": 1,
-   "models": "2611FPNFAG, 2611FPNFAI, 2611FPNFAR, M154FF",
-   "name": "Xiaomi 18 Pro Max",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-18-pro-max"
+   "builds": 3
   },
   {
+   "slug": "xiaomi-civi",
+   "name": "Xiaomi Civi",
    "brand": "Xiaomi",
    "code": "mona",
-   "count": 2,
-   "models": "2109119BC",
-   "name": "Xiaomi Civi",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-civi"
+   "builds": 7
   },
   {
+   "slug": "xiaomi-civi-1s",
+   "name": "Xiaomi Civi 1S",
    "brand": "Xiaomi",
    "code": "zijin",
-   "count": 2,
-   "models": "2109119BC",
-   "name": "Xiaomi Civi 1S",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-civi-1s"
+   "builds": 5
   },
   {
+   "slug": "xiaomi-civi-2",
+   "name": "Xiaomi Civi 2",
    "brand": "Xiaomi",
    "code": "ziyi",
-   "count": 11,
-   "models": "2209129SC",
-   "name": "Xiaomi Civi 2",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Russia",
     "Taiwan",
     "Turkey"
    ],
-   "slug": "xiaomi-civi-2"
+   "builds": 15
   },
   {
+   "slug": "xiaomi-civi-3",
+   "name": "Xiaomi Civi 3",
    "brand": "Xiaomi",
    "code": "yuechu",
-   "count": 2,
-   "models": "23046PNC9C",
-   "name": "Xiaomi Civi 3",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-civi-3"
+   "builds": 2
   },
   {
+   "slug": "xiaomi-civi-4-pro",
+   "name": "Xiaomi Civi 4 Pro",
    "brand": "Xiaomi",
    "code": "chenfeng",
-   "count": 4,
-   "models": "24053PY09C",
-   "name": "Xiaomi Civi 4 Pro",
    "regions": [
     "China",
     "India"
    ],
-   "slug": "xiaomi-civi-4-pro"
+   "builds": 4
   },
   {
+   "slug": "xiaomi-civi-5-pro",
+   "name": "Xiaomi Civi 5 Pro",
    "brand": "Xiaomi",
    "code": "luming",
-   "count": 2,
-   "models": "25067PYE3C",
-   "name": "Xiaomi Civi 5 Pro",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-civi-5-pro"
+   "builds": 3
   },
   {
+   "slug": "xiaomi-mix-4",
+   "name": "Xiaomi Mix 4",
    "brand": "Xiaomi",
    "code": "odin",
-   "count": 1,
-   "models": "",
-   "name": "Xiaomi Mix 4",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-mix-4"
+   "builds": 7
   },
   {
+   "slug": "xiaomi-mix-flip",
+   "name": "Xiaomi Mix Flip",
    "brand": "Xiaomi",
    "code": "ruyi",
-   "count": 10,
-   "models": "2405CPX3DC, 2405CPX3DG",
-   "name": "Xiaomi Mix Flip",
    "regions": [
     "Global",
-    "EEA",
     "China",
+    "EEA",
     "Russia",
     "Taiwan"
    ],
-   "slug": "xiaomi-mix-flip"
+   "builds": 11
   },
   {
+   "slug": "xiaomi-mix-flip-2",
+   "name": "Xiaomi Mix Flip 2",
    "brand": "Xiaomi",
    "code": "bixi",
-   "count": 2,
-   "models": "2505APX7BC",
-   "name": "Xiaomi Mix Flip 2",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-mix-flip-2"
+   "builds": 3
   },
   {
+   "slug": "xiaomi-mix-fold-2",
+   "name": "Xiaomi Mix Fold 2",
    "brand": "Xiaomi",
    "code": "zizhan",
-   "count": 2,
-   "models": "22061218C",
-   "name": "Xiaomi Mix Fold 2",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-mix-fold-2"
+   "builds": 5
   },
   {
+   "slug": "xiaomi-mix-fold-3",
+   "name": "Xiaomi Mix Fold 3",
    "brand": "Xiaomi",
    "code": "babylon",
-   "count": 2,
-   "models": "2308CPXD0C",
-   "name": "Xiaomi Mix Fold 3",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-mix-fold-3"
+   "builds": 5
   },
   {
+   "slug": "xiaomi-mix-fold-4",
+   "name": "Xiaomi Mix Fold 4",
    "brand": "Xiaomi",
    "code": "goku",
-   "count": 2,
-   "models": "24072PX77C",
-   "name": "Xiaomi Mix Fold 4",
    "regions": [
     "China"
    ],
-   "slug": "xiaomi-mix-fold-4"
+   "builds": 3
+  },
+  {
+   "slug": "xiaomi-pad-5",
+   "name": "Xiaomi Pad 5",
+   "brand": "Xiaomi",
+   "code": "nabu",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 24
+  },
+  {
+   "slug": "xiaomi-pad-5-pro-12-4",
+   "name": "Xiaomi Pad 5 Pro 12.4",
+   "brand": "Xiaomi",
+   "code": "dagu",
+   "regions": [
+    "China"
+   ],
+   "builds": 5
+  },
+  {
+   "slug": "xiaomi-pad-5-pro-5g",
+   "name": "Xiaomi Pad 5 Pro 5G",
+   "brand": "Xiaomi",
+   "code": "enuma",
+   "regions": [
+    "China"
+   ],
+   "builds": 6
+  },
+  {
+   "slug": "xiaomi-pad-5-pro-wi-fi",
+   "name": "Xiaomi Pad 5 Pro Wi-Fi",
+   "brand": "Xiaomi",
+   "code": "elish",
+   "regions": [
+    "China"
+   ],
+   "builds": 6
+  },
+  {
+   "slug": "xiaomi-pad-6",
+   "name": "Xiaomi Pad 6",
+   "brand": "Xiaomi",
+   "code": "pipa",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 19
+  },
+  {
+   "slug": "xiaomi-pad-6-max-14",
+   "name": "Xiaomi Pad 6 Max 14",
+   "brand": "Xiaomi",
+   "code": "yudi",
+   "regions": [
+    "China"
+   ],
+   "builds": 2
+  },
+  {
+   "slug": "xiaomi-pad-6-pro",
+   "name": "Xiaomi Pad 6 Pro",
+   "brand": "Xiaomi",
+   "code": "liuqin",
+   "regions": [
+    "China"
+   ],
+   "builds": 2
+  },
+  {
+   "slug": "xiaomi-pad-6s-pro-12-4",
+   "name": "Xiaomi Pad 6S Pro 12.4",
+   "brand": "Xiaomi",
+   "code": "sheng",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "Indonesia",
+    "Russia"
+   ],
+   "builds": 14
+  },
+  {
+   "slug": "xiaomi-pad-7",
+   "name": "Xiaomi Pad 7",
+   "brand": "Xiaomi",
+   "code": "uke",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Taiwan"
+   ],
+   "builds": 15
+  },
+  {
+   "slug": "xiaomi-pad-7-pro",
+   "name": "Xiaomi Pad 7 Pro",
+   "brand": "Xiaomi",
+   "code": "muyu",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 15
+  },
+  {
+   "slug": "xiaomi-pad-7-ultra",
+   "name": "Xiaomi Pad 7 Ultra",
+   "brand": "Xiaomi",
+   "code": "jinghu",
+   "regions": [
+    "China"
+   ],
+   "builds": 2
+  },
+  {
+   "slug": "xiaomi-pad-7s-pro-12-5",
+   "name": "Xiaomi Pad 7S Pro 12.5",
+   "brand": "Xiaomi",
+   "code": "violin",
+   "regions": [
+    "China"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "xiaomi-pad-8",
+   "name": "Xiaomi Pad 8",
+   "brand": "Xiaomi",
+   "code": "yupei",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "India",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 17
+  },
+  {
+   "slug": "xiaomi-pad-8-pro",
+   "name": "Xiaomi Pad 8 Pro",
+   "brand": "Xiaomi",
+   "code": "piano",
+   "regions": [
+    "Global",
+    "China",
+    "EEA",
+    "Indonesia",
+    "Russia",
+    "Taiwan",
+    "Turkey"
+   ],
+   "builds": 15
+  },
+  {
+   "slug": "xiaomi-pad-9-pro",
+   "name": "Xiaomi Pad 9 Pro",
+   "brand": "Xiaomi",
+   "code": "shuntian",
+   "regions": [
+    "China"
+   ],
+   "builds": 3
+  },
+  {
+   "slug": "xiaomi-pad-9-pro-max",
+   "name": "Xiaomi Pad 9 Pro Max",
+   "brand": "Xiaomi",
+   "code": "yingtian",
+   "regions": [
+    "China"
+   ],
+   "builds": 3
   }
- ],
- "generated": "2026-10-21T09:40:45Z"
+ ]
 }

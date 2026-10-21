@@ -1,21 +1,16 @@
 name: Refresh the ROM index
 
-# The downloader page reads data/firmware.json - a list of the public device
-# pages (codename, model numbers, regions, Recovery / Fastboot entries) that
-# fetch_firmware.py reads. It changes every month, so it is refreshed on
-# demand instead of on every push: the site build never depends on a
-# third-party site answering.
+# The downloader page reads data/firmware.json - every phone, every region and
+# every Recovery / Fastboot build that fetch_firmware.py can find, with the
+# direct download link for each one. It changes every month, so it is
+# refreshed on demand instead of on every push: the site build never depends
+# on a third-party site answering.
 #
 # Run it from Actions -> Refresh the ROM index -> Run workflow. It commits the
 # new data/firmware.json, and the normal build workflow publishes it.
 
 on:
   workflow_dispatch:
-    inputs:
-      brand:
-        description: "Only this brand (poco, redmi, xiaomi). Empty = all."
-        required: false
-        default: ""
 
 permissions:
   contents: write
@@ -36,12 +31,7 @@ jobs:
           python-version: "3.12"
 
       - name: Fetch the index
-        run: |
-          if [ -n "${{ github.event.inputs.brand }}" ]; then
-            python fetch_firmware.py --brand "${{ github.event.inputs.brand }}"
-          else
-            python fetch_firmware.py
-          fi
+        run: python fetch_firmware.py
 
       - name: Commit if it changed
         run: |

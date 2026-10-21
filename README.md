@@ -28,11 +28,11 @@ content/<videoId>.json   one guide: title, device, rom, description, links,
 drafts/<videoId>.md      the article as it was handed in (::summary ::body ::faq)
 waves/wave_NN.txt        the video IDs handed out per writing batch
 static/                  style.css, the app icon, favicon, channel art
-data/firmware.json       the ROM index the downloader page reads (416 phones)
+data/firmware.json       the ROM index the downloader page reads (458 phones)
 data/catalog.json        the same list, trimmed, for reference
 build.py                 builds every page from content/
-fetch_firmware.py        rebuilds data/firmware.json from the public device
-                         pages - run it, then commit the result
+fetch_firmware.py        rebuilds data/firmware.json from the public firmware
+                         trackers - run it, then commit the result
 set_article.py           merges a draft into content/<id>.json
 _seocheck.py             structured data + SEO head check
 qa.py                    page / summary / link checks  (qa.py --links)
@@ -56,27 +56,59 @@ C:\Python315\python.exe qa.py --links       # every internal link
 
 ## The ROM downloader
 
-`downloader.html` never hosts a firmware file. It reads a small index of public
-device pages, and every button hands you over to the publisher's own server.
+`downloader.html` never hosts a firmware file. It reads an index of every
+phone, every region and every Recovery / Fastboot build that the public
+trackers know, with the **direct** download link for each one - and the
+download button goes straight to the file, with no page of ours in front of it.
 
 ```powershell
 C:\Python315\python.exe fetch_firmware.py                 # refresh the whole index
-C:\Python315\python.exe fetch_firmware.py --brand poco    # one brand
-C:\Python315\python.exe fetch_firmware.py --slug poco-f5  # one phone
+C:\Python315\python.exe fetch_firmware.py --brand poco    # one brand (preview file)
+C:\Python315\python.exe fetch_firmware.py --slug poco-f5  # one phone (preview file)
 C:\Python315\python.exe fetch_firmware.py --list          # what is in the index
+C:\Python315\python.exe fetch_firmware.py --no-mirrors    # skip the mirror check
 ```
 
-`fetch_firmware.py` walks the public device pages, reads the codename, the
-model numbers, the regions and the Recovery / Fastboot entries, and writes
-`data/firmware.json`. `build.py` copies that file to `dist/static/firmware.json`,
-so the page fetches it from its own domain - no third-party request, no CORS
-problem, and no firmware file on this site.
+A filtered run (`--brand`, `--slug`, `--limit`) writes a preview file beside
+the index instead of overwriting it, so the full index and the names in it
+always survive.
+
+### Where the data comes from
+
+| Source | What it gives |
+|---|---|
+| `XiaomiFirmwareUpdater/miui-updates-tracker` - `data/latest.yml` | every Recovery and Fastboot build, with Xiaomi's own CDN link, the region and the release date |
+| `XiaomiFirmwareUpdater/miui-updates-tracker` - `data/devices.yml` | the device names behind each codename |
+| `xmfirmwareupdater.com/data/devices/latest.yml` | a second pair of mirrors (GitHub and OSDN) for the Recovery ROM |
+| `xmfirmwareupdater.com/data/firmware_devices.yml` | the pretty name of each codename |
+
+All four are public files with `Access-Control-Allow-Origin: *` and no key, so
+the index can be built anywhere - including the refresh workflow on GitHub.
+
+The names, the brands and the model numbers that were worked out by hand are
+kept in the index that is already in the repo: the script reads the previous
+`data/firmware.json`, matches it by codename and only replaces the links. That
+is why the same phone keeps its page slug from one refresh to the next.
+
+### The mirrors
+
+Every build gets a list of mirrors next to its own link:
+
+1. Xiaomi's own CDN (`bigota.d.miui.com` / `cdn.cnbj1.fds.api.mi-img.com`),
+2. the Singapore copy on the public Aliyun bucket,
+3. GitHub and OSDN, where the second index has the same build.
+
+The Aliyun copy is **checked with a HEAD request while the index is built**, and
+only the ones that really hold the file are written in. That matters: a mirror
+that is missing would answer faster than a good one and win the race in the
+browser, and the download would break.
 
 On the page: type a brand ("poco"), tap the phone from the scroll list, hit
 **Change region** to narrow it to one region, then press **Recovery ROM** or
-**Fastboot ROM**. The button races the mirrors with a short HEAD request and
+**Fastboot ROM**. The button races every link with a short HEAD request and
 opens the first one that answers, so the download starts from the quickest
-server. Magisk and KernelSU are fetched live from GitHub the same way.
+server - and the file itself comes straight from that server. Magisk and
+KernelSU are fetched live from GitHub the same way.
 
 Keep the index fresh by running `fetch_firmware.py` and committing the new
 `data/firmware.json` - the workflow only rebuilds `dist/`.
