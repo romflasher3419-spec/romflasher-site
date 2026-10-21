@@ -134,9 +134,10 @@ header.top .wrap{
   .brand .brandsub{font-size:9px;letter-spacing:.08em}
 }
 
-/* The tab row takes the whole rest of the bar, so on a wide monitor the tabs
-   stretch to fill it instead of huddling in the corner with a dead strip
-   beside them. On a narrow screen they go back to their natural size. */
+/* The tab row takes the whole rest of the bar, so the group sits hard against
+   the right edge and no strip of the header is left empty. The buttons
+   themselves keep their own size - they do not stretch - so they still read
+   as buttons and not as slabs. */
 nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1 1 auto;min-width:0;justify-content:flex-end}
 nav a{
   color:var(--dim);font-size:14px;padding:7px 12px;border-radius:10px;
@@ -194,15 +195,11 @@ nav a.navbtn,nav a.yt,nav a.gh{
   background-clip:padding-box;
   isolation:isolate;
 }
-/* On a wide monitor the five tabs share the whole bar: each one grows from
-   its 92px base, so the row ends at the right edge and no strip of the header
-   is left empty. Below 900px they keep their natural size and just pack. */
+/* The five tabs are one set of equal pills, right against the edge of the
+   bar. They never grow: on a wide monitor the empty room goes between the
+   brand and the tabs, not inside the buttons. */
 @media(min-width:900px){
   nav{gap:8px}
-  nav a.navbtn,nav a.yt,nav a.gh{
-    width:auto;min-width:92px;max-width:none;
-    flex:1 1 92px;
-  }
 }
 nav a.gh{
   background-image:none;background-color:#161b22;
@@ -802,24 +799,11 @@ details.faq .ans p:last-child{margin-bottom:0}
   box-shadow:0 14px 30px rgba(108,99,255,.2);
 }
 
-.dlcards{display:grid;gap:16px;margin:18px 0 10px}
 .dlcard{
   padding:19px 21px;border-radius:var(--radius);
   background:rgba(255,255,255,.035);border:1px solid var(--line);
 }
 .dlcard h3{margin:0 0 14px;font-size:17.5px;color:#fff}
-.dlgrid{display:grid;gap:12px;grid-template-columns:1fr 1fr}
-.dlcol p{margin:8px 0 0;font-size:13.6px;line-height:1.55;color:#cbd5de}
-.dltag{
-  display:inline-block;padding:3px 10px;border-radius:999px;
-  font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-}
-.dltag.recovery{color:#7ee0b0;background:rgba(52,211,153,.14);
-  border:1px solid rgba(52,211,153,.34)}
-.dltag.fastboot{color:#ffc46b;background:rgba(255,176,32,.14);
-  border:1px solid rgba(255,176,32,.34)}
-.dlbtns{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
-.dlbtns .btn{margin:0}
 .dlnote{
   margin:13px 0 0;padding-top:12px;border-top:1px solid var(--line);
   font-size:13.2px;line-height:1.55;color:var(--dim);

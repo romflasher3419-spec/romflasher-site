@@ -2872,16 +2872,19 @@ DOWNLOADER_JS = r"""
 def build_downloader():
     """The ROM downloader: pick a phone, get the firmware.
 
-    For Xiaomi, Redmi and POCO the page holds a real index - every phone, every
-    region, every Recovery and Fastboot build - and the download button goes
-    straight to the file: Xiaomi's own server is asked first and the public
-    mirrors are asked alongside it, and whichever answers first wins. There is
-    no page in front of the file and nothing of ours is in the way.
+    The picker at the top of the page is the whole phone list. It holds every
+    Xiaomi, Redmi and POCO model the index knows about - every region, every
+    Recovery and Fastboot build - and the download button goes straight to the
+    file: Xiaomi's own server is asked first and the public mirrors are asked
+    alongside it, and whichever answers first wins. There is no page in front
+    of the file and nothing of ours is in the way. The visitor searches by the
+    name they actually know ("poco x7 pro", "redmi note 13", "CPH2451") rather
+    than a codename they do not.
 
-    For the other brands the page keeps the *route* instead of the file - one
-    entry per brand pointing at that brand's own public firmware download page -
-    and it lets the visitor search by the name they actually know ("poco x7
-    pro", "redmi note 13", "CPH2451") rather than a codename they do not.
+    There are no brand cards below the picker any more. A row of links to
+    Samsung, OPPO, vivo and the rest would only be a list of dead ends - a
+    link to a brand that has no file behind it - so those manufacturers' own
+    firmware pages are not listed here at all.
 
     Nothing on this site hosts, rewrites or proxies a firmware file.
     """
@@ -2899,217 +2902,10 @@ def build_downloader():
     except Exception:
         pass
 
-    # One row per brand: how the visitor names it, where its firmware lives, and
-    # what both flash formats are called there. `keys` is the search index - the
-    # words a visitor is likely to type.
-    BRANDS = [
-        {
-            "name": "Xiaomi / Redmi / POCO",
-            "keys": "xiaomi redmi poco mi miui hyperos note k20 k30 k40 k50 k60 "
-                    "k70 k80 9 10 11 12 13 14 15 16 pro plus turbo civi pad "
-                    "redmi 9 10 12 13 14 note 4 5 6 7 8 9 10 11 12 13 14 poco "
-                    "x2 x3 x4 x5 x6 x7 f1 f2 f3 f4 f5 f6 f7 m2 m3 m4 m5 m6 c3 "
-                    "c40 c50 c55 c65 c75 c85 x6 pro x7 pro f7 pro",
-            "recovery": ("MIUI / HyperOS recovery ROM &mdash; the full zip you "
-                         "flash in the phone's own updater or in recovery"),
-            "fastboot": ("Fastboot ROM &mdash; the <code>.tgz</code> package "
-                         "that contains the <code>flash_all</code> script"),
-            "page": SITE_URL + "/downloader.html#dlsearch",
-            "href": "#dlsearch",
-            "btn": "Pick your phone",
-            "page_label": "This page &mdash; every Xiaomi, Redmi and POCO phone, "
-                          "straight from the fastest server",
-            "official": "https://www.mi.com/global/support/",
-            "official_label": "Xiaomi official support",
-            "note": "Use the box at the top of this page: type the phone you "
-                    "have, tap it, and the Recovery ROM or the Fastboot ROM "
-                    "downloads straight to you from the quickest server that "
-                    "answers. The codename on your bootloader screen must match "
-                    "the one shown here, and the region has to match too.",
-        },
-        {
-            "name": "OnePlus",
-            "keys": "oneplus one plus 9 10 11 12 13 15 nord ce n10 n20 n30 ace "
-                    "3 3t 5 5t 6 6t 7 7t 8 8t 9r 9rt pro open oxygenos",
-            "recovery": ("OxygenOS / ColorOS full OTA zip &mdash; local install "
-                         "from the phone's own update screen"),
-            "fastboot": ("Fastboot ROM &mdash; the full signed package with "
-                         "<code>flash-all.bat</code>"),
-            "page": "https://www.oneplus.com/in/support/softwareupgrade",
-            "page_label": "OnePlus Downloads &amp; Updates (India)",
-            "official": "https://www.oneplus.com/global/support/softwareupgrade",
-            "official_label": "OnePlus global software upgrade",
-            "note": "OnePlus lists them as Downloads &amp; Updates. Match your "
-                    "exact model and region, because an EU build and an IN build "
-                    "are not interchangeable.",
-        },
-        {
-            "name": "Google Pixel",
-            "keys": "google pixel nexus 4 5 6 7 8 9 10 pro xl a fold tablet "
-                    "factory image ota",
-            "recovery": ("Full OTA image &mdash; sideload it from recovery, no "
-                         "data wipe needed"),
-            "fastboot": ("Factory image &mdash; the <code>flash-all</code> "
-                         "package for fastboot"),
-            "page": "https://developers.google.com/android/images",
-            "page_label": "Factory Images for Nexus and Pixel",
-            "official": "https://developers.google.com/android/ota",
-            "official_label": "Full OTA Images for Pixel",
-            "note": "Google publishes both formats in the open, with the build "
-                    "hash beside each one. Check the anti-rollback warning at the "
-                    "top of the page before going back a version.",
-        },
-        {
-            "name": "realme",
-            "keys": "realme narzo gt c gt2 gt3 gt5 gt6 gt7 neo 1 2 3 5 6 7 8 9 "
-                    "10 11 12 c1 c2 c3 c11 c12 c15 c20 c21 c25 c30 c31 c33 c35 "
-                    "c55 c67 x2 x3 x7 p1 p2 t1 t2 t3 rmui realmeui rmx rmx1 "
-                    "rmx2 rmx3 rmx4 rmx5 rmx6 rmx7 rmx8 rmx9",
-            "recovery": ("realme UI / RMUI OTA zip &mdash; local update from the "
-                         "phone's settings"),
-            "fastboot": ("Flash-tool package &mdash; for the OPPO / realme "
-                         "download tool on a PC"),
-            "page": "https://www.realme.com/in/support/software-update",
-            "page_label": "realme Software &amp; Driver Update (India)",
-            "official": "https://www.realme.com/in/support",
-            "official_label": "realme official support",
-            "note": "Choose your exact product in the list. realme ships most of "
-                    "its images as an update-tool package rather than a plain "
-                    "fastboot zip.",
-        },
-        {
-            "name": "OPPO",
-            "keys": "oppo find x n reno a5 a9 a12 a15 a16 a17 a18 a31 a52 a53 "
-                    "a54 a55 a57 a58 a74 a77 a78 a79 f5 f7 f9 f11 f15 f17 f19 "
-                    "k1 k3 k5 k10 k12 cph cph1 cph2 cph3 cph4 cph5 cph6 cph7 "
-                    "cph8 cph9 coloros cph2451 cph2471 cph2521 cph2565",
-            "recovery": ("ColorOS OTA zip &mdash; local install from the phone"),
-            "fastboot": ("Flash-tool firmware &mdash; for the OPPO / realme "
-                         "download tool on a PC"),
-            "page": "https://www.oppo.com/in/support/",
-            "page_label": "OPPO India support &amp; software updates",
-            "official": "https://www.oppo.com/en/support/",
-            "official_label": "OPPO global support",
-            "note": "Two phones with the same shop name can have different "
-                    "firmware. Match the model code (CPH####), not the nickname.",
-        },
-        {
-            "name": "vivo / iQOO",
-            "keys": "vivo iqoo nex x fold y v s t z 11 15 17 19 20 21 23 25 27 "
-                    "30 40 50 60 70 80 90 100 pro lite se funtouch z1 z3 z6 "
-                    "z7 z9 iqoo 3 5 7 9 11 12 13 neo legend",
-            "recovery": ("Funtouch OS / OriginOS OTA package &mdash; via the "
-                         "built-in software update"),
-            "fastboot": ("Flash-tool firmware &mdash; for the vivo flash tool on "
-                         "a PC"),
-            "page": "https://www.vivo.com/in/support",
-            "page_label": "vivo India support &amp; software",
-            "official": "https://www.vivo.com/en/support",
-            "official_label": "vivo global support",
-            "note": "vivo publishes by model code, and the flash tool is "
-                    "PC-only for most models, so plan for a computer here.",
-        },
-        {
-            "name": "Motorola / Lenovo",
-            "keys": "motorola moto lenovo g e edge razr one fusion g5 g6 g7 g8 "
-                    "g9 g10 g14 g20 g22 g23 g24 g30 g31 g32 g34 g35 g42 g50 "
-                    "g52 g54 g60 g62 g71 g72 g73 g82 g84 g85 edge 20 30 40 50 "
-                    "x30 s30",
-            "recovery": ("Full OTA zip &mdash; sideload from recovery"),
-            "fastboot": ("Factory image &mdash; fastboot package with "
-                         "<code>flashfile.xml</code>"),
-            "page": "https://en-us.support.motorola.com/app/softwareupdates",
-            "page_label": "Motorola software updates &amp; downloads",
-            "official": "https://en-us.support.motorola.com/",
-            "official_label": "Motorola official support",
-            "note": "Motorola's own list is the one that matters here: a lot of "
-                    "mirrors carry region builds that will not match your "
-                    "software channel.",
-        },
-        {
-            "name": "Samsung",
-            "keys": "samsung galaxy s a m note z fold flip 8 9 10 20 21 22 23 "
-                    "24 25 a01 a02 a03 a04 a05 a10 a11 a12 a13 a14 a15 a20 "
-                    "a21 a22 a23 a24 a25 a30 a31 a32 a33 a34 a35 a50 a51 "
-                    "a52 a53 a54 a55 a70 a71 a72 a73 m01 m11 m12 m13 m14 m15 "
-                    "m20 m21 m22 m23 m30 m31 m32 m33 m34 m51 m52 m53 m54 "
-                    "odin firmware",
-            "recovery": ("Full OTA &mdash; through the phone's own update screen"),
-            "fastboot": ("Odin firmware &mdash; the <code>.tar.md5</code> "
-                         "package, flashed with Odin, not fastboot"),
-            "page": "https://www.samsung.com/in/support/",
-            "page_label": "Samsung India support &amp; firmware",
-            "official": "https://www.samsung.com/in/support/",
-            "official_label": "Samsung official support",
-            "note": "Samsung does not use fastboot. The equivalent is Odin plus "
-                    "a firmware tar, and the CSC code has to match your region.",
-        },
-        {
-            "name": "Nothing / CMF",
-            "keys": "nothing phone cmf 1 2 2a 2a plus 3 3a pro buds watch",
-            "recovery": ("Full OTA zip &mdash; sideload from recovery"),
-            "fastboot": ("Factory image &mdash; fastboot package"),
-            "page": "https://nothing.tech/pages/support",
-            "page_label": "Nothing support &amp; software downloads",
-            "official": "https://nothing.tech/pages/support",
-            "official_label": "Nothing official support",
-            "note": "Nothing posts both the OTA and the factory image on its own "
-                    "support site, and the builds are versioned openly.",
-        },
-        {
-            "name": "Nokia",
-            "keys": "nokia hmd 2 3 5 6 7 8 9 11 21 22 23 25 30 32 33 43 50 55 "
-                    "63 70 71 72 73 80 81 82 90 91 x10 x20 x30 xr20 g10 g11 "
-                    "g20 g21 g22 g42 g50 g60 c01 c10 c12 c20 c21 c30 c31",
-            "recovery": ("Full OTA &mdash; from the phone's own update screen"),
-            "fastboot": ("Firmware package &mdash; for the HMD / Nokia flashing "
-                         "tool"),
-            "page": "https://www.nokia.com/phones/en_in/support",
-            "page_label": "Nokia phones support &amp; software",
-            "official": "https://www.nokia.com/phones/en_int/support",
-            "official_label": "Nokia phones official support",
-            "note": "Older Nokia Android phones are the ones with public "
-                    "fastboot images; newer HMD models lean on the built-in "
-                    "updater.",
-        },
-        {
-            "name": "Micromax / Lava / Karbonn / Tecno / Infinix / itel",
-            "keys": "micromax lava karbonn tecno infinix itel intex canvas in "
-                    "note spark camon hot pova phantom zero smart 5 6 8 10 11 "
-                    "12 13 15 20 30 nitro",
-            "recovery": ("Full OTA &mdash; through the phone's own updater"),
-            "fastboot": ("Firmware package &mdash; usually a PC flash tool per "
-                         "model"),
-            "page": "https://www.micromaxinfo.com/support/",
-            "page_label": "Micromax support &amp; software",
-            "official": "https://www.micromaxinfo.com/",
-            "official_label": "Micromax official site",
-            "note": "These brands publish far less in the open. The built-in "
-                    "updater is the reliable route; a service centre is the "
-                    "fallback when a phone will not boot at all.",
-        },
-    ]
-
-    cards = []
-    for i, b in enumerate(BRANDS):
-        cards.append(
-            '<article class="dlcard" data-dl="%d">\n'
-            '<h3>%s</h3>\n'
-            '<div class="dlgrid">\n'
-            '  <div class="dlcol"><span class="dltag recovery">Recovery ROM</span>'
-            '<p>%s</p></div>\n'
-            '  <div class="dlcol"><span class="dltag fastboot">Fastboot ROM</span>'
-            '<p>%s</p></div>\n'
-            '</div>\n'
-            '<p class="dlbtns">'
-            '<a class="btn" href="%s" rel="noopener">%s</a>'
-            '<a class="btn ghost" href="%s" rel="noopener">%s</a></p>\n'
-            '<p class="dlnote">%s</p>\n'
-            '</article>' % (i, html.escape(b["name"]), b["recovery"], b["fastboot"],
-                            b.get("href", b["page"]),
-                            html.escape(b.get("btn", "Firmware downloads")),
-                            b["official"], html.escape(b["page_label"]),
-                            b["note"]))
+    # The page has no brand cards any more: the picker above is the whole
+    # list, and it carries every phone, every region and every build. The
+    # other manufacturers' download pages are not listed here - a link to a
+    # brand that has no file behind it is only a dead end.
 
     body = """<h1>ROM downloader</h1>
 <p class="dis">Type the phone you actually have &mdash; <em>poco</em>,
@@ -3196,10 +2992,11 @@ fails:</p>
 </ul>
 <p class="dis">Rule of thumb: phone boots &rarr; Recovery ROM. Phone does not
 boot &rarr; Fastboot ROM.</p>
-
-<div class="dlcards" id="dlcards">
-%(cards)s
-</div>
+<p>Type your model in the box at the top of this page and every build for it
+comes out below &mdash; the Recovery ROM and the Fastboot ROM for each region,
+newest first, each button pointing straight at the file. Nothing is hosted
+here: the download starts on Xiaomi's own servers or on the public mirrors
+beside them.</p>
 
 <h2 id="magisk">Magisk</h2>
 <div class="ghcards">
@@ -3323,11 +3120,12 @@ written for.</p></details>
 Either way, take a backup first &mdash; and note that unlocking a bootloader
 usually erases the phone on its own.</p></details>
 
-<details class="faq"><summary>What if my brand is not listed?</summary>
-<p>Use the search box and check the closest entry, then go straight to that
-brand's support site and look for a "software", "downloads" or "firmware"
-section. Every manufacturer has one; it is just named differently each time.</p></details>
-""" % {"ad": ad_slot("hub"), "cards": "\n".join(cards)}
+<details class="faq"><summary>What if my phone is not listed?</summary>
+<p>The picker here holds the Xiaomi, Redmi and POCO models. If your phone is
+from another maker, the firmware lives on that maker's own support site &mdash;
+look for a "software", "downloads" or "firmware" section. Every manufacturer
+has one; it is just named differently each time.</p></details>
+""" % {"ad": ad_slot("hub")}
 
     faq = [
         ("Why does this page link out instead of hosting the files?",
@@ -3348,29 +3146,43 @@ section. Every manufacturer has one; it is just named differently each time.</p>
         ("Is my data safe?",
          "A Recovery ROM of a newer version keeps your data. A Fastboot ROM "
          "wipes it. Take a backup first."),
-        ("What if my brand is not listed?",
-         "Use the search box and check the closest entry, then go to that "
-         "brand's support site and look for a software, downloads or firmware "
-         "section."),
+        ("What if my phone is not listed?",
+         "The picker here holds the Xiaomi, Redmi and POCO models. If your "
+         "phone is from another maker, the firmware lives on that maker's own "
+         "support site - look for a software, downloads or firmware section."),
     ]
 
     blocks = [{
         "@context": "https://schema.org", "@type": "WebPage",
         "name": "ROM downloader",
         "url": "%s/downloader.html" % SITE_URL,
-        "description": "Find stock firmware for any Android phone - Recovery ROM "
-                       "and Fastboot ROM links for Xiaomi, POCO, Redmi, OnePlus, "
-                       "OPPO, realme, vivo, Pixel, Samsung and more.",
+        "description": "Find stock firmware for your Xiaomi, Redmi or POCO phone "
+                       "- every Recovery ROM and Fastboot ROM build, straight from "
+                       "the official servers and their public mirrors, plus Magisk "
+                       "and KernelSU.",
         "inLanguage": "en",
         "isAccessibleForFree": True,
         "isPartOf": {"@type": "WebSite", "name": SITE, "url": SITE_URL},
         "publisher": {"@type": "Organization", "name": SITE, "url": SITE_URL},
-        "mainEntity": {"@type": "ItemList", "numberOfItems": len(BRANDS),
+        "mainEntity": {"@type": "ItemList", "numberOfItems": 4,
+                       "name": "Ways to get firmware",
                        "itemListElement": [
-                           {"@type": "ListItem", "position": i + 1,
-                            "name": b["name"], "url": b["page"]}
-                           for i, b in enumerate(BRANDS)]},
-        "significantLink": [b["page"] for b in BRANDS],
+                           {"@type": "ListItem", "position": 1,
+                            "name": "Stock ROM download",
+                            "url": "%s/downloader.html#stock" % SITE_URL},
+                           {"@type": "ListItem", "position": 2,
+                            "name": "Magisk",
+                            "url": "%s/downloader.html#magisk" % SITE_URL},
+                           {"@type": "ListItem", "position": 3,
+                            "name": "KernelSU",
+                            "url": "%s/downloader.html#kernelsu" % SITE_URL},
+                           {"@type": "ListItem", "position": 4,
+                            "name": "Custom ROM download",
+                            "url": "%s/downloader.html#rom" % SITE_URL}]},
+        "significantLink": ["%s/downloader.html#stock" % SITE_URL,
+                            "%s/downloader.html#magisk" % SITE_URL,
+                            "%s/downloader.html#kernelsu" % SITE_URL,
+                            "%s/downloader.html#rom" % SITE_URL],
     }, {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
@@ -3396,12 +3208,11 @@ section. Every manufacturer has one; it is just named differently each time.</p>
     # blocked - this only adds the search and the download.
     head += DOWNLOADER_JS
 
-    return page("ROM downloader \u2014 stock ROM, Magisk, KernelSU links by device"
-                " | %s" % SITE,
-                "Search any Android phone - POCO, Redmi, Xiaomi, OnePlus, OPPO, "
-                "realme, vivo, Pixel, Samsung, Nokia, Micromax - and get its "
-                "official Recovery ROM and Fastboot ROM download pages, plus "
-                "Magisk and KernelSU.",
+    return page("ROM downloader \u2014 Xiaomi, Redmi and POCO stock ROM, Magisk, "
+                "KernelSU | %s" % SITE,
+                "Type your Xiaomi, Redmi or POCO phone - poco x7 pro, redmi note "
+                "13, CPH2451 - and download its official Recovery ROM and Fastboot "
+                "ROM builds direct from the source, plus Magisk and KernelSU.",
                 '<article><div class="prose">%s</div></article>'
                 % body.replace("__PHONE_COUNT__", str(phone_count))
                      .replace("__BUILD_COUNT__", str(build_count)),
@@ -3410,8 +3221,8 @@ section. Every manufacturer has one; it is just named differently each time.</p>
                     "stock rom download", "official firmware download",
                     "fastboot rom download", "recovery rom download",
                     "xiaomi firmware", "poco stock rom", "redmi firmware",
-                    "oneplus oxygenos download", "realme firmware",
-                    "magisk download", "kernelsu download", "rom downloader"]}),
+                    "xiaomi rom download", "magisk download", "kernelsu download",
+                    "rom downloader"]}),
                 image=SITE_URL + "/static/app.png")
 
 
