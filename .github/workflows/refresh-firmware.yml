@@ -1,0 +1,56 @@
+name: Refresh the ROM index
+
+# The downloader page reads data/firmware.json - a list of the public device
+# pages (codename, model numbers, regions, Recovery / Fastboot entries) that
+# fetch_firmware.py reads. It changes every month, so it is refreshed on
+# demand instead of on every push: the site build never depends on a
+# third-party site answering.
+#
+# Run it from Actions -> Refresh the ROM index -> Run workflow. It commits the
+# new data/firmware.json, and the normal build workflow publishes it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: "Only this brand (poco, redmi, xiaomi). Empty = all."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: firmware
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Refresh data/firmware.json
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch the index
+        run: |
+          if [ -n "${{ github.event.inputs.brand }}" ]; then
+            python fetch_firmware.py --brand "${{ github.event.inputs.brand }}"
+          else
+            python fetch_firmware.py
+          fi
+
+      - name: Commit if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/firmware.json data/catalog.json
+          if git diff --staged --quiet; then
+            echo "The index is already up to date."
+          else
+            git commit -m "Refresh the ROM index"
+            git push
+          fi

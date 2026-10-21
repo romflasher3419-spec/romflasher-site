@@ -9,11 +9,13 @@ its download links and the questions people actually ask.
 
 | | |
 |---|---|
-| Pages built | 236 (184 guides + device, brand, ROM, year and topic hubs) |
-| Home page | `index.html` |
+| Pages built | 237 (184 guides + device, brand, ROM, year and topic hubs) |
+| Home page | `index.html` (full width; the ad rail appears only when an ad is on) |
 | Guide list | `videos.html` (search, filter, sort, dates) |
+| ROM downloader | `downloader.html` (search a phone, change region, one-click ROM) |
 | Tool page | `download.html` — the direct APK button |
 | Generator | `build.py` (Python standard library only) |
+| ROM index | `data/firmware.json` (built by `fetch_firmware.py`) |
 | Output | `dist/` — never edited by hand |
 
 ---
@@ -26,7 +28,11 @@ content/<videoId>.json   one guide: title, device, rom, description, links,
 drafts/<videoId>.md      the article as it was handed in (::summary ::body ::faq)
 waves/wave_NN.txt        the video IDs handed out per writing batch
 static/                  style.css, the app icon, favicon, channel art
+data/firmware.json       the ROM index the downloader page reads (416 phones)
+data/catalog.json        the same list, trimmed, for reference
 build.py                 builds every page from content/
+fetch_firmware.py        rebuilds data/firmware.json from the public device
+                         pages - run it, then commit the result
 set_article.py           merges a draft into content/<id>.json
 _seocheck.py             structured data + SEO head check
 qa.py                    page / summary / link checks  (qa.py --links)
@@ -47,6 +53,33 @@ C:\Python315\python.exe build.py --serve    # preview on :8080
 C:\Python315\python.exe _seocheck.py        # structured data, canonicals, meta
 C:\Python315\python.exe qa.py --links       # every internal link
 ```
+
+## The ROM downloader
+
+`downloader.html` never hosts a firmware file. It reads a small index of public
+device pages, and every button hands you over to the publisher's own server.
+
+```powershell
+C:\Python315\python.exe fetch_firmware.py                 # refresh the whole index
+C:\Python315\python.exe fetch_firmware.py --brand poco    # one brand
+C:\Python315\python.exe fetch_firmware.py --slug poco-f5  # one phone
+C:\Python315\python.exe fetch_firmware.py --list          # what is in the index
+```
+
+`fetch_firmware.py` walks the public device pages, reads the codename, the
+model numbers, the regions and the Recovery / Fastboot entries, and writes
+`data/firmware.json`. `build.py` copies that file to `dist/static/firmware.json`,
+so the page fetches it from its own domain - no third-party request, no CORS
+problem, and no firmware file on this site.
+
+On the page: type a brand ("poco"), tap the phone from the scroll list, hit
+**Change region** to narrow it to one region, then press **Recovery ROM** or
+**Fastboot ROM**. The button races the mirrors with a short HEAD request and
+opens the first one that answers, so the download starts from the quickest
+server. Magisk and KernelSU are fetched live from GitHub the same way.
+
+Keep the index fresh by running `fetch_firmware.py` and committing the new
+`data/firmware.json` - the workflow only rebuilds `dist/`.
 
 ## Write one article
 

@@ -68,6 +68,15 @@ a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
 img{max-width:100%}
 .wrap{max-width:1320px;margin:0 auto;padding:0 22px}
+/* The wide pages: the home page, the guide list and the downloader. They take
+   the window from edge to edge instead of sitting in a column in the middle,
+   so a big monitor shows the content across the whole screen. The padding
+   keeps the text off the very edge of the window. */
+.wrap.full{
+  max-width:none;margin:0;
+  padding-left:clamp(16px,2.4vw,44px);
+  padding-right:clamp(16px,2.4vw,44px);
+}
 
 /* ---------------------------------------------------------------- surfaces */
 header.top,.card,.box,.faq,.videobox,details.desc,.ad,.links,table,
@@ -86,13 +95,21 @@ header.top{
   box-shadow:0 1px 0 rgba(255,255,255,.05),0 18px 40px -34px rgba(0,0,0,.9);
 }
 header.top .wrap{
-  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-  min-height:74px;padding-top:10px;padding-bottom:10px;
+  max-width:100%;
+  width:100%;
+  margin:0;
+  /* A little way in from the corner: the brand sits hard left and the buttons
+     hard right, but never hard against the edge of the window. */
+  padding:8px clamp(16px,2.2vw,36px);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:nowrap;
+  min-height:70px;
+  box-sizing:border-box;
 }
 
 .brand{
   display:flex;align-items:center;gap:12px;margin-right:auto;
   font-weight:800;font-size:26px;line-height:1.15;letter-spacing:-.02em;color:var(--fg);
+  flex:0 0 auto;
 }
 .brand:hover{text-decoration:none}
 .brand .applogo{
@@ -198,6 +215,21 @@ nav a.donate:hover{color:#241705;background-color:transparent;filter:saturate(11
    larger than the GitHub mark next to it and changed with the font. Pinning it
    to the same 17px keeps the two icons visually matched. */
 nav a.donate svg{width:13px;height:13px;flex:0 0 auto;fill:currentColor}
+
+/* ------------------------------------------------------- home page rows */
+/* The guide lists and the ad sit side by side. Without an ad the content
+   takes the whole window; with one, the column narrows to make room for it
+   and the ad column takes the rest. That is the whole point of the two
+   classes: the page never leaves an empty strip on the left or the right. */
+.homerow{
+  display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start;
+}
+.homerow.withad{grid-template-columns:minmax(0,1fr) 320px}
+.homerow .homecol{min-width:0}
+.adrail{min-width:0}
+@media(max-width:1040px){
+  .homerow.withad{grid-template-columns:minmax(0,1fr)}
+}
 
 /* ------------------------------------------------------------ hero + cards */
 .hero{padding:56px 0 30px;border-bottom:1px solid var(--line)}
@@ -369,11 +401,19 @@ a.tag:hover{
 .tested a{color:#cfc9ff}
 
 /* ------------------------------------------------------- download page */
+/* The downloader wears dark green - the colour of the ROM box in the app -
+   a shade lighter than the background so it reads as a real button and not
+   a hole in the bar. */
 nav a.navbtn.hot{
-  background-image:var(--grad);color:#fff;font-weight:700;
-  box-shadow:0 12px 28px -16px rgba(108,99,255,1);
+  background-image:linear-gradient(120deg,#1c7a4b,#26a463);
+  color:#fff;font-weight:700;
+  box-shadow:0 12px 28px -14px rgba(38,164,99,.85);
 }
-nav a.navbtn.hot:hover{color:#fff;background-color:transparent;filter:saturate(115%)}
+nav a.navbtn.hot:hover{
+  color:#fff;background-color:transparent;
+  background-image:linear-gradient(120deg,#218a55,#2eb871);
+  filter:saturate(115%);
+}
 /* the tray arrow is drawn a touch smaller than the other marks: its glyph
    carries more ink than the mug or the GitHub cat at the same box size, so at
    13px it read heavier than the two beside it. */
@@ -599,18 +639,30 @@ code{
 
 /* The player and the side tabs share one row: player on the left half, the
    "no PC" card and the contents list stacked on the right. Below 900px the row
-   becomes a single column so the player keeps full width on a phone. */
+   becomes a single column so the player keeps full width on a phone.
+
+   The two boxes are the same height on purpose. The row is sized by the
+   player, and the side panel is told to fill it without being allowed to make
+   it taller - `height:0` stops the panel from adding to the row's height,
+   `min-height:100%` makes it fill what the player took. The contents list
+   scrolls inside it when there are more headings than room. Without this the
+   right-hand column ended short and left a gap under the video. */
 .mediarow{
-  display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch;
   margin:26px 0 18px;
 }
 .mediarow .videobox{margin:0}
-.sidepanel{display:flex;flex-direction:column;gap:12px;min-width:0}
-.sidepanel .cta{margin:0;flex-direction:column;align-items:stretch;gap:12px}
+.sidepanel{
+  display:flex;flex-direction:column;gap:12px;min-width:0;
+  height:0;min-height:100%;
+}
+.sidepanel .cta{margin:0;flex:0 0 auto;flex-direction:column;align-items:stretch;gap:12px}
 .sidepanel .cta .ctatext{flex:0 0 auto}
-.sidepanel .toc{margin:0;flex:1}
+.sidepanel .toc{margin:0;flex:1 1 auto;min-height:0;overflow-y:auto}
 @media (max-width:900px){
   .mediarow{grid-template-columns:1fr;gap:12px}
+  .sidepanel{height:auto;min-height:0}
+  .sidepanel .toc{overflow-y:visible}
 }
 
 /* shown instead of the player when the page is opened straight off the disk
@@ -758,6 +810,145 @@ details.faq .ans p:last-child{margin-bottom:0}
 .dlnote{
   margin:13px 0 0;padding-top:12px;border-top:1px solid var(--line);
   font-size:13.2px;line-height:1.55;color:var(--dim);
+}
+
+/* --- device picker --------------------------------------------------------
+   Type a brand or a model name and the matching phones drop out below the
+   box. The list is a scroll box of its own, so a search that matches eighty
+   phones still keeps the page short. */
+.dlresults{
+  margin-top:12px;max-height:340px;overflow-y:auto;
+  border:1px solid var(--line);border-radius:12px;
+  background:rgba(5,7,12,.5);
+}
+.dlresults[hidden]{display:none}
+.dlresults .dlempty{padding:14px 16px;font-size:13.5px;color:var(--dim)}
+.dlres{
+  display:flex;align-items:center;gap:12px;width:100%;
+  padding:11px 15px;border:0;border-bottom:1px solid var(--line);
+  background:none;color:var(--fg);text-align:left;cursor:pointer;
+  font:inherit;font-size:14.5px;
+}
+.dlres:last-child{border-bottom:0}
+.dlres:hover,.dlres:focus-visible{background:rgba(255,255,255,.07);outline:none}
+.dlres .dlresname{flex:1 1 auto;min-width:0}
+.dlres .dlresname b{display:block;font-weight:600}
+.dlres .dlresname span{display:block;color:var(--dim);font-size:12.4px}
+.dlres .dlresbrand{
+  flex:0 0 auto;padding:3px 9px;border-radius:999px;font-size:11px;
+  font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  color:#cbd5de;background:rgba(255,255,255,.07);border:1px solid var(--line);
+}
+.dlres .dlrescode{
+  flex:0 0 auto;font:12px/1 ui-monospace,Consolas,monospace;color:var(--dim);
+}
+
+/* --- the picked phone ------------------------------------------------------ */
+.dlpick{margin:22px 0 8px}
+.dlpick[hidden]{display:none}
+.dlpickhead{
+  display:flex;gap:16px;align-items:flex-start;justify-content:space-between;
+  flex-wrap:wrap;margin-bottom:16px;
+}
+.dlpickhead h2{margin:0 0 6px;font-size:26px}
+.dlpickhead .dis{margin:0}
+.dlmeta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.dlmeta span{
+  padding:4px 11px;border-radius:999px;font-size:12px;color:#cbd5de;
+  background:rgba(255,255,255,.05);border:1px solid var(--line);
+}
+
+/* the region picker: one button, and the chips it opens */
+.dlregions{position:relative;margin:0 0 14px}
+.dlregionbtn{
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  padding:9px 16px;border-radius:999px;font:600 13.5px/1 inherit;color:var(--fg);
+  background:rgba(255,255,255,.05);border:1px solid var(--line);
+}
+.dlregionbtn:hover{background:rgba(255,255,255,.1)}
+.dlregionbtn::after{content:"\25BE";font-size:11px;opacity:.7}
+.dlregionbtn[aria-expanded="true"]::after{content:"\25B4"}
+.dlregionchips{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;padding:14px;
+  border-radius:12px;background:rgba(255,255,255,.035);border:1px solid var(--line);
+}
+.dlregionchips[hidden]{display:none}
+.dlregionchips button{
+  cursor:pointer;padding:7px 14px;border-radius:999px;
+  font:600 13px/1 inherit;color:#cbd5de;
+  background:rgba(255,255,255,.05);border:1px solid var(--line);
+}
+.dlregionchips button:hover{color:#fff;background:rgba(255,255,255,.12)}
+.dlregionchips button.on{
+  color:#0b1f14;background:linear-gradient(120deg,#1c7a4b,#2eb871);
+  border-color:transparent;
+}
+
+/* the build table */
+.dltablewrap{
+  overflow-x:auto;border-radius:var(--radius);
+  border:1px solid var(--line);background:rgba(255,255,255,.03);
+}
+.dltable{width:100%;border-collapse:collapse;min-width:720px}
+.dltable th{
+  text-align:left;padding:12px 14px;font-size:11.5px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--dim);
+  border-bottom:1px solid var(--line);white-space:nowrap;
+}
+.dltable td{
+  padding:12px 14px;border-bottom:1px solid var(--line);
+  font-size:14px;color:#dbe1ee;vertical-align:middle;
+}
+.dltable tr:last-child td{border-bottom:0}
+.dltable tbody tr:hover{background:rgba(255,255,255,.035)}
+.dltable .dlver{font-weight:600;color:#fff;white-space:nowrap}
+.dltable .dlversub{display:block;color:var(--dim);font-size:12px;font-weight:400}
+.dltable .dlregion{
+  display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;
+  font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:#7ee0b0;background:rgba(52,211,153,.13);border:1px solid rgba(52,211,153,.3);
+}
+.dltable .dlsize{color:var(--dim);white-space:nowrap}
+.dlgets{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.dlgets a,.dlgets button{
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  padding:8px 14px;border-radius:999px;cursor:pointer;
+  font:600 13px/1 inherit;text-decoration:none;
+  color:#fff;background:rgba(255,255,255,.07);border:1px solid var(--line);
+}
+.dlgets a:hover,.dlgets button:hover{
+  text-decoration:none;background:rgba(255,255,255,.14);
+}
+.dlgets .recovery{border-color:rgba(52,211,153,.4);color:#a9f0cd}
+.dlgets .fastboot{border-color:rgba(255,176,32,.4);color:#ffd79a}
+.dlgets .oneclick{
+  color:#0b1f14;border-color:transparent;
+  background-image:linear-gradient(120deg,#1c7a4b,#2eb871);
+}
+.dlgets .oneclick:hover{background-image:linear-gradient(120deg,#218a55,#35c47d)}
+.dlgets .oneclick[disabled]{opacity:.6;cursor:progress}
+.dlempty{padding:22px 18px;color:var(--dim);font-size:14px;text-align:center}
+
+/* --- Magisk / KernelSU live cards ---------------------------------------- */
+.ghcards{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  margin:18px 0 10px}
+.ghcard{
+  display:flex;flex-direction:column;gap:10px;padding:19px 21px;
+  border-radius:var(--radius);background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
+}
+.ghcard h3{margin:0;font-size:17.5px;color:#fff}
+.ghcard .ghstate{font-size:13.5px;color:var(--dim);min-height:20px}
+.ghcard .ghstate b{color:#fff}
+.ghcard .ghstate.ok b{color:#7ee0b0}
+.ghcard .ghstate.bad b{color:#ff9aae}
+.ghcard .ghbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.ghcard .ghbtns .btn{margin:0}
+.ghcard .ghlogo{
+  width:34px;height:34px;border-radius:9px;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:13px;color:#fff;
+  background:rgba(255,255,255,.08);border:1px solid var(--line);
 }
 
 details.desc{padding:14px 20px}

@@ -26,6 +26,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CONTENT = os.path.join(HERE, "content")
 STATIC = os.path.join(HERE, "static")
 DIST = os.path.join(HERE, "dist")
+DATA = os.path.join(HERE, "data")
 
 SITE = "Rom Flasher"
 TAGLINE = "Custom ROMs, flashing guides and a free Android tool"
@@ -1010,22 +1011,37 @@ def card(item, up=""):
 def build_home(items, path="index.html"):
     by_views = sorted(items, key=lambda x: -(x.get("views") or 0))[:9]
     by_date = sorted(items, key=lambda x: x.get("published") or "", reverse=True)[:9]
-    body = """<section class="hero"><div class="wrap">
+
+    # The home page uses the whole width of the window. When there is an ad
+    # unit it gets its own column on the right and the guide lists narrow to
+    # make room; when there is none, the lists take everything. That is why the
+    # two classes are decided here rather than in the stylesheet - the ad slot
+    # is empty (not even a zero-height box) when the unit id is unset, and the
+    # page must not reserve space for it.
+    ad = ad_slot("hub")
+    row = "homerow withad" if ad else "homerow"
+    rail = '<aside class="adrail">%s</aside>' % ad if ad else ""
+
+    body = """<section class="hero"><div class="wrap full">
 <h1>Flash <em>any ROM, any phone</em> &mdash; with steps that actually work.</h1>
 <p>%s. Every video gets a written page here, so you can follow along without
 pausing the video twenty times.</p>
 <a class="btn" href="download.html">Download Rom Flasher (free)</a>
 <a class="btn ghost" href="videos.html">Browse all %d guides</a>
 </div></section>
-<div class="wrap">
-%s
+<div class="wrap full">
+<div class="%s">
+<div class="homecol">
 <h2>Newest guides</h2>
 <div class="grid">%s</div>
 <h2>Most watched</h2>
 <div class="grid">%s</div>
-</div>""" % (TAGLINE, len(items), ad_slot("hub"),
+</div>
+%s
+</div>
+</div>""" % (TAGLINE, len(items), row,
              "".join(card(x) for x in by_date),
-             "".join(card(x) for x in by_views))
+             "".join(card(x) for x in by_views), rail)
 
     logo = {"@type": "ImageObject", "url": SITE_URL + "/static/app.png"}
     blocks = [{
@@ -1121,7 +1137,7 @@ def build_guides(items, path="videos.html"):
         % (h["slug"], html.escape(name), len(h["rows"]))
         for name, h in sorted(topics.items(), key=lambda kv: -len(kv[1]["rows"]))[:8])
 
-    body = """<div class="wrap"><section style="padding:32px 0 0">
+    body = """<div class="wrap full"><section style="padding:32px 0 0">
 <h1 style="font-size:32px;margin:0 0 6px">All guides (%d)</h1>
 <p class="dis">Every video, newest first. Filter by year or search by phone,
 ROM or anything in the title.</p>
@@ -1288,7 +1304,7 @@ def build_device_page(name, hub, total, all_hubs):
                   % (slugify(brand), html.escape(brand))) if brand else ""
     faq_html, faq = build_hub_faq("brand", name, rows)
 
-    body = """<div class="wrap"><section style="padding:32px 0 0">
+    body = """<div class="wrap full"><section style="padding:32px 0 0">
 %(crumbs)s
 <h1>%(name)s &mdash; custom ROM and flashing guides (%(count)d)</h1>
 <p class="dis">Every <strong>%(name)s</strong> video on the Rom Flasher channel,
@@ -1485,7 +1501,7 @@ def build_hub_page(kind, name, hub, all_hubs, total, items):
                                                HUB_KINDS[k]["label"])
         for k in ("brand", "rom", "year", "topic", "tag") if k != kind)
 
-    body = """<div class="wrap"><section style="padding:32px 0 0">
+    body = """<div class="wrap full"><section style="padding:32px 0 0">
 %(crumbs)s
 <h1>%(h1)s</h1>
 <p class="dis">Every guide that belongs here, newest first, with the date it went
@@ -1584,7 +1600,7 @@ def build_hub_index(kind, hubs, total, items):
                 "phones and ROMs to the jobs they are used for."),
     }[kind]
 
-    body = ('<div class="wrap"><section style="padding:32px 0 0">'
+    body = ('<div class="wrap full"><section style="padding:32px 0 0">'
             '%s'
             "<h1>%s</h1><p class=\"dis\">%s</p><div class=\"grid\">%s</div>"
             "%s"
@@ -2400,6 +2416,423 @@ and it genuinely decides what I build and film next.</p>
 
 
 
+DOWNLOADER_JS = r"""
+<script>
+/* The device picker, the region filter, the one-click download and the two
+   live GitHub cards. Everything here is progressive: the page is readable and
+   every link works with the script blocked - the script only adds the search,
+   the filtering and the fastest-server download. */
+(function(){
+  var INDEX_URL = "static/firmware.json";
+  var data = null, loading = false;
+  var selected = null, region = "all", rows = [];
+
+  function el(id){ return document.getElementById(id); }
+  function esc(t){
+    return String(t == null ? "" : t).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; });
+  }
+  function human(n){
+    if(!n) return "";
+    var u = ["B","KB","MB","GB"], i = 0;
+    while(n >= 1024 && i < u.length - 1){ n /= 1024; i++; }
+    return (i && n < 10 ? n.toFixed(1) : Math.round(n)) + " " + u[i];
+  }
+
+  /* ------------------------------------------------------------------
+     The fastest of several mirrors. Every link is asked how quickly it
+     answers; the quickest one that replies wins and the download starts
+     from there. A mirror that never answers is dropped after four seconds,
+     and if none reply the first link is used anyway - a slow download
+     beats no download.
+     ------------------------------------------------------------------ */
+  function race(urls){
+    if(!urls || !urls.length) return Promise.resolve(null);
+    if(urls.length === 1) return Promise.resolve(urls[0]);
+    var jobs = urls.map(function(u){
+      return new Promise(function(resolve){
+        var t0 = (window.performance && performance.now) ? performance.now() : Date.now();
+        var done = false, timer = null, ctl = null;
+        try { if("AbortController" in window) ctl = new AbortController(); } catch(e){}
+        timer = setTimeout(function(){
+          if(done) return; done = true;
+          if(ctl){ try{ ctl.abort(); }catch(e){} }
+          resolve({u:u, ms:Infinity});
+        }, 4000);
+        var opt = {method:"HEAD", mode:"no-cors", cache:"no-store"};
+        if(ctl) opt.signal = ctl.signal;
+        fetch(u, opt).then(function(){
+          if(done) return; done = true; clearTimeout(timer);
+          var now = (window.performance && performance.now) ? performance.now() : Date.now();
+          resolve({u:u, ms:now - t0});
+        }).catch(function(){
+          if(done) return; done = true; clearTimeout(timer);
+          resolve({u:u, ms:Infinity});
+        });
+      });
+    });
+    return Promise.all(jobs).then(function(rs){
+      var ok = rs.filter(function(r){ return isFinite(r.ms); })
+                 .sort(function(a,b){ return a.ms - b.ms; });
+      return ok.length ? ok[0].u : urls[0];
+    });
+  }
+
+  function download(urls, btn, label){
+    if(!urls || !urls.length) return;
+    var was = btn ? btn.textContent : "";
+    if(btn){ btn.disabled = true; btn.textContent = "Finding the fastest server..."; }
+    race(urls).then(function(u){
+      if(btn){ btn.disabled = false; btn.textContent = was || label || "Download"; }
+      if(!u) return;
+      var a = document.createElement("a");
+      a.href = u; a.rel = "noopener"; a.target = "_blank"; a.download = "";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function(){ if(a.parentNode) a.parentNode.removeChild(a); }, 5000);
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     The index of phones. It is a separate file so the page itself stays
+     small: a few hundred phones with every build each would be a heavy
+     page to load just to read the text.
+     ------------------------------------------------------------------ */
+  function loadIndex(done){
+    if(data){ done(); return; }
+    if(loading) return;
+    loading = true;
+    var hint = el("dlhint");
+    fetch(INDEX_URL, {cache:"no-cache"}).then(function(r){
+      if(!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).then(function(j){
+      data = (j && j.devices) ? j.devices : {};
+      loading = false;
+      done();
+    }).catch(function(e){
+      loading = false;
+      if(hint){
+        hint.textContent = "The phone index could not be loaded (" +
+          (e && e.message ? e.message : "network error") +
+          "). The brand list further down still works.";
+      }
+    });
+  }
+
+  function hay(d){
+    return (d.name + " " + (d.code || "") + " " + (d.models || "") + " " +
+            (d.brand || "") + " " + (d.slug || "")).toLowerCase();
+  }
+
+  function search(q){
+    var t = q.trim().toLowerCase();
+    if(!t) return [];
+    var out = [];
+    for(var k in data){
+      if(!Object.prototype.hasOwnProperty.call(data, k)) continue;
+      var d = data[k];
+      if(hay(d).indexOf(t) >= 0) out.push(d);
+    }
+    out.sort(function(a, b){
+      var an = (a.name || "").toLowerCase(), bn = (b.name || "").toLowerCase();
+      var ai = an.indexOf(t), bi = bn.indexOf(t);
+      if(ai !== bi) return (ai < 0 ? 9999 : ai) - (bi < 0 ? 9999 : bi);
+      return an < bn ? -1 : (an > bn ? 1 : 0);
+    });
+    return out.slice(0, 120);
+  }
+
+  function renderResults(q){
+    var box = el("dlresults");
+    if(!box) return;
+    if(!q.trim()){
+      box.hidden = true; box.innerHTML = ""; return;
+    }
+    var hits = search(q);
+    if(!hits.length){
+      box.hidden = false;
+      box.innerHTML = '<p class="dlempty">No phone matched "' + esc(q) +
+        '". Try the brand on its own - "poco", "redmi" or "xiaomi" - then pick ' +
+        'your model from the list.</p>';
+      return;
+    }
+    var html = "";
+    for(var i = 0; i < hits.length; i++){
+      var d = hits[i];
+      html += '<button type="button" class="dlres" data-slug="' + esc(d.slug) + '">' +
+        '<span class="dlresname"><b>' + esc(d.name) + '</b><span>' +
+        esc(d.code || d.slug) + '</span></span>' +
+        '<span class="dlresbrand">' + esc(d.brand || "") + '</span></button>';
+    }
+    box.innerHTML = html;
+    box.hidden = false;
+  }
+
+  function buildRegions(){
+    var chips = el("dlregionchips");
+    var seen = {}, list = [];
+    var roms = (selected && selected.roms) || [];
+    for(var i = 0; i < roms.length; i++){
+      var r = roms[i].region;
+      if(r && !seen[r]){ seen[r] = 1; list.push(r); }
+    }
+    if(!list.length) list = (selected && selected.regions) || [];
+    list.sort();
+    region = "all";
+    var html = '<button type="button" data-r="all" class="on">All regions</button>';
+    for(var j = 0; j < list.length; j++){
+      html += '<button type="button" data-r="' + esc(list[j]) + '">' +
+        esc(list[j]) + '</button>';
+    }
+    chips.innerHTML = html;
+  }
+
+  function groupRows(){
+    var groups = {}, order = [];
+    var roms = (selected && selected.roms) || [];
+    for(var i = 0; i < roms.length; i++){
+      var r = roms[i];
+      if(region !== "all" && r.region !== region) continue;
+      var key = (r.region || "") + "|" + (r.v || "");
+      if(!groups[key]){
+        groups[key] = {region:r.region, v:r.v, os:r.os, android:r.android,
+                       date:r.date, size:r.size, rec:null, fb:null};
+        order.push(key);
+      }
+      if(r.kind === "recovery") groups[key].rec = r;
+      else if(r.kind === "fastboot") groups[key].fb = r;
+    }
+    var out = [];
+    for(var j = 0; j < order.length; j++){
+      var g = groups[order[j]];
+      out.push(g);
+    }
+    out.sort(function(a, b){ return (b.date || "").localeCompare(a.date || ""); });
+    return out;
+  }
+
+  function renderRoms(){
+    var body = el("dlroms");
+    if(!body) return;
+    rows = groupRows();
+    if(!rows.length){
+      body.innerHTML = '<tr><td colspan="6" class="dlempty">' +
+        'No build listed for this region. Switch the region back to "All ' +
+        'regions" to see every build for this phone.</td></tr>';
+      return;
+    }
+    var html = "";
+    for(var i = 0; i < rows.length; i++){
+      var r = rows[i];
+      var rec = r.rec && r.rec.url ? r.rec.url : "";
+      var fb = r.fb && r.fb.url ? r.fb.url : "";
+      html += '<tr>' +
+        '<td class="dlver">' + esc(r.v) +
+          (r.os ? '<span class="dlversub">' + esc(r.os) + '</span>' : '') + '</td>' +
+        '<td><span class="dlregion">' + esc(r.region || "Global") + '</span></td>' +
+        '<td>' + esc(r.android || "-") + '</td>' +
+        '<td>' + esc(r.date || "-") + '</td>' +
+        '<td class="dlsize">' + esc(r.size || "-") + '</td>' +
+        '<td><div class="dlgets">' +
+          (rec ? '<button class="recovery" type="button" data-k="' + i +
+                 '" data-kind="recovery">Recovery ROM</button>' : '') +
+          (fb ? '<button class="fastboot" type="button" data-k="' + i +
+                '" data-kind="fastboot">Fastboot ROM</button>' : '') +
+        '</div></td></tr>';
+    }
+    body.innerHTML = html;
+  }
+
+  function renderPicked(){
+    var d = selected;
+    if(!d) return;
+    el("dlpick").hidden = false;
+    el("dlresults").hidden = true;
+    el("dlpname").textContent = d.name || d.slug;
+    el("dlpdesc").textContent =
+      "Stock firmware for " + (d.name || d.slug) +
+      (d.code ? " (codename " + d.code + ")" : "") + ".";
+    var meta = [];
+    if(d.brand) meta.push(d.brand);
+    if(d.code) meta.push("codename " + d.code);
+    if(d.models) meta.push(d.models);
+    meta.push(((d.roms || []).length) + " builds listed");
+    el("dlpmeta").innerHTML = meta.map(function(m){
+      return "<span>" + esc(m) + "</span>";
+    }).join("");
+    el("dlpnote").innerHTML =
+      "Every button picks the quickest server that answers and starts the " +
+      "download from there. The files stay on the publisher&#39;s own " +
+      "servers - nothing is re-hosted here. " +
+      '<a href="' + esc(d.page || "#") + '" rel="noopener">See every build ' +
+      'and region on the source page &rarr;</a>';
+    buildRegions();
+    renderRoms();
+  }
+
+  function select(slug){
+    if(!data || !data[slug]) return;
+    selected = data[slug];
+    renderPicked();
+    try {
+      el("dlpick").scrollIntoView({behavior:"smooth", block:"start"});
+    } catch(e){}
+  }
+
+  /* ------------------------------------------------------------------
+     Magisk and KernelSU: the live release straight from GitHub. The
+     answer is kept for half an hour so a visitor who opens both cards
+     does not spend the API's hourly allowance on one page view.
+     ------------------------------------------------------------------ */
+  function githubCard(key, repo, pick){
+    var state = el("gh-" + key + "-state"), btn = el("gh-" + key + "-btn");
+    if(!state || !btn) return;
+    var ck = "rf_gh_" + repo.replace("/","_");
+    var cached = null;
+    try { cached = JSON.parse(localStorage.getItem(ck) || "null"); } catch(e){}
+
+    function show(rel){
+      var assets = (rel && rel.assets) || [];
+      var a = pick(assets);
+      if(!a){
+        state.className = "ghstate bad";
+        state.textContent = "The latest release has no file to download.";
+        btn.disabled = true;
+        return;
+      }
+      state.className = "ghstate ok";
+      state.innerHTML = "Latest release <b>" +
+        esc(rel.tag_name || rel.name || "") + "</b> &middot; " +
+        esc(human(a.size)) + " &middot; published " +
+        esc(String(rel.published_at || "").slice(0,10));
+      btn.disabled = false;
+      btn.onclick = function(){ download([a.browser_download_url], btn); };
+    }
+
+    if(cached && cached.rel && (Date.now() - cached.t) < 30 * 60 * 1000){
+      show(cached.rel);
+      return;
+    }
+    fetch("https://api.github.com/repos/" + repo + "/releases/latest", {
+      headers: {"Accept":"application/vnd.github+json"}
+    }).then(function(r){
+      if(!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).then(function(rel){
+      try {
+        localStorage.setItem(ck, JSON.stringify({t:Date.now(), rel:rel}));
+      } catch(e){}
+      show(rel);
+    }).catch(function(e){
+      state.className = "ghstate bad";
+      state.textContent = "GitHub did not answer (" +
+        (e && e.message ? e.message : "network error") +
+        "). The releases page is one click away.";
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  function start(){
+    var q = el("dlq");
+    if(!q) return;
+
+    q.addEventListener("input", function(){
+      var v = q.value;
+      if(!v.trim()){ renderResults(v); return; }
+      loadIndex(function(){ renderResults(v); });
+    });
+
+    q.addEventListener("keydown", function(e){
+      if(e.key !== "Enter") return;
+      var first = document.querySelector("#dlresults .dlres");
+      if(first) first.click();
+    });
+
+    var box = el("dlresults");
+    if(box){
+      box.addEventListener("click", function(e){
+        var b = e.target.closest ? e.target.closest(".dlres") : null;
+        if(b) select(b.getAttribute("data-slug"));
+      });
+    }
+
+    var change = el("dlchange");
+    if(change){
+      change.addEventListener("click", function(){
+        selected = null; region = "all";
+        el("dlpick").hidden = true;
+        el("dlresults").hidden = true;
+        q.value = ""; q.focus();
+      });
+    }
+
+    var rb = el("dlregionbtn"), chips = el("dlregionchips");
+    if(rb && chips){
+      rb.addEventListener("click", function(){
+        var open = chips.hidden;
+        chips.hidden = !open;
+        rb.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      chips.addEventListener("click", function(e){
+        var b = e.target.closest ? e.target.closest("button[data-r]") : null;
+        if(!b) return;
+        region = b.getAttribute("data-r");
+        var all = chips.querySelectorAll("button[data-r]");
+        for(var i = 0; i < all.length; i++){
+          all[i].className = (all[i].getAttribute("data-r") === region) ? "on" : "";
+        }
+        renderRoms();
+      });
+    }
+
+    var tbody = el("dlroms");
+    if(tbody){
+      tbody.addEventListener("click", function(e){
+        var b = e.target.closest ? e.target.closest("button[data-kind]") : null;
+        if(!b) return;
+        var row = rows[+b.getAttribute("data-k")];
+        if(!row) return;
+        var src = b.getAttribute("data-kind") === "recovery" ? row.rec : row.fb;
+        if(!src || !src.url) return;
+        var urls = [src.url];
+        if(src.mirrors) for(var i = 0; i < src.mirrors.length; i++) urls.push(src.mirrors[i]);
+        download(urls, b);
+      });
+    }
+
+    githubCard("magisk", "topjohnwu/Magisk", function(assets){
+      for(var i = 0; i < assets.length; i++){
+        if(/^Magisk-.*\.apk$/i.test(assets[i].name)) return assets[i];
+      }
+      for(var j = 0; j < assets.length; j++){
+        if(/\.apk$/i.test(assets[j].name) && !/debug/i.test(assets[j].name))
+          return assets[j];
+      }
+      return null;
+    });
+
+    githubCard("kernelsu", "tiann/KernelSU", function(assets){
+      for(var i = 0; i < assets.length; i++){
+        if(/release\.apk$/i.test(assets[i].name)) return assets[i];
+      }
+      for(var j = 0; j < assets.length; j++){
+        if(/\.apk$/i.test(assets[j].name)) return assets[j];
+      }
+      return null;
+    });
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+})();
+</script>
+"""
+
+
 def build_downloader():
     """The ROM downloader: pick a device, get the official firmware page.
 
@@ -2600,10 +3033,6 @@ def build_downloader():
         },
     ]
 
-    # Flat search index for the little client-side box below.
-    index = [{"n": b["name"], "k": b["keys"], "i": i}
-             for i, b in enumerate(BRANDS)]
-
     cards = []
     for i, b in enumerate(BRANDS):
         cards.append(
@@ -2624,18 +3053,49 @@ def build_downloader():
                             b["note"]))
 
     body = """<h1>ROM downloader</h1>
-<p class="dis">Type the phone you actually have &mdash; <em>poco x7 pro</em>,
-<em>redmi note 13</em>, <em>CPH2451</em>, whatever is written on the box &mdash;
-and this page takes you straight to that brand's own firmware download page.
-Recovery ROM and Fastboot ROM are both spelled out for each brand, because which
-one you need depends on whether the phone still boots.</p>
+<p class="dis">Type the phone you actually have &mdash; <em>poco</em>,
+<em>redmi note 13</em>, <em>CPH2451</em>, whatever is written on the box. Every
+matching model drops out of the list below the box; tap yours and the page
+lays out every build it has for that phone, newest first, with the Recovery
+ROM and the Fastboot ROM side by side. <strong>Change region</strong> switches
+between Global, India, EEA and the rest, and every download button picks the
+quickest server that answers and starts the file on its way.</p>
 
 <div class="dlsearch">
   <label for="dlq">Which phone?</label>
   <input id="dlq" type="search" autocomplete="off" spellcheck="false"
-         placeholder="e.g. POCO X7 Pro, Redmi Note 13, Pixel 8, OnePlus 12">
-  <p class="dlhint" id="dlhint">Start typing &mdash; the list below filters to
-  your brand.</p>
+         placeholder="Type a brand or a model - poco, redmi note 13, xiaomi 14...">
+  <div class="dlresults" id="dlresults" hidden></div>
+  <p class="dlhint" id="dlhint">Start typing. Every phone in the index drops
+  out below the box - scroll the list and tap your model.</p>
+</div>
+
+<div class="dlpick" id="dlpick" hidden>
+  <div class="dlpickhead">
+    <div>
+      <h2 id="dlpname">Phone</h2>
+      <p class="dis" id="dlpdesc"></p>
+      <div class="dlmeta" id="dlpmeta"></div>
+    </div>
+    <button class="btn ghost" type="button" id="dlchange">Change phone</button>
+  </div>
+
+  <div class="dlregions">
+    <button class="dlregionbtn" type="button" id="dlregionbtn"
+            aria-expanded="false" aria-controls="dlregionchips">Change region</button>
+    <div class="dlregionchips" id="dlregionchips" hidden></div>
+  </div>
+
+  <div class="dltablewrap">
+    <table class="dltable">
+      <thead><tr>
+        <th>Version</th><th>Region</th><th>Android</th><th>Released</th>
+        <th>Size</th><th style="text-align:right">Download</th>
+      </tr></thead>
+      <tbody id="dlroms"></tbody>
+    </table>
+  </div>
+  <p class="dlnote" id="dlpnote"></p>
 </div>
 
 <h2>Pick a download</h2>
@@ -2676,6 +3136,21 @@ boot &rarr; Fastboot ROM.</p>
 </div>
 
 <h2 id="magisk">Magisk</h2>
+<div class="ghcards">
+  <div class="ghcard" id="gh-magisk">
+    <div style="display:flex;align-items:center;gap:11px">
+      <span class="ghlogo">M</span>
+      <h3>Magisk</h3>
+    </div>
+    <p class="ghstate" id="gh-magisk-state">Checking GitHub for the latest
+    release&hellip;</p>
+    <div class="ghbtns">
+      <button class="btn" type="button" id="gh-magisk-btn" disabled>Download latest</button>
+      <a class="btn ghost" href="https://github.com/topjohnwu/Magisk/releases"
+         rel="noopener">All releases</a>
+    </div>
+  </div>
+</div>
 <p><strong>Magisk</strong> is the root method most people end up on, because it
 keeps root out of the system partition: you patch the phone's own
 <code>boot</code> or <code>init_boot</code> image, flash that back, and the
@@ -2693,6 +3168,21 @@ or the OTA zip above), patch it in the Magisk app, then flash the patched file
 with the free Rom Flasher tool over USB-OTG &mdash; no PC needed.</p>
 
 <h2 id="kernelsu">KernelSU</h2>
+<div class="ghcards">
+  <div class="ghcard" id="gh-kernelsu">
+    <div style="display:flex;align-items:center;gap:11px">
+      <span class="ghlogo">K</span>
+      <h3>KernelSU</h3>
+    </div>
+    <p class="ghstate" id="gh-kernelsu-state">Checking GitHub for the latest
+    release&hellip;</p>
+    <div class="ghbtns">
+      <button class="btn" type="button" id="gh-kernelsu-btn" disabled>Download latest</button>
+      <a class="btn ghost" href="https://github.com/tiann/KernelSU/releases"
+         rel="noopener">All releases</a>
+    </div>
+  </div>
+</div>
 <p><strong>KernelSU</strong> is the other modern root route, and it works
 differently: root lives inside the kernel itself, so you flash a patched kernel
 rather than patching a boot image. On phones with a GKI kernel it is the cleanest
@@ -2835,34 +3325,10 @@ section. Every manufacturer has one; it is just named differently each time.</p>
     head = "\n".join('<script type="application/ld+json">%s</script>'
                      % json.dumps(b, ensure_ascii=False) for b in blocks)
 
-    # The filter. Small, and it degrades to the full list with JS off.
-    # It waits for DOMContentLoaded on purpose: the markup is emitted from <head>
-    # and the input and cards are further down, so looking them up immediately
-    # finds nothing and the box silently stops filtering.
-    head += (
-        '\n<script>window.DL_INDEX=%s;</script>\n'
-        '<script>\n'
-        'window.addEventListener("DOMContentLoaded",function(){\n'
-        '  var q=document.getElementById("dlq"),cards=document.querySelectorAll(".dlcard"),\n'
-        '      hint=document.getElementById("dlhint"),idx=window.DL_INDEX||[];\n'
-        '  if(!q)return;\n'
-        '  function words(s){return s.toLowerCase().replace(/[^a-z0-9]+/g," ").split(" ").filter(Boolean);}\n'
-        '  function run(){\n'
-        '    var t=words(q.value),shown=0;\n'
-        '    cards.forEach(function(c){\n'
-        '      var i=+c.getAttribute("data-dl"),row=idx[i]||{n:"",k:""};\n'
-        '      var hay=(row.n+" "+row.k).toLowerCase();\n'
-        '      var hit=!t.length||t.every(function(w){return hay.indexOf(w)>=0;});\n'
-        '      c.style.display=hit?"":"none";\n'
-        '      if(hit)shown++;\n'
-        '    });\n'
-        '    hint.textContent=!q.value?"Start typing - the list below filters to your brand."\n'
-        '      :(shown?shown+" brand"+(shown===1?"":"s")+" match."\n'
-        '        :"No brand matched. Check the closest entry below and open that brand\'s support page.");\n'
-        '  }\n'
-        '  q.addEventListener("input",run);\n'
-        '});\n'
-        '</script>' % json.dumps(index, ensure_ascii=False))
+    # The picker, the region filter, the one-click download and the two live
+    # GitHub cards. The markup above is already readable with the script
+    # blocked - this only adds the search and the download.
+    head += DOWNLOADER_JS
 
     return page("ROM downloader \u2014 stock ROM, Magisk, KernelSU links by device"
                 " | %s" % SITE,
@@ -3208,6 +3674,19 @@ def main():
         src = os.path.join(STATIC, name)
         if os.path.isfile(src):
             shutil.copy2(src, os.path.join(DIST, "static", name))
+
+    # The phone index the downloader's search box reads. It is a file of its
+    # own rather than a script tag because it is far too big to inline: a few
+    # hundred phones with every build each would swamp the page. The browser
+    # asks for it the first time somebody types in the search box, so the
+    # page itself stays quick. Refresh it with: python fetch_firmware.py
+    firmware = os.path.join(DATA, "firmware.json")
+    if os.path.exists(firmware):
+        shutil.copy2(firmware, os.path.join(DIST, "static", "firmware.json"))
+        print("[i] phone index: %s" % os.path.join(DIST, "static", "firmware.json"))
+    else:
+        print("[i] no data/firmware.json - the downloader's phone search will "
+              "stay empty until 'python fetch_firmware.py' has run")
 
     write("index.html", build_home(items))
     write("videos.html", build_guides(items))

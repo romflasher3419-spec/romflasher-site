@@ -5,6 +5,11 @@ dist/
 __pycache__/
 *.pyc
 
+# Firmware index scratch space - the pages that were read, nothing that ships.
+.firmware-cache/
+.firmware-build.log
+.tmp_*
+
 # Editor / OS
 .idea/
 .vscode/

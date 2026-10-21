@@ -122,7 +122,10 @@ def link_check():
         page_dir = os.path.dirname(path)
         rel_page = os.path.relpath(path, DIST)
         depth = rel_page.count(os.sep)
-        for attr in re.findall(r'(?:href|src)="([^"]+)"', text(path)):
+        # Inline JS builds hrefs as text too - only look at real markup.
+        markup = re.sub(r"<script\b.*?</script>", " ", text(path),
+                         flags=re.S | re.I)
+        for attr in re.findall(r'(?:href|src)="([^"]+)"', markup):
             if attr.startswith(("http://", "https://", "mailto:", "#", "data:")):
                 continue
             target = os.path.normpath(
