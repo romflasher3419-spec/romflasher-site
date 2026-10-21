@@ -91,11 +91,11 @@ APK_URL = REPO_URL + "/releases/latest/download/app-release.apk"
 RELEASES_URL = REPO_URL + "/releases"
 
 APP = {
-    "version": "v1.2.4",
+    "version": "v1.2.5",
     "released": "21 Oct 2026",
     "size": "8.3 MB",
-    "bytes": "8654003",
-    "sha256": "08D97062B500868252CCDAC3D01FE8D7FF4754A95A272174797286396624598B",
+    "bytes": "8654001",
+    "sha256": "4EDBEA29A0B1FF98748835BEF076065F8048CEE0A556F893E5CD8528C1675A1B",
     "android": "Android 8.0 or newer",
 }
 
