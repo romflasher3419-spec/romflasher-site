@@ -1005,10 +1005,8 @@ def page(title, description, body, path="", extra_head="", keywords="",
         "<body>",
         CURSOR_LIGHT,
         '<header class="top"><div class="wrap">',
-        '  <a class="brand" href="%sindex.html"><img class="applogo" '
-        'src="%sstatic/app.png" alt="Rom Flasher tool icon" width="30" '
-        'height="30"><span class="brandtx"><span class="brandname">Rom<b>Flasher</b></span>'
-        '<span class="brandsub">All-In-One Android Tool</span></span></a>' % (up, up),
+        '  <a class="brand brand-anim-wrap" href="%sindex.html" aria-label="Rom Flasher - All-In-One Android Tool">'
+        '<img class="brand-anim" src="%sstatic/brand-anim.svg" alt="Rom Flasher" width="280" height="58"></a>' % (up, up),
         "  <nav id=\"mainnav\">",
         # Guides wears the same pill as the four on its right, so the row reads
         # as one set of buttons. The logo on the left already goes home, so there

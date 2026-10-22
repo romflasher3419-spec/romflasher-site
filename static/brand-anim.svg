@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 64" fill="none" width="100%" height="100%">
+  <defs>
+    <linearGradient id="textGrad" x1="120" y1="20" x2="270" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#a78bfa"/>
+      <stop offset="0.5" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="shockGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <style>
+      /* 4.2-second continuous animation loop */
+      .bot-body {
+        transform-origin: 28px 48px;
+        animation: botMotion 4.2s infinite ease-in-out;
+      }
+      @keyframes botMotion {
+        0%, 20% { transform: rotate(0deg) translate(0, 0); }
+        22% { transform: rotate(4deg) translate(2px, 0); }
+        26% { transform: translate(-3px, -2px) rotate(-6deg) scale(1.06); }
+        29% { transform: translate(4px, 2px) rotate(8deg) scale(1.08); }
+        32% { transform: translate(-4px, 3px) rotate(-8deg) scale(1.06); }
+        35% { transform: translate(4px, -3px) rotate(7deg) scale(1.08); }
+        38% { transform: translate(-3px, 1px) rotate(-6deg) scale(1.05); }
+        41% { transform: translate(3px, -2px) rotate(6deg) scale(1.07); }
+        44% { transform: translate(-4px, 2px) rotate(-5deg) scale(1.05); }
+        47% { transform: translate(2px, -3px) rotate(4deg) scale(1.06); }
+        50% { transform: translate(-2px, 1px) rotate(-2deg); }
+        54% { transform: translate(-8px, 14px) rotate(-78deg); }
+        58%, 76% { transform: translate(-10px, 16px) rotate(-85deg); }
+        82% { transform: translate(-3px, 5px) rotate(-25deg); }
+        88%, 100% { transform: translate(0, 0) rotate(0deg); }
+      }
+
+      .eye-normal { animation: eyesState 4.2s infinite; }
+      .eye-shocked { animation: eyeShockedState 4.2s infinite; }
+      .eye-faint { animation: eyeFaintState 4.2s infinite; }
+
+      @keyframes eyesState {
+        0%, 24% { opacity: 1; }
+        25%, 79% { opacity: 0; }
+        80%, 100% { opacity: 1; }
+      }
+      @keyframes eyeShockedState {
+        0%, 25% { opacity: 0; }
+        26%, 52% { opacity: 1; }
+        53%, 100% { opacity: 0; }
+      }
+      @keyframes eyeFaintState {
+        0%, 53% { opacity: 0; }
+        54%, 79% { opacity: 1; }
+        80%, 100% { opacity: 0; }
+      }
+
+      .bot-hand-plug {
+        transform-origin: 34px 44px;
+        animation: plugMotion 4.2s infinite;
+      }
+      @keyframes plugMotion {
+        0%, 20% { transform: translate(0, 0); }
+        23%, 52% { transform: translate(7px, -2px); }
+        54%, 78% { transform: translate(-6px, 10px) rotate(-45deg); }
+        84%, 100% { transform: translate(0, 0); }
+      }
+
+      .lightning-bolts {
+        opacity: 0;
+        transform-origin: 46px 42px;
+        animation: lightningZap 4.2s infinite;
+      }
+      @keyframes lightningZap {
+        0%, 25% { opacity: 0; transform: scale(0.5); }
+        26% { opacity: 1; transform: scale(1.3) rotate(10deg); }
+        30% { opacity: 0.3; transform: scale(0.9) rotate(-15deg); }
+        34% { opacity: 1; transform: scale(1.4) rotate(20deg); }
+        38% { opacity: 0.4; transform: scale(1.1) rotate(-10deg); }
+        42% { opacity: 1; transform: scale(1.5) rotate(15deg); }
+        46% { opacity: 0.2; transform: scale(0.8) rotate(-20deg); }
+        50% { opacity: 1; transform: scale(1.3) rotate(5deg); }
+        53%, 100% { opacity: 0; transform: scale(0); }
+      }
+
+      .wire-pulse {
+        stroke-dasharray: 8 16;
+        animation: wireCurrent 0.6s linear infinite, wireFlash 4.2s infinite;
+      }
+      @keyframes wireFlash {
+        0%, 25% { opacity: 0; }
+        26%, 52% { opacity: 1; }
+        53%, 100% { opacity: 0; }
+      }
+      @keyframes wireCurrent {
+        from { stroke-dashoffset: 48; }
+        to { stroke-dashoffset: 0; }
+      }
+
+      .dizzy-stars {
+        transform-origin: 22px 28px;
+        animation: dizzySpin 4.2s infinite linear;
+      }
+      @keyframes dizzySpin {
+        0%, 53% { opacity: 0; transform: rotate(0deg) scale(0); }
+        55% { opacity: 1; transform: rotate(40deg) scale(1); }
+        75% { opacity: 1; transform: rotate(260deg) scale(1); }
+        78%, 100% { opacity: 0; transform: rotate(360deg) scale(0); }
+      }
+
+      .wire-path {
+        fill: none;
+        stroke: #64748b;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+      }
+      .wire-glow {
+        fill: none;
+        stroke: #facc15;
+        stroke-width: 3.5;
+        stroke-linecap: round;
+        filter: url(#shockGlow);
+      }
+      .brand-title {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-weight: 800;
+        font-size: 25px;
+        letter-spacing: -0.5px;
+      }
+      .brand-sub {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-weight: 700;
+        font-size: 8.5px;
+        fill: #94a3b8;
+        letter-spacing: 1.5px;
+      }
+    </style>
+  </defs>
+
+  <!-- 1. The Wire from 'r' to Phone -->
+  <path class="wire-path" d="M 268 34 C 275 48, 260 58, 220 58 C 150 58, 100 58, 62 55 C 50 53, 44 48, 46 42" />
+  <path class="wire-glow wire-pulse" d="M 268 34 C 275 48, 260 58, 220 58 C 150 58, 100 58, 62 55 C 50 53, 44 48, 46 42" />
+
+  <!-- 2. The Cartoon Character -->
+  <g class="bot-body">
+    <!-- Body / Head -->
+    <circle cx="28" cy="34" r="14" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+    
+    <!-- Antenna -->
+    <line x1="28" y1="20" x2="28" y2="13" stroke="#94a3b8" stroke-width="2" />
+    <circle cx="28" cy="12" r="3.5" fill="#facc15" filter="url(#shockGlow)" />
+
+    <!-- Face Screen -->
+    <rect x="18" y="26" width="20" height="15" rx="5" fill="#0f172a" />
+
+    <!-- Eyes: Normal -->
+    <g class="eye-normal">
+      <circle cx="23" cy="33" r="2.2" fill="#38bdf8" />
+      <circle cx="33" cy="33" r="2.2" fill="#38bdf8" />
+      <path d="M 25 37 Q 28 40 31 37" stroke="#38bdf8" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- Eyes: Shocked -->
+    <g class="eye-shocked">
+      <path d="M 21 30 L 25 34 L 23 35 L 26 38" stroke="#facc15" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M 31 30 L 35 34 L 33 35 L 36 38" stroke="#facc15" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <ellipse cx="28" cy="38" rx="2.5" ry="3.5" fill="#facc15" />
+    </g>
+
+    <!-- Eyes: Fainted -->
+    <g class="eye-faint">
+      <line x1="21" y1="31" x2="25" y2="35" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" />
+      <line x1="25" y1="31" x2="21" y2="35" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" />
+      <line x1="31" y1="31" x2="35" y2="35" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" />
+      <line x1="35" y1="31" x2="31" y2="35" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" />
+      <path d="M 26 39 Q 28 37 30 39" stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- Hand with Phone -->
+    <g class="bot-hand-phone">
+      <rect x="42" y="32" width="11" height="19" rx="2" fill="#0f172a" stroke="#64748b" stroke-width="1.2" />
+      <rect x="44" y="35" width="7" height="13" fill="#38bdf8" opacity="0.8" />
+      <rect x="45.5" y="49" width="4" height="2" fill="#94a3b8" />
+      <circle cx="41" cy="42" r="3" fill="#38bdf8" />
+    </g>
+
+    <!-- Hand with Cable Plug -->
+    <g class="bot-hand-plug">
+      <circle cx="37" cy="48" r="3" fill="#38bdf8" />
+      <rect x="42" y="47" width="5" height="4" rx="1" fill="#facc15" />
+    </g>
+  </g>
+
+  <!-- 3. Sparks & Lightning -->
+  <g class="lightning-bolts" filter="url(#shockGlow)">
+    <path d="M 44 49 L 38 43 L 42 41 L 35 34" stroke="#facc15" stroke-width="2.2" fill="none" />
+    <path d="M 48 50 L 55 45 L 51 43 L 57 37" stroke="#38bdf8" stroke-width="2.2" fill="none" />
+    <path d="M 46 51 L 43 59 L 47 60 L 42 66" stroke="#facc15" stroke-width="2.2" fill="none" />
+    <circle cx="47" cy="49" r="4.5" fill="#fff" />
+    <path d="M 12 30 L 16 34 L 13 37" stroke="#facc15" stroke-width="1.8" fill="none" />
+    <path d="M 38 16 L 42 20 L 39 23" stroke="#38bdf8" stroke-width="1.8" fill="none" />
+  </g>
+
+  <!-- 4. Dizzy Stars -->
+  <g class="dizzy-stars">
+    <path d="M 18 16 L 20 18 L 18 20 L 16 18 Z" fill="#facc15" />
+    <path d="M 28 10 L 30 13 L 28 16 L 26 13 Z" fill="#facc15" />
+    <path d="M 36 18 L 38 20 L 36 22 L 34 20 Z" fill="#38bdf8" />
+  </g>
+
+  <!-- 5. Brand Typography -->
+  <g id="brandTypography">
+    <text x="74" y="38" class="brand-title" fill="#ffffff">
+      Rom<tspan fill="url(#textGrad)">Flasher</tspan>
+    </text>
+    <text x="75" y="49" class="brand-sub">
+      ALL-IN-ONE ANDROID TOOL
+    </text>
+  </g>
+</svg>
