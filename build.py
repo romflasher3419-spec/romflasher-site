@@ -2343,6 +2343,7 @@ recovery and sideloading for you &mdash; no PC and no terminal.</p>
       <span class="gicon">&#11015;</span>
       <span>Download {ver} for Android<small>{size} &middot; Android 8.0+ &middot;
       free, no sign-in</small></span></a>
+    <a class="subbtn star" href="{repo}" rel="noopener" target="_blank">&#11088; Star on GitHub</a>
     <a class="subbtn" href="{yt}" rel="noopener">Watch the step-by-step videos</a>
     <a class="subbtn gh" href="{rel}" rel="noopener">{gh}Release notes on GitHub</a>
     <p class="dis">If your browser warns about installing an app from outside the
@@ -2440,7 +2441,7 @@ feature you keep wishing the app had? Type it below and it comes straight to my
 inbox &mdash; no account, no sign-in, nothing to install. I read every message
 and it genuinely decides what I build and film next.</p>
 {form}
-""".format(apk=APK_URL, rel=RELEASES_URL, yt=CHANNEL_URL, gh=GH_LOGO,
+""".format(repo=REPO_URL, apk=APK_URL, rel=RELEASES_URL, yt=CHANNEL_URL, gh=GH_LOGO,
            ver=APP["version"], released=APP["released"], size=APP["size"],
            android=APP["android"], sha=APP["sha256"], feats=feats,
            faq=faq_html, ad=ad_slot("hub", ""), form=feedback_form(),
