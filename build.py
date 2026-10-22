@@ -1202,7 +1202,28 @@ pausing the video twenty times.</p>
 </div>
 %s
 </div>
-</div>""" % (TAGLINE, len(items), row,
+</div>
+<script>
+(function(){
+  function fixRail(){
+    var r = document.querySelector('.adrail');
+    var h = document.querySelector('.homerow');
+    if (!r || !h) return;
+    var cs = window.getComputedStyle(r);
+    if (cs.display === 'none' || r.offsetHeight < 10 || r.offsetWidth < 10) {
+      h.classList.remove('withad');
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fixRail);
+  } else {
+    fixRail();
+  }
+  window.addEventListener('load', fixRail);
+  setTimeout(fixRail, 150);
+  setTimeout(fixRail, 600);
+})();
+</script>""" % (TAGLINE, len(items), row,
              "".join(card(x) for x in by_date),
              "".join(card(x) for x in by_views), rail)
 
@@ -1253,8 +1274,9 @@ pausing the video twenty times.</p>
 
 def build_guides(items, path="videos.html"):
     """All guides with a real date column, sortable, plus year chips."""
+    sorted_items = sorted(items, key=lambda x: (x.get("published") or "", x.get("title") or ""), reverse=True)
     rows = []
-    for i, x in enumerate(items):
+    for i, x in enumerate(sorted_items):
         d = x.get("published") or ""
         year = d[:4] if d else "----"
         deep = ' data-deep="1"' if i >= 50 else ""
@@ -2423,7 +2445,7 @@ recovery and sideloading for you &mdash; no PC and no terminal.</p>
     <p>The button always pulls the newest build published on GitHub, so you never
     have to go hunting for the latest file.</p>
     <a class="bigbtn" href="{apk}" rel="noopener">
-      <span class="gicon">&#11015;</span>
+      <span class="gicon">⬇️</span>
       <span>Download {ver} for Android<small>{size} &middot; Android 8.0+ &middot;
       free, no sign-in</small></span></a>
     <a class="subbtn star" href="{repo}" rel="noopener" target="_blank">&#11088; Star on GitHub</a>

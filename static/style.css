@@ -242,12 +242,14 @@ header.top .wrap{
 .homerow.withad{grid-template-columns:minmax(0,1fr) 320px}
 .homerow .homecol{min-width:0}
 .adrail{min-width:0}
-/* If the ad does not actually fill (ad blocker, no consent or no fill),
-   the column is wasted and the cards should spread across the whole page.
-   The test is one level deep on purpose: a :has() inside another :has()
-   is not allowed by the browser. */
-.homerow.withad:has(.adrail .adslot ins:not([data-ad-status="filled"])){
+/* If adrail is hidden, empty, or blocked by adblockers (e.g. Brave Shields), collapse to 1 column */
+.homerow.withad:not(:has(.adrail:not([style*="none"]):not(:empty))),
+.homerow.withad:has(.adrail:empty),
+.homerow.withad:not(:has(.adrail ins[data-ad-status="filled"])){
   grid-template-columns:minmax(0,1fr);
+}
+.adrail:empty, .adrail[style*="none"]{
+  display:none !important;
 }
 @media(max-width:1040px){
   .homerow.withad{grid-template-columns:minmax(0,1fr)}
@@ -490,7 +492,7 @@ a.tag:hover{
   box-shadow:0 30px 70px -28px rgba(191,90,242,1);
 }
 .bigbtn small{display:block;font-weight:500;font-size:12.5px;opacity:.9}
-.bigbtn .gicon{font-size:22px;line-height:1}
+.bigbtn .gicon{font-size:26px;line-height:1;display:inline-flex;align-items:center;justify-content:center;font-family:initial,sans-serif}
 
 .subbtn{
   display:flex;align-items:center;justify-content:center;gap:9px;
