@@ -115,9 +115,9 @@ header.top .wrap{
 }
 .brand:hover{text-decoration:none}
 .brand-anim-wrap{padding:0;display:inline-flex;align-items:center}
-.brand-anim{height:54px;width:auto;max-width:280px;display:block;object-fit:contain}
-@media(max-width:760px){.brand-anim{height:44px;max-width:230px}}
-@media(max-width:480px){.brand-anim{height:38px;max-width:200px}}
+.brand-anim-wrap svg{height:54px;width:auto;max-width:320px;display:block;overflow:visible}
+@media(max-width:760px){.brand-anim-wrap svg{height:44px;max-width:250px}}
+@media(max-width:480px){.brand-anim-wrap svg{height:38px;max-width:215px}}
 .brand .applogo{
   width:1.15em;height:1.15em;border-radius:12px;display:block;object-fit:contain;
   box-shadow:0 0 0 1px rgba(255,255,255,.14),0 12px 30px -14px rgba(108,99,255,.95);

@@ -147,6 +147,10 @@ GUIDES_LOGO = ('<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
                '<circle cx="4.5" cy="17.5" r="1.6"/>'
                '<path d="M9 5h12v3H9zM9 10.5h12v3H9zM9 16h12v3H9z"/></svg>')
 
+BRAND_ANIM_PATH = os.path.join(STATIC, "brand-anim.svg")
+with open(BRAND_ANIM_PATH, "r", encoding="utf-8") as _bf:
+    BRAND_ANIM_SVG = _bf.read().strip()
+
 CARD_LOGO = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6a2 2 0 0 1 '
              '2-2h16a2 2 0 0 1 2 2v1H2V6zm0 3h20v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9zm3 '
              '6h6v2H5v-2z"/></svg>')
@@ -1005,8 +1009,8 @@ def page(title, description, body, path="", extra_head="", keywords="",
         "<body>",
         CURSOR_LIGHT,
         '<header class="top"><div class="wrap">',
-        '  <a class="brand brand-anim-wrap" href="%sindex.html" aria-label="Rom Flasher - All-In-One Android Tool">'
-        '<img class="brand-anim" src="%sstatic/brand-anim.svg" alt="Rom Flasher" width="280" height="58"></a>' % (up, up),
+        ('  <a class="brand brand-anim-wrap" href="%sindex.html" aria-label="Rom Flasher - All-In-One Android Tool">' % up)
+        + BRAND_ANIM_SVG + '</a>',
         "  <nav id=\"mainnav\">",
         # Guides wears the same pill as the four on its right, so the row reads
         # as one set of buttons. The logo on the left already goes home, so there
