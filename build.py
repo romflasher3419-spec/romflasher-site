@@ -712,10 +712,11 @@ SHOTS_LIGHTBOX_TPL = """<div id="shotLightbox" class="shot-lightbox" aria-hidden
 </script>"""
 
 
-def render_shot_lightbox(shots):
+def render_shot_lightbox(shots, up=""):
     if not shots:
         return ""
-    shots_json = json.dumps([str(s) for s in shots], ensure_ascii=False)
+    resolved = [s if s.startswith("http") else (up + s.lstrip("/")) for s in shots]
+    shots_json = json.dumps(resolved, ensure_ascii=False)
     return SHOTS_LIGHTBOX_TPL.replace("__SHOTS_JSON__", shots_json)
 
 
@@ -1946,7 +1947,7 @@ def build_article(item, items):
         shot_items = "".join(
             '<button type="button" class="shot-card" data-idx="%d" aria-label="View screenshot %d">'
             '<img src="%s" alt="%s Screenshot %d" loading="lazy"></button>'
-            % (i, i + 1, html.escape(s), html.escape(item.get("title") or "ROM"), i + 1)
+            % (i, i + 1, html.escape(s if s.startswith("http") else (up + s.lstrip("/"))), html.escape(item.get("title") or "ROM"), i + 1)
             for i, s in enumerate(shots)
         )
         out.append('<div class="screenshots-section"><h3>ROM Screenshots</h3>'
@@ -2043,7 +2044,7 @@ def build_article(item, items):
     if steps:
         out.append(STEPS_JS)
     if shots:
-        out.append(render_shot_lightbox(shots))
+        out.append(render_shot_lightbox(shots, up))
     if item.get("url"):
         out.append(YT_JS)
     out.append("</div></article>")
@@ -3660,6 +3661,8 @@ def main():
         src = os.path.join(STATIC, name)
         if os.path.isfile(src):
             shutil.copy2(src, os.path.join(DIST, "static", name))
+        elif os.path.isdir(src):
+            shutil.copytree(src, os.path.join(DIST, "static", name), dirs_exist_ok=True)
 
     # The phone index the downloader's search box reads. It is a file of its
     # own rather than a script tag because it is far too big to inline: a few
