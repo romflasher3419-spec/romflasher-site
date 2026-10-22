@@ -42,7 +42,7 @@ TAGLINE = "Custom ROMs, flashing guides and a free Android tool"
 # pointing search engines at a domain that does not answer yet gets the pages
 # dropped, so never set the domain before it resolves.
 PAGES_URL = "https://romflasher3419-spec.github.io/romflasher-site"
-CUSTOM_DOMAIN = os.environ.get("ROMFLASHER_DOMAIN", "").strip().strip("/")
+CUSTOM_DOMAIN = os.environ.get("ROMFLASHER_DOMAIN", "").strip().strip("/") or "romflasher.in"
 SITE_URL = (os.environ.get("ROMFLASHER_SITE_URL", "").strip()
             or (("https://" + CUSTOM_DOMAIN) if CUSTOM_DOMAIN else PAGES_URL)
             ).rstrip("/")
@@ -50,8 +50,8 @@ SITE_URL = (os.environ.get("ROMFLASHER_SITE_URL", "").strip()
 # ------------------------------------------------------- switch-on-when-set
 # Each of these is off while empty, so nothing half-configured ever ships.
 # Paste the value, rebuild, and that one feature turns itself on.
-GA4_ID = os.environ.get("ROMFLASHER_GA4", "")          # "G-XXXXXXXXXX"
-ADS_PUBLISHER = os.environ.get("ROMFLASHER_ADS", "")   # "pub-0000000000000000"
+GA4_ID = os.environ.get("ROMFLASHER_GA4", "").strip() or "G-9F1TH7MFVS"
+ADS_PUBLISHER = os.environ.get("ROMFLASHER_ADS", "").strip() or "pub-3239298035490504"
 
 # AdSense hands out a numeric slot id per ad unit you create in the dashboard.
 # Each placement here is off until its own id is set, and all of them stay off
