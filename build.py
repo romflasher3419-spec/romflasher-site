@@ -68,7 +68,8 @@ AD_SLOTS = {
     "hub": os.environ.get("ROMFLASHER_SLOT_HUB", "").strip(),
 }
 AMAZON_TAG = os.environ.get("ROMFLASHER_AMAZON", "")   # "romflasher-21"
-GOOGLE_VERIFY = os.environ.get("ROMFLASHER_GOOGLE", "")  # Search Console token
+GOOGLE_VERIFY = (os.environ.get("ROMFLASHER_GOOGLE", "").strip()
+                 or "Mmp5fB5mpvMffHgXXpm8dOp0R1ZM8GbaLhmQrBx8PGQ")
 BING_VERIFY = os.environ.get("ROMFLASHER_BING", "")      # Bing Webmaster token
 # Search Console can also verify by serving a file at the site root. Either the
 # file name ("google8e8e....html") or the whole "google-site-verification: ..."
