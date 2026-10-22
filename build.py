@@ -1872,6 +1872,17 @@ def build_article(item, items):
         out.append('<div class="mediarow">%s%s</div>'
                    % ("".join(left), right))
 
+    shots = item.get("screenshots") or []
+    if shots:
+        shot_items = "".join(
+            '<a class="shot-card" href="%s" target="_blank" rel="noopener">'
+            '<img src="%s" alt="%s Screenshot" loading="lazy"></a>'
+            % (html.escape(s), html.escape(s), html.escape(item.get("title") or "ROM"))
+            for s in shots
+        )
+        out.append('<div class="screenshots-section"><h3>ROM Screenshots</h3>'
+                   '<div class="screenshots-grid">%s</div></div>' % shot_items)
+
     if body:
         if len(steps) >= 3:
             out.append('<div class="arttools">'
