@@ -1008,9 +1008,9 @@ def page(title, description, body, path="", extra_head="", keywords="",
         "</head>",
         "<body>",
         CURSOR_LIGHT,
-        '<header class="top"><div class="wrap">',
-        ('  <a class="brand brand-exact-wrap" href="%sindex.html" aria-label="ROMFLASHER - Flash Your Phone, Power Your Freedom">' % up)
-        + ('<img class="brand-exact-img" src="%sstatic/romflasher-brand.png" alt="ROMFLASHER" width="220" height="64"></a>' % up),
+        ('<header class="top"><div class="wrap">\n'
+         '  <a class="brand brand-anim-wrap" href="%sindex.html" aria-label="Rom Flasher - All-In-One Android Tool">' % up)
+        + BRAND_ANIM_SVG + '</a>',
         "  <nav id=\"mainnav\">",
         # Guides wears the same pill as the four on its right, so the row reads
         # as one set of buttons. The logo on the left already goes home, so there
