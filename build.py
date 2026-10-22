@@ -650,6 +650,75 @@ YT_JS = """<script>
 })();
 </script>"""
 
+SHOTS_LIGHTBOX_TPL = """<div id="shotLightbox" class="shot-lightbox" aria-hidden="true" role="dialog" aria-label="Screenshot lightbox">
+  <div class="lb-backdrop"></div>
+  <div class="lb-wrap">
+    <button type="button" class="lb-btn lb-close" aria-label="Close fullscreen view">&times;</button>
+    <button type="button" class="lb-btn lb-prev" aria-label="Previous screenshot">&#10094;</button>
+    <button type="button" class="lb-btn lb-next" aria-label="Next screenshot">&#10095;</button>
+    <div class="lb-figure">
+      <img id="lbImg" src="" alt="ROM Screenshot Fullscreen">
+      <div id="lbCounter" class="lb-counter"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var shots = __SHOTS_JSON__;
+  if (!shots || !shots.length) return;
+  var lb = document.getElementById('shotLightbox');
+  var img = document.getElementById('lbImg');
+  var counter = document.getElementById('lbCounter');
+  var cur = 0;
+  function show(idx){
+    if (idx < 0) idx = shots.length - 1;
+    if (idx >= shots.length) idx = 0;
+    cur = idx;
+    img.src = shots[cur];
+    if (counter) counter.textContent = (cur + 1) + ' / ' + shots.length;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  var cards = document.querySelectorAll('.shot-card');
+  for (var i = 0; i < cards.length; i++){
+    (function(idx){
+      cards[idx].addEventListener('click', function(e){
+        e.preventDefault();
+        show(idx);
+      });
+    })(i);
+  }
+  var closeBtn = lb.querySelector('.lb-close');
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  var prevBtn = lb.querySelector('.lb-prev');
+  if (prevBtn) prevBtn.addEventListener('click', function(e){ e.stopPropagation(); show(cur - 1); });
+  var nextBtn = lb.querySelector('.lb-next');
+  if (nextBtn) nextBtn.addEventListener('click', function(e){ e.stopPropagation(); show(cur + 1); });
+  var backdrop = lb.querySelector('.lb-backdrop');
+  if (backdrop) backdrop.addEventListener('click', close);
+  window.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(cur - 1);
+    else if (e.key === 'ArrowRight') show(cur + 1);
+  });
+})();
+</script>"""
+
+
+def render_shot_lightbox(shots):
+    if not shots:
+        return ""
+    shots_json = json.dumps([str(s) for s in shots], ensure_ascii=False)
+    return SHOTS_LIGHTBOX_TPL.replace("__SHOTS_JSON__", shots_json)
+
+
 
 
 def _asset_ver():
@@ -1875,10 +1944,10 @@ def build_article(item, items):
     shots = item.get("screenshots") or []
     if shots:
         shot_items = "".join(
-            '<a class="shot-card" href="%s" target="_blank" rel="noopener">'
-            '<img src="%s" alt="%s Screenshot" loading="lazy"></a>'
-            % (html.escape(s), html.escape(s), html.escape(item.get("title") or "ROM"))
-            for s in shots
+            '<button type="button" class="shot-card" data-idx="%d" aria-label="View screenshot %d">'
+            '<img src="%s" alt="%s Screenshot %d" loading="lazy"></button>'
+            % (i, i + 1, html.escape(s), html.escape(item.get("title") or "ROM"), i + 1)
+            for i, s in enumerate(shots)
         )
         out.append('<div class="screenshots-section"><h3>ROM Screenshots</h3>'
                    '<div class="screenshots-grid">%s</div></div>' % shot_items)
@@ -1973,6 +2042,8 @@ def build_article(item, items):
                    % (html.escape(heading), "".join(card(x, up) for x in picked)))
     if steps:
         out.append(STEPS_JS)
+    if shots:
+        out.append(render_shot_lightbox(shots))
     if item.get("url"):
         out.append(YT_JS)
     out.append("</div></article>")
