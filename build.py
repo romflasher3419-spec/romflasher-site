@@ -409,12 +409,17 @@ def newest_thumb(rows):
     return None
 
 
-def analytics_head():
+def analytics_head(up=""):
     """Analytics + AdSense, loaded only after the visitor says yes.
 
     Nothing is fetched, no cookie is set, and no banner is even shown while the
     IDs below are empty - so the site stays completely clean until it is
     actually earning something.
+
+    The banner is the one piece of the site that floats over the page, so it
+    has to be short, and it has to leave the room it takes: while it is up the
+    body carries the same padding the banner needs, so the last line of a page
+    can always be scrolled out from under it instead of hiding there forever.
     """
     if not (GA4_ID or ADS_PUBLISHER):
         return ""
@@ -440,22 +445,40 @@ def analytics_head():
   function banner(){
     var b=document.createElement('div');
     b.className='consent';
-    b.innerHTML='<p>This site would like to set cookies for analytics and ads. '\
-      +'They tell me which guides actually helped. Nothing loads until you say yes.</p>'\
+    b.innerHTML='<div class="ctext"><p class="ctitle">Cookies &amp; ads</p>'\
+      +'<p>This site would like to set cookies for analytics and ads. '\
+      +'They tell me which guides actually helped. Nothing loads until you say yes. '\
+      +'<a href="%(priv)s">Privacy policy</a>.</p></div>'\
       +'<div class="row"><button type="button" class="btn" id="rf-ok">That is fine</button>'\
       +'<button type="button" class="btn ghost" id="rf-no">No thanks</button></div>';
     document.body.appendChild(b);
+    document.body.classList.add('consent-on');
+    /* The page has to end above the banner, so it gets exactly the room the
+       banner takes - measured, not guessed, because the banner is a different
+       height on every screen (and it re-wraps when the phone is turned). */
+    function room(){
+      document.documentElement.style.setProperty('--consent-h',b.offsetHeight+'px');
+    }
+    room();
+    if(window.ResizeObserver){new ResizeObserver(room).observe(b);}
+    else{window.addEventListener('resize',room);}
+    function close(){
+      document.body.classList.remove('consent-on');
+      document.documentElement.style.removeProperty('--consent-h');
+      b.parentNode.removeChild(b);
+    }
     document.getElementById('rf-ok').onclick=function(){
       try{localStorage.setItem(KEY,'yes');}catch(e){}
-      b.parentNode.removeChild(b);load();};
+      close();load();};
     document.getElementById('rf-no').onclick=function(){
       try{localStorage.setItem(KEY,'no');}catch(e){}
-      b.parentNode.removeChild(b);};
+      close();};
   }
   if(document.readyState==='loading'){
     document.addEventListener('DOMContentLoaded',banner);}else{banner();}
 })();
-</script>""" % {"ga": json.dumps(GA4_ID), "ads": json.dumps(ADS_PUBLISHER)}
+</script>""" % {"ga": json.dumps(GA4_ID), "ads": json.dumps(ADS_PUBLISHER),
+              "priv": up + "privacy.html"}
 
 
 def verify_head():
@@ -960,7 +983,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<link rel="preconnect" href="https://i.ytimg.com">',
         verify_head(),
         adsense_verify(),
-        analytics_head(),
+        analytics_head(up),
         '<link rel="stylesheet" href="%sstatic/style.css">' % up,
         '<link rel="alternate" type="application/rss+xml" title="%s" '
         'href="%sfeed.xml">' % (SITE, up),
