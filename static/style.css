@@ -114,10 +114,11 @@ header.top .wrap{
   flex:0 0 auto;
 }
 .brand:hover{text-decoration:none}
-.brand-anim-wrap{padding:0;display:inline-flex;align-items:center}
-.brand-anim-wrap svg{height:54px;width:auto;max-width:320px;display:block;overflow:visible}
-@media(max-width:760px){.brand-anim-wrap svg{height:44px;max-width:250px}}
-@media(max-width:480px){.brand-anim-wrap svg{height:38px;max-width:215px}}
+.brand-exact-wrap{padding:0;display:inline-flex;align-items:center;margin-right:auto}
+.brand-exact-img{height:58px;width:auto;max-width:240px;display:block;object-fit:contain;transition:transform .2s ease,filter .2s ease}
+.brand-exact-img:hover{transform:scale(1.02);filter:drop-shadow(0 0 14px rgba(56,189,248,.5))}
+@media(max-width:760px){.brand-exact-img{height:46px;max-width:180px}}
+@media(max-width:480px){.brand-exact-img{height:38px;max-width:150px}}
 .brand .applogo{
   width:1.15em;height:1.15em;border-radius:12px;display:block;object-fit:contain;
   box-shadow:0 0 0 1px rgba(255,255,255,.14),0 12px 30px -14px rgba(108,99,255,.95);
