@@ -1848,3 +1848,147 @@ code,pre,.hash{
 @media(max-width:560px){
   .hero-bento{grid-template-columns:1fr;gap:10px}
 }
+
+
+/* ==========================================================================
+   Minimalist Liquid Glass System (UI/UX Pro Max)
+   Unified clean physics across all cards, tables, inputs and articles
+   ========================================================================== */
+
+/* 1. Global Custom Scrollbar */
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:rgba(5,7,12,.8)}
+::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.15);
+  border-radius:999px;
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
+::-webkit-scrollbar-thumb:hover{background:rgba(108,99,255,.5)}
+
+/* 2. Universal Specular Edge for all Glass Panels */
+.box, .videobox, .dlcard, .feat, .faq, .sidepanel .cta, .sidepanel .toc, .links, .appbox{
+  position:relative;
+  overflow:hidden;
+}
+.box::before, .videobox::before, .dlcard::before, .feat::before,
+.faq::before, .sidepanel .cta::before, .sidepanel .toc::before, .links::before, .appbox::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
+  opacity:.85;
+  pointer-events:none;
+}
+
+/* 3. Article Section Headers glowing accent bar */
+.prose h2{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.prose h2::before{
+  content:'';
+  display:inline-block;
+  width:4px;
+  height:20px;
+  border-radius:4px;
+  background:var(--grad);
+  box-shadow:0 0 12px rgba(191,90,242,.7);
+  flex:0 0 auto;
+}
+
+/* 4. Table Polish (Clean, Minimalist, Responsive) */
+table{
+  position:relative;
+  border:1px solid var(--line);
+  box-shadow:0 12px 30px -14px rgba(0,0,0,.6);
+}
+table::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
+  pointer-events:none;
+}
+tbody tr{
+  transition:background .18s ease;
+}
+tbody tr:hover{
+  background:rgba(108,99,255,.07)!important;
+}
+tbody tr:hover td a{
+  color:#fff;
+  text-shadow:0 0 10px rgba(108,99,255,.5);
+}
+
+/* 5. Inputs & Search Fields (Clean frosted focus) */
+input, select{
+  transition:border-color .2s,box-shadow .2s,background .2s;
+}
+input:focus, select:focus{
+  outline:none;
+  border-color:rgba(108,99,255,.6)!important;
+  background:rgba(255,255,255,.07)!important;
+  box-shadow:0 0 0 3px rgba(108,99,255,.2),0 0 20px -4px rgba(108,99,255,.4)!important;
+}
+
+/* 6. Big Action Buttons Shimmer */
+.bigbtn::after{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-70%;
+  width:45%;
+  height:200%;
+  background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.3) 50%,rgba(255,255,255,0) 100%);
+  transform:rotate(25deg);
+  pointer-events:none;
+  animation:btnShimmer 5.5s ease-in-out infinite;
+}
+
+/* 7. Feature Cards (.feat) Hover Polish */
+.feat{
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),border-color .22s,box-shadow .24s,background .2s;
+}
+.feat:hover{
+  transform:translateY(-3px);
+  border-color:rgba(108,99,255,.4);
+  background:rgba(255,255,255,.055);
+  box-shadow:0 12px 30px -10px rgba(108,99,255,.3);
+}
+
+/* 8. Code & Quote Blocks (Clean, Readable, Pro) */
+code{
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+}
+blockquote{
+  background:rgba(255,255,255,.03);
+  border-left:3px solid var(--violet);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+/* 9. Article Steps Numbering Polish */
+.steps li::before{
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 0 14px rgba(108,99,255,.6);
+}
+
+/* 10. Nav Active / Hover Refinement */
+#mainnav a.navbtn:hover{
+  border-color:rgba(108,99,255,.4);
+  box-shadow:0 0 14px rgba(108,99,255,.25);
+}
+
+/* 11. Footer Refinement */
+footer{
+  position:relative;
+  background:linear-gradient(180deg,transparent,rgba(5,7,12,.8));
+}
+footer::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
+}
