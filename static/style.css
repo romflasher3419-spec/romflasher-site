@@ -260,9 +260,16 @@ header.top .wrap{
 .hero h1{
   margin:0 0 12px;font-size:clamp(28px,4vw,44px);line-height:1.12;letter-spacing:-.02em;
 }
+@keyframes liquidGradFlow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 .hero h1 em{
   font-style:normal;
-  background:var(--grad);
+  background:linear-gradient(115deg,#6c63ff 0%,#bf5af2 35%,#ff2d9b 70%,#5ac8fa 100%);
+  background-size:240% 240%;
+  animation:liquidGradFlow 8s ease infinite;
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
 }
@@ -303,6 +310,10 @@ header.top .wrap{
 }
 .hero p{color:var(--dim);font-size:18px;margin:0 0 24px;max-width:72ch}
 
+@keyframes btnShimmer{
+  0%,78%{left:-70%}
+  100%{left:140%}
+}
 .btn{
   position:relative;display:inline-block;overflow:hidden;
   padding:12px 22px;margin:4px 10px 4px 0;border-radius:12px;
@@ -310,6 +321,18 @@ header.top .wrap{
   background-image:var(--grad);
   box-shadow:0 16px 38px -20px rgba(108,99,255,1);
   transition:transform .18s,box-shadow .25s,filter .2s;
+}
+.btn::after{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-70%;
+  width:45%;
+  height:200%;
+  background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.28) 50%,rgba(255,255,255,0) 100%);
+  transform:rotate(25deg);
+  pointer-events:none;
+  animation:btnShimmer 5.5s ease-in-out infinite;
 }
 .btn:hover{text-decoration:none;transform:translateY(-2px);filter:saturate(120%);
   box-shadow:0 22px 52px -22px rgba(191,90,242,1)}
@@ -357,14 +380,29 @@ h2:first-child{margin-top:0}
 .card{
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;
-  padding:17px 18px;border-radius:var(--radius);
+  padding:18px 20px;border-radius:var(--radius);
   color:var(--fg);
-  transition:transform .22s,border-color .22s,box-shadow .28s;
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),border-color .22s,box-shadow .28s;
+}
+.card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.26),transparent);
+  opacity:.85;
+  pointer-events:none;
 }
 .card:hover{
-  text-decoration:none;transform:translateY(-3px);
-  border-color:rgba(255,255,255,.22);
-  box-shadow:var(--halo);
+  text-decoration:none;
+  transform:translateY(-4px);
+  border-color:rgba(108,99,255,.45);
+  box-shadow:0 14px 40px -12px rgba(108,99,255,.42),0 0 0 1px rgba(191,90,242,.22);
+}
+.card:hover h3 a{
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-decoration:none;
 }
 .card h3{margin:0 0 8px;font-size:17px;line-height:1.35;color:var(--fg)}
 .card p{margin:0;color:var(--dim);font-size:14.2px}
@@ -1702,4 +1740,111 @@ code,pre,.hash{
   .lb-prev{left:10px}
   .lb-next{right:10px}
   .lb-close{top:12px;right:14px;width:40px;height:40px;font-size:24px}
+}
+
+
+/* ------------------------------------------------------------ UI/UX Pro Max Bento & Glass */
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  margin:10px 0 32px;
+}
+.hero-bento{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  margin-top:6px;
+}
+.bento-card{
+  position:relative;
+  overflow:hidden;
+  padding:16px 18px;
+  border-radius:14px;
+  background:rgba(255,255,255,.032);
+  border:1px solid rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  backdrop-filter:blur(20px) saturate(160%);
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),border-color .22s,box-shadow .24s;
+}
+.bento-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.24),transparent);
+  pointer-events:none;
+}
+.bento-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(108,99,255,.4);
+  box-shadow:0 12px 32px -10px rgba(108,99,255,.3);
+}
+.bento-badge{
+  display:inline-block;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:2px 8px;
+  border-radius:999px;
+  margin-bottom:8px;
+  line-height:1.5;
+}
+.bento-badge.b-cyan{
+  color:#5ac8fa;
+  background:rgba(90,200,250,.12);
+  border:1px solid rgba(90,200,250,.32);
+}
+.bento-badge.b-green{
+  color:#35d07f;
+  background:rgba(53,208,127,.12);
+  border:1px solid rgba(53,208,127,.32);
+}
+.bento-badge.b-pink{
+  color:#ff5da6;
+  background:rgba(255,45,155,.12);
+  border:1px solid rgba(255,45,155,.32);
+}
+.bento-badge.b-purple{
+  color:#bf5af2;
+  background:rgba(191,90,242,.12);
+  border:1px solid rgba(191,90,242,.32);
+}
+.bento-title{
+  font-size:16px;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:4px;
+  letter-spacing:-.01em;
+}
+.bento-sub{
+  font-size:12.8px;
+  color:var(--dim);
+  line-height:1.45;
+  margin:0;
+}
+.homecol h2{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:24px;
+  letter-spacing:-.01em;
+  margin:42px 0 16px;
+}
+.homecol h2::before{
+  content:'';
+  display:inline-block;
+  width:4px;
+  height:22px;
+  border-radius:4px;
+  background:var(--grad);
+  box-shadow:0 0 12px rgba(191,90,242,.7);
+}
+
+@media(max-width:960px){
+  .hero-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .hero-bento{grid-template-columns:1fr;gap:10px}
 }

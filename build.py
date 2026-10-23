@@ -1189,8 +1189,32 @@ def build_home(items, path="index.html"):
 <h1>Flash <em>any ROM, any phone</em> &mdash; <span class="hero-feat"><span class="feat-pc">No PC</span> <span class="feat-dot">&bull;</span> <span class="feat-termux">No Termux</span> <span class="feat-dot">&bull;</span> <span class="feat-cmd">No Commands</span></span> &mdash; with steps that actually work.</h1>
 <p>%s. Every video gets a written page here, so you can follow along without
 pausing the video twenty times.</p>
+<div class="hero-actions">
 <a class="btn" href="download.html">Download Rom Flasher (free)</a>
 <a class="btn ghost" href="videos.html">Browse all %d guides</a>
+</div>
+<div class="hero-bento">
+  <div class="bento-card">
+    <div class="bento-badge b-cyan">OTG DIRECT</div>
+    <div class="bento-title">Zero PC Flasher</div>
+    <div class="bento-sub">Flash phone-to-phone with simple OTG cable</div>
+  </div>
+  <div class="bento-card">
+    <div class="bento-badge b-green">NO TERMINAL</div>
+    <div class="bento-title">Click &amp; Flash</div>
+    <div class="bento-sub">No Termux or manual fastboot commands</div>
+  </div>
+  <div class="bento-card">
+    <div class="bento-badge b-pink">SMART ENGINE</div>
+    <div class="bento-title">Auto-Chunking</div>
+    <div class="bento-sub">Huge super.img &amp; vendor_boot handled safely</div>
+  </div>
+  <div class="bento-card">
+    <div class="bento-badge b-purple">VERIFIED</div>
+    <div class="bento-title">185+ Guides</div>
+    <div class="bento-sub">Real device tested with live video transcripts</div>
+  </div>
+</div>
 </div></section>
 <div class="wrap full">
 <div class="%s">
