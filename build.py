@@ -1186,7 +1186,7 @@ def build_home(items, path="index.html"):
     rail = '<aside class="adrail">%s</aside>' % ad if ad else ""
 
     body = """<section class="hero"><div class="wrap full">
-<h1>Flash <em>any ROM, any phone</em> &mdash; with steps that actually work.</h1>
+<h1>Flash <em>any ROM, any phone</em> &mdash; <span class="hero-feat"><span class="feat-pc">No PC</span> <span class="feat-dot">&bull;</span> <span class="feat-termux">No Termux</span> <span class="feat-dot">&bull;</span> <span class="feat-cmd">No Commands</span></span> &mdash; with steps that actually work.</h1>
 <p>%s. Every video gets a written page here, so you can follow along without
 pausing the video twenty times.</p>
 <a class="btn" href="download.html">Download Rom Flasher (free)</a>

@@ -266,6 +266,41 @@ header.top .wrap{
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
 }
+.hero-feat{
+  display:inline;
+  white-space:normal;
+}
+.hero-feat .feat-pc{
+  background:linear-gradient(135deg,#00f2fe 0%,#4facfe 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:var(--cyan);
+  font-weight:800;
+  white-space:nowrap;
+  filter:drop-shadow(0 0 14px rgba(79,172,254,.45));
+}
+.hero-feat .feat-termux{
+  background:linear-gradient(135deg,#2af598 0%,#00d26a 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:var(--ok);
+  font-weight:800;
+  white-space:nowrap;
+  filter:drop-shadow(0 0 14px rgba(42,245,152,.45));
+}
+.hero-feat .feat-cmd{
+  background:linear-gradient(135deg,#ff2d9b 0%,#ff758c 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:var(--pink);
+  font-weight:800;
+  white-space:nowrap;
+  filter:drop-shadow(0 0 14px rgba(255,45,155,.45));
+}
+.hero-feat .feat-dot{
+  display:inline-block;
+  color:rgba(255,255,255,.35);
+  margin:0 4px;
+  font-size:.7em;
+  vertical-align:middle;
+}
 .hero p{color:var(--dim);font-size:18px;margin:0 0 24px;max-width:72ch}
 
 .btn{
