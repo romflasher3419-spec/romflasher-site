@@ -2538,13 +2538,13 @@ the three I actually keep in the drawer.</p>
 {gear}
 
 <h2>Fresh in {ver}</h2>
-<p>Version 1.4.0 brings the <b>1-Click AOSP Auto Flasher</b> for completely hands-free custom ROM flashing over USB-OTG:</p>
+<p>Version 1.4.1 brings full hands-free zero-touch flashing and UI improvements:</p>
 <ul>
+  <li><b>100% Zero-Touch Auto Reboot:</b> Bypasses the "Install additional packages?" prompt in recovery, rebooting straight into your new ROM.</li>
   <li><b>1-Click AOSP Auto Flasher:</b> Full auto flashing pipeline for AOSP ROMs directly inside Option 2.</li>
-  <li><b>Auto Fastboot Transition:</b> Automatically reboots connected Android phones into bootloader mode.</li>
   <li><b>Targeted Boot Partition Extraction:</b> Instantly extracts only <code>boot</code>, <code>vendor_boot</code>, and <code>init_boot</code> from <code>payload.bin</code> and flashes both A &amp; B slots.</li>
   <li><b>Clean Fastboot Wipe:</b> Automatically formats userdata and metadata before recovery.</li>
-  <li><b>Direct Sideload Mode:</b> Bypasses recovery menus and reboots straight into ADB Sideload listening mode.</li>
+  <li><b>Update Dialog Scrollbar:</b> In-app update changelog box now features smooth vertical scrolling with a visible scrollbar.</li>
 </ul>
 
 <h2>Questions people ask</h2>
