@@ -93,11 +93,11 @@ APK_URL = REPO_URL + "/releases/latest/download/app-release.apk"
 RELEASES_URL = REPO_URL + "/releases"
 
 APP = {
-    "version": "v1.3.0",
-    "released": "22 Oct 2026",
+    "version": "v1.4.0",
+    "released": "23 Oct 2026",
     "size": "8.3 MB",
-    "bytes": "8654578",
-    "sha256": "0EBFE196271AB17E60D865E7730A11ED993E14A5259987D1567F8F1BF4BED020",
+    "bytes": "8670972",
+    "sha256": "B642E711927ED0C0C6CCC0F0E161EB224D806C896546ADD2D7E34DCEE1AC062A",
     "android": "Android 8.0 or newer",
 }
 
@@ -2538,15 +2538,15 @@ the three I actually keep in the drawer.</p>
 {gear}
 
 <h2>Fresh in {ver}</h2>
-<p>Version 1.3.0 is a major upgrade bringing advanced fastboot tools, universal hardware protection, and performance fixes across the board:</p>
+<p>Version 1.4.0 introduces the <b>1-Click AOSP Auto Flasher</b> &mdash; a fully automated, hands-free custom ROM flashing pipeline for AOSP ROMs (PixelOS, Evolution X, LineageOS, crDroid, etc.) right over USB-OTG:</p>
 <ul>
-  <li><b>Custom Image Flasher with RAM Boot:</b> Temporarily boot custom recoveries (TWRP, OrangeFox) or test kernels using <code>fastboot boot</code> directly from RAM without touching physical partitions. Also supports flashing any custom partition name (<code>vendor_dlkm</code>, <code>system_dlkm</code>, <code>persist</code>, etc.).</li>
-  <li><b>Universal EFS &amp; IMEI Protection:</b> Dynamic block device scanner protects both <b>Qualcomm</b> (<code>modemst1</code>, <code>modemst2</code>, <code>fsg</code>, <code>fsc</code>, <code>persist</code>) and <b>MediaTek</b> (<code>nvram</code>, <code>nvdata</code>, <code>nvcfg</code>, <code>protect1</code>, <code>protect2</code>, <code>seccfg</code>) chipsets.</li>
-  <li><b>Complete 2&times;2 Reboot Matrix:</b> Added quick reboot options for System, Recovery, Fastboot, and userspace <b>FastbootD</b> (for dynamic partitions) from both ADB and Fastboot states.</li>
-  <li><b>AOSP Slot Switcher:</b> Standardized slot switching command syntax (<code>set_active:a</code>/<code>b</code>) ensuring rock-solid compatibility across all modern bootloaders.</li>
-  <li><b>Sub-100ms Payload Dumper:</b> Partition manifest is now parsed directly from the ZIP header in milliseconds without unpacking gigabytes to phone storage.</li>
-  <li><b>Target ABI Detection for AK3:</b> Automatically detects connected phone CPU architecture (arm64, arm) for AnyKernel3 flashing.</li>
-  <li><b>Zero-Lag Terminal:</b> Optimized logging engine guarantees smooth 60/120&nbsp;FPS rendering during high-speed partition flashes.</li>
+  <li><b>⚡ 1-Click AOSP Auto Flasher:</b> Pick any AOSP ROM zip and tap <i>Auto Flasher</i>. The app automates the entire sequence without touching recovery menus on the target phone.</li>
+  <li><b>Auto ADB &rarr; Fastboot Transition:</b> Seamlessly detects target device state; if booted in Android, automatically sends <code>adb reboot bootloader</code> and waits for Fastboot re-enumeration.</li>
+  <li><b>Zero-Overhead Targeted Extraction:</b> Extracts only <code>boot.img</code>, <code>vendor_boot.img</code>, and <code>init_boot.img</code> directly from <code>payload.bin</code> into <code>Download/RomFlasher/Auto_Flasher/</code> without wasting storage on the entire multi-gigabyte archive.</li>
+  <li><b>Dual-Slot Flashing (A &amp; B):</b> Flashes extracted core boot images to both Slot A and Slot B (<code>boot_a</code>/<code>_b</code>, <code>vendor_boot_a</code>/<code>_b</code>, <code>init_boot_a</code>/<code>_b</code>) and sets active slot to A.</li>
+  <li><b>Fastboot Clean Format:</b> Wipes userdata and metadata via fastboot before entering recovery (<code>erase userdata</code> &amp; <code>erase metadata</code>).</li>
+  <li><b>BCB Direct-Sideload Injection:</b> Writes <code>--sideload</code> flags into the <code>misc</code> partition Bootloader Control Block so the target phone reboots straight into Recovery Sideload listening mode.</li>
+  <li><b>Smart Sideload Daemon:</b> Background USB listener detects the sideload connection and immediately streams <code>adb sideload &lt;rom.zip&gt;</code> until 100% complete.</li>
 </ul>
 
 <h2>Questions people ask</h2>
