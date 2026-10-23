@@ -2538,15 +2538,13 @@ the three I actually keep in the drawer.</p>
 {gear}
 
 <h2>Fresh in {ver}</h2>
-<p>Version 1.4.0 introduces the <b>1-Click AOSP Auto Flasher</b> &mdash; a fully automated, hands-free custom ROM flashing pipeline for AOSP ROMs (PixelOS, Evolution X, LineageOS, crDroid, etc.) right over USB-OTG:</p>
+<p>Version 1.4.0 brings the <b>1-Click AOSP Auto Flasher</b> for completely hands-free custom ROM flashing over USB-OTG:</p>
 <ul>
-  <li><b>⚡ 1-Click AOSP Auto Flasher:</b> Pick any AOSP ROM zip and tap <i>Auto Flasher</i>. The app automates the entire sequence without touching recovery menus on the target phone.</li>
-  <li><b>Auto ADB &rarr; Fastboot Transition:</b> Seamlessly detects target device state; if booted in Android, automatically sends <code>adb reboot bootloader</code> and waits for Fastboot re-enumeration.</li>
-  <li><b>Zero-Overhead Targeted Extraction:</b> Extracts only <code>boot.img</code>, <code>vendor_boot.img</code>, and <code>init_boot.img</code> directly from <code>payload.bin</code> into <code>Download/RomFlasher/Auto_Flasher/</code> without wasting storage on the entire multi-gigabyte archive.</li>
-  <li><b>Dual-Slot Flashing (A &amp; B):</b> Flashes extracted core boot images to both Slot A and Slot B (<code>boot_a</code>/<code>_b</code>, <code>vendor_boot_a</code>/<code>_b</code>, <code>init_boot_a</code>/<code>_b</code>) and sets active slot to A.</li>
-  <li><b>Fastboot Clean Format:</b> Wipes userdata and metadata via fastboot before entering recovery (<code>erase userdata</code> &amp; <code>erase metadata</code>).</li>
-  <li><b>BCB Direct-Sideload Injection:</b> Writes <code>--sideload</code> flags into the <code>misc</code> partition Bootloader Control Block so the target phone reboots straight into Recovery Sideload listening mode.</li>
-  <li><b>Smart Sideload Daemon:</b> Background USB listener detects the sideload connection and immediately streams <code>adb sideload &lt;rom.zip&gt;</code> until 100% complete.</li>
+  <li><b>1-Click AOSP Auto Flasher:</b> Full auto flashing pipeline for AOSP ROMs directly inside Option 2.</li>
+  <li><b>Auto Fastboot Transition:</b> Automatically reboots connected Android phones into bootloader mode.</li>
+  <li><b>Targeted Boot Partition Extraction:</b> Instantly extracts only <code>boot</code>, <code>vendor_boot</code>, and <code>init_boot</code> from <code>payload.bin</code> and flashes both A &amp; B slots.</li>
+  <li><b>Clean Fastboot Wipe:</b> Automatically formats userdata and metadata before recovery.</li>
+  <li><b>Direct Sideload Mode:</b> Bypasses recovery menus and reboots straight into ADB Sideload listening mode.</li>
 </ul>
 
 <h2>Questions people ask</h2>
