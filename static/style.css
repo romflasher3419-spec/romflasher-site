@@ -1992,3 +1992,10 @@ footer::before{
   top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
 }
+
+
+.shot-card.pad{aspect-ratio:16/10}
+.screenshots-grid.pad{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+@media(max-width:640px){
+  .screenshots-grid.pad .shot-card{flex:0 0 220px}
+}

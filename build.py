@@ -1990,14 +1990,17 @@ def build_article(item, items):
 
     shots = item.get("screenshots") or []
     if shots:
+        is_tablet = "pad" in (item.get("device") or "").lower() or "tablet" in (item.get("device") or "").lower()
+        card_cls = "shot-card pad" if is_tablet else "shot-card"
+        grid_cls = "screenshots-grid pad" if is_tablet else "screenshots-grid"
         shot_items = "".join(
-            '<button type="button" class="shot-card" data-idx="%d" aria-label="View screenshot %d">'
+            '<button type="button" class="%s" data-idx="%d" aria-label="View screenshot %d">'
             '<img src="%s" alt="%s Screenshot %d" loading="lazy"></button>'
-            % (i, i + 1, html.escape(s if s.startswith("http") else (up + s.lstrip("/"))), html.escape(item.get("title") or "ROM"), i + 1)
+            % (card_cls, i, i + 1, html.escape(s if s.startswith("http") else (up + s.lstrip("/"))), html.escape(item.get("title") or "ROM"), i + 1)
             for i, s in enumerate(shots)
         )
         out.append('<div class="screenshots-section"><h3>ROM Screenshots</h3>'
-                   '<div class="screenshots-grid">%s</div></div>' % shot_items)
+                   '<div class="%s">%s</div></div>' % (grid_cls, shot_items))
 
     if body:
         if len(steps) >= 3:
