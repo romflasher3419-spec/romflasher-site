@@ -115,3 +115,13 @@ Har run ke baad user ko saare live links structured format me provide karo:
   - Part 2: `https://www.instagram.com/reel/<id>/`
   - Part 3: `https://www.instagram.com/reel/<id>/`
   - Part 4: `https://www.instagram.com/reel/<id>/`
+
+---
+
+## 6. 📦 REPO HOME SCREEN (`README.md`) & RELEASE SYNC RULE (MANDATORY)
+1. **Real-Time Feature Showcase on Landing Page:**
+   - Jab bhi app build me koi naya feature add ho ya nayi release banayi jaye (e.g. 1-Click Auto Flasher, Play Integrity fix, Multi-slot bypass), **repo ki home screen (`README.md`) ko sath ke sath update karna mandatory hai**.
+   - Top comparison table, `Features Breakdown` section, aur badges me naye feature ko prominently spotlight karo taaki repository visit karne wale kisi bhi user ko home screen se hi pata chal jaye ki tool me kya kya latest material aur capabilities hain.
+2. **Real-Time Simultaneous GitHub Push:**
+   - Har modification ke baad `rom-flasher-tool`, `romflasher-site` aur `romflasher-master-private` (Private Master Vault) teeno repos par real-time sath ke sath commit aur push karna mandatory hai.
+
