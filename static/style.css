@@ -2064,3 +2064,111 @@ hr.divider {
   margin: 40px 0;
   background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.4), transparent);
 }
+
+/* ------------------------------------------------------------- Google Pixel Round Social Icons */
+.pixel-socials {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 4px;
+}
+
+#mainnav a.pixel-round {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50% !important;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, filter 0.2s ease;
+  background-clip: padding-box;
+  text-decoration: none;
+}
+
+#mainnav a.pixel-round:hover {
+  transform: translateY(-2px) scale(1.1);
+}
+
+#mainnav a.pixel-round svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  fill: #fff;
+  transition: transform 0.2s ease;
+}
+
+#mainnav a.pixel-round:hover svg {
+  transform: scale(1.08);
+}
+
+/* YouTube (Classic flat red Pixel icon) */
+#mainnav a.pixel-round.yt-round {
+  background-color: #ff0000;
+  border-color: rgba(255, 100, 100, 0.4);
+  box-shadow: 0 4px 14px -3px rgba(255, 0, 0, 0.65);
+}
+#mainnav a.pixel-round.yt-round:hover {
+  background-color: #e60000;
+  box-shadow: 0 6px 18px rgba(255, 0, 0, 0.85);
+}
+
+/* GitHub (Deep stealth black Pixel icon) */
+#mainnav a.pixel-round.gh-round {
+  background-color: #161b22;
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.8);
+}
+#mainnav a.pixel-round.gh-round:hover {
+  background-color: #24292f;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.25);
+}
+
+/* Facebook (Pixel Blue icon) */
+#mainnav a.pixel-round.fb-round {
+  background-color: #1877f2;
+  border-color: rgba(90, 168, 255, 0.4);
+  box-shadow: 0 4px 14px -3px rgba(24, 119, 242, 0.65);
+}
+#mainnav a.pixel-round.fb-round:hover {
+  background-color: #0d65d9;
+  box-shadow: 0 6px 18px rgba(24, 119, 242, 0.85);
+}
+
+/* Instagram (Pixel Sunset Gradient icon) */
+#mainnav a.pixel-round.ig-round {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 14px -3px rgba(214, 36, 159, 0.65);
+}
+#mainnav a.pixel-round.ig-round:hover {
+  filter: brightness(1.15) saturate(1.1);
+  box-shadow: 0 6px 18px rgba(214, 36, 159, 0.85);
+}
+
+/* Mobile responsive drawer styling */
+@media(max-width: 900px) {
+  .pixel-socials {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin: 8px 0 4px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  #mainnav a.pixel-round {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+  #mainnav a.pixel-round svg {
+    width: 18px;
+    height: 18px;
+  }
+}
