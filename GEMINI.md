@@ -71,8 +71,12 @@ Jab user nayi video announce kare:
      - `upload_phase=finish` (Title, Boxed description, aur `thumb` attach karo)
 3. **Credentials:**
    - Use `facebook_page_token` stored in `C:\Users\vrohi\Documents\Instagram_Automation\config.json`.
-4. **Description:**
+4. **Description & Viral Tags (MANDATORY):**
    - Same boxed description + exact transcript sequence + zero Telegram + zero GitHub.
+   - 🏷️ **25-30 High-Volume Viral Hashtags Bundle:** Description ke end me compulsory boxed `🏷️ VIRAL TAGS & KEYWORDS` section hoga:
+     - Niche tags: `#RomFlasher #PlayIntegrity #StrongIntegrity #PlayStoreCertified #Magisk #DeviceCertified #BankingApps #RootHide #NoPC #KernelSU #APatch #AndroidMod #CustomROM #FlashWithoutPC`
+     - Broad viral tags: `#AndroidTricks #TechViral #TrendingTech #Technology #AndroidHacks #TechReels #AndroidTips #PlayProtect #PhoneRoot #Zygisk #GPayFix #PhonePeFix #ExploreTech #Gadgets`
+     - Ye tags Facebook Video algorithm aur search feed (Facebook Watch) me video ko boost karte hain.
 
 ---
 
