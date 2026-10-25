@@ -46,9 +46,14 @@ Jab user nayi video announce kare:
 1. **Content Generation (`romflasher-site/content/<video_id>.json`):**
    - YouTube video ka detailed technical article generate karo (Requirements, Device compatibility table, Transcript se live steps, FAQ, aur official download buttons).
    - ❌ No Telegram links.
-2. **Static Build:**
+2. **Responsive Cyber-Glass Comparison Table/Chart Standard (MANDATORY):**
+   - Har article me jab bhi comparison ya technical breakdown table aaye, usko strictly `pro-table` standards par format karo:
+     - **Column Alignment:** First column (Features/Requirements) strictly left-aligned (`:---`), jabki comparison metrics, status aur checkmarks strictly center-aligned (`:---:`).
+     - **Visual Icons & High Contrast:** Plain boring text ki jagah visual icons, green checkmarks (`✅`), red cross warnings (`❌`), lightning badges (`⚡`) lagao taaki dekhte hi clear visual contrast mile.
+     - **Native HTML Wrapping:** Engine me table hamesha `<div class="tablewrap"><table class="pro-table">` me compile ho jisse mobile screens par responsive touch-scroll smoothly kaam kare bina text bikhre.
+3. **Static Build:**
    - Run: `python build.py` inside `C:\Users\vrohi\romflasher-site\`.
-3. **MANDATORY LIVE DEPLOY (DO NOT FORGET):**
+4. **MANDATORY LIVE DEPLOY (DO NOT FORGET):**
    - Sirf locally build karna kaafi nahi hai.
    - Mandatory Git push execute karo:
      ```bash
