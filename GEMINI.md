@@ -82,14 +82,26 @@ Jab user nayi video announce kare:
      ```bash
      ffmpeg -y -i rom_flasher_video.mp4 -ss <start> -t <duration> -vf "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2,setsar=1" -c:v libx264 -pix_fmt yuv420p -preset fast -crf 22 -c:a aac -ar 44100 -b:a 128k -movflags +faststart <output_file>
      ```
-2. **Custom Eye-Catching Reel Covers (MANDATORY):**
+2. **Custom Eye-Catching Reel Covers with Sequential Badges (MANDATORY):**
    - ❌ Kabhi bhi Instagram ko default random frame cover mat choose karne do.
-   - Har part ke liye script [generate_reel_covers.py] se dedicated 1080x1920 vertical cover generate karo:
-     - Prominent Part Badge (`PART 1`, `PART 2`, `PART 3`, `PART 4`)
-     - High-Contrast Big Bold Title Text (White with black shadow)
-     - Subtitle Pill (`NO PC • NO TERMUX • 100% WORKING`)
-     - Branding `@Rom_Flasher`
-3. **Publishing with Cover URL:**
+   - 🖼️ **Base Canvas:** Agar user ne dedicated 9:16 vertical poster/thumbnail provide kiya hai, toh usko base canvas use karo. Warna 16:9 thumbnail ko 1080x1920 blurred-backdrop ke sath format karo.
+   - 🏷️ **Prominent Sequential Part Badges (MANDATORY):**
+     - Har part cover par top ribbon me ultra-bold, high-contrast, neon glowing badge stamp karo: **`PART 1`**, **`PART 2`**, **`PART 3`**, **`PART 4`** in sequential order!
+     - Subtitle pill: Part-specific topic (e.g. `STEP 1: FAILED CHECKS`, `STEP 2: 1-CLICK INJECTION`, `STEP 3: ALL 3 PASSED`, `STEP 4: PLAY CERTIFIED & BANKING APPS`).
+     - Bottom bar branding: `@Rom_Flasher • romflasher.in • NO PC`.
+3. **Rich, Aesthetic, Multi-Section Long Captions (MANDATORY — ZERO 1-LINERS):**
+   - ❌ **KABHI BHI CHOTA YA 1-LINE KA CAPTION NA DAALO.**
+   - Har reel me top tech creator jaisa aesthetic, structured description hona chahiye:
+     - 🚀 **Catchy Hook:** Problem / hook with emojis (Device not certified, banking apps crashing, etc.)
+     - 📱 **Part & Series Info:** `(PART X/4: Detailed Step Name)`
+     - ━━━━━━━━━━━━━━━━━━━━━━━━━━ Boxed sections
+     - 🚨 **The Problem / Solution Breakdown:** Detailed explanation.
+     - ⚡ **Rom Flasher Tool Highlights:** Key USPs (No PC, Zero Termux, 1-Click OTG, Universal).
+     - 👉 **Next Part Teaser:** What to expect in the next part.
+     - 📥 **Call to Action (CTA):** Download link in bio (`@romflasheryt`), website `romflasher.in`.
+     - 💾 **Engagement Prompts:** *"SAVE THIS REEL for later! 📲 Share with Android root lovers!"*
+     - 🏷️ **20-25 Targeted Viral Hashtags:** `#romflasher #playintegrity #magisk #customrom #rootandroid #techreels #explorepage ...`
+4. **Publishing with Cover URL:**
    - Cloudflare Quick Tunnel / CDN se host karo.
    - Meta Container creation `POST /me/media` me `video_url` ke saath `cover_url` mandatory pass karo:
      ```python
