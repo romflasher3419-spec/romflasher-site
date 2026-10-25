@@ -748,9 +748,48 @@ def inline(text):
     return text
 
 
+def _render_md_table(lines):
+    if not lines:
+        return ""
+    rows = []
+    for line in lines:
+        cells = [c.strip() for c in line.strip()[1:-1].split("|")]
+        rows.append(cells)
+    if len(rows) < 2:
+        return "\n".join("<p>%s</p>" % inline(l) for l in lines)
+    headers = rows[0]
+    sep_row = rows[1]
+    is_sep = all(re.match(r"^:?-+:?$", c) for c in sep_row)
+    data_rows = rows[2:] if is_sep else rows[1:]
+    alignments = []
+    if is_sep:
+        for c in sep_row:
+            if c.startswith(":") and c.endswith(":"):
+                alignments.append("center")
+            elif c.endswith(":"):
+                alignments.append("right")
+            else:
+                alignments.append("left")
+    else:
+        alignments = ["left"] * len(headers)
+    html_out = ['<div class="tablewrap"><table class="pro-table"><thead><tr>']
+    for i, h in enumerate(headers):
+        align = alignments[i] if i < len(alignments) else "left"
+        html_out.append('<th class="align-%s">%s</th>' % (align, inline(h)))
+    html_out.append('</tr></thead><tbody>')
+    for r_idx, r in enumerate(data_rows):
+        html_out.append('<tr>')
+        for i, c in enumerate(r):
+            align = alignments[i] if i < len(alignments) else "left"
+            html_out.append('<td class="align-%s">%s</td>' % (align, inline(c)))
+        html_out.append('</tr>')
+    html_out.append('</tbody></table></div>')
+    return "".join(html_out)
+
+
 def md(text):
-    """Block markdown: ## headings, - / 1. lists, > quotes, paragraphs."""
-    out, ul, ol, mode = [], [], [], None
+    """Block markdown: ## headings, - / 1. lists, > quotes, tables, hr, paragraphs."""
+    out, ul, ol, table_lines, mode = [], [], [], [], None
 
     def flush():
         nonlocal mode
@@ -760,6 +799,9 @@ def md(text):
         if mode == "ol" and ol:
             out.append("<ol>" + "".join("<li>%s</li>" % inline(b) for b in ol) + "</ol>")
             ol.clear()
+        if mode == "table" and table_lines:
+            out.append(_render_md_table(table_lines))
+            table_lines.clear()
         mode = None
 
     for raw in (text or "").splitlines():
@@ -767,7 +809,10 @@ def md(text):
         if not line.strip():
             flush()
             continue
-        if line.lstrip().startswith("#"):
+        if line.strip() in ("---", "***", "___"):
+            flush()
+            out.append("<hr class='divider'>")
+        elif line.lstrip().startswith("#"):
             flush()
             level = 3 if line.startswith("###") else 2
             out.append("<h%d>%s</h%d>"
@@ -785,6 +830,11 @@ def md(text):
                 flush()
                 mode = "ol"
             ol.append(re.sub(r"^\d+\.\s", "", line))
+        elif line.startswith("|") and line.endswith("|") and "|" in line[1:-1]:
+            if mode != "table":
+                flush()
+                mode = "table"
+            table_lines.append(line)
         else:
             flush()
             out.append("<p>%s</p>" % inline(line))
