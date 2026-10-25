@@ -1164,15 +1164,14 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '    <a class="navbtn guides" href="%svideos.html">%sGuides</a>'
         % (up, GUIDES_LOGO),
         '    <a class="navbtn hot" href="%sdownloader.html" '
-        'aria-label="ROM downloader: stock ROMs, Magisk and KernelSU">%sDownloader</a>'
+        'aria-label="Stock ROM Download: stock ROMs, Magisk and KernelSU">%sStock ROM Download</a>'
         % (up, DL_LOGO),
-        '    <a class="navbtn donate" href="%sdonate.html" '
-        'aria-label="Buy me a coffee">%sCoffee</a>' % (up, COFFEE_LOGO),
         '    <div class="pixel-socials">',
         '      <a class="pixel-round yt-round" href="%s" target="_blank" rel="noopener" aria-label="YouTube" title="Rom Flasher on YouTube">%s</a>' % (CHANNEL_URL, YT_LOGO),
         '      <a class="pixel-round gh-round" href="%s" target="_blank" rel="noopener" aria-label="GitHub" title="Rom Flasher tool on GitHub">%s</a>' % (REPO_URL, GH_LOGO),
         '      <a class="pixel-round fb-round" href="%s" target="_blank" rel="noopener" aria-label="Facebook" title="Rom Flasher Facebook Page">%s</a>' % (FB_URL, FB_LOGO),
         '      <a class="pixel-round ig-round" href="%s" target="_blank" rel="noopener" aria-label="Instagram" title="Rom Flasher on Instagram">%s</a>' % (IG_URL, IG_LOGO),
+        '      <a class="pixel-round coffee-round" href="%sdonate.html" aria-label="Buy me a coffee" title="Buy me a coffee">%s</a>' % (up, COFFEE_LOGO),
         '    </div>',
         "  </nav>",
         # The menu button only shows on a phone, where the five pills used to

@@ -153,7 +153,7 @@ header.top .wrap{
    space under `border-radius` + `overflow:hidden`, and the browser then paints
    the background inside that inset edge - which shows up as a faint, flickering
    seam around a gradient. Removing it lets the fill run cleanly to the radius. */
-#mainnav a.navbtn.hot,#mainnav a.navbtn.donate,#mainnav a.yt{border:0}
+#mainnav a.navbtn.donate,#mainnav a.yt{border:0}
 #mainnav a:hover{color:var(--fg);text-decoration:none;background:rgba(255,255,255,.06)}
 #mainnav a.navbtn{border-color:var(--line);color:var(--fg)}
 /* Guides is a nav pill in the same set as the four beside it - same box, same
@@ -498,23 +498,43 @@ a.tag:hover{
 .tested a{color:#cfc9ff}
 
 /* ------------------------------------------------------- download page */
-/* The downloader wears dark green - the colour of the ROM box in the app -
-   a shade lighter than the background so it reads as a real button and not
-   a hole in the bar. */
-#mainnav a.navbtn.hot{
-  background-image:linear-gradient(120deg,#1c7a4b,#26a463);
-  color:#fff;font-weight:700;
-  box-shadow:0 12px 28px -14px rgba(38,164,99,.85);
+/* Stock ROM Download button - Deep Dark Shining GitHub obsidian style */
+#mainnav a.navbtn.hot {
+  width: auto;
+  min-width: auto;
+  padding: 0 14px;
+  gap: 7px;
+  background-color: #0d1117;
+  background-image: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-#mainnav a.navbtn.hot:hover{
-  color:#fff;background-color:transparent;
-  background-image:linear-gradient(120deg,#218a55,#2eb871);
-  filter:saturate(115%);
+#mainnav a.navbtn.hot:hover {
+  background-color: #21262d;
+  background-image: linear-gradient(180deg, #2b313a 0%, #1c2128 100%);
+  color: #58a6ff;
+  border-color: #58a6ff !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.9), 0 0 16px rgba(88, 166, 255, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
 }
-/* the tray arrow is drawn a touch smaller than the other marks: its glyph
-   carries more ink than the mug or the GitHub cat at the same box size, so at
-   13px it read heavier than the two beside it. */
-#mainnav a.navbtn.hot svg{width:12px;height:12px;flex:0 0 auto;fill:currentColor}
+#mainnav a.navbtn.hot svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+  fill: #58a6ff;
+  filter: drop-shadow(0 0 4px rgba(88, 166, 255, 0.6));
+  transition: transform 0.2s ease;
+}
+#mainnav a.navbtn.hot:hover svg {
+  transform: translateY(1px);
+  fill: #79c0ff;
+  filter: drop-shadow(0 0 6px rgba(121, 192, 255, 0.9));
+}
 
 /* The two boxes on the download page - "Get the tool" and "Build facts" - sit
    side by side, so they have to be the same size. The grid stretches them to
@@ -2150,6 +2170,24 @@ hr.divider {
 #mainnav a.pixel-round.ig-round:hover {
   filter: brightness(1.15) saturate(1.1);
   box-shadow: 0 6px 18px rgba(214, 36, 159, 0.85);
+}
+
+/* Coffee / Buy Me a Coffee (Pixel Gold Round icon) */
+#mainnav a.pixel-round.coffee-round {
+  background: linear-gradient(135deg, #FFD700 0%, #FF8A00 100%);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 4px 14px -3px rgba(255, 180, 0, 0.7);
+}
+#mainnav a.pixel-round.coffee-round svg {
+  fill: #241705;
+  width: 15px;
+  height: 15px;
+}
+#mainnav a.pixel-round.coffee-round:hover {
+  background: linear-gradient(135deg, #FFE033 0%, #FFA01A 100%);
+  border-color: #fff;
+  box-shadow: 0 6px 18px rgba(255, 200, 0, 0.95);
+  filter: brightness(1.1);
 }
 
 /* Mobile responsive drawer styling */
