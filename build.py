@@ -86,7 +86,7 @@ INDEXNOW_KEY = os.environ.get("ROMFLASHER_INDEXNOW", "").strip()
 TOOL_URL = "https://github.com/romflasher3419-spec/rom-flasher-tool/releases/latest"
 REPO_URL = "https://github.com/romflasher3419-spec/rom-flasher-tool"
 CHANNEL_URL = "https://www.youtube.com/@Rom_Flasher"
-FB_URL = "https://www.facebook.com/1449977448193123"
+FB_URL = "https://www.facebook.com/people/Rom-Flasher/61595961834517/"
 IG_URL = "https://www.instagram.com/romflasheryt"
 
 # /releases/latest/download/<asset> always points at the newest build, so the
