@@ -12,27 +12,27 @@
      1. Cyberpunk Canvas Constellation Physics (#hero-matrix-canvas)
      ========================================================================== */
   function initHeroCanvas() {
-    var canvas = document.getElementById('hero-matrix-canvas');
+    var canvas = document.getElementById('global-matrix-canvas') || document.getElementById('hero-matrix-canvas');
     if (!canvas) return;
 
     var ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    var width = (canvas.width = canvas.parentElement.offsetWidth || window.innerWidth);
-    var height = (canvas.height = canvas.parentElement.offsetHeight || 500);
+    var width = (canvas.width = window.innerWidth);
+    var height = (canvas.height = window.innerHeight);
 
     var particles = [];
     var isMobile = window.innerWidth < 768;
-    var count = isMobile ? 36 : 72;
-    var maxDist = isMobile ? 85 : 125;
-    var mouse = { x: -9999, y: -9999, radius: 140 };
+    var count = isMobile ? 32 : 68;
+    var maxDist = isMobile ? 85 : 120;
+    var mouse = { x: -9999, y: -9999, radius: 150 };
 
     function Particle() {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.7;
-      this.vy = (Math.random() - 0.5) * 0.7;
-      this.radius = Math.random() * 1.8 + 1.2;
+      this.vx = (Math.random() - 0.5) * 0.65;
+      this.vy = (Math.random() - 0.5) * 0.65;
+      this.radius = Math.random() * 1.6 + 1.1;
       this.color = Math.random() > 0.6 ? '#5ac8fa' : (Math.random() > 0.5 ? '#bf5af2' : '#ff2d9b');
       this.alpha = Math.random() * 0.45 + 0.35;
     }
@@ -51,8 +51,8 @@
       if (dist < mouse.radius) {
         var angle = Math.atan2(dy, dx);
         var force = (mouse.radius - dist) / mouse.radius;
-        this.x -= Math.cos(angle) * force * 2.5;
-        this.y -= Math.sin(angle) * force * 2.5;
+        this.x -= Math.cos(angle) * force * 2.2;
+        this.y -= Math.sin(angle) * force * 2.2;
       }
     };
 
@@ -61,7 +61,7 @@
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.fillStyle = this.color;
       ctx.globalAlpha = this.alpha;
-      ctx.shadowBlur = 8;
+      ctx.shadowBlur = 6;
       ctx.shadowColor = this.color;
       ctx.fill();
       ctx.shadowBlur = 0;
@@ -72,19 +72,25 @@
     }
 
     function onResize() {
-      if (!canvas.parentElement) return;
-      width = canvas.width = canvas.parentElement.offsetWidth || window.innerWidth;
-      height = canvas.height = canvas.parentElement.offsetHeight || 500;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     }
     window.addEventListener('resize', onResize, { passive: true });
 
-    canvas.parentElement.addEventListener('mousemove', function (e) {
-      var rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+    // Track mouse & touch on entire viewport for all pages
+    window.addEventListener('mousemove', function (e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
     }, { passive: true });
 
-    canvas.parentElement.addEventListener('mouseleave', function () {
+    window.addEventListener('touchmove', function (e) {
+      if (e.touches && e.touches[0]) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('mouseleave', function () {
       mouse.x = -9999;
       mouse.y = -9999;
     });
@@ -116,12 +122,12 @@
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = '#6c63ff';
             ctx.globalAlpha = alpha;
-            ctx.lineWidth = 0.9;
+            ctx.lineWidth = 0.85;
             ctx.stroke();
           }
         }
 
-        // Draw laser connector to mouse
+        // Draw laser connector to mouse across the whole page
         var mdx = mouse.x - p1.x;
         var mdy = mouse.y - p1.y;
         var mDist = Math.sqrt(mdx * mdx + mdy * mdy);
@@ -131,7 +137,7 @@
           ctx.lineTo(mouse.x, mouse.y);
           ctx.strokeStyle = '#5ac8fa';
           ctx.globalAlpha = (1 - mDist / mouse.radius) * 0.45;
-          ctx.lineWidth = 1.1;
+          ctx.lineWidth = 1.0;
           ctx.stroke();
         }
       }

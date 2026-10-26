@@ -1153,6 +1153,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         extra_head,
         "</head>",
         "<body>",
+        '<canvas id="global-matrix-canvas" aria-hidden="true"></canvas>',
         CURSOR_LIGHT,
         ('<header class="top"><div class="wrap">\n'
          '  <a class="brand brand-anim-wrap" href="%sindex.html" aria-label="Rom Flasher - All-In-One Android Tool">' % up)
@@ -1359,7 +1360,7 @@ MARQUEE_HTML = """<div class="marquee-container" aria-hidden="true">
 
 CREATOR_DECK_HTML = """<div class="creator-deck">
   <div class="creator-avatar-wrap">
-    <img src="static/channel.jpg" alt="Rohit Verma (@Rom_Flasher)" class="creator-avatar" width="84" height="84" onerror="this.src=\'static/app.png\'">
+    <img src="static/channel.jpg" alt="Rohit Verma (@Rom_Flasher)" class="creator-avatar" width="52" height="52" onerror="this.src=\'static/app.png\'">
     <span class="creator-online-badge" title="Lab Testing Daily"></span>
   </div>
   <div class="creator-bio">
@@ -1398,7 +1399,6 @@ def build_home(items, path="index.html"):
     rail = '<aside class="adrail">%s</aside>' % ad if ad else ""
 
     body = """<section class="hero">
-<canvas id="hero-matrix-canvas" aria-hidden="true"></canvas>
 <div class="wrap full">
 <h1>Flash <em>any ROM, any phone</em> &mdash; <span class="hero-feat"><span class="feat-pc">No PC</span> <span class="feat-dot">&bull;</span> <span class="feat-termux">No Termux</span> <span class="feat-dot">&bull;</span> <span class="feat-cmd">No Commands</span></span> &mdash; with steps that actually work.</h1>
 <p>%s. Every video gets a written page here, so you can follow along without
