@@ -1360,7 +1360,7 @@ MARQUEE_HTML = """<div class="marquee-container" aria-hidden="true">
 
 CREATOR_DECK_HTML = """<div class="creator-deck">
   <div class="creator-avatar-wrap">
-    <img src="static/channel.jpg" alt="Rohit Verma (@Rom_Flasher)" class="creator-avatar" width="52" height="52" onerror="this.src=\'static/app.png\'">
+    <img src="static/channel.jpg" alt="Rohit Verma (@Rom_Flasher)" class="creator-avatar" width="64" height="64" onerror="this.src=\'static/app.png\'">
     <span class="creator-online-badge" title="Lab Testing Daily"></span>
   </div>
   <div class="creator-bio">
