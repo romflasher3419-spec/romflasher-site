@@ -1173,8 +1173,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '      <a class="pixel-round fb-round" href="%s" target="_blank" rel="noopener" aria-label="Facebook" title="Rom Flasher Facebook Page">%s</a>' % (FB_URL, FB_LOGO),
         '      <a class="pixel-round ig-round" href="%s" target="_blank" rel="noopener" aria-label="Instagram" title="Rom Flasher on Instagram">%s</a>' % (IG_URL, IG_LOGO),
         '      <a class="pixel-round coffee-round" href="%sdonate.html" aria-label="Buy me a coffee" title="Buy me a coffee">%s</a>' % (up, COFFEE_LOGO),
-        '      <button type="button" class="sound-toggle-btn" aria-label="Toggle UI Sound FX"><span class="s-icon">🔊</span><span class="s-text">SFX: OFF</span></button>',
-        '    </div>',
+                '    </div>',
         "  </nav>",
         # The menu button only shows on a phone, where the five pills used to
         # stack under the logo and eat a fifth of the screen. Three lines, the

@@ -1,7 +1,7 @@
 /**
  * Rom Flasher — Motion Graphics & Interactive Hardware Deck Engine
- * Pure vanilla JavaScript: 60 FPS Canvas Constellation, 3D Perspective Tilt,
- * Live Fastboot Terminal Simulator, and Cyberpunk Web Audio Feedback.
+ * Pure vanilla JavaScript: 60 FPS Canvas Constellation across every page,
+ * Magnetic Spotlight Borders, 3D Perspective Tilt, and Live Fastboot Terminal Simulator.
  * (C) Rohit Verma (@Rom_Flasher) — romflasher.in
  */
 
@@ -9,10 +9,10 @@
   'use strict';
 
   /* ==========================================================================
-     1. Cyberpunk Canvas Constellation Physics (#hero-matrix-canvas)
+     1. Universal Viewport Cyberpunk Canvas Constellation Physics
      ========================================================================== */
-  function initHeroCanvas() {
-    var canvas = document.getElementById('global-matrix-canvas') || document.getElementById('hero-matrix-canvas');
+  function initGlobalCanvas() {
+    var canvas = document.getElementById('global-matrix-canvas');
     if (!canvas) return;
 
     var ctx = canvas.getContext('2d');
@@ -24,7 +24,7 @@
     var particles = [];
     var isMobile = window.innerWidth < 768;
     var count = isMobile ? 32 : 68;
-    var maxDist = isMobile ? 85 : 120;
+    var maxDist = isMobile ? 85 : 125;
     var mouse = { x: -9999, y: -9999, radius: 150 };
 
     function Particle() {
@@ -148,98 +148,7 @@
   }
 
   /* ==========================================================================
-     2. Cyberpunk Web Audio FX (Synthesized, Zero MP3 Dependency)
-     ========================================================================== */
-  var audioCtx = null;
-  var soundEnabled = false;
-
-  function initAudio() {
-    try {
-      soundEnabled = localStorage.getItem('rf_sound') === '1';
-    } catch (e) {
-      soundEnabled = false;
-    }
-    updateAudioBtn();
-  }
-
-  function getAudioCtx() {
-    if (!audioCtx) {
-      var AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (AudioContext) audioCtx = new AudioContext();
-    }
-    if (audioCtx && audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-    return audioCtx;
-  }
-
-  function playUiClick(freq, type) {
-    if (!soundEnabled) return;
-    var ctx = getAudioCtx();
-    if (!ctx) return;
-    try {
-      var osc = ctx.createOscillator();
-      var gain = ctx.createGain();
-      osc.type = type || 'sine';
-      osc.frequency.setValueAtTime(freq || 880, ctx.currentTime);
-      gain.gain.setValueAtTime(0.04, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.05);
-    } catch (e) {}
-  }
-
-  function playSuccessChord() {
-    if (!soundEnabled) return;
-    var ctx = getAudioCtx();
-    if (!ctx) return;
-    try {
-      var freqs = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
-      freqs.forEach(function (f, i) {
-        var osc = ctx.createOscillator();
-        var gain = ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(f, ctx.currentTime + i * 0.04);
-        gain.gain.setValueAtTime(0.05, ctx.currentTime + i * 0.04);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + i * 0.04 + 0.35);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(ctx.currentTime + i * 0.04);
-        osc.stop(ctx.currentTime + i * 0.04 + 0.35);
-      });
-    } catch (e) {}
-  }
-
-  function toggleAudio() {
-    soundEnabled = !soundEnabled;
-    try {
-      localStorage.setItem('rf_sound', soundEnabled ? '1' : '0');
-    } catch (e) {}
-    updateAudioBtn();
-    if (soundEnabled) {
-      playUiClick(1046, 'sine');
-    }
-  }
-
-  function updateAudioBtn() {
-    var btns = document.querySelectorAll('.sound-toggle-btn');
-    btns.forEach(function (btn) {
-      if (soundEnabled) {
-        btn.classList.add('sound-on');
-        btn.setAttribute('aria-label', 'Sound FX: ON (Click to mute)');
-        btn.innerHTML = '<span class="s-icon">🔊</span><span class="s-text">SFX: ON</span>';
-      } else {
-        btn.classList.remove('sound-on');
-        btn.setAttribute('aria-label', 'Sound FX: OFF (Click to unmute)');
-        btn.innerHTML = '<span class="s-icon">🔇</span><span class="s-text">SFX: OFF</span>';
-      }
-    });
-  }
-
-  /* ==========================================================================
-     3. Live Interactive Flashing Terminal Simulator
+     2. Live Interactive Flashing Terminal Simulator (Cockpit Deck)
      ========================================================================== */
   var terminalPresets = {
     'auto-flasher': {
@@ -396,7 +305,6 @@
           if (runBtn) runBtn.disabled = false;
           if (progressBar) progressBar.style.width = '100%';
           if (progressText) progressText.textContent = '100% COMPLETE (' + preset.eta + ')';
-          playSuccessChord();
           return;
         }
 
@@ -408,8 +316,6 @@
           '<span class="log-text">' + item.text + '</span>';
         logContainer.appendChild(line);
         logContainer.scrollTop = logContainer.scrollHeight;
-
-        playUiClick(700 + index * 60, 'sine');
 
         var pct = Math.min(100, Math.round(((index + 1) / preset.logs.length) * 100));
         if (progressBar) progressBar.style.width = pct + '%';
@@ -431,14 +337,12 @@
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
         var p = this.getAttribute('data-preset');
-        playUiClick(950, 'triangle');
         renderPreset(p, true);
       });
     });
 
     if (runBtn) {
       runBtn.addEventListener('click', function () {
-        playUiClick(1100, 'triangle');
         renderPreset(currentPreset, true);
       });
     }
@@ -448,9 +352,9 @@
   }
 
   /* ==========================================================================
-     4. 3D Perspective Physics Tilt + Dynamic Cursor Spotlight (Linear/Raycast)
+     3. 3D Perspective Physics Tilt + Magnetic Cursor Border Spotlight
      ========================================================================== */
-  function init3DTilt() {
+  function init3DTiltAndSpotlight() {
     try {
       if (window.matchMedia('(hover:none)').matches ||
           window.matchMedia('(pointer:coarse)').matches) return;
@@ -459,7 +363,6 @@
     var cards = document.querySelectorAll('.bento-card, .card, .deck-card, .creator-card');
 
     cards.forEach(function (card) {
-      // Add spotlight element inside card if missing
       if (!card.querySelector('.card-spotlight')) {
         var spot = document.createElement('div');
         spot.className = 'card-spotlight';
@@ -490,10 +393,10 @@
         rafId = requestAnimationFrame(function () {
           var halfW = rect.width / 2;
           var halfH = rect.height / 2;
-          var rotateY = ((x - halfW) / halfW) * 7.5;
-          var rotateX = -((y - halfH) / halfH) * 7.5;
+          var rotateY = ((x - halfW) / halfW) * 6;
+          var rotateX = -((y - halfH) / halfH) * 6;
 
-          card.style.transform = 'perspective(900px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) translateZ(6px)';
+          card.style.transform = 'perspective(900px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) translateZ(4px)';
         });
       });
 
@@ -508,12 +411,12 @@
   }
 
   /* ==========================================================================
-     5. Scroll Reveal Micro-Animations (IntersectionObserver)
+     4. Scroll Reveal Micro-Animations (IntersectionObserver on all pages)
      ========================================================================== */
   function initScrollReveal() {
     if (!('IntersectionObserver' in window)) return;
 
-    var elements = document.querySelectorAll('.reveal-on-scroll, .bento-card, .card, .creator-deck');
+    var elements = document.querySelectorAll('.bento-card, .card, .creator-deck, .cockpit-wrapper, .marquee-container');
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -521,7 +424,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
 
     elements.forEach(function (el) {
       observer.observe(el);
@@ -529,22 +432,13 @@
   }
 
   /* ==========================================================================
-     6. DOM Ready Orchestrator
+     5. DOM Ready Orchestrator
      ========================================================================== */
   function boot() {
-    initAudio();
-    initHeroCanvas();
+    initGlobalCanvas();
     initTerminalSimulator();
-    init3DTilt();
+    init3DTiltAndSpotlight();
     initScrollReveal();
-
-    // Bind audio toggle buttons
-    document.querySelectorAll('.sound-toggle-btn').forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        toggleAudio();
-      });
-    });
   }
 
   if (document.readyState === 'loading') {
