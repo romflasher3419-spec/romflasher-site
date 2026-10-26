@@ -1153,7 +1153,6 @@ def page(title, description, body, path="", extra_head="", keywords="",
         extra_head,
         "</head>",
         "<body>",
-        '<canvas id="global-matrix-canvas" aria-hidden="true"></canvas>',
         CURSOR_LIGHT,
         ('<header class="top"><div class="wrap">\n'
          '  <a class="brand brand-anim-wrap" href="%sindex.html" aria-label="Rom Flasher - All-In-One Android Tool">' % up)
@@ -1173,7 +1172,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '      <a class="pixel-round fb-round" href="%s" target="_blank" rel="noopener" aria-label="Facebook" title="Rom Flasher Facebook Page">%s</a>' % (FB_URL, FB_LOGO),
         '      <a class="pixel-round ig-round" href="%s" target="_blank" rel="noopener" aria-label="Instagram" title="Rom Flasher on Instagram">%s</a>' % (IG_URL, IG_LOGO),
         '      <a class="pixel-round coffee-round" href="%sdonate.html" aria-label="Buy me a coffee" title="Buy me a coffee">%s</a>' % (up, COFFEE_LOGO),
-                '    </div>',
+        '    </div>',
         "  </nav>",
         # The menu button only shows on a phone, where the five pills used to
         # stack under the logo and eat a fifth of the screen. Three lines, the
@@ -1219,7 +1218,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
 """ % (SITE, TAGLINE, browse, up, up, up, up, up, up, up, up, CHANNEL_URL, up)
 
     # the pointer light is moved by a script, so it belongs at the end of body
-    foot = foot.replace("</body>", CURSOR_LIGHT_JS + "\n" + NAV_JS + "\n" + ('<script src="%sstatic/motion.js?v=%s" defer></script>\n' % (up, ASSET_VER)) + "</body>")
+    foot = foot.replace("</body>", CURSOR_LIGHT_JS + "\n" + NAV_JS + "\n</body>")
     return head + body + "\n" + foot
 
 
@@ -1248,140 +1247,6 @@ def card(item, up=""):
                " &middot; ".join(foot)))
 
 
-
-COCKPIT_HTML = """<div class="cockpit-wrapper">
-  <div id="flasher-cockpit">
-    <div class="cockpit-head">
-      <div class="cockpit-dots">
-        <span class="cockpit-dot d-red"></span>
-        <span class="cockpit-dot d-yellow"></span>
-        <span class="cockpit-dot d-green"></span>
-      </div>
-      <div class="cockpit-title">
-        <span>ROM_FLASHER_ENGINE //</span> <strong>HARDWARE OTG PROTOCOL v2.4</strong>
-      </div>
-      <div class="cockpit-ping">FASTBOOT CONNECTED</div>
-    </div>
-    <div class="cockpit-tabs">
-      <button type="button" class="cockpit-tab active" data-preset="auto-flasher">⚡ 1-Click Auto Flasher</button>
-      <button type="button" class="cockpit-tab" data-preset="play-integrity">🛡️ Play Integrity 3/3 (TEE Keybox)</button>
-      <button type="button" class="cockpit-tab" data-preset="hyperos">🔥 HyperOS Fastboot</button>
-      <button type="button" class="cockpit-tab" data-preset="otg-direct">📱 Phone-to-Phone OTG</button>
-    </div>
-    <div class="cockpit-grid">
-      <div class="cockpit-screen">
-        <div class="cockpit-logs"></div>
-        <div class="cockpit-footer-bar">
-          <div class="cockpit-progress-box">
-            <div class="cockpit-progress-meta">
-              <span class="cockpit-progress-text">100% COMPLETE</span>
-              <span>BUFFER: 64MB</span>
-            </div>
-            <div class="cockpit-progress-track">
-              <div class="cockpit-progress-fill" style="width: 100%;"></div>
-            </div>
-          </div>
-          <button type="button" class="cockpit-run-btn">▶ Simulate Live Flash</button>
-        </div>
-      </div>
-      <div class="cockpit-telemetry">
-        <div class="telemetry-head">
-          <span>HARDWARE TELEMETRY</span>
-          <span class="telemetry-state">● ONLINE</span>
-        </div>
-        <div class="telemetry-row">
-          <span class="telemetry-label">TARGET DEVICE</span>
-          <span class="telemetry-val highlight-cyan telemetry-dev">POCO X7 Pro (komodo)</span>
-        </div>
-        <div class="telemetry-row">
-          <span class="telemetry-label">BOOTLOADER / AVB</span>
-          <span class="telemetry-val highlight-green telemetry-bl">UNLOCKED (Tamper: 0)</span>
-        </div>
-        <div class="telemetry-row">
-          <span class="telemetry-label">INTERFACE BRIDGE</span>
-          <span class="telemetry-val telemetry-bridge">USB 3.2 OTG Direct Bridge</span>
-        </div>
-        <div class="telemetry-row">
-          <span class="telemetry-label">TEE KEYBOX STATUS</span>
-          <span class="telemetry-val highlight-violet telemetry-keybox">3/3 TEE Hardware Keybox Active</span>
-        </div>
-        <div class="telemetry-row">
-          <span class="telemetry-label">FLASH THROUGHPUT</span>
-          <span class="telemetry-val highlight-cyan cockpit-speed-val">482.4 MB/s</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>"""
-
-MARQUEE_HTML = """<div class="marquee-container" aria-hidden="true">
-  <div class="marquee-row marquee-left">
-    <div class="marquee-pill"><span class="p-dot dot-cyan"></span>POCO X7 Pro (komodo)</div>
-    <div class="marquee-pill"><span class="p-dot dot-pink"></span>Xiaomi 14 Ultra (aurora)</div>
-    <div class="marquee-pill"><span class="p-dot dot-green"></span>Redmi Note 13 Pro+ (zircon)</div>
-    <div class="marquee-pill"><span class="p-dot dot-purple"></span>OnePlus 12 (waffle)</div>
-    <div class="marquee-pill"><span class="p-dot dot-cyan"></span>Xiaomi Pad 5 / Pad 6</div>
-    <div class="marquee-pill"><span class="p-dot dot-pink"></span>POCO F6 / F6 Pro</div>
-    <div class="marquee-pill"><span class="p-dot dot-green"></span>Realme GT 6 / Neo 6</div>
-    <div class="marquee-pill"><span class="p-dot dot-purple"></span>Nothing Phone (2)</div>
-    <div class="marquee-pill"><span class="p-dot dot-cyan"></span>iQOO 12 / Neo 9 Pro</div>
-    <!-- Duplicate for seamless loop -->
-    <div class="marquee-pill"><span class="p-dot dot-cyan"></span>POCO X7 Pro (komodo)</div>
-    <div class="marquee-pill"><span class="p-dot dot-pink"></span>Xiaomi 14 Ultra (aurora)</div>
-    <div class="marquee-pill"><span class="p-dot dot-green"></span>Redmi Note 13 Pro+ (zircon)</div>
-    <div class="marquee-pill"><span class="p-dot dot-purple"></span>OnePlus 12 (waffle)</div>
-    <div class="marquee-pill"><span class="p-dot dot-cyan"></span>Xiaomi Pad 5 / Pad 6</div>
-    <div class="marquee-pill"><span class="p-dot dot-pink"></span>POCO F6 / F6 Pro</div>
-    <div class="marquee-pill"><span class="p-dot dot-green"></span>Realme GT 6 / Neo 6</div>
-    <div class="marquee-pill"><span class="p-dot dot-purple"></span>Nothing Phone (2)</div>
-    <div class="marquee-pill"><span class="p-dot dot-cyan"></span>iQOO 12 / Neo 9 Pro</div>
-  </div>
-  <div class="marquee-row marquee-right">
-    <div class="marquee-pill"><span class="p-dot dot-green"></span>HyperOS 2.0 (Android 15)</div>
-    <div class="marquee-pill"><span class="p-dot dot-cyan"></span>PixelOS Unofficial 15</div>
-    <div class="marquee-pill"><span class="p-dot dot-purple"></span>Evolution X 10.0</div>
-    <div class="marquee-pill"><span class="p-dot dot-pink"></span>LineageOS 22 Official</div>
-    <div class="marquee-pill"><span class="p-dot dot-green"></span>Play Integrity 3/3 Keybox TEE</div>
-    <div class="marquee-pill"><span class="p-dot dot-cyan"></span>KernelSU Next v1.0.5</div>
-    <div class="marquee-pill"><span class="p-dot dot-purple"></span>Magisk v28.1 Systemless</div>
-    <div class="marquee-pill"><span class="p-dot dot-pink"></span>OrangeFox Recovery R11.1</div>
-    <!-- Duplicate for seamless loop -->
-    <div class="marquee-pill"><span class="p-dot dot-green"></span>HyperOS 2.0 (Android 15)</div>
-    <div class="marquee-pill"><span class="p-dot dot-cyan"></span>PixelOS Unofficial 15</div>
-    <div class="marquee-pill"><span class="p-dot dot-purple"></span>Evolution X 10.0</div>
-    <div class="marquee-pill"><span class="p-dot dot-pink"></span>LineageOS 22 Official</div>
-    <div class="marquee-pill"><span class="p-dot dot-green"></span>Play Integrity 3/3 Keybox TEE</div>
-    <div class="marquee-pill"><span class="p-dot dot-cyan"></span>KernelSU Next v1.0.5</div>
-    <div class="marquee-pill"><span class="p-dot dot-purple"></span>Magisk v28.1 Systemless</div>
-    <div class="marquee-pill"><span class="p-dot dot-pink"></span>OrangeFox Recovery R11.1</div>
-  </div>
-</div>"""
-
-CREATOR_DECK_HTML = """<div class="creator-deck">
-  <div class="creator-avatar-wrap">
-    <img src="static/channel.jpg" alt="Rohit Verma (@Rom_Flasher)" class="creator-avatar" width="64" height="64" onerror="this.src=\'static/app.png\'">
-    <span class="creator-online-badge" title="Lab Testing Daily"></span>
-  </div>
-  <div class="creator-bio">
-    <h3>Rohit Verma <span class="creator-badge">&#10003; VERIFIED ANDROID DEVELOPER</span></h3>
-    <p>Engineered &amp; tested on real physical devices via USB-OTG in our hardware lab. <strong>Zero AI hallucinations &middot; Zero broken fastboot commands &middot; 100% verified live flashing sequences.</strong></p>
-  </div>
-  <div class="creator-stats">
-    <div class="c-stat-box">
-      <div class="c-stat-num">188+</div>
-      <div class="c-stat-label">Guides Tested</div>
-    </div>
-    <div class="c-stat-box">
-      <div class="c-stat-num">0 PC</div>
-      <div class="c-stat-label">Direct OTG</div>
-    </div>
-    <div class="c-stat-box">
-      <div class="c-stat-num">3/3</div>
-      <div class="c-stat-label">TEE Keybox</div>
-    </div>
-  </div>
-</div>"""
-
 # ------------------------------------------------------------------- pages
 def build_home(items, path="index.html"):
     by_views = sorted(items, key=lambda x: -(x.get("views") or 0))[:9]
@@ -1397,8 +1262,7 @@ def build_home(items, path="index.html"):
     row = "homerow withad" if ad else "homerow"
     rail = '<aside class="adrail">%s</aside>' % ad if ad else ""
 
-    body = """<section class="hero">
-<div class="wrap full">
+    body = """<section class="hero"><div class="wrap full">
 <h1>Flash <em>any ROM, any phone</em> &mdash; <span class="hero-feat"><span class="feat-pc">No PC</span> <span class="feat-dot">&bull;</span> <span class="feat-termux">No Termux</span> <span class="feat-dot">&bull;</span> <span class="feat-cmd">No Commands</span></span> &mdash; with steps that actually work.</h1>
 <p>%s. Every video gets a written page here, so you can follow along without
 pausing the video twenty times.</p>
@@ -1424,13 +1288,10 @@ pausing the video twenty times.</p>
   </div>
   <div class="bento-card">
     <div class="bento-badge b-purple">VERIFIED</div>
-    <div class="bento-title">188+ Guides</div>
+    <div class="bento-title">185+ Guides</div>
     <div class="bento-sub">Real device tested with live video transcripts</div>
   </div>
 </div>
-%s
-%s
-%s
 </div></section>
 <div class="wrap full">
 <div class="%s">
@@ -1463,7 +1324,7 @@ pausing the video twenty times.</p>
   setTimeout(fixRail, 150);
   setTimeout(fixRail, 600);
 })();
-</script>""" % (TAGLINE, len(items), COCKPIT_HTML, MARQUEE_HTML, CREATOR_DECK_HTML, row,
+</script>""" % (TAGLINE, len(items), row,
              "".join(card(x) for x in by_date),
              "".join(card(x) for x in by_views), rail)
 
