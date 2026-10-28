@@ -1022,12 +1022,29 @@ CURSOR_LIGHT_JS = """<script>
       ox = cx = tx; oy = cy = ty;             // arrive, do not fly in from a corner
       place(orb, ox, oy); place(core, cx, cy);
     }
+    var card = e.target && e.target.closest ? e.target.closest('.bento-card, .card, .hero-hardware-stream') : null;
+    if(card){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--spot-x', (e.clientX - r.left).toFixed(1) + 'px');
+      card.style.setProperty('--spot-y', (e.clientY - r.top).toFixed(1) + 'px');
+    }
     start();
   }, {passive:true});
 
   function hide(){ layer.className = layer.className.replace(/\\s*\\bon\\b/, ''); }
   document.addEventListener('mouseleave', hide);
   window.addEventListener('blur', hide);
+})();
+/* Passive reading progress bar */
+(function(){
+  var bar = document.getElementById('scroll-progress');
+  if(!bar) return;
+  function onScroll(){
+    var d = document.documentElement;
+    var h = d.scrollHeight - d.clientHeight;
+    bar.style.width = (h > 0 ? ((d.scrollTop || document.body.scrollTop) / h * 100).toFixed(2) : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
 })();
 </script>"""
 
@@ -1151,6 +1168,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         "</head>",
         "<body>",
         CURSOR_LIGHT,
+        '<div id="scroll-progress" aria-hidden="true"></div>',
         ('<header class="top"><div class="wrap">\n'
          '  <a class="brand brand-anim-wrap" href="%sindex.html" aria-label="Rom Flasher - All-In-One Android Tool">' % up)
         + BRAND_ANIM_SVG + '</a>',
@@ -1259,13 +1277,42 @@ def build_home(items, path="index.html"):
     row = "homerow withad" if ad else "homerow"
     rail = '<aside class="adrail">%s</aside>' % ad if ad else ""
 
-    body = """<section class="hero"><div class="wrap full">
+    body = """<section class="hero"><div class="hero-aurora" aria-hidden="true"><div class="aurora-blob aurora-1"></div><div class="aurora-blob aurora-2"></div><div class="aurora-blob aurora-3"></div></div><div class="wrap full">
 <h1>Flash <em>any ROM, any phone</em> &mdash; <span class="hero-feat"><span class="feat-pc">No PC</span> <span class="feat-dot">&bull;</span> <span class="feat-termux">No Termux</span> <span class="feat-dot">&bull;</span> <span class="feat-cmd">No Commands</span></span> &mdash; with steps that actually work.</h1>
 <p>%s. Every video gets a written page here, so you can follow along without
 pausing the video twenty times.</p>
 <div class="hero-actions">
 <a class="btn" href="download.html">Download Rom Flasher (free)</a>
 <a class="btn ghost" href="videos.html">Browse all %d guides</a>
+</div>
+<div class="hero-hardware-stream" aria-label="Phone to phone USB OTG flashing illustration">
+  <div class="hw-device hw-host">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+    </div>
+    <div class="hw-info">
+      <span class="hw-badge">HOST PHONE</span>
+      <span class="hw-name">Rom Flasher App</span>
+    </div>
+  </div>
+  <div class="hw-cable-stream">
+    <div class="hw-cable-line">
+      <span class="cable-pulse" aria-hidden="true"></span>
+    </div>
+    <div class="hw-stream-badge">
+      <svg class="bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <span>OTG FASTBOOT DIRECT</span>
+    </div>
+  </div>
+  <div class="hw-device hw-target">
+    <div class="hw-icon">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+    </div>
+    <div class="hw-info">
+      <span class="hw-badge hw-green">TARGET PHONE</span>
+      <span class="hw-name">Fastboot / Any ROM</span>
+    </div>
+  </div>
 </div>
 <div class="hero-bento">
   <div class="bento-card">
