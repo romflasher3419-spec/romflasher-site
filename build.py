@@ -51,7 +51,7 @@ SITE_URL = (os.environ.get("ROMFLASHER_SITE_URL", "").strip()
 # Each of these is off while empty, so nothing half-configured ever ships.
 # Paste the value, rebuild, and that one feature turns itself on.
 GA4_ID = os.environ.get("ROMFLASHER_GA4", "").strip() or "G-9F1TH7MFVS"
-ADS_PUBLISHER = os.environ.get("ROMFLASHER_ADS", "").strip() or "pub-3239298035490504"
+ADS_PUBLISHER = os.environ.get("ROMFLASHER_ADS", "").strip()
 
 # AdSense hands out a numeric slot id per ad unit you create in the dashboard.
 # Each placement here is off until its own id is set, and all of them stay off
@@ -539,7 +539,8 @@ def adsense_verify():
     if not ADS_PUBLISHER:
         return ""
     return ('<script async src="https://pagead2.googlesyndication.com/pagead/'
-            'js/adsbygoogle.js?client=ca-%s" crossorigin="anonymous"></script>'
+            'js/adsbygoogle.js?client=ca-%s" crossorigin="anonymous" '
+            'onerror="this.onerror=null;this.remove()"></script>'
             % html.escape(ADS_PUBLISHER))
 
 
@@ -1125,6 +1126,10 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<meta name="author" content="%s">' % SITE,
         '<meta name="theme-color" content="#05070c">',
         '<meta name="rating" content="general">',
+        '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">',
+        '<meta name="referrer" content="strict-origin-when-cross-origin">',
+        '<script>if(location.protocol==="http:"&&location.hostname!=="localhost"&&location.hostname!=="127.0.0.1"){location.replace("https://"+location.host+location.pathname+location.search+location.hash);}</script>',
+        '<script>if(window.top!==window.self){try{window.top.location=window.self.location;}catch(e){window.self.location="about:blank";}}</script>',
         '<link rel="canonical" href="%s">' % canon,
         '<link rel="icon" type="image/svg+xml" href="%sstatic/favicon.svg">' % up,
         '<link rel="apple-touch-icon" sizes="180x180" '
@@ -2329,9 +2334,20 @@ def feedback_form(anchor=True, lead=""):
 (function(){
   var f=document.getElementById('feedback');
   if(!f||!window.fetch) return;
+  var loadTime=Date.now();
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var note=f.querySelector('.fbnote'),btn=f.querySelector('button[type=submit]');
+    if(f._honey&&f._honey.value){
+      f.reset();note.className='fbnote ok';
+      note.textContent='Got it - thank you! Your message is in my inbox.';
+      return;
+    }
+    if(Date.now()-loadTime<2000){
+      note.className='fbnote bad';
+      note.textContent='Please take a moment before submitting.';
+      return;
+    }
     var label=btn.innerHTML;
     btn.disabled=true;btn.textContent='Sending...';
     note.className='fbnote';note.textContent='Sending...';
