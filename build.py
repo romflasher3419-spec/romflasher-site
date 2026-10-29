@@ -1180,7 +1180,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<div id="scroll-progress" aria-hidden="true"></div>',
         ('<header class="top"><div class="wrap">\n'
          '  <a class="brand brand-anim-wrap" href="%sindex.html" aria-label="Rom Flasher - All-In-One Android Tool">' % up)
-        + BRAND_ANIM_SVG + '</a>',
+        + ('<img src="%sstatic/brand-anim.svg" alt="Rom Flasher" width="310" height="64" class="brand-svg-logo"></a>' % up),
         "  <nav id=\"mainnav\">",
         # Guides wears the same pill as the four on its right, so the row reads
         # as one set of buttons. The logo on the left already goes home, so there
@@ -1212,28 +1212,28 @@ def page(title, description, body, path="", extra_head="", keywords="",
     head = head.replace('static/style.css"',
                         'static/style.css?v=%s"' % ASSET_VER)
 
-    browse = ('<p class="browse">'
-              '<a href="%sbrands.html">Brands</a> &middot; '
-              '<a href="%sroms.html">ROMs</a> &middot; '
-              '<a href="%svideos.html">All guides</a> &middot; '
-              '<a href="%syears.html">By year</a> &middot; '
-              '<a href="%stopics.html">Topics</a> &middot; '
-              '<a href="%stags.html">Tags</a></p>'
+    browse = ('<nav class="footnav subnav" aria-label="Browse Guides">'
+              '<a href="%sbrands.html">Brands</a>'
+              '<a href="%sroms.html">ROMs</a>'
+              '<a href="%svideos.html">All guides</a>'
+              '<a href="%syears.html">By year</a>'
+              '<a href="%stopics.html">Topics</a>'
+              '<a href="%stags.html">Tags</a></nav>'
               % ((up,) * 6))
     foot = """<footer><div class="wrap">
-  <p><strong>%s</strong> &middot; %s</p>
+  <div class="footbrand"><strong>%s</strong> &mdash; %s</div>
   %s
-  <p>
-    <a href="%sabout.html">About</a> &middot;
-    <a href="%scontact.html">Contact</a> &middot;
-    <a href="%sprivacy.html">Privacy</a> &middot;
-    <a href="%sterms.html">Terms</a> &middot;
-    <a href="%sdownload.html">Download the tool</a> &middot;
-    <a href="%sdownloader.html">ROM downloader</a> &middot;
-    <a href="%sdonate.html">Buy me a coffee</a> &middot;
-    <a href="%sdownload.html#talk-to-me">Send a message</a> &middot;
-    <a href="%s" rel="noopener">YouTube channel</a>
-  </p>
+  <nav class="footnav" aria-label="Legal and Site Links">
+    <a href="%sabout.html">About</a>
+    <a href="%scontact.html">Contact</a>
+    <a href="%sprivacy.html">Privacy</a>
+    <a href="%sterms.html">Terms</a>
+    <a href="%sdownload.html">Download Tool</a>
+    <a href="%sdownloader.html">ROM Downloader</a>
+    <a href="%sdonate.html">Support Us</a>
+    <a href="%sdownload.html#talk-to-me">Message</a>
+    <a href="%s" rel="noopener">YouTube Channel</a>
+  </nav>
   <p class="dis">Not affiliated with Xiaomi, POCO, Redmi or any ROM project.
   Flashing is at your own risk &mdash; read the <a href="%sterms.html">terms</a> first.</p>
 </div></footer>
@@ -1298,11 +1298,11 @@ def build_home(items, path="index.html"):
 <section class="hero-editorial"><div class="wrap full">
   <div class="hero-editorial-grid">
     <div class="hero-editorial-main">
-      <h1 class="hero-title">Real custom ROM guides, tested on physical phones.</h1>
-      <p class="hero-lead">%s &mdash; every single command, partition target, and fastboot script is physically tested on actual hardware in our lab by Rohit Verma. Zero AI hallucinations. Zero bricked phones.</p>
+      <h1 class="hero-title">Custom ROM guides tested on real phones.</h1>
+      <p class="hero-lead">%s &mdash; every single fastboot script and ROM install is verified in our hardware lab by Rohit Verma. Zero AI hallucinations. Zero bricked phones.</p>
       <div class="hero-actions">
         <a class="btn primary" href="videos.html">Browse all %d verified guides</a>
-        <a class="btn ghost" href="download.html">Download Rom Flasher Tool (Free)</a>
+        <a class="btn-outline" href="download.html">Download Rom Flasher Tool (Free)</a>
       </div>
     </div>
     <div class="hero-editorial-side">
@@ -1333,19 +1333,19 @@ def build_home(items, path="index.html"):
     <div class="tb-grid">
       <div class="tb-unit">
         <div class="tb-unit-name">Xiaomi Pad 5 <span class="tb-code">nabu</span></div>
-        <div class="tb-unit-status">HyperOS 2.0 &middot; Fastboot Recovery &middot; OTG Verified</div>
+        <div class="tb-unit-status"><span class="tb-tag">HyperOS 2.0</span><span class="tb-tag">Fastboot Recovery</span><span class="tb-tag">OTG Verified</span></div>
       </div>
       <div class="tb-unit">
         <div class="tb-unit-name">Redmi Note 10 Pro <span class="tb-code">sweet</span></div>
-        <div class="tb-unit-status">Android 15 AOSP &middot; KernelSU &middot; OrangeFox</div>
+        <div class="tb-unit-status"><span class="tb-tag">Android 15 AOSP</span><span class="tb-tag">KernelSU</span><span class="tb-tag">OrangeFox</span></div>
       </div>
       <div class="tb-unit">
         <div class="tb-unit-name">Realme GT 2 Pro <span class="tb-code">RMX3301</span></div>
-        <div class="tb-unit-status">ColorOS 14 &middot; Hardware TEE Keybox &middot; Fastbootd</div>
+        <div class="tb-unit-status"><span class="tb-tag">ColorOS 14</span><span class="tb-tag">TEE Keybox</span><span class="tb-tag">Fastbootd</span></div>
       </div>
       <div class="tb-unit">
         <div class="tb-unit-name">POCO F1 <span class="tb-code">beryllium</span></div>
-        <div class="tb-unit-status">LineageOS 21 &middot; Retrofit Dynamic Partitions</div>
+        <div class="tb-unit-status"><span class="tb-tag">LineageOS 21</span><span class="tb-tag">Retrofit Dynamic Partitions</span></div>
       </div>
     </div>
   </div>
@@ -3632,8 +3632,7 @@ and the app drives fastboot, recovery and sideloading for you.</p>
     <img src="static/rohit-verma.png" alt="Rohit Verma — Android Flashing Specialist" width="160" height="160" class="about-portrait">
   </div>
   <div class="about-hero-bio">
-    <div class="about-badge">&#10003; Editor-in-Chief &amp; Lead Developer</div>
-    <h1>Rohit Verma</h1>
+    <h2 class="about-name">Rohit Verma <span class="about-badge">&#10003; Editor-in-Chief &amp; Lead Developer</span></h2>
     <p class="about-lead">I am an independent Android software and kernel researcher, the creator of the open-source Rom Flasher Tool, and the author behind every guide published on this website and on the <a href="https://www.youtube.com/@Rom_Flasher" target="_blank" rel="noopener">Rom Flasher YouTube channel</a>.</p>
     <div class="about-actions">
       <a class="btn primary" href="https://www.youtube.com/@Rom_Flasher" target="_blank" rel="noopener">YouTube Channel (@Rom_Flasher)</a>
@@ -3688,7 +3687,7 @@ and the app drives fastboot, recovery and sideloading for you.</p>
 </ul>
 """ % (CHANNEL_URL, REPO_URL)
 
-    out["about.html"] = simple("about.html", "About", "About \u2014 %s" % SITE, about_html_content,
+    out["about.html"] = simple("about.html", "About Rom Flasher & Editorial Standards", "About \u2014 %s" % SITE, about_html_content,
                               description="About Rohit Verma and Rom Flasher: independent Android flashing engineering journal, physical testing lab protocols, and editorial integrity standards.",
                               ad=True,
                               schema={
