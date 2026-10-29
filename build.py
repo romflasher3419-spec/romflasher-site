@@ -60,7 +60,7 @@ SITE_URL = (os.environ.get("ROMFLASHER_SITE_URL", "").strip()
 # Each of these is off while empty, so nothing half-configured ever ships.
 # Paste the value, rebuild, and that one feature turns itself on.
 GA4_ID = os.environ.get("ROMFLASHER_GA4", "").strip() or "G-9F1TH7MFVS"
-ADS_PUBLISHER = os.environ.get("ROMFLASHER_ADS", "").strip()
+ADS_PUBLISHER = os.environ.get("ROMFLASHER_ADS", "").strip() or "pub-3239298035490504"
 
 # AdSense hands out a numeric slot id per ad unit you create in the dashboard.
 # Each placement here is off until its own id is set, and all of them stay off
@@ -1141,7 +1141,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<meta name="keywords" content="%s">' % html.escape(keywords or keywords_for()),
         '<meta name="robots" content="index,follow,max-image-preview:large,'
         'max-snippet:-1,max-video-preview:-1">',
-        '<meta name="author" content="%s">' % SITE,
+        '<meta name="author" content="%s">' % AUTHOR_NAME,
         '<meta name="theme-color" content="#05070c">',
         '<meta name="rating" content="general">',
         '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">',
@@ -1164,6 +1164,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<meta property="og:type" content="%s">' % og_type,
         '<meta property="og:site_name" content="%s">' % SITE,
         '<meta property="og:locale" content="en_US">',
+        *(['<meta property="article:author" content="%s">' % AUTHOR_NAME] if og_type == "article" else []),
         '<meta property="og:title" content="%s">' % html.escape(title),
         '<meta property="og:description" content="%s">' % desc,
         '<meta property="og:url" content="%s">' % canon,
@@ -1423,7 +1424,7 @@ def build_home(items, path="index.html"):
     head = "\n".join('<script type="application/ld+json">%s</script>'
                      % json.dumps(b, ensure_ascii=False) for b in blocks)
 
-    return page("%s \u2014 Android ROM &amp; flash guides" % SITE,
+    return page("%s \u2014 Android ROM & Flashing Guides | Tested on Real Hardware" % SITE,
                 "Every custom ROM, root and flashing guide from the Rom Flasher "
                 "channel, written as text and tested on real phones. Plus a free "
                 "Android flashing tool that works with no PC.",
@@ -1722,11 +1723,11 @@ newest first, with the date it went live. %(rom_line)s %(brand_line)s</p>
 HUB_KINDS = {
     "brand": {"dir": "brand", "index": "brands.html", "word": "brand",
               "h1": "%s &mdash; flashing guides (%d)",
-              "title": "%s custom ROM &amp; flashing guides",
+              "title": "%s Custom ROM & Flashing Guides",
               "label": "Brands"},
     "rom": {"dir": "roms", "index": "roms.html", "word": "ROM",
             "h1": "%s &mdash; guides and installs (%d)",
-            "title": "%s install guide, download &amp; fixes",
+            "title": "%s Install Guide, Download & Fixes",
             "label": "ROMs"},
     "year": {"dir": "year", "index": "years.html", "word": "year",
              "h1": "Flashing guides from %s (%d)",
@@ -1734,11 +1735,11 @@ HUB_KINDS = {
              "label": "Years"},
     "topic": {"dir": "topic", "index": "topics.html", "word": "topic",
               "h1": "%s &mdash; Android guides (%d)",
-              "title": "%s &mdash; Android guide &amp; steps",
+              "title": "%s \u2014 Android Guide & Steps",
               "label": "Topics"},
     "tag": {"dir": "tag", "index": "tags.html", "word": "tag",
             "h1": "%s &mdash; flashing guides (%d)",
-            "title": "%s &mdash; guides &amp; downloads",
+            "title": "%s \u2014 Guides & Downloads",
             "label": "Tags"},
 }
 
@@ -2202,7 +2203,7 @@ def build_article(item, items):
         '<div class="author-card-links">'
         '<a class="author-link yt" href="%s" target="_blank" rel="noopener">YouTube (@Rom_Flasher)</a>'
         '<a class="author-link gh" href="%s" target="_blank" rel="noopener">GitHub (@romflasher3419-spec)</a>'
-        '<a class="author-link lab" href="%sabout.html">Testing Lab &amp; Editorial Ethics &rarr;</a>'
+        '<a class="author-link lab" href="%sabout.html">Testing Lab &amp; Editorial Ethics</a>'
         '</div></div></div>'
         % (up, CHANNEL_URL, REPO_URL, up)
     )
@@ -3687,7 +3688,7 @@ and the app drives fastboot, recovery and sideloading for you.</p>
 </ul>
 """ % (CHANNEL_URL, REPO_URL)
 
-    out["about.html"] = simple("about.html", "About Rom Flasher & Editorial Standards", "About \u2014 %s" % SITE, about_html_content,
+    out["about.html"] = simple("about.html", "About Rom Flasher & Editorial Standards", "About Rohit Verma & Rom Flasher Lab \u2014 %s" % SITE, about_html_content,
                               description="About Rohit Verma and Rom Flasher: independent Android flashing engineering journal, physical testing lab protocols, and editorial integrity standards.",
                               ad=True,
                               schema={

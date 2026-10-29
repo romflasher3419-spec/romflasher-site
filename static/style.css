@@ -3022,3 +3022,74 @@ h1, h2, h3, .hero-title, .about-name {
   color: #7dd3fc;
   text-decoration: none;
 }
+
+/* Mobile View Optimizations for Google Mobile-First Indexing */
+@media(max-width: 640px) {
+  .journal-masthead {
+    padding: 8px 0;
+    font-size: 11.5px;
+  }
+  .masthead-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .hero-editorial {
+    padding: 24px 0 20px;
+  }
+  .hero-editorial-main .hero-title {
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero-editorial-main .hero-lead {
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+  .home-author-spotlight {
+    padding: 16px;
+    gap: 12px;
+    flex-direction: row;
+    align-items: center;
+  }
+  .has-avatar img {
+    width: 64px;
+    height: 64px;
+  }
+  .has-name {
+    font-size: 17px;
+  }
+  .has-bio {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .tb-unit {
+    padding: 12px 14px;
+  }
+  .about-hero-grid {
+    padding: 18px;
+    gap: 16px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .about-portrait {
+    width: 120px;
+    height: 120px;
+  }
+  .about-actions {
+    justify-content: center;
+  }
+  .author-card {
+    padding: 16px;
+    gap: 14px;
+  }
+  .editorial-byline {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+  .byline-sub {
+    font-size: 11px;
+  }
+}
