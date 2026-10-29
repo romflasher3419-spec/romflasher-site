@@ -1303,7 +1303,7 @@ def build_home(items, path="index.html"):
       <p class="hero-lead">%s &mdash; every single fastboot script and ROM install is verified in our hardware lab by Rohit Verma. Zero AI hallucinations. Zero bricked phones.</p>
       <div class="hero-actions">
         <a class="btn primary" href="videos.html">Browse all %d verified guides</a>
-        <a class="btn-outline" href="download.html">Download Rom Flasher Tool (Free)</a>
+        <a class="btn-outline btn-dl" href="download.html"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> <span>Download Rom Flasher Tool (Free)</span></a>
       </div>
     </div>
     <div class="hero-editorial-side">

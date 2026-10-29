@@ -24,7 +24,7 @@
   --yt:#ff0033;
   --link:#a8b6ff;
 
-  --grad:linear-gradient(135deg,#38bdf8 0%,#0284c7 100%);
+  --grad:linear-gradient(135deg,#0284c7 0%,#0369a1 100%);
   --halo:0 0 0 1px rgba(255,255,255,.06),0 22px 60px -26px rgba(108,99,255,.85);
   --radius:16px;
 }
@@ -315,7 +315,7 @@ header.top .wrap{
   padding:12px 22px;margin:4px 10px 4px 0;border-radius:12px;
   font-weight:700;font-size:15px;color:#fff;
   background-image:var(--grad);
-  box-shadow:0 16px 38px -20px rgba(108,99,255,1);
+  box-shadow:0 8px 24px -6px rgba(2,132,199,0.45);
   transition:transform .18s,box-shadow .25s,filter .2s;
 }
 .btn::after{
@@ -573,7 +573,7 @@ a.tag:hover{
   padding:18px 24px;border-radius:14px;text-align:center;
   font-weight:800;font-size:17.5px;color:#fff;
   background-image:var(--grad);
-  box-shadow:0 24px 60px -26px rgba(191,90,242,1);
+  box-shadow:0 12px 30px -8px rgba(2,132,199,0.45);
   transition:transform .18s,box-shadow .25s,filter .2s;
 }
 .bigbtn:hover{
@@ -3004,23 +3004,32 @@ h1, h2, h3, .hero-title, .about-name {
   font-variant-numeric: tabular-nums;
 }
 .btn-outline {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
   padding: 12px 22px;
   margin: 4px 10px 4px 0;
   border-radius: 12px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 15px;
-  color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.4);
-  background: transparent;
+  color: #ffffff !important;
+  background-color: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
   text-decoration: none;
-  transition: background 0.18s, border-color 0.18s, color 0.18s;
+  transition: background-color 0.18s, border-color 0.18s, transform 0.18s;
 }
 .btn-outline:hover {
-  background: rgba(56, 189, 248, 0.1);
-  border-color: #38bdf8;
-  color: #7dd3fc;
+  background-color: #334155;
+  border-color: rgba(255, 255, 255, 0.40);
+  color: #ffffff !important;
+  transform: translateY(-1px);
   text-decoration: none;
+}
+.btn-outline svg {
+  color: #38bdf8;
+  flex-shrink: 0;
 }
 
 /* Mobile View Optimizations for Google Mobile-First Indexing */
