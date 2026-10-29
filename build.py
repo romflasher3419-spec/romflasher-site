@@ -1153,6 +1153,9 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<link rel="apple-touch-icon" sizes="180x180" '
         'href="%sstatic/apple-touch-icon.png">' % up,
         '<link rel="manifest" href="%ssite.webmanifest">' % up,
+        '<link rel="preconnect" href="https://fonts.googleapis.com">',
+        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap">',
         '<link rel="preconnect" href="https://www.youtube.com">',
         '<link rel="preconnect" href="https://i.ytimg.com">',
         verify_head(),
@@ -2101,18 +2104,20 @@ def build_article(item, items):
     if item.get("url"):
         vid = video_id_of(item["url"])
         watch = html.escape(item["url"])
-        embed = ("https://www.youtube.com/embed/%s?autoplay=1&amp;mute=1"
-                 "&amp;loop=1&amp;playlist=%s&amp;rel=0&amp;playsinline=1"
-                 "&amp;modestbranding=1" % (html.escape(vid), html.escape(vid)))
+        embed = ("https://www.youtube.com/embed/%s?rel=0&amp;playsinline=1"
+                 "&amp;modestbranding=1" % html.escape(vid))
         left.append(
             '<div class="videobox"><div class="frame">'
             '<iframe frameborder="0" src="%s" title="%s" '
-            'allow="autoplay; encrypted-media; picture-in-picture; web-share" '
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" '
             'allowfullscreen referrerpolicy="strict-origin-when-cross-origin">'
             '</iframe></div>'
-            '<p class="hint">The video starts muted so it does not blast at you '
-            '&mdash; tap the speaker to hear it, or '
-            '<a href="%s" rel="noopener">open it on YouTube</a>.</p>'
+            '<div class="video-toolbar">'
+            '<a class="video-btn-yt" href="%s" target="_blank" rel="noopener">'
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>'
+            '<span>Watch on YouTube (@Rom_Flasher)</span></a>'
+            '<span class="video-notice">If playback on this browser is restricted by YouTube, tap the button to watch directly on the channel.</span>'
+            '</div>'
             '<script>if(location.protocol==="file:"){var f=document.querySelector'
             '(".videobox .frame iframe");if(f){var a=document.createElement("a");'
             'a.className="ytposter";a.href="%s";a.target="_blank";a.rel="noopener";'
@@ -2257,8 +2262,9 @@ def build_article(item, items):
         out.append(STEPS_JS)
     if shots:
         out.append(render_shot_lightbox(shots, up))
-    if item.get("url"):
-        out.append(YT_JS)
+    # Never auto-force video playback so videos never auto-start without user consent
+    # if item.get("url"):
+    #     out.append(YT_JS)
     out.append("</div></article>")
 
     canon = "%s/%s" % (SITE_URL, path)
