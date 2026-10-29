@@ -161,12 +161,12 @@
   <path class="wire-glow wire-pulse" d="M 260 38 C 270 52, 245 58, 195 58 C 130 58, 80 58, 58 54 C 48 52, 44 48, 46 42" />
 
   <!-- Small connection socket at 'r' tail -->
-  <circle cx="260" cy="38" r="2.2" fill="#38bdf8" />
+  <circle cx="260" cy="38" r="2.2" fill="#f59e0b" />
 
   <!-- 2. The Cartoon Character -->
   <g class="bot-body">
     <!-- Body / Head -->
-    <circle cx="28" cy="34" r="14" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+    <circle cx="28" cy="34" r="14" fill="#1e293b" stroke="#f59e0b" stroke-width="2" />
     
     <!-- Antenna -->
     <line x1="28" y1="20" x2="28" y2="13" stroke="#94a3b8" stroke-width="2" />
@@ -177,9 +177,9 @@
 
     <!-- Eyes: Normal -->
     <g class="eye-normal">
-      <circle cx="23" cy="33" r="2.2" fill="#38bdf8" />
-      <circle cx="33" cy="33" r="2.2" fill="#38bdf8" />
-      <path d="M 25 37 Q 28 40 31 37" stroke="#38bdf8" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="23" cy="33" r="2.2" fill="#f59e0b" />
+      <circle cx="33" cy="33" r="2.2" fill="#f59e0b" />
+      <path d="M 25 37 Q 28 40 31 37" stroke="#f59e0b" stroke-width="1.2" fill="none" stroke-linecap="round"/>
     </g>
 
     <!-- Eyes: Shocked -->
@@ -201,14 +201,14 @@
     <!-- Hand with Phone -->
     <g class="bot-hand-phone">
       <rect x="42" y="32" width="11" height="19" rx="2" fill="#0f172a" stroke="#64748b" stroke-width="1.2" />
-      <rect x="44" y="35" width="7" height="13" fill="#38bdf8" opacity="0.8" />
+      <rect x="44" y="35" width="7" height="13" fill="#f59e0b" opacity="0.8" />
       <rect x="45.5" y="49" width="4" height="2" fill="#94a3b8" />
-      <circle cx="41" cy="42" r="3" fill="#38bdf8" />
+      <circle cx="41" cy="42" r="3" fill="#f59e0b" />
     </g>
 
     <!-- Hand with Cable Plug -->
     <g class="bot-hand-plug">
-      <circle cx="37" cy="48" r="3" fill="#38bdf8" />
+      <circle cx="37" cy="48" r="3" fill="#f59e0b" />
       <rect x="42" y="47" width="5" height="4" rx="1" fill="#facc15" />
     </g>
   </g>
@@ -216,18 +216,18 @@
   <!-- 3. Sparks & Lightning -->
   <g class="lightning-bolts" filter="url(#shockGlow)">
     <path d="M 44 49 L 38 43 L 42 41 L 35 34" stroke="#facc15" stroke-width="2.2" fill="none" />
-    <path d="M 48 50 L 55 45 L 51 43 L 57 37" stroke="#38bdf8" stroke-width="2.2" fill="none" />
+    <path d="M 48 50 L 55 45 L 51 43 L 57 37" stroke="#f59e0b" stroke-width="2.2" fill="none" />
     <path d="M 46 51 L 43 59 L 47 60 L 42 66" stroke="#facc15" stroke-width="2.2" fill="none" />
     <circle cx="47" cy="49" r="4.5" fill="#fff" />
     <path d="M 12 30 L 16 34 L 13 37" stroke="#facc15" stroke-width="1.8" fill="none" />
-    <path d="M 38 16 L 42 20 L 39 23" stroke="#38bdf8" stroke-width="1.8" fill="none" />
+    <path d="M 38 16 L 42 20 L 39 23" stroke="#f59e0b" stroke-width="1.8" fill="none" />
   </g>
 
   <!-- 4. Dizzy Stars -->
   <g class="dizzy-stars">
     <path d="M 18 16 L 20 18 L 18 20 L 16 18 Z" fill="#facc15" />
     <path d="M 28 10 L 30 13 L 28 16 L 26 13 Z" fill="#facc15" />
-    <path d="M 36 18 L 38 20 L 36 22 L 34 20 Z" fill="#38bdf8" />
+    <path d="M 36 18 L 38 20 L 36 22 L 34 20 Z" fill="#f59e0b" />
   </g>
 
   <!-- 5. Brand Typography -->

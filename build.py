@@ -2649,10 +2649,10 @@ recovery and sideloading for you &mdash; no PC and no terminal.</p>
     <p>The button always pulls the newest build published on GitHub, so you never
     have to go hunting for the latest file.</p>
     <a class="bigbtn" href="{apk}" rel="noopener">
-      <span class="gicon">⬇️</span>
+      <svg class="gicon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
       <span>Download {ver} for Android<small>{size} &middot; Android 8.0+ &middot;
       free, no sign-in</small></span></a>
-    <a class="subbtn star" href="{repo}" rel="noopener" target="_blank">&#11088; Star on GitHub</a>
+    <a class="subbtn star" href="{repo}" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" width="16" height="16" fill="#f59e0b" style="display:inline-block;vertical-align:text-bottom;margin-right:4px;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Star on GitHub</a>
     <a class="subbtn" href="{yt}" rel="noopener">Watch the step-by-step videos</a>
     <a class="subbtn gh" href="{rel}" rel="noopener">{gh}Release notes on GitHub</a>
     <p class="dis">If your browser warns about installing an app from outside the
