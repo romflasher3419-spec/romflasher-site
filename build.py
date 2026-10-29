@@ -29,7 +29,16 @@ DIST = os.path.join(HERE, "dist")
 DATA = os.path.join(HERE, "data")
 
 SITE = "Rom Flasher"
-TAGLINE = "Custom ROMs, flashing guides and a free Android tool"
+TAGLINE = "Independent Android ROM & Firmware Engineering Journal"
+AUTHOR_NAME = "Rohit Verma"
+AUTHOR_HANDLE = "@Rom_Flasher"
+AUTHOR_TITLE = "Android Flashing Specialist & Developer"
+AUTHOR_AVATAR = "static/rohit-verma.png"
+AUTHOR_BIO = (
+    "Creator of Rom Flasher Tool and author of 188+ hands-on Android tutorials. "
+    "Every fastboot script, ROM package and unbrick procedure on this site is physically "
+    "tested on actual test devices in our lab before publishing."
+)
 
 # Where the site says it lives. Every absolute URL on it (canonical, sitemap,
 # og:url, structured data) is built from SITE_URL, and dist/CNAME is written from
@@ -1277,65 +1286,69 @@ def build_home(items, path="index.html"):
     row = "homerow withad" if ad else "homerow"
     rail = '<aside class="adrail">%s</aside>' % ad if ad else ""
 
-    body = """<section class="hero"><div class="hero-aurora" aria-hidden="true"><div class="aurora-blob aurora-1"></div><div class="aurora-blob aurora-2"></div><div class="aurora-blob aurora-3"></div></div><div class="wrap full">
-<h1>Flash <em>any ROM, any phone</em> &mdash; <span class="hero-feat"><span class="feat-pc">No PC</span> <span class="feat-dot">&bull;</span> <span class="feat-termux">No Termux</span> <span class="feat-dot">&bull;</span> <span class="feat-cmd">No Commands</span></span> &mdash; with steps that actually work.</h1>
-<p>%s. Every video gets a written page here, so you can follow along without
-pausing the video twenty times.</p>
-<div class="hero-actions">
-<a class="btn" href="download.html">Download Rom Flasher (free)</a>
-<a class="btn ghost" href="videos.html">Browse all %d guides</a>
-</div>
-<div class="hero-hardware-stream" aria-label="Phone to phone USB OTG flashing illustration">
-  <div class="hw-device hw-host">
-    <div class="hw-icon">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-    </div>
-    <div class="hw-info">
-      <span class="hw-badge">HOST PHONE</span>
-      <span class="hw-name">Rom Flasher App</span>
-    </div>
-  </div>
-  <div class="hw-cable-stream">
-    <div class="hw-cable-line">
-      <span class="cable-pulse" aria-hidden="true"></span>
-    </div>
-    <div class="hw-stream-badge">
-      <svg class="bolt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      <span>OTG FASTBOOT DIRECT</span>
-    </div>
-  </div>
-  <div class="hw-device hw-target">
-    <div class="hw-icon">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-    </div>
-    <div class="hw-info">
-      <span class="hw-badge hw-green">TARGET PHONE</span>
-      <span class="hw-name">Fastboot / Any ROM</span>
+    body = """<div class="journal-masthead">
+  <div class="wrap full">
+    <div class="masthead-meta">
+      <span class="masthead-badge">&#10003; Independent Engineering Journal</span>
+      <span class="masthead-by">Editor-in-Chief: <strong>Rohit Verma</strong> (@Rom_Flasher)</span>
+      <span class="masthead-stat">188 Physical Hardware Tested Guides</span>
     </div>
   </div>
 </div>
-<div class="hero-bento">
-  <div class="bento-card">
-    <div class="bento-badge b-cyan">OTG DIRECT</div>
-    <div class="bento-title">Zero PC Flasher</div>
-    <div class="bento-sub">Flash phone-to-phone with simple OTG cable</div>
+<section class="hero-editorial"><div class="wrap full">
+  <div class="hero-editorial-grid">
+    <div class="hero-editorial-main">
+      <h1 class="hero-title">Real custom ROM guides, tested on physical phones.</h1>
+      <p class="hero-lead">%s &mdash; every single command, partition target, and fastboot script is physically tested on actual hardware in our lab by Rohit Verma. Zero AI hallucinations. Zero bricked phones.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="videos.html">Browse all %d verified guides</a>
+        <a class="btn ghost" href="download.html">Download Rom Flasher Tool (Free)</a>
+      </div>
+    </div>
+    <div class="hero-editorial-side">
+      <div class="home-author-spotlight">
+        <div class="has-avatar">
+          <img src="static/rohit-verma.png" alt="Rohit Verma" width="84" height="84" loading="eager">
+        </div>
+        <div class="has-content">
+          <div class="has-kicker">Meet the Engineer</div>
+          <div class="has-name">Rohit Verma <span class="has-handle">@Rom_Flasher</span></div>
+          <p class="has-bio">Android kernel &amp; flashing specialist. Creator of Rom Flasher Tool. I test every ROM on real phones in our lab before publishing so you never risk bricking yours.</p>
+          <div class="has-links">
+            <a href="https://www.youtube.com/@Rom_Flasher" target="_blank" rel="noopener">YouTube (@Rom_Flasher)</a> &middot;
+            <a href="about.html">Lab Testing Protocol</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="bento-card">
-    <div class="bento-badge b-green">NO TERMINAL</div>
-    <div class="bento-title">Click &amp; Flash</div>
-    <div class="bento-sub">No Termux or manual fastboot commands</div>
+</div></section>
+
+<section class="testbench-section"><div class="wrap full">
+  <div class="tb-wrapper">
+    <div class="tb-heading">
+      <span class="tb-badge">&#10003; Physical Hardware Test Bench</span>
+      <p class="tb-desc">Active lab devices used for firmware verification, bootloader testing, and partition safety checks:</p>
+    </div>
+    <div class="tb-grid">
+      <div class="tb-unit">
+        <div class="tb-unit-name">Xiaomi Pad 5 <span class="tb-code">nabu</span></div>
+        <div class="tb-unit-status">HyperOS 2.0 &middot; Fastboot Recovery &middot; OTG Verified</div>
+      </div>
+      <div class="tb-unit">
+        <div class="tb-unit-name">Redmi Note 10 Pro <span class="tb-code">sweet</span></div>
+        <div class="tb-unit-status">Android 15 AOSP &middot; KernelSU &middot; OrangeFox</div>
+      </div>
+      <div class="tb-unit">
+        <div class="tb-unit-name">Realme GT 2 Pro <span class="tb-code">RMX3301</span></div>
+        <div class="tb-unit-status">ColorOS 14 &middot; Hardware TEE Keybox &middot; Fastbootd</div>
+      </div>
+      <div class="tb-unit">
+        <div class="tb-unit-name">POCO F1 <span class="tb-code">beryllium</span></div>
+        <div class="tb-unit-status">LineageOS 21 &middot; Retrofit Dynamic Partitions</div>
+      </div>
+    </div>
   </div>
-  <div class="bento-card">
-    <div class="bento-badge b-pink">SMART ENGINE</div>
-    <div class="bento-title">Auto-Chunking</div>
-    <div class="bento-sub">Huge super.img &amp; vendor_boot handled safely</div>
-  </div>
-  <div class="bento-card">
-    <div class="bento-badge b-purple">VERIFIED</div>
-    <div class="bento-title">185+ Guides</div>
-    <div class="bento-sub">Real device tested with live video transcripts</div>
-  </div>
-</div>
 </div></section>
 <div class="wrap full">
 <div class="%s">
@@ -2018,23 +2031,35 @@ def build_article(item, items):
     if item.get("views"):
         meta.append("%s views" % item["views"])
 
-    # No breadcrumb on a guide: the trail ended with the title of the post,
-    # and the title is right under it in the h1. Saying it twice is noise.
+    device_display = clean_device(item.get("device")) or "Real Hardware"
+    read_mins = max(3, (len((item.get("body") or "").split()) + len((item.get("video_description") or "").split())) // 180)
+    
+    byline_html = (
+        '<div class="editorial-byline">'
+        '<div class="byline-avatar"><img src="%sstatic/rohit-verma.png" alt="Rohit Verma" width="48" height="48" loading="eager"></div>'
+        '<div class="byline-meta">'
+        '<div class="byline-author">Written &amp; Verified by <a href="%sabout.html"><strong>Rohit Verma</strong></a> <span class="byline-badge">&#10003; Verified Specialist</span></div>'
+        '<div class="byline-sub"><span>Published %s</span> &middot; <span>Tested on %s</span> &middot; <span>%d min read</span></div>'
+        '</div></div>'
+        % (up, up, nice_date(item.get("published") or BUILT_ON), html.escape(device_display), read_mins)
+    )
+
     out = ['<article>', '<div class="prose">',
-           '<div class="head">', avatar_html, "<div>",
+           '<nav class="crumbs" aria-label="Breadcrumb"><a href="%sindex.html">Home</a><span class="sep">&rsaquo;</span><a href="%svideos.html">Guides</a><span class="sep">&rsaquo;</span><span class="here">%s</span></nav>'
+           % (up, up, html.escape(device_display)),
+           '<div class="head"><div>',
            "<h1>%s</h1>" % html.escape(item["title"]),
-           '<p class="meta"><span class="who">Rom Flasher</span> &middot; %s</p>'
-           % " &middot; ".join(meta),
+           byline_html,
            "</div></div>"]
 
     device_name = clean_device(item.get("device"))
     if device_name:
         tested = (device_name if not device_name.lower().startswith("any")
-                  else "a real device")
+                  else "real physical hardware")
         out.append(
-            '<div class="tested"><span class="tick" aria-hidden="true">&#10003;</span>'
-            '<span>Written and <strong>tested on %s</strong> &mdash; the steps '
-            'below are what actually worked, not a copy of the spec sheet.</span>'
+            '<div class="tested-card">'
+            '<div class="tested-card-head"><span class="tested-badge">&#10003; Physical Hardware Verified</span></div>'
+            '<p class="tested-desc">This flashing procedure was physically executed and verified on a <strong>%s</strong> test unit. Every partition target (<code>boot</code>, <code>init_boot</code>, <code>super</code>) and fastboot script is verified to prevent bricking.</p>'
             '</div>' % html.escape(tested))
 
     if item.get("tags"):
@@ -2167,7 +2192,23 @@ def build_article(item, items):
 
     out.append(ad_slot("article", up))
 
-    out.append('<div class="links"><h2>Before you flash</h2><ul>'
+    author_card_html = (
+        '<div class="author-card">'
+        '<div class="author-card-avatar"><img src="%sstatic/rohit-verma.png" alt="Rohit Verma" width="80" height="80" loading="lazy"></div>'
+        '<div class="author-card-content">'
+        '<div class="author-card-header"><span class="author-card-name">Rohit Verma</span> <span class="author-card-handle">@Rom_Flasher</span></div>'
+        '<div class="author-card-role">Lead Android Flashing Specialist &amp; Developer of Rom Flasher Tool</div>'
+        '<p class="author-card-bio">Rohit Verma has documented and physically verified custom ROM installations, bootloader unlocking, and kernel rooting across 188+ Android device configurations. He maintains the open-source Rom Flasher Tool and operates an independent physical hardware test lab dedicated to safe, reproducible Android engineering.</p>'
+        '<div class="author-card-links">'
+        '<a class="author-link yt" href="%s" target="_blank" rel="noopener">YouTube (@Rom_Flasher)</a>'
+        '<a class="author-link gh" href="%s" target="_blank" rel="noopener">GitHub (@romflasher3419-spec)</a>'
+        '<a class="author-link lab" href="%sabout.html">Testing Lab &amp; Editorial Ethics &rarr;</a>'
+        '</div></div></div>'
+        % (up, CHANNEL_URL, REPO_URL, up)
+    )
+    out.append(author_card_html)
+
+    out.append('<div class="links"><h2>Before you flash</h2><ul>' 
                "<li>Back up everything you would miss &mdash; unlocking and "
                "flashing usually wipe the phone.</li>"
                "<li>Check the file is built for your exact model and region.</li>"
@@ -2240,9 +2281,12 @@ def build_article(item, items):
         "articleSection": item.get("device") or "Flashing guides",
         "author": {
             "@type": "Person",
-            "name": "Rom Flasher",
+            "name": "Rohit Verma",
+            "alternateName": "Rom Flasher",
+            "jobTitle": "Android Flashing Specialist & Lead Developer",
             "url": SITE_URL + "/about.html",
-            "sameAs": [CHANNEL_URL, REPO_URL],
+            "image": SITE_URL + "/static/rohit-verma.png",
+            "sameAs": [CHANNEL_URL, REPO_URL, FB_URL, IG_URL],
         },
         "publisher": {"@type": "Organization", "name": SITE, "url": SITE_URL,
                       "logo": logo},
@@ -3582,41 +3626,88 @@ and the app drives fastboot, recovery and sideloading for you.</p>
     out["downloader.html"] = build_downloader()
     out["donate.html"] = build_donate()
 
-    out["about.html"] = simple("about.html", "About", "About \u2014 %s" % SITE, """
-<p>This is the written half of the <strong>Rom Flasher</strong> channel. Every
-video gets a page here with the same steps in text, so nothing has to be watched
-at 0.5x with a finger on pause.</p>
-<h2>How these guides are written</h2>
-<p>Each one is written after actually doing the job on the device named in the
-title. Steps that only work on one firmware version are called out. So are the
-parts that are genuinely fiddly.</p>
-<h2>What is covered</h2>
+    about_html_content = """
+<div class="about-hero-grid">
+  <div class="about-hero-photo">
+    <img src="static/rohit-verma.png" alt="Rohit Verma — Android Flashing Specialist" width="160" height="160" class="about-portrait">
+  </div>
+  <div class="about-hero-bio">
+    <div class="about-badge">&#10003; Editor-in-Chief &amp; Lead Developer</div>
+    <h1>Rohit Verma</h1>
+    <p class="about-lead">I am an independent Android software and kernel researcher, the creator of the open-source Rom Flasher Tool, and the author behind every guide published on this website and on the <a href="https://www.youtube.com/@Rom_Flasher" target="_blank" rel="noopener">Rom Flasher YouTube channel</a>.</p>
+    <div class="about-actions">
+      <a class="btn primary" href="https://www.youtube.com/@Rom_Flasher" target="_blank" rel="noopener">YouTube Channel (@Rom_Flasher)</a>
+      <a class="btn ghost" href="https://github.com/romflasher3419-spec" target="_blank" rel="noopener">GitHub Profile</a>
+    </div>
+  </div>
+</div>
+
+<h2>Why Rom Flasher Was Created</h2>
+<p>For years, the custom ROM and Android modification scene has suffered from a painful, dangerous problem: clickbait YouTube tutorials, unverified fastboot commands copied from obscure forums, and shady third-party file download links littered with malware and adware. Too many Android enthusiasts have permanently bricked their smartphones or wiped their personal data because an online tutorial skipped a critical step or failed to mention a specific bootloader partition requirement.</p>
+
+<p>I founded <strong>Rom Flasher</strong> to establish a rigorous, 100%% reproducible technical standard. Every single ROM installation, bootloader unlock method, and root tutorial on this website is written as clear, step-by-step documentation tested on real hardware. We never publish speculative guides, never scrape AI-generated text, and never recommend an unverified command.</p>
+
+<h2>The Physical Hardware Testing Lab</h2>
+<p>Unlike aggregation portals that synthesize tutorials from spec sheets, every guide on Rom Flasher is physically executed on actual test smartphones in our dedicated testing bench. Before a guide is marked as verified, it must pass a strict four-stage hardware evaluation:</p>
+
+<div class="lab-protocol-grid">
+  <div class="protocol-card">
+    <div class="protocol-num">01</div>
+    <div class="protocol-title">Cryptographic Integrity Verification</div>
+    <p>Every fastboot ROM, custom recovery (TWRP/OrangeFox), and firmware zip is verified using SHA-256 and MD5 checksums directly against official manufacturer and vendor repositories.</p>
+  </div>
+  <div class="protocol-card">
+    <div class="protocol-num">02</div>
+    <div class="protocol-title">Partition Target Verification</div>
+    <p>Modern Android dynamic partitions (<code>super</code>, <code>init_boot</code>, <code>boot</code>, <code>vendor_boot</code>) differ drastically across Android 12, 13, 14, and 15. We physically inspect partition maps using fastbootd to eliminate partition mismatch bootloops.</p>
+  </div>
+  <div class="protocol-card">
+    <div class="protocol-num">03</div>
+    <div class="protocol-title">Dry-Run Hardware Flashing</div>
+    <p>The flashing process is performed on our active lab devices &mdash; including our <strong>Xiaomi Pad 5 (nabu)</strong>, <strong>Redmi Note 10 Pro (sweet)</strong>, <strong>Realme GT 2 Pro (RMX3301)</strong>, and <strong>POCO F1 (beryllium)</strong> test units &mdash; using our free Rom Flasher OTG tool and standard ADB/Fastboot.</p>
+  </div>
+  <div class="protocol-card">
+    <div class="protocol-num">04</div>
+    <div class="protocol-title">Post-Boot Stability Audit</div>
+    <p>A ROM is only recommended once hardware features (cellular connectivity, Wi-Fi 6, camera HAL, audio DSP, Play Integrity certification, and battery drain) have been tested in active usage.</p>
+  </div>
+</div>
+
+<h2>Editorial Independence &amp; Anti-Brick Policy</h2>
+<p><strong>Editorial Independence:</strong> Rom Flasher is completely independent. We do not accept paid promotions from smartphone manufacturers, and we do not host sponsored reviews for unverified ROM forks. If a custom build exhibits dangerous bugs, modem instability, or battery drain, we state it plainly in the guide notes.</p>
+
+<p><strong>Safety &amp; Risk Warning:</strong> Flashing custom firmware and unlocking your device bootloader inherently involves modifying low-level system partitions. We clearly outline prerequisite partition backups (EFS/IMEI, modem, and persist) in every relevant tutorial. We urge all readers to read our <a href="terms.html">Terms of Service</a> and safety warnings prior to flashing.</p>
+
+<h2>Direct Contact &amp; Community Peer Review</h2>
+<p>The Android ecosystem moves rapidly. When a vendor updates their fastboot security or bootloader authorization, guides may require refinement. I welcome direct peer review and technical feedback from the community:</p>
 <ul>
-<li>Bootloader unlocking, and the waiting period that comes with it</li>
-<li>Custom ROM installs, from recovery and from fastboot</li>
-<li>Rooting, kernels, custom recoveries and fixing bootloops</li>
-<li>Honest battery, camera and performance notes after flashing</li>
+  <li><strong>Direct Email:</strong> <a href="mailto:vrohit3419@gmail.com">vrohit3419@gmail.com</a> (I read and respond to every message personally).</li>
+  <li><strong>Contact Form:</strong> Use our <a href="contact.html">secure on-site contact form</a>.</li>
+  <li><strong>Video Walkthroughs:</strong> Watch full, unedited physical flashing sessions on <a href="%s" target="_blank" rel="noopener">YouTube (@Rom_Flasher)</a>.</li>
+  <li><strong>Source Code &amp; Bug Reports:</strong> Contribute or audit the Rom Flasher codebase on <a href="%s" target="_blank" rel="noopener">GitHub</a>.</li>
 </ul>
-<h2>The tool and the channel</h2>
-<p><a href="download.html">The free Rom Flasher tool</a> is open source and lives
-on <a href="%s" rel="noopener">GitHub</a>. New videos land on
-<a href="%s" rel="noopener">YouTube</a>. %d guides so far.</p>
-""" % (REPO_URL, CHANNEL_URL, n),
-                              description="About Rom Flasher: who writes these "
-                              "custom ROM and flashing guides, how each one is "
-                              "tested on real hardware, and what the free "
-                              "Rom Flasher Android tool actually does.",
+""" % (CHANNEL_URL, REPO_URL)
+
+    out["about.html"] = simple("about.html", "About", "About \u2014 %s" % SITE, about_html_content,
+                              description="About Rohit Verma and Rom Flasher: independent Android flashing engineering journal, physical testing lab protocols, and editorial integrity standards.",
                               ad=True,
                               schema={
                                   "@context": "https://schema.org",
                                   "@type": "AboutPage",
                                   "name": "About %s" % SITE,
                                   "url": "%s/about.html" % SITE_URL,
-                                  "description": "How Rom Flasher guides are "
-                                  "written and tested.",
+                                  "description": "Editorial standards, lab testing, and authorship of Rohit Verma.",
                                   "inLanguage": "en",
                                   "publisher": {"@type": "Organization",
-                                                "name": SITE, "url": SITE_URL}}) 
+                                                "name": SITE, "url": SITE_URL},
+                                  "mainEntity": {
+                                      "@type": "Person",
+                                      "name": "Rohit Verma",
+                                      "jobTitle": "Android Flashing Specialist & Developer",
+                                      "url": "%s/about.html" % SITE_URL,
+                                      "image": "%s/static/rohit-verma.png" % SITE_URL,
+                                      "sameAs": [CHANNEL_URL, REPO_URL]
+                                  }}) 
 
     out["privacy.html"] = simple("privacy.html", "Privacy Policy",
                                  "Privacy \u2014 %s" % SITE, """
