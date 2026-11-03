@@ -1,3 +1,16 @@
+# ⚡ STRICT INTENT & TRIGGER ROUTING TABLE (ZERO MISUNDERSTANDINGS)
+
+> **STRICT BINDING RULE FOR AGENT (ANTIGRAVITY / GEMINI):**
+> Rohit Verma (@Rom_Flasher) works on multiple interconnected projects: the Android App (`ROM_Flasher_Tool`), the YouTube Channel (`@Rom_Flasher`), and the Website (`romflasher.in`). Har request par context ko sahi project par route karna mandatory hai:
+
+| User Trigger / Phrase | Strict Immediate Routing & Action | ❌ NEVER Do This |
+| :--- | :--- | :--- |
+| **"new video upload krdi"**<br>**"nayi video aa gayi hai"**<br>**"video schedule kar di hai"**<br>**"video upload ki hai"** | **RUN 2-IN-1 DISTRIBUTION PIPELINE (YouTube + romflasher.in):**<br>1. **THE 2-INPUT INTAKE RULE:** Ask for Thumbnail Image & optional highlights (warna skip/auto).<br>2. **YouTube Data API:** Fetch scheduled/uploaded video via `~/.romflasher/yt_credentials.json`, upload thumbnail, download live transcript, set Boxed Headings description & tags (Strict links: NO Telegram/GitHub/Socials; ONLY official romflasher.in links).<br>3. **Website Guide:** Generate `romflasher-site/content/<id>.json` (pure markdown table, top-level FAQ array, Rohit voice), run `python build.py`, `_seocheck.py`, `qa.py`, and `git push origin main`.<br>4. **Deliver Report:** Structured YouTube (`youtu.be/<id>`) + Guide (`romflasher.in/rom/<slug>.html`) links. | ❌ **DO NOT TOUCH ANDROID APP CODE!**<br>❌ DO NOT edit Kotlin / XML files.<br>❌ DO NOT run Gradle assembleRelease.<br>❌ DO NOT ask redundant permission questions. |
+| **"feature add karo"**<br>**"app me ye change karo"**<br>**"fastboot / root / flash update"** | **RUN 360° HYPER-THOROUGH ANDROID APP ENGINEERING:**<br>Satisfy 6-dimension Linux/Security/Debugger framework and 4-Stage Peak-Hardening protocol. Dual-repo sync and build verification. | ❌ DO NOT write superficial / happy-path code.<br>❌ DO NOT touch host phone via shell. |
+| **"pc format kiya"**<br>**"windows change kari hai"** | **RUN ZERO-CLICK FULL SYSTEM AUTO-RESTORE:**<br>100% automated restore of tools, keys, and environments. | ❌ DO NOT ask questions or permissions. |
+
+---
+
 # ⚡ ROM FLASHER AUTOMATED WORKFLOWS — HARDCODED BINDING RULES
 
 > **SYSTEM INSTRUCTION FOR AGENT (ANTIGRAVITY / GEMINI):**
