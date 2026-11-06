@@ -33,9 +33,9 @@ TAGLINE = "Independent Android ROM & Firmware Engineering Journal"
 AUTHOR_NAME = "Rohit Verma"
 AUTHOR_HANDLE = "@Rom_Flasher"
 AUTHOR_TITLE = "Android Flashing Specialist & Developer"
-AUTHOR_AVATAR = "static/rohit-verma.png"
+AUTHOR_AVATAR = "static/rohit-verma.webp"
 AUTHOR_BIO = (
-    "Creator of Rom Flasher Tool and author of 188+ hands-on Android tutorials. "
+    "Creator of Rom Flasher Tool and author of hands-on Android tutorials. "
     "Every fastboot script, ROM package and unbrick procedure on this site is physically "
     "tested on actual test devices in our lab before publishing."
 )
@@ -115,7 +115,24 @@ APP = {
 # Where "send me a message" lands. FormSubmit needs no account: the first
 # submission mails an activation link to this address, one click and it is live.
 CONTACT_EMAIL = "vrohit3419@gmail.com"
-FORM_ENDPOINT = "https://formsubmit.co/ajax/" + CONTACT_EMAIL
+FORM_POST = "https://formsubmit.co/" + CONTACT_EMAIL
+
+# GitHub Pages does not let a repository set response headers. This file is
+# written into dist/ so a host that supports the Netlify/Cloudflare _headers
+# format (or a future move to Cloudflare Pages) picks the same policy up without
+# another code change. The CSP is deliberately broad enough for Google
+# Analytics, AdSense and YouTube, while still blocking object embeds and
+# framing this site elsewhere.
+SECURITY_HEADERS = """/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-site
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://formsubmit.co; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.googleadservices.com https://adservice.google.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://i.ytimg.com https://*.ytimg.com https://www.google-analytics.com https://*.google-analytics.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://www.gstatic.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://*.googlesyndication.com https://www.google.com; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://*.google-analytics.com https://region1.google-analytics.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://*.google.com; media-src 'self' https:; manifest-src 'self'; worker-src 'self' blob:
+"""
 
 # the GitHub mark, straight from GitHub's own logo
 GH_LOGO = ('<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 '
@@ -452,47 +469,117 @@ def newest_thumb(rows):
 def analytics_head(up=""):
     """Analytics + AdSense, loaded only after the visitor says yes.
 
-    Nothing is fetched, no cookie is set, and no banner is even shown while the
-    IDs below are empty - so the site stays completely clean until it is
-    actually earning something.
+    Nothing is fetched and no cookie is set until a choice is stored. Google
+    Consent Mode v2 defaults are queued first, so even a third-party script that
+    somehow loads early sees "denied" for analytics, ads and ad personalisation.
+    The banner offers accept, reject and a granular panel with equal prominence -
+    a reject is one tap, not a link hidden in a paragraph.
 
-    The banner is the one piece of the site that floats over the page, so it
-    has to be short, and it has to leave the room it takes: while it is up the
-    body carries the same padding the banner needs, so the last line of a page
-    can always be scrolled out from under it instead of hiding there forever.
+    The banner is the one piece of the site that floats over the page, so it has
+    to leave the room it takes: while it is up the body carries the same padding
+    the banner needs, so the last line of a page can always be scrolled out from
+    under it instead of hiding there forever.
     """
     if not (GA4_ID or ADS_PUBLISHER):
         return ""
     return """<script>
 (function(){
   var GA=%(ga)s, ADS=%(ads)s, KEY='rf-consent';
-  function load(){
-    if(GA){var s=document.createElement('script');s.async=true;
+  var state={analytics:false,ads:false}, gaLoaded=false, adsLoaded=false;
+  var openBanner=null;
+
+  function read(){
+    var raw=null;
+    try{raw=localStorage.getItem(KEY);}catch(e){}
+    if(!raw) return null;
+    if(raw==='yes') return {analytics:true,ads:true};
+    if(raw==='no') return {analytics:false,ads:false};
+    try{
+      var v=JSON.parse(raw);
+      if(!v||typeof v!=='object') return null;
+      return {analytics:!!v.analytics,ads:!!v.ads};
+    }catch(e){return null;}
+  }
+  function save(v){
+    state={analytics:!!v.analytics,ads:!!v.ads};
+    try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}
+  }
+  function consent(v){
+    if(!window.gtag) return;
+    gtag('consent','update',{
+      analytics_storage:v.analytics?'granted':'denied',
+      ad_storage:v.ads?'granted':'denied',
+      ad_user_data:v.ads?'granted':'denied',
+      ad_personalization:v.ads?'granted':'denied',
+      functionality_storage:'granted',
+      personalization_storage:v.ads?'granted':'denied',
+      ads_data_redaction:!v.ads
+    });
+  }
+  function load(v){
+    if(GA && v.analytics && !gaLoaded){
+      gaLoaded=true;
+      var s=document.createElement('script');s.async=true;
       s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
       document.head.appendChild(s);
-      window.dataLayer=window.dataLayer||[];
-      window.gtag=function(){dataLayer.push(arguments);};
-      gtag('js',new Date());gtag('config',GA);}
-    if(ADS){var a=document.createElement('script');a.async=true;
-      a.crossOrigin='anonymous';
+      gtag('js',new Date());
+      gtag('config',GA,{anonymize_ip:true});
+    }
+    if(ADS && v.ads && !adsLoaded){
+      adsLoaded=true;
+      var a=document.createElement('script');a.async=true;a.crossOrigin='anonymous';
       a.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-'+ADS;
-      document.head.appendChild(a);}
+      document.head.appendChild(a);
+    }
   }
-  var choice=null;
-  try{choice=localStorage.getItem(KEY);}catch(e){}
-  if(choice==='yes'){load();return;}
-  if(choice==='no'){return;}
+
+  /* Consent Mode v2: the safe default is queued before anything can request a
+     cookie. gtag() only writes to the dataLayer array, so this makes no network
+     request on its own. */
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+  gtag('consent','default',{
+    ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',
+    analytics_storage:'denied',functionality_storage:'granted',
+    personalization_storage:'denied',security_storage:'granted',
+    ads_data_redaction:true,wait_for_update:500
+  });
+
+  var stored=read();
+  if(stored){state=stored;consent(stored);load(stored);}
+
   function banner(){
+    if(openBanner){openBanner.remove();openBanner=null;}
     var b=document.createElement('div');
     b.className='consent';
-    b.innerHTML='<div class="ctext"><p class="ctitle">Cookies &amp; ads</p>'\
-      +'<p>This site would like to set cookies for analytics and ads. '\
-      +'They tell me which guides actually helped. Nothing loads until you say yes. '\
-      +'<a href="%(priv)s">Privacy policy</a>.</p></div>'\
-      +'<div class="row"><button type="button" class="btn" id="rf-ok">That is fine</button>'\
-      +'<button type="button" class="btn ghost" id="rf-no">No thanks</button></div>';
+    b.setAttribute('role','dialog');
+    b.setAttribute('aria-modal','false');
+    b.setAttribute('aria-labelledby','rf-consent-title');
+    b.innerHTML='<div class="ctext">'
+      +'<p class="ctitle" id="rf-consent-title">Cookies, analytics &amp; ads</p>'
+      +'<p>Analytics shows me which guides actually helped, and ads keep the site free. '
+      +'Nothing loads until you choose &mdash; and the site works exactly the same if you say no. '
+      +'<a href="%(priv)s">Privacy policy</a>.</p>'
+      +'<div class="cpanel" hidden>'
+      +'<label><input type="checkbox" id="rf-a"> Analytics</label>'
+      +'<label><input type="checkbox" id="rf-d"> Personalised ads</label>'
+      +'</div></div>'
+      +'<div class="row">'
+      +'<button type="button" class="btn" id="rf-ok">Accept all</button>'
+      +'<button type="button" class="btn ghost" id="rf-no">Reject optional</button>'
+      +'<button type="button" class="btn ghost" id="rf-manage">Manage options</button>'
+      +'</div>';
     document.body.appendChild(b);
+    openBanner=b;
     document.body.classList.add('consent-on');
+
+    var a=b.querySelector('#rf-a'), d=b.querySelector('#rf-d');
+    var panel=b.querySelector('.cpanel');
+    var ok=b.querySelector('#rf-ok'), no=b.querySelector('#rf-no');
+    var manage=b.querySelector('#rf-manage');
+    a.checked=state.analytics; d.checked=state.ads;
+    var managing=false;
+
     /* The page has to end above the banner, so it gets exactly the room the
        banner takes - measured, not guessed, because the banner is a different
        height on every screen (and it re-wraps when the phone is turned). */
@@ -502,23 +589,48 @@ def analytics_head(up=""):
     room();
     if(window.ResizeObserver){new ResizeObserver(room).observe(b);}
     else{window.addEventListener('resize',room);}
+
     function close(){
       document.body.classList.remove('consent-on');
       document.documentElement.style.removeProperty('--consent-h');
-      b.parentNode.removeChild(b);
+      if(b.parentNode){b.parentNode.removeChild(b);}
+      openBanner=null;
     }
-    document.getElementById('rf-ok').onclick=function(){
-      try{localStorage.setItem(KEY,'yes');}catch(e){}
-      close();load();};
-    document.getElementById('rf-no').onclick=function(){
-      try{localStorage.setItem(KEY,'no');}catch(e){}
-      close();};
+    function apply(v){
+      var wasLoaded=gaLoaded||adsLoaded;
+      save(v);consent(v);load(v);
+      /* Turning a previously granted category off cannot unload a script that
+         is already running, so the clean answer is a fresh page. */
+      if(wasLoaded && (!v.analytics||!v.ads)){location.reload();return;}
+      close();
+    }
+    ok.onclick=function(){
+      if(managing){apply({analytics:a.checked,ads:d.checked});}
+      else{apply({analytics:true,ads:true});}
+    };
+    no.onclick=function(){apply({analytics:false,ads:false});};
+    manage.onclick=function(){
+      managing=true;panel.hidden=false;manage.hidden=true;
+      ok.textContent='Save choices';
+    };
+  }
+
+  function hookFooter(){
+    var links=document.querySelectorAll('[data-consent-open]');
+    Array.prototype.forEach.call(links,function(el){
+      el.addEventListener('click',function(e){e.preventDefault();banner();});
+    });
+  }
+  function start(){
+    hookFooter();
+    if(!stored){banner();}
   }
   if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',banner);}else{banner();}
+    document.addEventListener('DOMContentLoaded',start);
+  }else{start();}
 })();
 </script>""" % {"ga": json.dumps(GA4_ID), "ads": json.dumps(ADS_PUBLISHER),
-              "priv": up + "privacy.html"}
+              "priv": html.escape(up + "privacy.html", quote=True)}
 
 
 def verify_head():
@@ -1107,6 +1219,37 @@ NAV_JS = """<script>
 </script>"""
 
 
+# The video poster is a real <div>, not an inline onclick: a title such as
+# "Why It's Worth It" used to end the single-quoted JS string early and the
+# play button died with a SyntaxError. The id and title now travel as data
+# attributes, the iframe is built with createElement, and no value is ever
+# interpolated into executable code.
+VIDEO_JS = """<script>
+(function(){
+  var facades=document.querySelectorAll('.yt-facade[data-vid]');
+  Array.prototype.forEach.call(facades,function(f){
+    function play(){
+      var vid=f.getAttribute('data-vid');
+      if(!vid) return;
+      var frame=document.createElement('iframe');
+      frame.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(vid)
+        +'?autoplay=1&rel=0&playsinline=1&modestbranding=1';
+      frame.title=f.getAttribute('data-title')||'Rom Flasher video';
+      frame.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      frame.setAttribute('allowfullscreen','');
+      frame.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+      frame.setAttribute('frameborder','0');
+      f.parentElement.replaceChild(frame,f);
+    }
+    f.addEventListener('click',play);
+    f.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}
+    });
+  });
+})();
+</script>"""
+
+
 def clip(text, limit=158):
     """Trim a description to a length Google shows whole, ending on a word.
 
@@ -1128,7 +1271,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
     canon = "%s/%s" % (SITE_URL, path) if path else SITE_URL + "/"
     desc = html.escape(clip(description or title))
     title_esc = html.escape(title)
-    img = image or (SITE_URL + "/static/app.png")
+    img = image or (SITE_URL + "/static/app-icon-512.png")
 
     head = "\n".join([
         "<!doctype html>",
@@ -1144,7 +1287,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<meta name="author" content="%s">' % AUTHOR_NAME,
         '<meta name="theme-color" content="#05070c">',
         '<meta name="rating" content="general">',
-        '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">',
+        '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; object-src \'none\'; base-uri \'self\'; form-action \'self\' https://formsubmit.co">',
         '<meta name="referrer" content="strict-origin-when-cross-origin">',
         '<script>if(location.protocol==="http:"&&location.hostname!=="localhost"&&location.hostname!=="127.0.0.1"){location.replace("https://"+location.host+location.pathname+location.search+location.hash);}</script>',
         '<script>if(window.top!==window.self){try{window.top.location=window.self.location;}catch(e){window.self.location="about:blank";}}</script>',
@@ -1155,7 +1298,9 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '<link rel="manifest" href="%ssite.webmanifest">' % up,
         '<link rel="preconnect" href="https://fonts.googleapis.com">',
         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap">',
+        '<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap">',
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap" media="print" onload="this.media=\'all\'">',
+        '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap"></noscript>',
         '<link rel="preconnect" href="https://www.youtube.com">',
         '<link rel="preconnect" href="https://i.ytimg.com">',
         verify_head(),
@@ -1180,6 +1325,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         extra_head,
         "</head>",
         "<body>",
+        '<a class="skip-link" href="#main">Skip to content</a>',
         CURSOR_LIGHT,
         '<div id="scroll-progress" aria-hidden="true"></div>',
         ('<header class="top"><div class="wrap">\n'
@@ -1235,6 +1381,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
     <a href="%sdonate.html">Support Us</a>
     <a href="%sdownload.html#talk-to-me">Message</a>
     <a href="%s" rel="noopener">YouTube Channel</a>
+    <button type="button" class="footlink" data-consent-open>Cookie settings</button>
   </nav>
   <p class="dis">Not affiliated with Xiaomi, POCO, Redmi or any ROM project.
   Flashing is at your own risk &mdash; read the <a href="%sterms.html">terms</a> first.</p>
@@ -1244,8 +1391,8 @@ def page(title, description, body, path="", extra_head="", keywords="",
 """ % (SITE, TAGLINE, browse, up, up, up, up, up, up, up, up, CHANNEL_URL, up)
 
     # the pointer light is moved by a script, so it belongs at the end of body
-    foot = foot.replace("</body>", CURSOR_LIGHT_JS + "\n" + NAV_JS + "\n</body>")
-    return head + body + "\n" + foot
+    foot = foot.replace("</body>", CURSOR_LIGHT_JS + "\n" + NAV_JS + "\n" + VIDEO_JS + "\n</body>")
+    return head + '<main id="main">\n' + body + '\n</main>\n' + foot
 
 
 def card(item, up=""):
@@ -1293,7 +1440,7 @@ def build_home(items, path="index.html"):
     <div class="masthead-meta">
       <span class="masthead-badge">&#10003; Independent Engineering Journal</span>
       <span class="masthead-by">Editor-in-Chief: <strong>Rohit Verma</strong> (@Rom_Flasher)</span>
-      <span class="masthead-stat">188 Physical Hardware Tested Guides</span>
+      <span class="masthead-stat">%d Physical Hardware Tested Guides</span>
     </div>
   </div>
 </div>
@@ -1310,7 +1457,7 @@ def build_home(items, path="index.html"):
     <div class="hero-editorial-side">
       <div class="home-author-spotlight">
         <div class="has-avatar">
-          <img src="static/rohit-verma.png" alt="Rohit Verma" width="84" height="84" loading="eager">
+          <img src="static/rohit-verma.webp" alt="Rohit Verma" width="84" height="84" loading="eager">
         </div>
         <div class="has-content">
           <div class="has-kicker">Meet the Engineer</div>
@@ -1383,7 +1530,7 @@ def build_home(items, path="index.html"):
   setTimeout(fixRail, 150);
   setTimeout(fixRail, 600);
 })();
-</script>""" % (TAGLINE, len(items), row,
+</script>""" % (len(items), TAGLINE, len(items), row,
              "".join(card(x) for x in by_date),
              "".join(card(x) for x in by_views), rail)
 
@@ -2038,7 +2185,7 @@ def build_article(item, items):
     
     byline_html = (
         '<div class="editorial-byline">'
-        '<div class="byline-avatar"><img src="%sstatic/rohit-verma.png" alt="Rohit Verma" width="48" height="48" loading="eager"></div>'
+        '<div class="byline-avatar"><img src="%sstatic/rohit-verma.webp" alt="Rohit Verma" width="48" height="48" loading="eager"></div>'
         '<div class="byline-meta">'
         '<div class="byline-author">Written &amp; Verified by <a href="%sabout.html"><strong>Rohit Verma</strong></a> <span class="byline-badge">&#10003; Verified Specialist</span></div>'
         '<div class="byline-sub"><span>Published %s</span> &middot; <span>Tested on %s</span> &middot; <span>%d min read</span></div>'
@@ -2102,13 +2249,12 @@ def build_article(item, items):
     if item.get("url"):
         vid = video_id_of(item["url"])
         watch = html.escape(item["url"])
-        embed_src = ("https://www.youtube-nocookie.com/embed/%s?autoplay=1&amp;rel=0&amp;playsinline=1&amp;modestbranding=1" % html.escape(vid))
         left.append(
             '<div class="videobox"><div class="frame">'
             '<div class="yt-facade" role="button" tabindex="0" aria-label="Play video" '
-            'onclick="this.parentElement.innerHTML=\'<iframe frameborder=\\\'0\\\' src=\\\'%s\\\' title=\\\'%s\\\' allow=\\\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\\\' allowfullscreen referrerpolicy=\\\'strict-origin-when-cross-origin\\\'></iframe>\';" '
-            'onkeydown="if(event.key===\'Enter\'||event.key===\' \')this.click();">'
-            '<img src="https://i.ytimg.com/vi/%s/hqdefault.jpg" alt="%s" loading="lazy">'
+            'data-vid="%s" data-title="%s">'
+            '<img src="https://i.ytimg.com/vi/%s/hqdefault.jpg" alt="%s" '
+            'width="480" height="360" loading="lazy" decoding="async">'
             '<div class="yt-play-btn">'
             '<svg viewBox="0 0 68 48" width="68" height="48" aria-hidden="true">'
             '<path class="ytp-bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>'
@@ -2122,7 +2268,8 @@ def build_article(item, items):
             '<span class="video-notice">Click the play button above to watch here, or open directly on YouTube if playback is restricted.</span>'
             '</div>'
             '</div>'
-            % (embed_src, html.escape(item["title"]), html.escape(vid), html.escape(item["title"]), watch))
+            % (html.escape(vid, quote=True), html.escape(item["title"], quote=True),
+               html.escape(vid), html.escape(item["title"]), watch))
 
     toc_panel = toc_html(toc) if toc else ""
     if left or toc_panel:
@@ -2198,17 +2345,17 @@ def build_article(item, items):
 
     author_card_html = (
         '<div class="author-card">'
-        '<div class="author-card-avatar"><img src="%sstatic/rohit-verma.png" alt="Rohit Verma" width="80" height="80" loading="lazy"></div>'
+        '<div class="author-card-avatar"><img src="%sstatic/rohit-verma.webp" alt="Rohit Verma" width="80" height="80" loading="lazy"></div>'
         '<div class="author-card-content">'
         '<div class="author-card-header"><span class="author-card-name">Rohit Verma</span> <span class="author-card-handle">@Rom_Flasher</span></div>'
         '<div class="author-card-role">Lead Android Flashing Specialist &amp; Developer of Rom Flasher Tool</div>'
-        '<p class="author-card-bio">Rohit Verma has documented and physically verified custom ROM installations, bootloader unlocking, and kernel rooting across 188+ Android device configurations. He maintains the open-source Rom Flasher Tool and operates an independent physical hardware test lab dedicated to safe, reproducible Android engineering.</p>'
+        '<p class="author-card-bio">Rohit Verma has documented and physically verified custom ROM installations, bootloader unlocking, and kernel rooting across %d+ Android device configurations. He maintains the free Rom Flasher Tool and operates an independent physical hardware test lab dedicated to safe, reproducible Android engineering.</p>'
         '<div class="author-card-links">'
         '<a class="author-link yt" href="%s" target="_blank" rel="noopener">YouTube (@Rom_Flasher)</a>'
         '<a class="author-link gh" href="%s" target="_blank" rel="noopener">GitHub (@romflasher3419-spec)</a>'
         '<a class="author-link lab" href="%sabout.html">Testing Lab &amp; Editorial Ethics</a>'
         '</div></div></div>'
-        % (up, CHANNEL_URL, REPO_URL, up)
+        % (up, len(items), CHANNEL_URL, REPO_URL, up)
     )
     out.append(author_card_html)
 
@@ -2290,7 +2437,7 @@ def build_article(item, items):
             "alternateName": "Rom Flasher",
             "jobTitle": "Android Flashing Specialist & Lead Developer",
             "url": SITE_URL + "/about.html",
-            "image": SITE_URL + "/static/rohit-verma.png",
+            "image": SITE_URL + "/static/rohit-verma.webp",
             "sameAs": [CHANNEL_URL, REPO_URL],
         },
         "publisher": {"@type": "Organization", "name": SITE, "url": SITE_URL,
@@ -2394,14 +2541,17 @@ def simple(path, h1, title, block, description=None, keywords="", extra_head="",
 def feedback_form(anchor=True, lead=""):
     """A message box that lands in a real inbox - no account, no GitHub trip.
 
-    Posts to FormSubmit with fetch() so the visitor never leaves the page. The
-    very first submission mails an activation link to CONTACT_EMAIL; after that
-    one click every message is delivered straight away.
+    The form posts natively to FormSubmit with its server-side CAPTCHA switched
+    on, so the spam check happens before anything reaches the inbox. A honeypot
+    field and a minimum fill-time are kept as a cheap first pass. After a
+    successful post FormSubmit sends the visitor back to the same page with
+    ?sent=1, where the status line becomes the thank-you message.
     """
     return """%s<form class="fbform" id="feedback" action="%s" method="POST">
   <input type="hidden" name="_subject" value="New message from the Rom Flasher website">
   <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_captcha" value="true">
+  <input type="hidden" name="_next" value="%s/contact.html?sent=1#feedback">
   <input type="text" name="_honey" tabindex="-1" autocomplete="off"
          aria-hidden="true" style="position:absolute;left:-9999px">
   <label>Your name
@@ -2421,40 +2571,40 @@ def feedback_form(anchor=True, lead=""):
 <script>
 (function(){
   var f=document.getElementById('feedback');
-  if(!f||!window.fetch) return;
+  if(!f) return;
+  var note=f.querySelector('.fbnote');
+  var next=f.querySelector('input[name=_next]');
   var loadTime=Date.now();
+
+  /* Come back to the page the visitor was reading, not to a fixed one. */
+  if(next){
+    var back=location.href.split('#')[0].split('?')[0]+'?sent=1#feedback';
+    next.value=back;
+  }
+  if(location.search.indexOf('sent=1')!==-1 && note){
+    note.className='fbnote ok';
+    note.textContent='Got it - thank you! Your message is in my inbox.';
+    if(history.replaceState){history.replaceState(null,'',location.pathname+location.hash);}
+  }
+
   f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var note=f.querySelector('.fbnote'),btn=f.querySelector('button[type=submit]');
-    if(f._honey&&f._honey.value){
-      f.reset();note.className='fbnote ok';
-      note.textContent='Got it - thank you! Your message is in my inbox.';
-      return;
-    }
-    if(Date.now()-loadTime<2000){
+    if(Date.now()-loadTime<2500){
+      e.preventDefault();
       note.className='fbnote bad';
       note.textContent='Please take a moment before submitting.';
       return;
     }
-    var label=btn.innerHTML;
-    btn.disabled=true;btn.textContent='Sending...';
-    note.className='fbnote';note.textContent='Sending...';
-    fetch(f.action,{method:'POST',headers:{'Accept':'application/json'},
-                    body:new FormData(f)})
-      .then(function(r){return r.json();})
-      .then(function(d){
-        var ok=d&&(d.success===true||d.success==='true');
-        if(ok){f.reset();note.className='fbnote ok';
-               note.textContent='Got it - thank you! Your message is in my inbox.';}
-        else{note.className='fbnote bad';
-             note.textContent='That did not go through. Give it one more try?';}
-      })
-      .catch(function(){note.className='fbnote bad';
-        note.textContent='Network hiccup. Try again in a second, or mail %s.';})
-      .then(function(){btn.disabled=false;btn.innerHTML=label;});
+    if(f._honey && f._honey.value){
+      e.preventDefault();
+      f.reset();note.className='fbnote ok';
+      note.textContent='Got it - thank you! Your message is in my inbox.';
+      return;
+    }
+    var btn=f.querySelector('button[type=submit]');
+    if(btn){btn.disabled=true;btn.textContent='Sending...';}
   });
 })();
-</script>""" % (lead, FORM_ENDPOINT, CONTACT_EMAIL, CONTACT_EMAIL, CONTACT_EMAIL)
+</script>""" % (lead, FORM_POST, SITE_URL, CONTACT_EMAIL, CONTACT_EMAIL)
 
 
 def donate_strip():
@@ -2528,7 +2678,7 @@ phone to cover next helps this place just as much.</p>
         "upi romflasher@naviaxis", "paypal.me/vrohit3419",
         "thank the developer", "free android flashing tool"))
     return simple("donate.html", "Buy me a coffee", "Buy me a coffee \u2014 %s" % SITE,
-                  block, keywords=keywords, ad=True,
+                  block, keywords=keywords,
                   description="If a Rom Flasher guide saved your evening, you can "
                               "say thanks with UPI or PayPal. Both are optional, "
                               "and both keep the free tool free.",
@@ -3598,7 +3748,6 @@ and the app drives fastboot, recovery and sideloading for you.</p>
                               "that flashes the other phone over USB-OTG: "
                               "fastboot ROMs, custom images, sideloads and "
                               "kernels, with no PC and no sign-in.",
-                              ad=True,
                               schema={
                                   "@context": "https://schema.org",
                                   "@type": "SoftwareApplication",
@@ -3634,11 +3783,11 @@ and the app drives fastboot, recovery and sideloading for you.</p>
     about_html_content = """
 <div class="about-hero-grid">
   <div class="about-hero-photo">
-    <img src="static/rohit-verma.png" alt="Rohit Verma — Android Flashing Specialist" width="160" height="160" class="about-portrait">
+    <img src="static/rohit-verma.webp" alt="Rohit Verma — Android Flashing Specialist" width="160" height="160" class="about-portrait">
   </div>
   <div class="about-hero-bio">
     <h2 class="about-name">Rohit Verma <span class="about-badge">&#10003; Editor-in-Chief &amp; Lead Developer</span></h2>
-    <p class="about-lead">I am an independent Android software and kernel researcher, the creator of the open-source Rom Flasher Tool, and the author behind every guide published on this website and on the <a href="https://www.youtube.com/@Rom_Flasher" target="_blank" rel="noopener">Rom Flasher YouTube channel</a>.</p>
+    <p class="about-lead">I am an independent Android software and kernel researcher, the creator of the free Rom Flasher Tool, and the author behind every guide published on this website and on the <a href="https://www.youtube.com/@Rom_Flasher" target="_blank" rel="noopener">Rom Flasher YouTube channel</a>.</p>
     <div class="about-actions">
       <a class="btn primary" href="https://www.youtube.com/@Rom_Flasher" target="_blank" rel="noopener">YouTube Channel (@Rom_Flasher)</a>
       <a class="btn ghost" href="https://github.com/romflasher3419-spec" target="_blank" rel="noopener">GitHub Profile</a>
@@ -3694,7 +3843,6 @@ and the app drives fastboot, recovery and sideloading for you.</p>
 
     out["about.html"] = simple("about.html", "About Rom Flasher & Editorial Standards", "About Rohit Verma & Rom Flasher Lab \u2014 %s" % SITE, about_html_content,
                               description="About Rohit Verma and Rom Flasher: independent Android flashing engineering journal, physical testing lab protocols, and editorial integrity standards.",
-                              ad=True,
                               schema={
                                   "@context": "https://schema.org",
                                   "@type": "AboutPage",
@@ -3709,7 +3857,7 @@ and the app drives fastboot, recovery and sideloading for you.</p>
                                       "name": "Rohit Verma",
                                       "jobTitle": "Android Flashing Specialist & Developer",
                                       "url": "%s/about.html" % SITE_URL,
-                                      "image": "%s/static/rohit-verma.png" % SITE_URL,
+                                      "image": "%s/static/rohit-verma.webp" % SITE_URL,
                                       "sameAs": [CHANNEL_URL, REPO_URL]
                                   }}) 
 
@@ -3717,39 +3865,75 @@ and the app drives fastboot, recovery and sideloading for you.</p>
                                  "Privacy \u2014 %s" % SITE, """
 <p class="dis">Last updated: %s.</p>
 <h2>What this site stores</h2>
-<p>Nothing. These are static files. There is no login, no comment box and no
-database. Standard server logs (IP address, user agent, page requested) may be
-kept by the host for security and abuse prevention.</p>
-<h2>Cookies and advertising</h2>
-<p>Analytics and advertising scripts do not load, and no banner is even shown,
-until you say yes. If you accept, advertising may be served by third-party
-vendors, including Google. Google uses cookies to serve ads based on your prior
-visits to this and other websites &mdash; that is what makes an ad relevant
-instead of random. Say no and the site keeps working exactly the same.</p>
-<p>You can opt out of personalised advertising at
-<a href="https://www.google.com/settings/ads" rel="noopener">Google Ads Settings</a>,
+<p>Rom Flasher is a set of static files. There is no login, no comment box and
+no database on this site. Standard server logs (IP address, user agent, page
+requested and the time of the request) may be kept by the hosting provider for
+security and abuse prevention.</p>
+<h2>Contact form</h2>
+<p>The contact form is delivered by <a href="https://formsubmit.co/"
+rel="noopener">FormSubmit</a>, a form-to-email service. When you send a message,
+FormSubmit processes the name, email address and message you type and forwards
+them to my inbox. I use them only to reply. The site itself does not store the
+submission, and FormSubmit's own privacy policy applies to its handling. Its
+server-side CAPTCHA and a honeypot field are used to block automated spam.</p>
+<h2>Cookies, analytics and advertising</h2>
+<p>Nothing that can set a cookie or make an advertising request loads until you
+choose. The consent banner has three options: accept all, reject optional
+cookies, or manage analytics and personalised ads separately. Rejecting is just
+as easy as accepting, and the site works exactly the same either way.</p>
+<p>Your choice is remembered in your browser's local storage, not in a tracking
+cookie. It contains only two true/false values and is sent nowhere; clearing
+your browser data removes it.</p>
+<p>If you accept analytics, the site uses Google Analytics 4 to count visits and
+see which guides are useful. IP anonymisation is enabled. If you accept ads,
+advertising may be served by Google and other third-party vendors. Google uses
+cookies to serve ads based on your prior visits to this and other websites.
+Google's use of advertising cookies lets it and its partners show you ads based
+on your visit to this site and other sites on the internet.</p>
+<p>You can change or withdraw your choice at any time with the
+<button type="button" class="footlink inline" data-consent-open>Cookie settings</button>
+button. You can also opt out of personalised advertising at
+<a href="https://www.google.com/settings/ads" rel="noopener">Google Ads
+Settings</a>, read <a href="https://policies.google.com/technologies/partner-sites"
+rel="noopener">how Google uses information from sites that use its services</a>,
 or opt out of third-party vendor cookies at
-<a href="https://www.aboutads.info" rel="noopener">aboutads.info</a>.</p>
+<a href="https://www.aboutads.info" rel="noopener">aboutads.info</a> and
+<a href="https://www.youronlinechoices.com" rel="noopener">Your Online
+Choices</a>.</p>
+<h2>Embedded videos</h2>
+<p>Guide pages show a YouTube thumbnail. No YouTube player is loaded until you
+press play. Once the player starts, it is served from
+<code>youtube-nocookie.com</code>, but YouTube's own terms, privacy policy and
+cookies still apply to that playback.</p>
+<h2>The Rom Flasher Android app</h2>
+<p>The app is distributed from GitHub Releases, not from this website. It asks
+for USB host access so it can talk to the phone being flashed, storage access so
+it can read a firmware or boot image you choose, and network access to open
+download and update links. It has no account and does not upload your files.
+The published APK is signed, and its SHA-256 checksum is listed on the
+<a href="download.html">download page</a> so you can verify the file you
+installed.</p>
 <h2>Affiliate links</h2>
 <p>Some gear links on the download page are affiliate links. If you buy through
 them, the channel earns a small commission and the price you pay does not
-change. They are never the reason a recommendation exists &mdash; the cable
-recommendations are the ones I use.</p>
-<h2>Embedded videos</h2>
-<p>Pages here embed YouTube players. Once a player loads, YouTube's own terms and
-privacy policy apply, and its cookies may be set.</p>
+change. They are never the reason a recommendation exists.</p>
 <h2>Outbound links</h2>
-<p>File downloads, forum threads and store links point to other people's servers.
-This site does not control them and cannot vouch for what they host.</p>
-<h2>Contact</h2>
-<p>Use the <a href="contact.html">contact page</a>. Content removal requests are
-honoured where the claim is valid.</p>
+<p>Firmware, APK, forum and store links point to other people's servers. This
+site does not control them and cannot vouch for what they host. Download files
+only from a source you trust and verify checksums wherever they are published.</p>
+<h2>Children</h2>
+<p>This site is written for adults who own and repair Android devices. It is not
+directed at children under 13, and I do not knowingly collect personal
+information from children.</p>
+<h2>Contact and removal requests</h2>
+<p>Use the <a href="contact.html">contact page</a> for questions about this
+policy or to request removal of content. Valid removal requests are honoured.</p>
 """ % BUILT_ON,
-                                 description="How Rom Flasher handles data: no "
-                                 "login, no comment box and no database. What "
-                                 "server logs keep, when analytics and "
-                                 "advertising cookies load, and how to opt out.",
-                                 ad=True,
+                                 description="How Rom Flasher handles data: "
+                                 "contact-form delivery, server logs, Google "
+                                 "Analytics and AdSense consent, the Android "
+                                 "app's permissions, and how to change your "
+                                 "cookie choice.",
                                  schema={
                                      "@context": "https://schema.org",
                                      "@type": "WebPage",
@@ -3785,7 +3969,6 @@ licences still apply.</p>
                         description="The ground rules for using Rom Flasher: "
                         "flashing is at your own risk, guides come from real "
                         "attempts, and download links point to third-party hosts.",
-                        ad=True,
                         schema={
                             "@context": "https://schema.org",
                             "@type": "WebPage",
@@ -3813,7 +3996,6 @@ picked up long before "do my phone".</p>
                         "guide request, report a bug or ask a flashing question "
                         "and expect a real answer. Exact model and variant gets "
                         "picked up fastest.",
-                        ad=True,
                         schema={
                             "@context": "https://schema.org",
                             "@type": "ContactPage",
@@ -3855,13 +4037,14 @@ def build_feed(items):
         entries.append(
             "<item><title>%s</title><link>%s</link><guid>%s</guid>"
             "<pubDate>%s</pubDate><description>%s</description></item>"
-            % (html.escape(x["title"]), link, link,
+            % (html.escape(x["title"]), html.escape(link), html.escape(link),
                rfc822(x.get("published")) or rfc822(BUILT_ON),
                html.escape(x.get("blurb") or x["title"])))
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<rss version="2.0"><channel>\n'
             "<title>%s</title><link>%s</link><description>%s</description>\n%s\n"
-            "</channel></rss>\n" % (SITE, SITE_URL, TAGLINE, "\n".join(entries)))
+            "</channel></rss>\n" % (html.escape(SITE), SITE_URL,
+                                    html.escape(TAGLINE), "\n".join(entries)))
 
 
 # ------------------------------------------------------------------- build
@@ -3951,7 +4134,7 @@ def main():
         print("[i] no data/firmware.json - the downloader's phone search will "
               "stay empty until 'python fetch_firmware.py' has run")
 
-    write("index.html", build_home(items))
+    write("index.html", build_home(items, path=""))
     write("videos.html", build_guides(items))
     for item in items:
         write("rom/%s.html" % item["slug"], build_article(item, items))
@@ -4062,6 +4245,7 @@ def main():
           "User-agent: Googlebot-Image\nAllow: /\n\n"
           "Sitemap: %s/sitemap.xml\n" % SITE_URL)
     write("feed.xml", build_feed(items))
+    write("_headers", SECURITY_HEADERS)
 
     print("[OK] %d guide(s) -> dist/" % len(items))
     print("     index, videos, download, apps/about/privacy/terms/contact/404,")

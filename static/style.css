@@ -10,7 +10,7 @@
   --bg:#05070c;
   --fg:#e9ecf5;
   --dim:#98a0b6;
-  --dim2:#6e7280;
+  --dim2:#7d8290;
 
   --line:rgba(255,255,255,.10);
   --line2:rgba(255,255,255,.20);
@@ -31,7 +31,7 @@
   --crimson:#991b1b;
   --halo:0 0 0 1px rgba(255,255,255,.06),0 22px 60px -26px rgba(220,38,38,.55);
   --radius:16px;
-  --font-sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";
 }
 
 *{box-sizing:border-box}
@@ -71,6 +71,16 @@ body::before{
 
 a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
+
+/* Inline links in running text carry an underline, not just a colour: colour
+   alone fails WCAG 1.4.1 for readers who cannot tell amber from grey. Buttons,
+   chips and card links are exempt because they are not body text. */
+.prose p a:not(.btn):not(.subbtn):not(.tag),
+.dis a{
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:2.5px;
+}
 img{max-width:100%}
 .wrap{max-width:1320px;margin:0 auto;padding:0 22px}
 /* The wide pages: the home page, the guide list and the downloader. They take
@@ -1358,6 +1368,15 @@ footer .browse a{color:#fbbf24;font-weight:500}
 .partof{margin:10px 0 0;font-size:13.5px;color:var(--dim)}
 .partof a{color:#fbbf24;font-weight:500}
 
+/* Skip link: the first thing a keyboard sees, invisible until it is focused. */
+.skip-link{
+  position:fixed;left:12px;top:-60px;z-index:80;
+  padding:10px 16px;border-radius:0 0 10px 10px;
+  background:#fbbf24;color:#111;font-weight:700;text-decoration:none;
+  transition:top .15s ease;
+}
+.skip-link:focus{top:0;outline:2px solid #fff;outline-offset:2px}
+
 /* ------------------------------------------------- cookie / ad consent */
 /* The one piece of the site that floats over the page. It has to be short and
    it has to leave the room it takes - while it is up the body carries the
@@ -1365,7 +1384,7 @@ footer .browse a{color:#fbbf24;font-weight:500}
    instead of hiding there forever. */
 .consent{
   position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0 auto;
-  max-width:660px;padding:16px 20px;border-radius:16px 16px 0 0;
+  max-width:720px;padding:16px 20px;border-radius:16px 16px 0 0;
   background:rgba(12,15,24,.97);border:1px solid var(--line2);
   border-bottom:0;box-shadow:0 -18px 50px -20px #000;
   display:flex;gap:14px;align-items:center;justify-content:space-between;
@@ -1383,7 +1402,17 @@ footer .browse a{color:#fbbf24;font-weight:500}
 }
 .consent p{margin:0;font-size:13.5px;line-height:1.5;color:var(--dim)}
 .consent p a{color:#fbbf24}
-.consent .row{display:flex;gap:10px;flex:0 0 auto}
+.consent .row{display:flex;gap:10px;flex:0 0 auto;flex-wrap:wrap;justify-content:flex-end}
+.consent .cpanel{
+  display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--line);
+}
+.consent .cpanel[hidden]{display:none}
+.consent .cpanel label{
+  display:inline-flex;align-items:center;gap:7px;font-size:13px;
+  color:var(--fg);cursor:pointer;
+}
+.consent .cpanel input{accent-color:#f59e0b;width:16px;height:16px}
 body.consent-on{padding-bottom:calc(var(--consent-h,150px) + 10px)}
 
 /* On a phone the banner is a bottom sheet: title, message, then the two
@@ -1396,8 +1425,8 @@ body.consent-on{padding-bottom:calc(var(--consent-h,150px) + 10px)}
   .consent .ctext{flex:0 0 auto;min-width:0}
   .consent .ctitle{font-size:11.5px;margin-bottom:3px}
   .consent p{font-size:12.6px;line-height:1.45}
-  .consent .row{width:100%;gap:9px}
-  .consent .row .btn{flex:1 1 0;margin:0;padding:11px 8px;font-size:14px;text-align:center}
+  .consent .row{width:100%;gap:9px;flex-wrap:wrap}
+  .consent .row .btn{flex:1 1 46%;margin:0;padding:11px 8px;font-size:14px;text-align:center}
 }
 
 ::selection{background:rgba(245,158,11,.45)}
@@ -3015,6 +3044,25 @@ hr.divider {
 .footnav a:hover {
   color: #f59e0b;
 }
+.footnav .footlink,
+.footlink.inline {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: var(--dim);
+  font-size: 13.5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.footnav .footlink:hover,
+.footlink.inline:hover { color: #f59e0b; text-decoration: underline; }
+.footlink.inline { color: #fbbf24; text-decoration: underline; }
+.footlink:focus-visible,
+.footlink.inline:focus-visible { outline: 2px solid #fbbf24; outline-offset: 3px; }
 .footnav.subnav a {
   color: #cbd5e1;
   font-size: 14px;
