@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "Magisk",
-   "url": "https://magiskmanager.com/downloading-magisk-manager/"
+   "url": "https://github.com/topjohnwu/Magisk/releases/latest"
   },
   {
    "label": "Rom Flasher tool (free)",
