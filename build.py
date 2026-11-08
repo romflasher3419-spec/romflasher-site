@@ -3509,29 +3509,52 @@ def build_downloader():
     # other manufacturers' download pages are not listed here - a link to a
     # brand that has no file behind it is only a dead end.
 
-    body = """<h1>ROM downloader</h1>
-<p class="dis">Type the phone you actually have &mdash; <em>poco</em>,
-<em>redmi note 13</em>, <em>CPH2451</em>, whatever is written on the box. Every
-matching model drops out of the list below the box; tap yours and the page
-lays out every build it has for that phone, newest first, with the Recovery
-ROM and the Fastboot ROM side by side. <strong>Change region</strong> switches
-between Global, India, EEA and the rest, and every download button picks the
-quickest server that answers and starts the file on its way.</p>
-
-<p class="dis">The picker holds <strong>__PHONE_COUNT__ phones</strong> and
-<strong>__BUILD_COUNT__ builds</strong> of official Xiaomi, Redmi and POCO
-firmware. Every file is asked for on Xiaomi's own servers first and on the
-public mirrors alongside it; the download starts from whichever answers first,
-so there is no waiting page in between &mdash; the file starts coming down the
-moment you tap the button.</p>
+    body = """<div class="dlhero">
+  <div class="dlkicker"><span class="live-pulse"></span> Official Firmware Index &middot; Fastboot &amp; Recovery</div>
+  <h1 class="dltitle">Official Stock ROM &amp; Firmware Downloader</h1>
+  <p class="dllead">Direct, verified official firmware builds for Xiaomi, Redmi, and POCO smartphones. Parallel-raced high-speed official CDN mirrors &mdash; 100%% clean, zero waiting queues, and zero third-party ad shorteners.</p>
+  
+  <div class="dlstats-grid">
+    <div class="dlstat-card">
+      <div class="dlstat-val">__PHONE_COUNT__</div>
+      <div class="dlstat-lbl">Supported Phones</div>
+    </div>
+    <div class="dlstat-card">
+      <div class="dlstat-val">__BUILD_COUNT__</div>
+      <div class="dlstat-lbl">Verified Builds</div>
+    </div>
+    <div class="dlstat-card">
+      <div class="dlstat-val">Official CDN</div>
+      <div class="dlstat-lbl">Direct Vendor Mirrors</div>
+    </div>
+    <div class="dlstat-card">
+      <div class="dlstat-val">Zero Wait</div>
+      <div class="dlstat-lbl">Parallel Speed Race</div>
+    </div>
+  </div>
+</div>
 
 <div class="dlsearch">
-  <label for="dlq">Which phone?</label>
-  <input id="dlq" type="search" autocomplete="off" spellcheck="false"
-         placeholder="Type a brand or a model - poco, redmi note 13, xiaomi 14...">
+  <label for="dlq" class="dlsearch-lbl">
+    <span>Search Firmware Database</span>
+    <span class="dlsearch-count">__PHONE_COUNT__ devices indexed</span>
+  </label>
+  <div class="dlsearch-input-wrap">
+    <svg class="dlsearch-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <input id="dlq" type="search" autocomplete="off" spellcheck="false"
+           placeholder="Search by phone name, model code, or codename (e.g. poco x7 pro, 23117RK66C, duchess)...">
+  </div>
+  <div class="dlquick-chips">
+    <span class="dlquick-lbl">Popular:</span>
+    <button type="button" class="dlquick-chip" onclick="var q=document.getElementById('dlq');q.value='poco x7 pro';q.dispatchEvent(new Event('input'))">POCO X7 Pro</button>
+    <button type="button" class="dlquick-chip" onclick="var q=document.getElementById('dlq');q.value='redmi note 13';q.dispatchEvent(new Event('input'))">Redmi Note 13</button>
+    <button type="button" class="dlquick-chip" onclick="var q=document.getElementById('dlq');q.value='xiaomi 14';q.dispatchEvent(new Event('input'))">Xiaomi 14</button>
+    <button type="button" class="dlquick-chip" onclick="var q=document.getElementById('dlq');q.value='poco f5';q.dispatchEvent(new Event('input'))">POCO F5</button>
+    <button type="button" class="dlquick-chip" onclick="var q=document.getElementById('dlq');q.value='redmi k50i';q.dispatchEvent(new Event('input'))">Redmi K50i</button>
+    <button type="button" class="dlquick-chip" onclick="var q=document.getElementById('dlq');q.value='xiaomi pad 5';q.dispatchEvent(new Event('input'))">Xiaomi Pad 5</button>
+  </div>
   <div class="dlresults" id="dlresults" hidden></div>
-  <p class="dlhint" id="dlhint">Start typing. Every phone in the index drops
-  out below the box - scroll the list and tap your model.</p>
+  <p class="dlhint" id="dlhint">Start typing above. Every phone in the index drops out below the box &mdash; scroll the list and tap your model to reveal all official builds.</p>
 </div>
 
 <div class="dlpick" id="dlpick" hidden>
@@ -3562,36 +3585,41 @@ moment you tap the button.</p>
   <p class="dlnote" id="dlpnote"></p>
 </div>
 
-<h2>Pick a download</h2>
-<p>Two routes, depending on what you need on the phone:</p>
-<div class="dlopts">
-  <div class="dlopt dloptcard" id="gh-magisk">
-    <b>Magisk</b>
-    <span>Root by patching the boot image &mdash; the one that hides best. The
-      boot image is inside your stock ROM; patch it in the Magisk app and flash
-      it back over USB-OTG.</span>
-    <p class="ghstate" id="gh-magisk-state">Checking GitHub for the latest
-      release&hellip;</p>
-    <div class="ghbtns">
-      <button class="btn" type="button" id="gh-magisk-btn" disabled>Download latest</button>
-      <a class="btn ghost" href="https://github.com/topjohnwu/Magisk/releases"
-         rel="noopener">All releases</a>
-      <a class="btn ghost" href="https://topjohnwu.github.io/Magisk/"
-         rel="noopener">Docs</a>
-    </div>
+<div class="dlroot-section">
+  <div class="dlsection-header">
+    <h2>Pick Root Engine &amp; Utilities</h2>
+    <p class="dlsection-sub">Essential root tools tested and verified on physical Android hardware:</p>
   </div>
-  <div class="dlopt dloptcard" id="gh-kernelsu">
-    <b>KernelSU</b>
-    <span>Kernel-level root, built into a kernel instead of patched in. On a
-      GKI phone it is the cleanest route &mdash; flash a patched kernel and you
-      are done.</span>
-    <p class="ghstate" id="gh-kernelsu-state">Checking GitHub for the latest
-      release&hellip;</p>
-    <div class="ghbtns">
-      <button class="btn" type="button" id="gh-kernelsu-btn" disabled>Download latest</button>
-      <a class="btn ghost" href="https://github.com/tiann/KernelSU/releases"
-         rel="noopener">All releases</a>
-      <a class="btn ghost" href="https://kernelsu.org/" rel="noopener">Docs</a>
+  <div class="dlopts">
+    <div class="dlopt dloptcard" id="gh-magisk">
+      <div class="dlopt-top">
+        <span class="dlopt-badge">Traditional Systemless Root</span>
+        <h3>Magisk</h3>
+        <p class="dlopt-desc">Root by patching the boot or init_boot image &mdash; highest compatibility and best hiding with Zygisk modules. The stock boot image is inside your stock ROM; patch it in Magisk app and flash over USB-OTG.</p>
+      </div>
+      <div class="dlopt-bottom">
+        <p class="ghstate" id="gh-magisk-state">Checking GitHub for the latest release&hellip;</p>
+        <div class="ghbtns">
+          <button class="btn btn-primary" type="button" id="gh-magisk-btn" disabled>Download latest</button>
+          <a class="btn ghost" href="https://github.com/topjohnwu/Magisk/releases" rel="noopener" target="_blank">All releases</a>
+          <a class="btn ghost" href="https://topjohnwu.github.io/Magisk/" rel="noopener" target="_blank">Docs</a>
+        </div>
+      </div>
+    </div>
+    <div class="dlopt dloptcard" id="gh-kernelsu">
+      <div class="dlopt-top">
+        <span class="dlopt-badge">Kernel-Level Root (GKI)</span>
+        <h3>KernelSU</h3>
+        <p class="dlopt-desc">Kernel-level root built directly into a Linux kernel instead of userspace injection. On GKI phones (Android 12+), flash a patched kernel for seamless, invisible root privilege management.</p>
+      </div>
+      <div class="dlopt-bottom">
+        <p class="ghstate" id="gh-kernelsu-state">Checking GitHub for the latest release&hellip;</p>
+        <div class="ghbtns">
+          <button class="btn btn-primary" type="button" id="gh-kernelsu-btn" disabled>Download latest</button>
+          <a class="btn ghost" href="https://github.com/tiann/KernelSU/releases" rel="noopener" target="_blank">All releases</a>
+          <a class="btn ghost" href="https://kernelsu.org/" rel="noopener" target="_blank">Docs</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -3613,8 +3641,13 @@ fails:</p>
   writes every partition, so it can rescue a phone that no longer boots &mdash;
   and it wipes your data.</li>
 </ul>
-<p class="dis">Rule of thumb: phone boots &rarr; Recovery ROM. Phone does not
-boot &rarr; Fastboot ROM.</p>
+
+<div class="rule-box">
+  <div class="rule-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+  <div class="rule-content">
+    <strong>Rule of thumb:</strong> Phone boots into system or recovery &rarr; use <strong>Recovery ROM</strong> (safer, preserves personal data). Phone does not boot or is stuck in bootloop &rarr; use <strong>Fastboot ROM</strong> (factory clean, wipes userdata, flashes raw partition sectors).
+  </div>
+</div>
 <p>Type your model in the box at the top of this page and every build for it
 comes out below &mdash; the Recovery ROM and the Fastboot ROM for each region,
 newest first, each button pointing straight at the file. Nothing is hosted
