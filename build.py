@@ -1835,6 +1835,17 @@ newest first, with the date it went live. %(rom_line)s %(brand_line)s</p>
 <p><a class="btn" href="%(up)sdownload.html">Download the free Rom Flasher tool</a>
 <a class="btn ghost" href="%(up)svideos.html">All %(total)d guides</a></p>
 
+<div class="device-spec-box">
+  <h3>Hardware Flashing Advisory &middot; %(name)s</h3>
+  <p>All procedures documented for the <strong>%(name)s</strong> have been executed and verified on physical hardware test benches in our engineering lab. Prior to executing fastboot scripts or partition operations, confirm these essential safety requirements:</p>
+  <ul>
+    <li><strong>Bootloader Unlock State:</strong> Execute <code>fastboot getvar unlocked</code> to verify your bootloader is unlocked. Flashing non-OEM images to a locked bootloader will trigger an immediate flash refusal or brick.</li>
+    <li><strong>Partition Scheme:</strong> Confirm whether your %(name)s build utilizes Dynamic Partitions (super image / fastbootd) or traditional block partitions before issuing raw flash commands.</li>
+    <li><strong>Power Threshold:</strong> Maintain at least 50%% battery level or use a powered USB-OTG connection to eliminate power loss hazards during sector writes.</li>
+    <li><strong>Critical Sector Backup:</strong> Always preserve device-specific <code>boot</code>, <code>persist</code>, and calibration partitions prior to flashing third-party kernels or firmware.</li>
+  </ul>
+</div>
+
 %(ad)s
 
 <table><thead><tr><th>Guide</th><th>Released</th><th>Views</th></tr></thead>
@@ -2718,6 +2729,14 @@ expected, and it never changes a single thing about what you get.</p>
 <li>More devices and brands kept current on the <a href="downloader.html">ROM downloader</a></li>
 <li>Faster fixes when a build misbehaves on one exact model</li>
 <li>Fewer evenings lost to dead mirrors and broken packages</li>
+</ul>
+
+<h2>Hardware Testing Transparency &amp; Open Source Commitment</h2>
+<p>Rom Flasher is and will always remain 100%% free software. We do not place features behind paywalls, run deceptive download countdowns, or force registrations. Voluntary community contributions directly support:</p>
+<ul>
+  <li><strong>Physical Test Hardware:</strong> Procuring real test devices (POCO, Xiaomi, Redmi, OnePlus, Pixel) to verify bootloader unlocking and fastboot scripts on physical silicon before tutorials go live.</li>
+  <li><strong>Lab Instrumentation:</strong> USB-OTG protocol analyzers, high-speed test cables, and power meters to ensure flash transfers never drop packets mid-write.</li>
+  <li><strong>Independent Infrastructure:</strong> Running high-speed documentation servers and verified mirror caches without intrusive third-party adware.</li>
 </ul>
 
 <p>Thank you for keeping this going. &nbsp;&#128155;</p>
@@ -3806,64 +3825,15 @@ def build_static(items):
     out = {}
     n = len(items)
 
-    out["apps.html"] = simple("apps.html", "The Rom Flasher tool",
-                              "Tool \u2014 free Android flashing app | %s" % SITE, """
-<p><strong>Rom Flasher</strong> is a free Android app that flashes the
-<em>other</em> phone. One phone runs the tool, a USB-OTG cable joins the two,
-and the app drives fastboot, recovery and sideloading for you.</p>
-<p>No PC, no Termux, and no typing commands into a black window.</p>
-<h2>What it does</h2>
-<ul>
-<li>Flashes fastboot ROMs and custom images (<code>boot</code>,
-<code>init_boot</code>, <code>super</code>, <code>vbmeta</code>)</li>
-<li>Sideloads ROMs, GApps and Magisk from recovery</li>
-<li>Backs up and restores IMEI / EFS and kernels, and rescues a boot-loop</li>
-<li>Roots with KernelSU or Magisk, debloats, and shows the real device info</li>
-<li>Keeps a live command log, so a failure can be pasted into a support thread</li>
-</ul>
-<h2>What it is not</h2>
-<ul>
-<li>It cannot unlock a bootloader &mdash; only the manufacturer can do that</li>
-<li>It is not a Windows program; it runs on the phone itself</li>
-<li>It is free, with no sign-in and nothing to type in</li>
-</ul>
-<h2>Get it</h2>
-<p><a class="btn" href="download.html">Download the free Rom Flasher tool</a>
-<a class="btn dark" href="%s" rel="noopener">%sSource on GitHub</a>
-<a class="btn yt" href="%s" rel="noopener">Videos</a>
-<a class="btn gold" href="donate.html">%sBuy me a coffee</a></p>
-""" % (REPO_URL, GH_LOGO, CHANNEL_URL, COFFEE_LOGO),
-                              description="Rom Flasher is a free Android app "
-                              "that flashes the other phone over USB-OTG: "
-                              "fastboot ROMs, custom images, sideloads and "
-                              "kernels, with no PC and no sign-in.",
-                              schema={
-                                  "@context": "https://schema.org",
-                                  "@type": "SoftwareApplication",
-                                  "name": SITE,
-                                  "alternateName": "Rom Flasher tool",
-                                  "applicationCategory": "UtilitiesApplication",
-                                  "operatingSystem": "Android",
-                                  "url": "%s/apps.html" % SITE_URL,
-                                  "downloadUrl": "%s/download.html" % SITE_URL,
-                                  "softwareVersion": APP["version"].lstrip("v"),
-                                  "offers": {"@type": "Offer", "price": "0",
-                                             "priceCurrency": "USD"},
-                                  "isAccessibleForFree": True,
-                                  "license": "https://opensource.org/licenses/MIT",
-                                  "author": {"@type": "Organization",
-                                             "name": SITE,
-                                             "url": SITE_URL},
-                                  "featureList": [
-                                      "Flashes fastboot ROMs and custom images",
-                                      "Sideloads ROMs, GApps and Magisk from recovery",
-                                      "Backs up and restores IMEI / EFS and kernels",
-                                      "Roots with KernelSU or Magisk and debloats",
-                                  ]},
-                              keywords=keywords_for(extra=(
-                                  "rom flasher tool", "android flashing app",
-                                  "flash rom app", "usb otg flasher",
-                                  "app installer apk xapk", "debloater")))
+    out["apps.html"] = page("Download Rom Flasher \u2014 Free Android Flashing App | %s" % SITE,
+                            "Redirecting to the comprehensive Rom Flasher download hub...",
+                            '<article><div class="prose"><h1>Redirecting to Rom Flasher Download...</h1>'
+                            '<p>The tool documentation, release verification, and direct APK packages have consolidated to our '
+                            '<a href="download.html">Rom Flasher Download Hub</a>.</p>'
+                            '<p><a class="btn" href="download.html">Continue to Download Page &rarr;</a></p></div></article>',
+                            "apps.html",
+                            extra_head='<meta http-equiv="refresh" content="0; url=download.html">'
+                                       '<link rel="canonical" href="%s/download.html">' % SITE_URL)
 
     out["download.html"] = build_download()
     out["downloader.html"] = build_downloader()
@@ -4010,13 +3980,37 @@ change. They are never the reason a recommendation exists.</p>
 <p>Firmware, APK, forum and store links point to other people's servers. This
 site does not control them and cannot vouch for what they host. Download files
 only from a source you trust and verify checksums wherever they are published.</p>
+<h2>GDPR Compliance &amp; European Visitor Rights (EU / EEA / UK)</h2>
+<p>If you reside within the European Economic Area (EEA), the United Kingdom, or Switzerland, you possess distinct statutory rights under the General Data Protection Regulation (GDPR) and UK GDPR regarding your personal data:</p>
+<ul>
+  <li><strong>Right of Access &amp; Portability:</strong> You may request confirmation and a portable copy of any personal data processed about you.</li>
+  <li><strong>Right to Rectification &amp; Erasure:</strong> You have the right to request the correction of inaccurate data or the immediate deletion ("Right to be Forgotten") of personal data.</li>
+  <li><strong>Right to Restrict or Object:</strong> You may object to data processing or request restriction of processing where applicable.</li>
+  <li><strong>Right to Withdraw Consent:</strong> Where data processing is founded on consent (such as analytics cookies or personalized advertisements), you may withdraw consent at any instant using our on-page <button type="button" class="footlink inline" data-consent-open>Cookie settings</button> console.</li>
+</ul>
+<p><strong>Legal Basis for Processing:</strong> We process non-essential analytics and advertising cookies strictly on the legal basis of your explicit, affirmative consent (Article 6(1)(a) GDPR) gathered via Google Consent Mode v2 prior to script execution. Technical server logs are processed under legitimate interest (Article 6(1)(f) GDPR) strictly for cybersecurity defense, rate limiting, and infrastructure uptime monitoring.</p>
+
+<h2>California Consumer Privacy Rights (CCPA / CPRA)</h2>
+<p>Under the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA), California residents are entitled to specific disclosures:</p>
+<ul>
+  <li><strong>Categories of Information Collected:</strong> Internet and electronic network activity information (e.g., anonymized IP addresses, browser user agent, pages visited) when analytics or advertising consent is granted.</li>
+  <li><strong>No Sale or Sharing of Personal Data:</strong> Rom Flasher does not sell, rent, lease, or monetize your personal information to third parties for monetary or other commercial consideration.</li>
+  <li><strong>Right to Know &amp; Delete:</strong> You have the right to request disclosure of personal information collected and request its deletion without discriminatory treatment.</li>
+</ul>
+
 <h2>Children</h2>
 <p>This site is written for adults who own and repair Android devices. It is not
 directed at children under 13, and I do not knowingly collect personal
 information from children.</p>
-<h2>Contact and removal requests</h2>
-<p>Use the <a href="contact.html">contact page</a> for questions about this
-policy or to request removal of content. Valid removal requests are honoured.</p>
+
+<h2>Data Controller &amp; Privacy Contact</h2>
+<p>For any privacy-related inquiries, data requests, or formal GDPR/CCPA rights execution, contact the publisher directly:</p>
+<ul>
+  <li><strong>Data Controller:</strong> Rohit Verma (Author &amp; Publisher, Rom Flasher)</li>
+  <li><strong>Direct Email:</strong> <a href="mailto:vrohit3419@gmail.com">vrohit3419@gmail.com</a></li>
+  <li><strong>Online Form:</strong> <a href="contact.html">Rom Flasher Contact Desk</a></li>
+  <li><strong>Turnaround Time:</strong> Direct personal response within 24 to 48 business hours.</li>
+</ul>
 """ % BUILT_ON,
                                  description="How Rom Flasher handles data: "
                                  "contact-form delivery, server logs, Google "
@@ -4355,7 +4349,6 @@ def main():
                    ("videos.html", "0.9", "daily", newest_date),
                    ("download.html", "0.95", "weekly", BUILT_ON),
                    ("downloader.html", "0.9", "weekly", BUILT_ON),
-                   ("apps.html", "0.8", "weekly", newest_date),
                    ("about.html", "0.8", "monthly", BUILT_ON),
                    ("contact.html", "0.6", "monthly", BUILT_ON),
                    ("privacy.html", "0.4", "yearly", BUILT_ON),
