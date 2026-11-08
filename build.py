@@ -1330,9 +1330,11 @@ def page(title, description, body, path="", extra_head="", keywords="",
         '    <a class="navbtn hot" href="%sdownloader.html" '
         'aria-label="Stock ROM Download: stock ROMs, Magisk and KernelSU">%sStock ROM Download</a>'
         % (up, DL_LOGO),
-        '    <a class="navbtn gh" href="%s" target="_blank" rel="noopener" aria-label="GitHub">%sGitHub</a>' % (REPO_URL, GH_LOGO),
-        '    <a class="navbtn yt" href="%s" target="_blank" rel="noopener" aria-label="YouTube">%sYouTube</a>' % (CHANNEL_URL, YT_LOGO),
-        '    <a class="navbtn donate" href="%sdonate.html" aria-label="Support Us">%sSupport</a>' % (up, COFFEE_LOGO),
+        '    <div class="pixel-socials">',
+        '      <a class="pixel-round gh-round" href="%s" target="_blank" rel="noopener" aria-label="GitHub" title="Rom Flasher tool on GitHub">%s</a>' % (REPO_URL, GH_LOGO),
+        '      <a class="pixel-round yt-round" href="%s" target="_blank" rel="noopener" aria-label="YouTube" title="Rom Flasher on YouTube">%s</a>' % (CHANNEL_URL, YT_LOGO),
+        '      <a class="pixel-round coffee-round" href="%sdonate.html" aria-label="Buy me a coffee" title="Buy me a coffee">%s</a>' % (up, COFFEE_LOGO),
+        '    </div>',
         "  </nav>",
         # The menu button only shows on a phone, where the five pills used to
         # stack under the logo and eat a fifth of the screen. Three lines, the
