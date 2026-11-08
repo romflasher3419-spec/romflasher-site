@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "ADB Fastboot driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   },
   {
    "label": "Rom Flasher tool (free)",

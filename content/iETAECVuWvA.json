@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "Evolution X ROM (Xiaomi Pad 5)",
-   "url": "https://tmearn.net/link/w8BJNhzn"
+   "url": "https://evolution-x.org/"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,7 +30,7 @@
   },
   {
    "label": "Driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

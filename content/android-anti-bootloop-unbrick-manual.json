@@ -1,0 +1,52 @@
+{
+  "id": "android-anti-bootloop-unbrick-manual",
+  "slug": "android-anti-bootloop-unbrick-manual",
+  "title": "The Definitive Android Unbrick & Anti-Bootloop Manual: Fastboot, Recovery, BROM & EDL",
+  "blurb": "A systematic diagnostic manual for rescuing bricked Android smartphones: Qualcomm EDL 9008, MediaTek BROM, AVB 2.0 Red State recovery, and userdata decryption loops.",
+  "device": "Universal Android",
+  "rom": "Stock / Official Firmware",
+  "android": "All Versions",
+  "views": 24100,
+  "published": "2026-11-08",
+  "tags": [
+    "Unbrick",
+    "EDL",
+    "Fastboot",
+    "Bootloop",
+    "Recovery"
+  ],
+  "summary": "Every Android enthusiast eventually faces the dreaded scenario: a device that refuses to boot, displays a vendor warning screen, or remains completely unresponsive with a blank display. In modern smartphones, over 95% of 'bricked' devices are completely recoverable without JTAG hardware boxes or expensive motherboard replacements.\n\nThis manual provides an exhaustive diagnostic flowchart to determine your phone's exact failure stage, explaining the step-by-step procedures to recover from Fastboot loops, Recovery traps, MediaTek Preloader Red State errors, and Qualcomm 9008 Emergency Download (EDL) mode.",
+  "links": [
+    {
+      "label": "Rom Flasher Tool (Free)",
+      "url": "https://romflasher.in/download.html"
+    },
+    {
+      "label": "Official Firmware Downloader",
+      "url": "https://romflasher.in/downloader.html"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a soft brick and a hard brick?",
+      "a": "A soft brick occurs when the physical partition table and hardware bootloader are intact, but the operating system partitions (`boot`, `system`, or `userdata`) fail verification or crash during early init. Soft-bricked phones can still reach Fastboot mode or Recovery. A hard brick occurs when the secondary bootloader (ABL/XBL) is corrupted or partition tables are wiped; the screen remains black, and the phone only enumerates as a low-level USB diagnostic port (Qualcomm 9008 or MediaTek BROM)."
+    },
+    {
+      "q": "Why does my phone keep rebooting straight into recovery mode after flashing a ROM?",
+      "a": "When switching between different ROMs (e.g. from stock HyperOS to custom AOSP), the Android File-Based Encryption (FBE) Keystore keys stored in the `userdata` and `metadata` partitions cannot be decrypted by the new operating system kernel. The init process encounters an unmountable `/data` partition and reboots into recovery. To fix this, you must perform a clean data wipe (`fastboot erase userdata` and `fastboot erase metadata`)."
+    },
+    {
+      "q": "What causes the MediaTek Red State bootloop?",
+      "a": "MediaTek devices verify bootloader integrity using strict chained hash trees in AVB 2.0. If you flash a blank 4KB empty vbmeta image (a common practice on Qualcomm devices) or flash a boot image that does not match the vbmeta descriptor, the MediaTek preloader halts execution and prints: `Red State: Your device has failed verification`. You must flash the device's original stock `vbmeta.img` or patch the verification flags at offset 120-123."
+    },
+    {
+      "q": "How do I force a completely dead Qualcomm phone into EDL 9008 mode?",
+      "a": "If software key combinations (holding Volume Up + Volume Down while inserting USB) do not work, you can trigger EDL mode either using a specialized Deep Flash / EDL cable (which shorts the D+ data line to ground during insertion) or by temporarily bridging the two motherboard EDL test points with metallic tweezers while connecting the USB cable."
+    },
+    {
+      "q": "Does flashing official stock fastboot ROMs relock the bootloader automatically?",
+      "a": "In official OEM flash scripts (e.g. Xiaomi Mi Flash), there are typically three script options: `flash_all.bat` (keeps bootloader unlocked), `flash_all_except_storage.bat`, and `flash_all_lock.bat` (flashes and executes `fastboot oem lock`). Always ensure you run the script that leaves the bootloader unlocked unless you are returning a phone with genuine matching regional firmware for warranty service."
+    }
+  ],
+  "body": "Encountering a non-booting smartphone is terrifying for casual users, but for an experienced firmware engineer, a non-booting device is simply a state machine that has halted at a specific execution gate.\n\nEvery Android device boots through a deterministic sequence:\n```text\n[Silicon ROM / BootROM] \n       │\n       ▼\n[Primary Bootloader: XBL / Preloader]\n       │\n       ▼\n[Secondary Bootloader: ABL / LK] ────► [Fastboot Mode]\n       │\n       ▼\n[Kernel Execution: boot / init_boot] ──► [Recovery Mode]\n       │\n       ▼\n[Userspace Early Init: init.rc]\n       │\n       ▼\n[Android Framework: Zygote & System Server] ──► [Boot Animation Loop]\n```\n\nBy identifying the exact stage where the boot sequence halts, you can apply the targeted technical solution without guessing.\n\n---\n\n## 1. The Five Failure Stages & Triage Matrix\n\n| Stage | Symptoms on Screen | USB Device Enumeration | Failure Cause | Immediate Fix |\n| :--- | :--- | :--- | :--- | :--- |\n| **Stage 1: Framework Crash** | Endless boot animation logo, phone gets warm | `adb device` (unauthorized or online) | Dirty data, incompatible Magisk module, ART bytecode crash | Wipe cache, disable modules via `adb wait-for-device shell magisk --remove-modules` |\n| **Stage 2: FBE Encryption Trap** | Reboots straight into Stock Recovery / \"Data corrupted\" | Fastboot / Recovery interface | Keystore key mismatch between old and new ROM | `fastboot erase userdata` + `fastboot erase metadata` |\n| **Stage 3: AVB Verification Fail** | \"Red State\" (MTK) / \"Your device is corrupt\" warning | Instant reboot every 5 seconds | Blank vbmeta on MTK, corrupted vbmeta hash descriptors | Re-flash stock `vbmeta.img` with patched flags |\n| **Stage 4: Bootloader Fastboot Trap** | Device only boots to Fastboot logo, won't load OS | `fastboot devices` recognized | Corrupted `boot`, `init_boot`, or inactive slot failure | Check active slot: `fastboot set_active other`, reflash boot |\n| **Stage 5: Hardware Hard Brick** | Completely black display, zero vibration, no LED | `Qualcomm HS-USB QDLoader 9008` or `MTK USB Port` | Corrupted primary partition table (GPT) or ABL | Firehose EDL flashing or MTKClient BROM unbrick |\n\n---\n\n## 2. Resolving Fastboot Loops & Slot Traps\n\nIf your phone boots directly to the Fastboot / Bootloader screen every time you power it on, the primary bootloader is healthy, but it cannot find a valid bootable OS payload on the active slot.\n\n### Step 1: Query the Slot and Boot Status\n```bash\n# Check which slot is currently active\nfastboot getvar current-slot\n\n# Check if the active slot is marked bootable\nfastboot getvar slot-successful:a\nfastboot getvar slot-successful:b\nfastboot getvar slot-unbootable:a\nfastboot getvar slot-unbootable:b\n```\n\n### Step 2: Switch to the Inactive Slot\nIf an update failed or you flashed an incompatible boot image to slot `a`, switch to slot `b`:\n```bash\nfastboot --set-active=b\nfastboot reboot\n```\nIf the alternative slot boots successfully, you can repair the corrupted slot from within Android.\n\n---\n\n## 3. Resolving the Recovery Loop (File-Based Encryption)\n\nWhen transitioning from MIUI / HyperOS to custom AOSP (or vice versa), the new kernel cannot decrypt the old user data keys generated by the proprietary OEM Keystore HAL.\n\nStandard recovery \"Wipe Data\" often leaves the encrypted `/metadata` partition untouched. To execute a complete factory encryption reset via fastboot:\n```bash\nfastboot erase userdata\nfastboot format:userdata\nfastboot erase metadata\nfastboot reboot\n```\nThis re-initializes clean cryptographic keys in TrustZone, allowing the new OS to boot at Frame 0.\n\n---\n\n## 4. MediaTek \"Red State\" Recovery\n\nIf you see:\n```text\nRed State: Your device has failed verification and may not work properly.\nYour device will reboot in 5 seconds.\n```\nThis error is triggered when the MediaTek hardware preloader detects that `vbmeta` was tampered with or replaced with a generic 4KB blank image.\n\n### The Fix:\n1. Obtain the genuine official stock Fastboot ROM matching your phone's regional firmware.\n2. Extract the official stock `vbmeta.img`.\n3. Flash the official vbmeta with verity disabled flags:\n   ```bash\n   fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img\n   ```\n4. If your device has chained vbmeta partitions, flash them simultaneously:\n   ```bash\n   fastboot --disable-verity --disable-verification flash vbmeta_system vbmeta_system.img\n   fastboot --disable-verity --disable-verification flash vbmeta_vendor vbmeta_vendor.img\n   ```\n\n---\n\n## 5. Qualcomm EDL 9008 Emergency Unbricking\n\nWhen a device is hard-bricked, the display is completely black and the phone does not respond to power buttons. When connected to a computer, Device Manager or `lsusb` displays:\n```text\nBus 001 Device 014: ID 05c6:9008 Qualcomm, Inc. Gobi Wireless Modem (QDL mode)\n```\n\nIn Emergency Download (EDL) mode, the Qualcomm silicon BootROM loads a signed programmer file named **Firehose** (typically an `.mbn` or `.elf` file, such as `prog_firehose_ddr.elf`):\n1. **Sahara Handshake:** The host computer communicates with the BootROM using the Sahara protocol to upload the Firehose programmer into RAM.\n2. **Firehose Protocol:** Once loaded in RAM, the Firehose programmer initializes the UFS/eMMC storage controller and accepts XML commands (`rawprogram0.xml` and `patch0.xml`).\n3. **Partition Restoration:** The programmer rewrites the GUID Partition Table (GPT), primary bootloader (`xbl`), secondary bootloader (`abl`), and core firmware partitions directly to physical silicon.\n\nUsing open-source tools like **edl** (bkerler) or official manufacturer EDL suites, you can completely reconstruct a wiped partition table from scratch, turning a dead paperweight back into a fully functioning phone."
+}

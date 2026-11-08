@@ -26,7 +26,7 @@
   },
   {
    "label": "rom link",
-   "url": "https://tmearn.net/link/3LOB08"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -34,19 +34,19 @@
   },
   {
    "label": "vendor",
-   "url": "https://tmearn.net/link/254j"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "ksu pathed image for root",
-   "url": "https://tmearn.net/link/n4x8zT4"
+   "url": "https://github.com/tiann/KernelSU/releases"
   },
   {
    "label": "adb fastboot tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "adb fastboot driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

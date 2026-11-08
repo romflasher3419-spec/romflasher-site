@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "Mica OS 16 QPR2 ROM",
-   "url": "https://tmearn.net/link/f9N3"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,11 +30,11 @@
   },
   {
    "label": "Vendor Boot",
-   "url": "https://tmearn.net/link/UxEyjjRg"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Termux flash file",
-   "url": "https://tmearn.net/link/lQ5Lhx2G"
+   "url": "https://github.com/termux/termux-app/releases"
   },
   {
    "label": "Jiiov fingerprint calibration guide",
@@ -42,11 +42,11 @@
   },
   {
    "label": "ADB & Fastboot Tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "ADB & Fastboot Driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

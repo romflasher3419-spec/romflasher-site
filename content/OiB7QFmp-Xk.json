@@ -22,15 +22,15 @@
  "links": [
   {
    "label": "ADB & Fastboot Tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "ADB & Fastboot Driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   },
   {
    "label": "Evolution X 12.1 + required files for POCO X7 Pro (rodin)",
-   "url": "https://tm-earn.com/4e3cwC"
+   "url": "https://evolution-x.org/"
   },
   {
    "label": "Rom Flasher tool (free)",

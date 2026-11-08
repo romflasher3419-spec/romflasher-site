@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "xiaomi pad 5 modded twrp",
-   "url": "https://tmearn.net/link/L5mtfk"
+   "url": "https://twrp.me/"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,15 +30,15 @@
   },
   {
    "label": "magisk",
-   "url": "https://tmearn.net/link/8RizbEL"
+   "url": "https://github.com/topjohnwu/Magisk/releases"
   },
   {
    "label": "adb fastboot tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "adb fastboot driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "Download ROM",
-   "url": "https://tmearn.net/link/AlMx"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,7 +30,7 @@
   },
   {
    "label": "Download vendor",
-   "url": "https://tmearn.net/link/02XJWv"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Changelogs",
@@ -38,11 +38,11 @@
   },
   {
    "label": "adb fastboot tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "adb fastboot driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

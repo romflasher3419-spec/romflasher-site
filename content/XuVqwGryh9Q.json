@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "Voltas OS ROM",
-   "url": "https://tmearn.net/link/5v3pDom"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,11 +30,11 @@
   },
   {
    "label": "Vendor boot",
-   "url": "https://tmearn.net/link/7JHcCHKU"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "ADB Fastboot driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

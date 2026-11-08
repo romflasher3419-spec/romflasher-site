@@ -21,7 +21,7 @@
  "links": [
   {
    "label": "All files (modules)",
-   "url": "https://tmearn.net/link/Q1Ei3"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -29,11 +29,11 @@
   },
   {
    "label": "ADB fastboot tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "ADB fastboot driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "SuperiorOS ROM",
-   "url": "https://tmearn.net/link/wkg5hnT"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,15 +30,15 @@
   },
   {
    "label": "Vendor",
-   "url": "https://tmearn.net/link/Xy679l"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "ADB fastboot tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "ADB fastboot driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   },
   {
    "label": "Device tree",

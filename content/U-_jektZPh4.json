@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "ELITE HyperOS ROM",
-   "url": "https://tm-earn.com/3kSU4JVl"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,15 +30,15 @@
   },
   {
    "label": "Platform tools & driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "Termux flash file",
-   "url": "https://tmearn.net/link/lQ5Lhx2G"
+   "url": "https://github.com/termux/termux-app/releases"
   },
   {
    "label": "ADB & Fastboot tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   }
  ],
  "faq": [

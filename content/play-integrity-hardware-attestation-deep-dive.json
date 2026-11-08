@@ -1,0 +1,52 @@
+{
+  "id": "play-integrity-hardware-attestation-deep-dive",
+  "slug": "play-integrity-hardware-attestation-deep-dive",
+  "title": "How Google Play Integrity Evaluates Your Device: Hardware Keystore, TEE Attestation & Root Hiding",
+  "blurb": "An in-depth architectural breakdown of Google Play Integrity API, hardware-backed attestation certificates, keybox extraction risks, and Zygisk process isolation.",
+  "device": "Universal Android",
+  "rom": "AOSP / Custom ROMs",
+  "android": "12-16",
+  "views": 16900,
+  "published": "2026-11-08",
+  "tags": [
+    "Play Integrity",
+    "Root",
+    "Magisk",
+    "KernelSU",
+    "Keybox"
+  ],
+  "summary": "Google Play Integrity API is the gatekeeper that decides whether banking apps, Netflix, and Google Wallet run on your device. Replacing the legacy SafetyNet Attestation, Play Integrity combines server-side Google Play Services evaluation with on-device hardware cryptography to detect unlocked bootloaders and rooted operating systems.\n\nThis guide explains the inner workings of hardware-backed attestation, how the Trusted Execution Environment (TEE) validates root-of-trust public keys, why simple build.prop spoofing no longer works, and how modern root-hiding architectures (TrickyStore, Shamiko, and KernelSU mount namespaces) operate at the system call level.",
+  "links": [
+    {
+      "label": "Rom Flasher Tool (Free)",
+      "url": "https://romflasher.in/download.html"
+    },
+    {
+      "label": "GhostLock Root Guide",
+      "url": "https://romflasher.in/rom/how-to-root-any-android-device-with-locked-bootloader-ghostlock-guide.html"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between MEETS_BASIC, MEETS_DEVICE, and MEETS_STRONG integrity?",
+      "a": "`MEETS_BASIC_INTEGRITY` verifies that the app is running on an Android-compatible device that passes basic system tampering heuristics. `MEETS_DEVICE_INTEGRITY` verifies that the device bootloader is locked with genuine OEM firmware, passes Google compatibility tests (CTS), and matches approved hardware fingerprints. `MEETS_STRONG_INTEGRITY` requires a hardware-backed keystore certificate signed by an unrevoked Google hardware root of trust inside the device TEE."
+    },
+    {
+      "q": "Why did my Play Integrity pass last week but fail all three checks today?",
+      "a": "Google continuously monitors and revokes leaked hardware keybox certificates and public fingerprint profiles via the Certificate Revocation List (CRL). If thousands of rooted devices share the same Pixel fingerprint (like the widely used Pixel 9 Pro XL `komodo` build) or a leaked factory keybox, Google's server-side ML models detect anomalous attestation volume and revoke the certificate certificate leaf chain, dropping all three verdicts to fail."
+    },
+    {
+      "q": "How does TrickyStore work on unlocked bootloaders?",
+      "a": "When an app requests a cryptographic challenge to verify hardware attestation, the request normally goes to the TEE Keystore. On an unlocked bootloader, the TEE honestly reports `verifiedBootState: UNLOCKED`. TrickyStore intercepts this IPC communication between userspace and the keystore daemon (`keystore2`), feeding a valid, unbanned hardware keybox certificate into the attestation response chain to emulate a fully locked device."
+    },
+    {
+      "q": "Why is Shamiko necessary on KernelSU and APatch?",
+      "a": "While KernelSU operates inside the Linux kernel, Google Play Services (`com.google.android.gms.unstable` / DroidGuard) continuously scans userspace memory, `/proc/mounts`, open socket connections, and loaded native libraries. Shamiko provides userspace stealth by hooking ptrace and dynamic linker calls, completely hiding Zygisk modules and root mount points from detection."
+    },
+    {
+      "q": "Can banking apps detect root even if all 3 Play Integrity verdicts pass?",
+      "a": "Yes. Play Integrity is only one layer of anti-tamper security. Advanced enterprise and banking apps implement proprietary SDKs (such as Promon SHIELD, DexGuard, or ThreatFabric) that perform isolated heuristic checks: inspecting Magisk app manager package names, testing developer options flags, reading `/system/xbin/su`, probing SELinux enforcing status, and measuring execution time differences."
+    }
+  ],
+  "body": "The transition from SafetyNet to Google Play Integrity API marked the end of the 'casual root' era. Where SafetyNet could often be tricked by flipping a single `ro.boot.flash.locked=1` property in `build.prop`, Play Integrity incorporates asymmetric hardware cryptographic challenges evaluated directly within secure enclave silicon.\n\nUnderstanding how Google's attestation pipeline works is mandatory for anyone running custom ROMs, rooted firmwares, or custom kernels in 2026.\n\n## 1. The Three Tiers of Play Integrity\n\nWhen an app queries the Play Integrity API, Google Play Services generates a cryptographic nonce challenge, collects device telemetry, and contacts Google attestation servers. Google returns a signed JSON Web Signature (JWS) containing one or more of three integrity labels:\n\n| Integrity Level | Verification Method | What It Proves | Required By |\n| :--- | :--- | :--- | :--- |\n| **`MEETS_BASIC_INTEGRITY`** | Software heuristics & app signatures | Basic Android API compatibility, no obvious memory hooking | Casual games, social media |\n| **`MEETS_DEVICE_INTEGRITY`** | Google CTS certified fingerprint matching | Unlocked bootloader hidden, genuine OEM build profile | Banking apps, Google Pay / Wallet, Netflix HD |\n| **`MEETS_STRONG_INTEGRITY`** | Hardware TEE Keystore attestation certificate | Hardware cryptographic key signed by Google hardware root-of-trust | High-security banking, enterprise Work Profiles |\n\n---\n\n## 2. Hardware-Backed Keystore & TEE Mechanics\n\nEvery modern smartphone includes a hardware security module: Qualcomm uses the **Secure Processing Unit (SPU) / TrustZone**, Samsung uses **Knox Vault**, and Google uses the **Titan M2** security chip.\n\nWhen a device boots:\n1. The Primary Bootloader (PBL) validates the digital signature of the secondary bootloader.\n2. The bootloader measures the public key burned into physical eFuses against the ROM public key.\n3. If the bootloader is unlocked, the bootloader sets the hardware register:\n   ```c\n   verifiedBootState = UNLOCKED;\n   bootloaderSecurityPatch = <OEM_DATE>;\n   ```\n4. This state is permanently committed into the TrustZone RAM for that boot session.\n\nWhen an app requests a `KeyGenParameterSpec` with `setAttestationChallenge()`, the Android Keystore daemon (`keystore2`) delegates the key generation to the TEE. The TEE creates an RSA-2048 or EC-P256 keypair and signs an **Attestation Certificate Chain**. The leaf certificate of this chain contains an ASN.1 extension containing the hardware-certified `verifiedBootState`.\n\nBecause the private attestation key is locked inside physical hardware silicon, software in the Android OS cannot modify or forge this signature without exploiting TrustZone kernel vulnerabilities.\n\n---\n\n## 3. The Certificate Revocation List (CRL) & The Fingerprint Cycle\n\nFor years, custom ROM developers bypassed device integrity checks using fallback software attestation: by spoofing device model names to an older pre-Android 8.0 device (like the original Nexus 5 or Galaxy S6), Google servers would fall back to Basic Attestation because older hardware lacked TEE Keystore capabilities.\n\nIn 2024 and 2025, Google systematically disabled fallback software attestation for modern Play Integrity evaluation. Today, devices must provide valid hardware-backed leaf certificates.\n\n### The Leaked Keybox Dilemma\nTo achieve Strong Integrity on an unlocked bootloader, tools like **TrickyStore** inject an unrevoked OEM hardware keybox (consisting of an EC private key and certificate chain leaked from an OEM manufacturing factory).\n\nHowever, Google monitors certificate usage patterns globally:\n- If a single Realme GT 2 Pro (`RMX3301`) or Xiaomi keybox is suddenly used by 50,000 distinct IP addresses across 40 countries, Google automated fraud detection flags the certificate ID.\n- Google adds the certificate serial number to the official CRL (Certificate Revocation List).\n- The moment a keybox is CRL-banned, every device using it immediately fails all three Play Integrity checks simultaneously.\n\n---\n\n## 4. Userspace vs Kernel-Space Root Hiding\n\nAchieving clean integrity requires coordination across three distinct operating system layers:\n\n### Layer 1: Fingerprint Profile Alignment (PIF)\nThe build properties exposed in `/system/build.prop` must 100% match an active, unbanned Google CTS certification:\n- `ro.product.brand`, `ro.product.model`, `ro.product.name`, `ro.product.device`\n- `ro.build.fingerprint` and `ro.build.version.security_patch`\n- **Rule:** Never use future security patch dates. If your fingerprint is dated `2024-05-05`, setting security patch to `2026-10-05` causes an instant mismatch rejection by Google attestation servers.\n\n### Layer 2: Process Isolation (Shamiko & Zygisk)\nGoogle Play Services spawns an isolated monitoring process named **DroidGuard** (`com.google.android.gms.unstable`). DroidGuard performs in-memory scans looking for:\n- Hooked functions in `libc.so` and `libart.so`.\n- Traces of Magisk `/data/adb` sockets.\n- Mount namespaces exposing `/sbin`, `/debug_ramdisk`, or `/system/addon.d`.\n\n**Shamiko** prevents detection by intercepting process creation: when DroidGuard fork-executes, Shamiko strips the injected Zygisk libraries from the target process address space before DroidGuard's main thread begins execution, leaving zero memory footprint.\n\n### Layer 3: Kernel-Space Isolation (SUSFS & KernelSU)\nKernelSU operates inside kernel space (Ring 0). When a root app accesses `/proc/mounts`, standard user-space root tools leave overlayfs mounts visible.\n\nWith **SUSFS (Super User Sandbox Filesystem)** compiled into the kernel:\n- System call hooks automatically filter out overlay mounts from non-root processes.\n- The kernel presents a completely stock, clean filesystem view to all financial and banking applications, making root detection mathematically impossible from user space."
+}

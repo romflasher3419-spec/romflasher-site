@@ -16,3 +16,4 @@ data/preview-*.json
 .vscode/
 Thumbs.db
 Desktop.ini
+.DS_Store

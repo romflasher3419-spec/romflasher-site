@@ -18,7 +18,7 @@
  "links": [
   {
    "label": "Project Infinity X 3.3 ROM",
-   "url": "https://tmearn.net/link/sm77XgEC"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -26,15 +26,15 @@
   },
   {
    "label": "Vendor",
-   "url": "https://tmearn.net/link/mGv5Zhx"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "ADB & Fastboot Tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "ADB & Fastboot Driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

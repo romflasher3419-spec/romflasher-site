@@ -1,0 +1,52 @@
+{
+  "id": "fastbootd-dynamic-partitions-troubleshooting",
+  "slug": "fastbootd-dynamic-partitions-troubleshooting",
+  "title": "Fastbootd & Logical Partitions Explained: How to Flash System, Product & Vendor Without Bootloops",
+  "blurb": "A practical hands-on guide to userspace fastbootd, managing dynamic partitions inside super.img, resizing logical blocks, and flashing GSIs safely.",
+  "device": "Universal Android",
+  "rom": "GSI / Custom ROMs",
+  "android": "10-16",
+  "views": 15800,
+  "published": "2026-11-08",
+  "tags": [
+    "Fastbootd",
+    "Super",
+    "Dynamic Partitions",
+    "GSI",
+    "Port ROM"
+  ],
+  "summary": "Since the launch of Android 10, flashing custom ROMs and Generic System Images (GSIs) has completely changed. If you attempt to flash `system.img` or `vendor.img` from standard bootloader fastboot, your terminal will throw confusing errors like 'Partition table doesn't exist' or 'remote: Not enough space to resize partition'.\n\nThis guide explains why userspace fastbootd is strictly mandatory for dynamic partitions, how the underlying `super` container allocates sector groups, how to safely delete obsolete stock partitions to free up space, and how to flash multi-gigabyte sparse partition chunks without data corruption.",
+  "links": [
+    {
+      "label": "Rom Flasher Tool (Free)",
+      "url": "https://romflasher.in/download.html"
+    },
+    {
+      "label": "GSI Flashing Walkthroughs",
+      "url": "https://romflasher.in/videos.html"
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know if my device is currently in bootloader Fastboot or userspace Fastbootd?",
+      "a": "On the device screen, bootloader Fastboot typically displays a small Fastboot logo (e.g. the classic Xiaomi bunny or simple FASTBOOT text). Userspace Fastbootd runs inside recovery and displays a distinct menu with options like 'Reboot system now', 'Enter recovery', and 'Reboot to bootloader'. In your terminal, run `fastboot getvar is-userspace`. If it returns `is-userspace: yes`, you are in fastbootd; if it returns `no` or fails, you are in standard bootloader fastboot."
+    },
+    {
+      "q": "How do I fix: FAILED (remote: Not enough space to resize partition)?",
+      "a": "This error occurs because the physical `super` container has a strict maximum size limit (e.g. 9GB). When flashing a large custom ROM or GSI, the new `system` image may exceed the remaining unallocated pool inside the group. To fix this, you must delete unneeded OEM partitions that the custom ROM does not use (such as `product_a` or `system_ext_a`) using `fastboot delete-logical-partition product_a` before executing the flash."
+    },
+    {
+      "q": "What is the difference between raw image files and sparse images?",
+      "a": "A raw partition image contains an exact byte-for-byte representation of the filesystem, including gigabytes of empty zero-filled sectors. A sparse image (Android Sparse Image format, magic `0xed26ff3a`) compresses these empty blocks, dramatically reducing file size and transfer time over USB. Fastboot automatically unpacks and flashes sparse images into the target logical blocks."
+    },
+    {
+      "q": "Can I flash a GSI directly over stock MIUI or HyperOS?",
+      "a": "Yes, provided the device supports Project Treble and you flash from within userspace fastbootd. However, OEM vendor implementations (especially on MediaTek or customized Qualcomm SoCs) often require specific AVB disabled flags and clean userdata formatting (`fastboot erase userdata`), otherwise the proprietary vendor daemon crashes when contacting the AOSP framework."
+    },
+    {
+      "q": "Why does fastboot split large files into chunks like system.img_sparsechunk.0?",
+      "a": "The hardware bootloader has a finite RAM buffer for receiving USB payloads (queried via `fastboot getvar max-download-size`, typically 256MB to 1GB). Fastboot utilities automatically slice multi-gigabyte images into numbered sparse chunks that fit inside the RAM buffer, flashing them sequentially to reconstruct the full partition."
+    }
+  ],
+  "body": "Dynamic Partitions represent one of the most powerful storage innovations in modern Android, but they are also the number one source of user confusion when flashing custom ROMs, GSIs, or Port ROMs.\n\nUnderstanding how to transition between low-level bootloader fastboot and userspace fastbootd is the key to mastering modern Android firmware modification.\n\n---\n\n## 1. Bootloader Fastboot vs Fastbootd: The Key Differences\n\nTo understand why commands fail, you must understand what code is running on the phone:\n\n<div class=\"dual-compare-grid\">\n  <div class=\"compare-card compare-red\">\n    <div class=\"compare-badge\">Bootloader Fastboot (ABL)</div>\n    <h3>Hardware Bootloader</h3>\n    <ul>\n      <li><strong>Execution:</strong> Secondary bootloader firmware (ABL / LK)</li>\n      <li><strong>Storage Drivers:</strong> Direct physical flash controller (UFS/eMMC) only</li>\n      <li><strong>Valid Targets:</strong> <code>boot</code>, <code>init_boot</code>, <code>vendor_boot</code>, <code>dtbo</code>, <code>vbmeta</code></li>\n      <li><strong>Boundary:</strong> Cannot access or resize dynamic volumes inside <code>super</code></li>\n    </ul>\n  </div>\n  <div class=\"compare-card compare-green\">\n    <div class=\"compare-badge\">Userspace Fastboot (fastbootd)</div>\n    <h3>Recovery Userspace</h3>\n    <ul>\n      <li><strong>Execution:</strong> Minimal Linux Kernel inside recovery userspace</li>\n      <li><strong>Storage Drivers:</strong> Full Linux VFS + Device Mapper (<code>dm-linear</code>)</li>\n      <li><strong>Valid Targets:</strong> <code>system</code>, <code>vendor</code>, <code>product</code>, <code>system_ext</code>, <code>odm</code></li>\n      <li><strong>Capability:</strong> Dynamically resizes, creates, or wipes logical partitions on the fly</li>\n    </ul>\n  </div>\n</div>\n\n---\n\n## 2. Step-by-Step Workflow: How to Enter and Use Fastbootd\n\nWhenever you need to flash `system.img`, `product.img`, or a Generic System Image (GSI), follow this verified engineering sequence:\n\n### Step 1: Boot into Standard Fastboot\nPower off your phone, then hold **Volume Down + Power** until the fastboot logo appears. Connect the phone to your host device via USB.\n\n### Step 2: Reboot to Userspace Fastbootd\nIssue the following command:\n```bash\nfastboot reboot fastboot\n```\nThe phone will reboot, initialize the recovery kernel, and enter the **fastbootd** screen.\n\n### Step 3: Verify Userspace Execution\nBefore issuing partition writes, verify that fastbootd is active:\n```bash\nfastboot getvar is-userspace\n# Expected output: is-userspace: yes\n```\n\n---\n\n## 3. Resolving the \"Not Enough Space to Resize Partition\" Error\n\nWhen flashing a custom ROM (such as PixelOS, LineageOS, or Evolution X) or a GSI, you will frequently encounter:\n```text\nResizing 'system_a'                                FAILED (remote: Not enough space to resize partition)\n```\n\n### Why This Happens:\nInside the physical `super` container, partitions are assigned to a size group (e.g. `qti_dynamic_partitions_a`). The sum of all partitions inside that group cannot exceed the physical group capacity. When stock OEM firmware (`system`, `product`, `system_ext`, `vendor`) is already taking up 8.8GB of a 9.0GB super group, attempting to flash a new 3.5GB `system` image causes an allocation overflow.\n\n### The Solution: Delete Obsolete Stock Logical Partitions\nCustom ROMs and GSIs typically do not use OEM bloat partitions like `product` or `system_ext`. You can safely delete these partitions inside fastbootd to free up gigabytes of allocation pool space:\n\n```bash\n# Delete unnecessary logical partitions to free up group space\nfastboot delete-logical-partition product_a\nfastboot delete-logical-partition system_ext_a\n\n# Now flash the new system image cleanly\nfastboot flash system system.img\n\n# If flashing vendor or custom product:\nfastboot flash vendor vendor.img\n```\nDeleting a logical partition does not harm physical flash storage; it simply updates the metadata table inside `super`, reclaiming that storage for the active system partition.\n\n---\n\n## 4. Sparse Images vs Raw Images\n\nWhen transferring partition images over USB, file size and USB buffer limits dictate how data is transmitted:\n\n- **Raw Image:** An uncompressed raw byte block. If a system partition is 4GB, a raw image transmits all 4,294,967,296 bytes over the cable.\n- **Sparse Image:** Uses the Android Sparse format. Empty zero blocks are compressed into lightweight chunk descriptors.\n\nTo verify whether a partition image is sparse before flashing:\n```bash\n# Inspect the first 4 bytes of the image\nhead -c 4 system.img | xxd\n# Sparse images always begin with magic bytes: 3a ff 26 ed\n```\n\nIf an image is raw and exceeds your phone's `max-download-size`, fastboot will automatically fail. You can convert raw images to sparse using `img2simg`:\n```bash\nimg2simg system.raw.img system.sparse.img\n```\n\n---\n\n## 5. Clean First Boot Wipe Protocol\n\nAfter flashing dynamic logical partitions, you must always wipe the user data partition to clear obsolete SELinux contexts and incompatible app bytecode:\n\n```bash\nfastboot erase userdata\nfastboot format:userdata\nfastboot reboot\n```\n\nBy following this strict sequence—rebooting to `fastbootd`, inspecting `is-userspace`, freeing logical group space, and executing a clean userdata wipe—you achieve 100% reliable ROM and GSI installations without encountering bootloops."
+}

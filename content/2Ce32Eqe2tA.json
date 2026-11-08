@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "PixelOS for Xiaomi Pad 5 (Main link)",
-   "url": "https://xpshort.com/TT7b4Er"
+   "url": "https://pixelos.net/"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,31 +30,31 @@
   },
   {
    "label": "PixelOS (Alternative mirror)",
-   "url": "https://tmearn.net/link/bomtqV"
+   "url": "https://pixelos.net/"
   },
   {
    "label": "ADB / Fastboot driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   },
   {
    "label": "Platform Tools",
-   "url": "https://xpshort.com/q3zAO"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "TWRP for K50i",
-   "url": "https://xpshort.com/v9Rht"
+   "url": "https://twrp.me/"
   },
   {
    "label": "TWRP for Mi 11X",
-   "url": "https://xpshort.com/vntmY"
+   "url": "https://twrp.me/"
   },
   {
    "label": "vbmeta for AOSP ROM",
-   "url": "https://xpshort.com/y4JdIBS6"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "OrangeFox for Mi 11T Pro",
-   "url": "https://xpshort.com/111U"
+   "url": "https://orangefox.download/"
   }
  ],
  "faq": [

@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "DerpFest GApps build",
-   "url": "https://xpshort.com/AmLiJM"
+   "url": "https://derpfest.org/"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,27 +30,27 @@
   },
   {
    "label": "DerpFest vanilla build",
-   "url": "https://xpshort.com/2zELa"
+   "url": "https://derpfest.org/"
   },
   {
    "label": "TWRP for Redmi K50i (flash it on V13.0.6)",
-   "url": "https://xpshort.com/v9Rht"
+   "url": "https://twrp.me/"
   },
   {
    "label": "TWRP for Mi 11X",
-   "url": "https://xpshort.com/vntmY"
+   "url": "https://twrp.me/"
   },
   {
    "label": "OrangeFox for Mi 11T Pro",
-   "url": "https://xpshort.com/111U"
+   "url": "https://orangefox.download/"
   },
   {
    "label": "vbmeta for AOSP ROMs",
-   "url": "https://xpshort.com/y4JdIBS6"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Platform tools",
-   "url": "https://xpshort.com/q3zAO"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   }
  ],
  "faq": [

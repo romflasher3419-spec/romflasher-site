@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "PixelOS 16.1 ROM (rodin)",
-   "url": "https://tmearn.net/link/uWz5pS"
+   "url": "https://pixelos.net/"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,19 +30,19 @@
   },
   {
    "label": "Vendor Boot",
-   "url": "https://tmearn.net/link/Yvwoh8Y"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Termux flash file",
-   "url": "https://tmearn.net/link/lQ5Lhx2G"
+   "url": "https://github.com/termux/termux-app/releases"
   },
   {
    "label": "ADB & Fastboot Tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "ADB & Fastboot Driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

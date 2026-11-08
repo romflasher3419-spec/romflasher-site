@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "Evolution X ROM",
-   "url": "https://tmearn.net/link/y06PA"
+   "url": "https://evolution-x.org/"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,11 +30,11 @@
   },
   {
    "label": "Vendor",
-   "url": "https://tmearn.net/link/sIAaj"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "ADB Fastboot driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

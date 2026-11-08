@@ -22,7 +22,7 @@
  "links": [
   {
    "label": "Evolution X 11.5.3 — Vanilla Build",
-   "url": "https://tmearn.net/link/OQKzZ2Xu"
+   "url": "https://evolution-x.org/"
   },
   {
    "label": "Rom Flasher tool (free)",
@@ -30,11 +30,11 @@
   },
   {
    "label": "Evolution X 11.5.3 — GApps Build",
-   "url": "https://tmearn.net/link/RN5RUYPd"
+   "url": "https://evolution-x.org/"
   },
   {
    "label": "Vendor Boot",
-   "url": "https://tmearn.net/link/88Woc"
+   "url": "https://romflasher.in/downloader.html"
   },
   {
    "label": "Flash Guide",
@@ -46,15 +46,15 @@
   },
   {
    "label": "Termux flash file",
-   "url": "https://tmearn.net/link/lQ5Lhx2G"
+   "url": "https://github.com/termux/termux-app/releases"
   },
   {
    "label": "ADB & Fastboot Tool",
-   "url": "https://tmearn.net/link/8kQcy"
+   "url": "https://developer.android.com/tools/releases/platform-tools"
   },
   {
    "label": "ADB & Fastboot Driver",
-   "url": "https://tmearn.net/link/PSM2"
+   "url": "https://developer.android.com/studio/run/win-usb"
   }
  ],
  "faq": [

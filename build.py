@@ -237,14 +237,21 @@ def clean_device(value):
 
 
 def keywords_for(item=None, extra=()):
-    """A sane, de-duplicated keyword list for a page."""
+    """A concise, relevant keyword list for a page (no spam stuffing)."""
     parts = []
     if item:
-        parts += [clean_device(item.get("device")), item.get("rom"),
-                  item.get("android")]
-        parts += list(item.get("tags") or [])
-    parts += list(extra)
-    parts += list(SEO_CORE)
+        dev = clean_device(item.get("device"))
+        if dev:
+            parts.append(dev)
+        if item.get("rom"):
+            parts.append(item.get("rom"))
+        if item.get("android"):
+            parts.append("Android " + str(item.get("android")))
+        for t in (item.get("tags") or [])[:2]:
+            parts.append(t)
+    parts += list(extra)[:2]
+    if not parts:
+        parts = ["Android Flashing", "Custom ROM", "Rom Flasher"]
 
     seen, out = set(), []
     for value in parts:
@@ -254,7 +261,7 @@ def keywords_for(item=None, extra=()):
             continue
         seen.add(key)
         out.append(value)
-    return ", ".join(out[:30])
+    return ", ".join(out[:6])
 
 BUILT_ON = datetime.now().strftime("%Y-%m-%d")
 
@@ -482,7 +489,7 @@ def analytics_head(up=""):
     """
     if not (GA4_ID or ADS_PUBLISHER):
         return ""
-    return """<script>
+    base_js = """<script>
 (function(){
   var GA=%(ga)s, ADS=%(ads)s, KEY='rf-consent';
   var state={analytics:false,ads:false}, gaLoaded=false, adsLoaded=false;
@@ -631,6 +638,14 @@ def analytics_head(up=""):
 })();
 </script>""" % {"ga": json.dumps(GA4_ID), "ads": json.dumps(ADS_PUBLISHER),
               "priv": html.escape(up + "privacy.html", quote=True)}
+
+    ads_script = ""
+    if ADS_PUBLISHER:
+        ads_script = (
+            '\n<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-%s" '
+            'crossorigin="anonymous"></script>' % html.escape(ADS_PUBLISHER)
+        )
+    return base_js + ads_script
 
 
 def verify_head():
@@ -889,8 +904,8 @@ def inline(text):
 
 
 def _render_md_table(lines):
-    if not lines:
-        return ""
+    if not lines or len(lines) < 2:
+        return "\n".join("<p>%s</p>" % inline(l) for l in lines)
     rows = []
     for line in lines:
         cells = [c.strip() for c in line.strip()[1:-1].split("|")]
@@ -899,19 +914,18 @@ def _render_md_table(lines):
         return "\n".join("<p>%s</p>" % inline(l) for l in lines)
     headers = rows[0]
     sep_row = rows[1]
-    is_sep = all(re.match(r"^:?-+:?$", c) for c in sep_row)
-    data_rows = rows[2:] if is_sep else rows[1:]
+    is_sep = len(sep_row) >= len(headers) and all(re.match(r"^:?-+:?$", c) for c in sep_row if c)
+    if not is_sep:
+        return "\n".join("<p>%s</p>" % inline(l) for l in lines)
+    data_rows = rows[2:]
     alignments = []
-    if is_sep:
-        for c in sep_row:
-            if c.startswith(":") and c.endswith(":"):
-                alignments.append("center")
-            elif c.endswith(":"):
-                alignments.append("right")
-            else:
-                alignments.append("left")
-    else:
-        alignments = ["left"] * len(headers)
+    for c in sep_row:
+        if c.startswith(":") and c.endswith(":"):
+            alignments.append("center")
+        elif c.endswith(":"):
+            alignments.append("right")
+        else:
+            alignments.append("left")
     html_out = ['<div class="tablewrap"><table class="pro-table"><thead><tr>']
     for i, h in enumerate(headers):
         align = alignments[i] if i < len(alignments) else "left"
@@ -928,8 +942,10 @@ def _render_md_table(lines):
 
 
 def md(text):
-    """Block markdown: ## headings, - / 1. lists, > quotes, tables, hr, paragraphs."""
-    out, ul, ol, table_lines, mode = [], [], [], [], None
+    """Block markdown: fenced code blocks, ## headings, - / 1. lists, > quotes, tables, hr, raw html, paragraphs."""
+    out, ul, ol, table_lines, code_lines = [], [], [], [], []
+    mode = None
+    code_lang = ""
 
     def flush():
         nonlocal mode
@@ -946,9 +962,46 @@ def md(text):
 
     for raw in (text or "").splitlines():
         line = raw.rstrip()
+
+        # Fenced code blocks (handles indented fences too)
+        stripped = line.strip()
+        is_fence = stripped.startswith("```") or stripped.startswith("'''")
+        if is_fence:
+            if mode != "code":
+                flush()
+                mode = "code"
+                code_lang = stripped.strip("`' ").lower() or "shell"
+                code_lines.clear()
+            else:
+                lang_display = html.escape(code_lang)
+                code_content = html.escape("\n".join(code_lines))
+                out.append(
+                    '<div class="code-block" data-lang="%s">'
+                    '<div class="code-block-header">'
+                    '<span class="code-block-lang">%s</span>'
+                    '<button type="button" class="code-copy-btn" onclick="navigator.clipboard.writeText(this.closest(\'.code-block\').querySelector(\'code\').innerText);this.innerText=\'Copied!\';setTimeout(()=>this.innerText=\'Copy\',2000)">Copy</button>'
+                    '</div>'
+                    '<pre><code class="language-%s">%s</code></pre>'
+                    '</div>' % (lang_display, lang_display, lang_display, code_content)
+                )
+                code_lines.clear()
+                mode = None
+            continue
+
+        if mode == "code":
+            code_lines.append(raw)
+            continue
+
+        # Raw HTML blocks passthrough
+        if re.match(r"^\s*</?[a-zA-Z][a-zA-Z0-9_-]*(\s|/?>)", raw):
+            flush()
+            out.append(raw)
+            continue
+
         if not line.strip():
             flush()
             continue
+
         if line.strip() in ("---", "***", "___"):
             flush()
             out.append("<hr class='divider'>")
@@ -978,6 +1031,16 @@ def md(text):
         else:
             flush()
             out.append("<p>%s</p>" % inline(line))
+
+    if mode == "code" and code_lines:
+        lang_display = html.escape(code_lang)
+        code_content = html.escape("\n".join(code_lines))
+        out.append(
+            '<div class="code-block" data-lang="%s">'
+            '<div class="code-block-header"><span class="code-block-lang">%s</span></div>'
+            '<pre><code class="language-%s">%s</code></pre>'
+            '</div>' % (lang_display, lang_display, lang_display, code_content)
+        )
     flush()
     return "\n".join(out)
 
@@ -1096,78 +1159,9 @@ def display_title(title, limit=60):
 
 # ------------------------------------------------------------------ layout
 
-# The pointer glow: two blurred orbs rendered on every page. The markup is the
-# light itself, the script only moves it, and both are skipped on touch devices
-# (see the media query in style.css).
-CURSOR_LIGHT = ('<div class="cursorlight" id="cursorlight" aria-hidden="true">'
-                '<i class="orb"></i><i class="core"></i></div>')
+CURSOR_LIGHT = ""
 
-CURSOR_LIGHT_JS = """<script>
-(function(){
-  var layer = document.getElementById('cursorlight');
-  if(!layer) return;
-  try{
-    if(window.matchMedia('(hover:none)').matches ||
-       window.matchMedia('(pointer:coarse)').matches) return;
-  }catch(e){}
-  var orb = layer.getElementsByClassName('orb')[0];
-  var core = layer.getElementsByClassName('core')[0];
-  if(!orb || !core) return;
-
-  var tx = -9999, ty = -9999;                 // where the pointer is right now
-  var ox = tx, oy = ty;                       // the wide, slow light
-  var cx = tx, cy = ty;                       // the bright one that keeps up
-  var raf = 0, still = 0;
-
-  function place(node, x, y){
-    node.style.transform = 'translate3d(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px,0)';
-  }
-
-  function frame(){
-    ox += (tx - ox) * 0.07;  oy += (ty - oy) * 0.07;
-    cx += (tx - cx) * 0.30;  cy += (ty - cy) * 0.30;
-    place(orb, ox, oy);
-    place(core, cx, cy);
-    var caught = Math.abs(tx - ox) < 0.4 && Math.abs(ty - oy) < 0.4 &&
-                 Math.abs(tx - cx) < 0.4 && Math.abs(ty - cy) < 0.4;
-    still = caught ? still + 1 : 0;
-    if(still > 24){ raf = 0; return; }        // it has caught up; stop drawing
-    raf = requestAnimationFrame(frame);
-  }
-  function start(){ if(!raf) raf = requestAnimationFrame(frame); }
-
-  window.addEventListener('pointermove', function(e){
-    tx = e.clientX; ty = e.clientY;
-    if(!layer.className.match(/\\bon\\b/)){
-      layer.className += ' on';
-      ox = cx = tx; oy = cy = ty;             // arrive, do not fly in from a corner
-      place(orb, ox, oy); place(core, cx, cy);
-    }
-    var card = e.target && e.target.closest ? e.target.closest('.bento-card, .card, .hero-hardware-stream') : null;
-    if(card){
-      var r = card.getBoundingClientRect();
-      card.style.setProperty('--spot-x', (e.clientX - r.left).toFixed(1) + 'px');
-      card.style.setProperty('--spot-y', (e.clientY - r.top).toFixed(1) + 'px');
-    }
-    start();
-  }, {passive:true});
-
-  function hide(){ layer.className = layer.className.replace(/\\s*\\bon\\b/, ''); }
-  document.addEventListener('mouseleave', hide);
-  window.addEventListener('blur', hide);
-})();
-/* Passive reading progress bar */
-(function(){
-  var bar = document.getElementById('scroll-progress');
-  if(!bar) return;
-  function onScroll(){
-    var d = document.documentElement;
-    var h = d.scrollHeight - d.clientHeight;
-    bar.style.width = (h > 0 ? ((d.scrollTop || document.body.scrollTop) / h * 100).toFixed(2) : 0) + '%';
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-})();
-</script>"""
+CURSOR_LIGHT_JS = ""
 
 
 # The menu button on a phone. The five pills live in the header on a desktop and
@@ -1265,13 +1259,15 @@ def clip(text, limit=158):
 
 
 def page(title, description, body, path="", extra_head="", keywords="",
-         og_type="website", image=None):
+         og_type="website", image=None, robots=None):
     """Assemble a full page. `path` is where it will live inside dist/."""
     up = "../" * path.count("/")
     canon = "%s/%s" % (SITE_URL, path) if path else SITE_URL + "/"
     desc = html.escape(clip(description or title))
     title_esc = html.escape(title)
     img = image or (SITE_URL + "/static/app-icon-512.png")
+    robots_meta = ('<meta name="robots" content="%s">' % robots) if robots else \
+                  '<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">'
 
     head = "\n".join([
         "<!doctype html>",
@@ -1282,8 +1278,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
         "<title>%s</title>" % title_esc,
         '<meta name="description" content="%s">' % desc,
         '<meta name="keywords" content="%s">' % html.escape(keywords or keywords_for()),
-        '<meta name="robots" content="index,follow,max-image-preview:large,'
-        'max-snippet:-1,max-video-preview:-1">',
+        robots_meta,
         '<meta name="author" content="%s">' % AUTHOR_NAME,
         '<meta name="theme-color" content="#05070c">',
         '<meta name="rating" content="general">',
@@ -1326,25 +1321,18 @@ def page(title, description, body, path="", extra_head="", keywords="",
         "</head>",
         "<body>",
         '<a class="skip-link" href="#main">Skip to content</a>',
-        CURSOR_LIGHT,
-        '<div id="scroll-progress" aria-hidden="true"></div>',
         ('<header class="top"><div class="wrap">\n'
          '  <a class="brand brand-anim-wrap" href="%sindex.html" aria-label="Rom Flasher - All-In-One Android Tool">' % up)
         + ('<img src="%sstatic/brand-anim.svg" alt="Rom Flasher" width="310" height="64" class="brand-svg-logo"></a>' % up),
         "  <nav id=\"mainnav\">",
-        # Guides wears the same pill as the four on its right, so the row reads
-        # as one set of buttons. The logo on the left already goes home, so there
-        # is no separate Home link, and the boxed Download button covers the tool.
         '    <a class="navbtn guides" href="%svideos.html">%sGuides</a>'
         % (up, GUIDES_LOGO),
         '    <a class="navbtn hot" href="%sdownloader.html" '
         'aria-label="Stock ROM Download: stock ROMs, Magisk and KernelSU">%sStock ROM Download</a>'
         % (up, DL_LOGO),
-        '    <div class="pixel-socials">',
-        '      <a class="pixel-round yt-round" href="%s" target="_blank" rel="noopener" aria-label="YouTube" title="Rom Flasher on YouTube">%s</a>' % (CHANNEL_URL, YT_LOGO),
-        '      <a class="pixel-round gh-round" href="%s" target="_blank" rel="noopener" aria-label="GitHub" title="Rom Flasher tool on GitHub">%s</a>' % (REPO_URL, GH_LOGO),
-        '      <a class="pixel-round coffee-round" href="%sdonate.html" aria-label="Buy me a coffee" title="Buy me a coffee">%s</a>' % (up, COFFEE_LOGO),
-        '    </div>',
+        '    <a class="navbtn gh" href="%s" target="_blank" rel="noopener" aria-label="GitHub">%sGitHub</a>' % (REPO_URL, GH_LOGO),
+        '    <a class="navbtn yt" href="%s" target="_blank" rel="noopener" aria-label="YouTube">%sYouTube</a>' % (CHANNEL_URL, YT_LOGO),
+        '    <a class="navbtn donate" href="%sdonate.html" aria-label="Support Us">%sSupport</a>' % (up, COFFEE_LOGO),
         "  </nav>",
         # The menu button only shows on a phone, where the five pills used to
         # stack under the logo and eat a fifth of the screen. Three lines, the
@@ -1391,7 +1379,7 @@ def page(title, description, body, path="", extra_head="", keywords="",
 """ % (SITE, TAGLINE, browse, up, up, up, up, up, up, up, up, CHANNEL_URL, up)
 
     # the pointer light is moved by a script, so it belongs at the end of body
-    foot = foot.replace("</body>", CURSOR_LIGHT_JS + "\n" + NAV_JS + "\n" + VIDEO_JS + "\n</body>")
+    foot = foot.replace("</body>", NAV_JS + "\n" + VIDEO_JS + "\n</body>")
     return head + '<main id="main">\n' + body + '\n</main>\n' + foot
 
 
@@ -1499,6 +1487,47 @@ def build_home(items, path="index.html"):
     </div>
   </div>
 </div></section>
+
+<section class="pillar-section" id="architecture-manuals"><div class="wrap full">
+  <div class="pillar-header">
+    <div class="pillar-kicker"><span class="kicker-badge">&#9881; Core Engineering Reference</span></div>
+    <h2 class="pillar-title">Android Architecture &amp; Firmware Reference Manuals</h2>
+    <p class="pillar-desc">Comprehensive technical documentation on Android storage topologies, root internals, hardware keystore attestation, and emergency unbricking protocols.</p>
+  </div>
+  <div class="pillar-grid">
+    <a class="pillar-card" href="rom/android-partition-architecture-bible.html">
+      <div class="pc-badge">Partition Topology</div>
+      <h3 class="pc-title">The Android Partition Architecture Bible</h3>
+      <p class="pc-summary">Exhaustive guide to A/B slotted partitions, Android 13 GKI init_boot separation, dynamic super containers, and fastbootd userspace boundaries.</p>
+      <span class="pc-cta">Read Architecture Manual &rarr;</span>
+    </a>
+    <a class="pillar-card" href="rom/play-integrity-hardware-attestation-deep-dive.html">
+      <div class="pc-badge">Security &amp; Keystore</div>
+      <h3 class="pc-title">Play Integrity &amp; Hardware TEE Attestation</h3>
+      <p class="pc-summary">How Google evaluates device integrity: TrustZone public keys, keybox CRL revocations, and kernel-space root isolation.</p>
+      <span class="pc-cta">Read Security Manual &rarr;</span>
+    </a>
+    <a class="pillar-card" href="rom/magisk-vs-kernelsu-vs-apatch-vs-sukisu.html">
+      <div class="pc-badge">Root Frameworks</div>
+      <h3 class="pc-title">Magisk vs KernelSU vs APatch vs SukiSU Ultra</h3>
+      <p class="pc-summary">Ramdisk user-space patching vs GKI syscall hooks vs KernelPatch binary injection: complete technical comparison matrix.</p>
+      <span class="pc-cta">Read Comparison Manual &rarr;</span>
+    </a>
+    <a class="pillar-card" href="rom/android-anti-bootloop-unbrick-manual.html">
+      <div class="pc-badge">Emergency Recovery</div>
+      <h3 class="pc-title">The Definitive Android Unbrick Manual</h3>
+      <p class="pc-summary">Systematic diagnostic flowchart: Qualcomm EDL 9008 Sahara handshakes, MediaTek BROM, AVB 2.0 Red State recovery, and FBE wipes.</p>
+      <span class="pc-cta">Read Recovery Manual &rarr;</span>
+    </a>
+    <a class="pillar-card" href="rom/fastbootd-dynamic-partitions-troubleshooting.html">
+      <div class="pc-badge">Logical Partitions</div>
+      <h3 class="pc-title">Fastbootd &amp; Dynamic Partitions Explained</h3>
+      <p class="pc-summary">How to flash logical partitions, delete stock bloat blocks inside super to resolve resize errors, and install GSIs safely.</p>
+      <span class="pc-cta">Read Fastbootd Manual &rarr;</span>
+    </a>
+  </div>
+</div></section>
+
 <div class="wrap full">
 <div class="%s">
 <div class="homecol">
@@ -2064,7 +2093,8 @@ live. %(devices)s</p>
                 body, path, extra_head=head, og_type="website",
                 image=newest_thumb(rows) or (SITE_URL + "/static/app.png"),
                 keywords=keywords_for(extra=(name, "%s guides" % name,
-                                             "%s flashing" % name)))
+                                             "%s flashing" % name)),
+                robots="noindex,follow")
 
 
 def build_hub_index(kind, hubs, total, items):
@@ -2133,7 +2163,8 @@ def build_hub_index(kind, hubs, total, items):
     return page("%s \u2014 %s" % (head_line[0], SITE), index_desc, body,
                 cfg["index"], extra_head=head,
                 keywords=keywords_for(extra=(head_line[0],
-                                             cfg["label"].lower())))
+                                             cfg["label"].lower())),
+                robots="noindex,follow")
 
 
 def ad_slot(place, up=""):
@@ -2272,7 +2303,7 @@ def build_article(item, items):
                html.escape(vid), html.escape(item["title"]), watch))
 
     toc_panel = toc_html(toc) if toc else ""
-    if left or toc_panel:
+    if left and toc_panel:
         right = ('<div class="sidepanel">'
                  '<div class="cta"><div class="ctatext">'
                  '<strong>No PC in the room?</strong>'
@@ -2284,6 +2315,20 @@ def build_article(item, items):
                  % (up, DL_LOGO, toc_panel))
         out.append('<div class="mediarow">%s%s</div>'
                    % ("".join(left), right))
+    elif left:
+        right = ('<div class="sidepanel">'
+                 '<div class="cta"><div class="ctatext">'
+                 '<strong>No PC in the room?</strong>'
+                 '<span>The free Rom Flasher tool runs the whole flash from the '
+                 'phone in your hand &mdash; USB-OTG cable, no laptop, no command '
+                 'line.</span></div>'
+                 '<a class="btn dark" href="%sdownload.html">%sDownload the free '
+                 'Rom Flasher tool</a></div></div>'
+                 % (up, DL_LOGO))
+        out.append('<div class="mediarow">%s%s</div>'
+                   % ("".join(left), right))
+    elif toc_panel:
+        out.append('<div class="standalone-toc-card">%s</div>' % toc_panel)
 
     shots = item.get("screenshots") or []
     if shots:
@@ -2299,8 +2344,17 @@ def build_article(item, items):
         out.append('<div class="screenshots-section"><h3>ROM Screenshots</h3>'
                    '<div class="%s">%s</div></div>' % (grid_cls, shot_items))
 
+    is_architecture = (
+        item.get("category") == "architecture"
+        or "architecture" in item.get("slug", "")
+        or "bible" in item.get("slug", "")
+        or "unbrick-manual" in item.get("slug", "")
+        or "attestation" in item.get("slug", "")
+        or "vs-kernelsu" in item.get("slug", "")
+        or "troubleshooting" in item.get("slug", "")
+    )
     if body:
-        if len(steps) >= 3:
+        if len(steps) >= 3 and not is_architecture:
             out.append('<div class="arttools">'
                        '<button class="copybtn steps" type="button" '
                        'data-label="Copy the %d steps" data-steps="%s">Copy the '
@@ -3945,30 +3999,45 @@ policy or to request removal of content. Valid removal requests are honoured.</p
                                                   "url": SITE_URL},
                                      "dateModified": BUILT_ON})
 
-    out["terms.html"] = simple("terms.html", "Terms of Use", "Terms \u2014 %s" % SITE, """
-<p>By reading and following anything on this site you accept the points below.</p>
-<h2>Risk is yours</h2>
-<p>Unlocking a bootloader, flashing a ROM, changing a recovery or writing to a
-partition can wipe data, trip security features, void a warranty or leave a
-device unbootable. You carry that risk, and you should not start without a
-backup and a way to recover.</p>
-<h2>Accuracy</h2>
-<p>Guides are written from real attempts on the hardware named in them. Devices,
-firmware and file layouts change without notice, and regional variants differ.
-Check each step against your own unit before running it.</p>
-<h2>Files and third parties</h2>
-<p>Download links point to third-party hosts. This site does not own, review or
-warrant those files. Verify checksums wherever they are published.</p>
-<h2>No affiliation</h2>
-<p>This site is not affiliated with Xiaomi, POCO, Redmi, Google, or with any ROM,
-recovery or kernel project. All trademarks belong to their owners and their
-licences still apply.</p>
-<h2>Advertising</h2>
-<p>Ads may appear on these pages. An ad is not an endorsement.</p>
-""",
-                        description="The ground rules for using Rom Flasher: "
-                        "flashing is at your own risk, guides come from real "
-                        "attempts, and download links point to third-party hosts.",
+    terms_html_content = """
+<p>Please read these Terms of Use (&ldquo;Terms&rdquo;, &ldquo;Agreement&rdquo;) carefully before accessing or using the technical guides, documentation, firmware links, and software tools published on <strong>Rom Flasher</strong> (<a href="{site}">{site}</a>). By visiting, reading, or executing any flashing procedures from this website, you agree to be legally bound by these Terms.</p>
+
+<h2>1. Educational Purpose &amp; Engineering Research Scope</h2>
+<p>Rom Flasher is an independent technical publication dedicated to Android operating system internals, low-level partition architecture, fastboot flashing protocols, and custom ROM engineering. All tutorials, terminal command sequences, recovery workflows, and firmware installation guides are published strictly for educational, research, and non-commercial technical evaluation purposes.</p>
+
+<h2>2. Hardware Flashing Risks &amp; Voluntary Assumption of Risk</h2>
+<p>Modifying Android system firmware, partitions, and bootloaders carries inherent risks of permanent device failure (&ldquo;hard bricking&rdquo;). By utilizing any guide on this site, you acknowledge and agree that:</p>
+<ul>
+  <li><strong>Data Erasure:</strong> Bootloader unlocking, custom recovery installations (TWRP, OrangeFox), dynamic partition restructuring, and clean custom ROM flashes will irreversibly wipe all user data stored in the <code>userdata</code> and <code>metadata</code> partitions. You are solely responsible for creating and verifying complete off-device backups before beginning any flashing procedure.</li>
+  <li><strong>Security State &amp; Hardware Flags:</strong> Unlocking bootloaders and modifying cryptographic boot images (such as <code>boot</code>, <code>init_boot</code>, <code>vendor_boot</code>, or <code>vbmeta</code>) permanently disables Android Verified Boot (AVB 2.0) verification, trips one-way hardware fuses (including Qualcomm TEE tamper bits and Samsung Knox counters), and may permanently prevent banking applications, DRM Widevine L1 video playback, and Google Play Integrity Strong Attestation from passing.</li>
+  <li><strong>Warranty Voidance:</strong> Flashing custom firmware or unlocking bootloaders may void manufacturer and carrier warranties. Rom Flasher assumes zero liability for denied warranty or service claims.</li>
+  <li><strong>Sole User Responsibility:</strong> You execute all terminal commands, fastboot scripts, recovery flashes, and kernel modifications entirely at your own discretion and risk. Neither Rom Flasher nor its author, Rohit Verma, shall be held liable for bricked hardware, bootloops, baseband NVRAM/EFS corruption, lost IMEI numbers, or unusable equipment.</li>
+</ul>
+
+<h2>3. Technical Accuracy &amp; Hardware Variance</h2>
+<p>Every flashing procedure documented on Rom Flasher is physically executed on real test devices within our hardware testing lab (including Xiaomi Pad 5, POCO X7 Pro, Redmi Note 10 Pro, and POCO F1 test units). However, smartphone manufacturers regularly revise partition tables, Anti-Rollback (ARB) indexes, primary bootloader binaries (XBL/ABL), and hardware components across different regional variants (Global, European EEA, Indian, and Chinese models) and software updates without notice. You are strictly responsible for confirming that all partition images and fastboot commands match your device&rsquo;s exact hardware codename and regional revision before flashing.</p>
+
+<h2>4. Third-Party Links &amp; Firmware Binaries</h2>
+<p>Rom Flasher references official Google Android developer tools, community custom recoveries, and stock firmware archives hosted on verified third-party infrastructure (such as official GitHub repositories, the Android Open Source Project, and OEM mirrors). Rom Flasher does not control, operate, or guarantee third-party hosts. We strongly advise all readers to verify cryptographic SHA-256 checksums on all downloaded archives prior to writing them to physical device storage.</p>
+
+<h2>5. Intellectual Property &amp; Fair Use</h2>
+<p>The original written tutorials, diagnostic flowcharts, architecture diagrams, and custom software code (including the Rom Flasher Tool) published on this site are the copyrighted intellectual property of Rohit Verma and Rom Flasher. Android, Google, Qualcomm, MediaTek, Xiaomi, POCO, Redmi, HyperOS, MIUI, ColorOS, LineageOS, and associated marks are trademarks of their respective owners. Brand references on this site exist solely for hardware identification and technical accuracy under nominative fair use.</p>
+
+<h2>6. DMCA &amp; Content Takedown Policy</h2>
+<p>Rom Flasher strictly respects intellectual property rights. If you believe that any material on this website infringes upon your copyright, please send a written notification to <a href="mailto:{email}">{email}</a> specifying the copyrighted work, the exact URL of the material, and your contact information. Valid takedown notices are processed promptly within 24 to 48 hours.</p>
+
+<h2>7. Advertising &amp; Analytics Disclosures</h2>
+<p>To fund our independent testing hardware, hosting infrastructure, and the ongoing development of the free Rom Flasher Tool, this website may display advertisements served by Google AdSense and collect non-identifiable usage metrics via Google Analytics under Google Consent Mode v2. Third-party advertising vendors use cookies to serve relevant ads based on prior visits. Advertisements displayed on this site do not constitute an editorial endorsement by Rom Flasher. For complete details on cookie consent and tracking preferences, please consult our <a href="privacy.html">Privacy Policy</a>.</p>
+
+<h2>8. Limitation of Liability</h2>
+<p>To the maximum extent permitted by applicable law, Rom Flasher and Rohit Verma disclaim all warranties, express or implied, and shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your access to or use of this website, its documentation, or any linked third-party resources.</p>
+
+<h2>9. Changes to Terms</h2>
+<p>We reserve the right to modify these Terms at any time. Continued use of this website following any revisions signifies your acceptance of the updated terms.</p>
+""".format(site=SITE_URL, email=CONTACT_EMAIL)
+
+    out["terms.html"] = simple("terms.html", "Terms of Use & Legal Disclaimer", "Terms \u2014 %s" % SITE, terms_html_content,
+                        description="Terms of Use and Hardware Risk Disclaimer for Rom Flasher: educational scope, liability limitation, and technical safety boundaries.",
                         schema={
                             "@context": "https://schema.org",
                             "@type": "WebPage",
@@ -3979,23 +4048,62 @@ licences still apply.</p>
                                          "url": SITE_URL},
                             "dateModified": BUILT_ON})
 
-    out["contact.html"] = simple("contact.html", "Contact", "Contact \u2014 %s" % SITE, """
-<h2>Talk to me</h2>
-<p>The quickest way to reach a real person is the box below. It lands straight in
-my inbox and I answer every message.</p>
-%s
-<h2>Or on GitHub</h2>
-<p>Found a bug with a log to match? Open an issue on the
-<a href="%s/issues" rel="noopener">GitHub repository</a>, so anyone hit by the
-same thing can find the fix.</p>
-<h2>Guide requests</h2>
-<p>Name the exact model and variant. "Redmi Note 13 Pro 5G, 8/256 global" gets
-picked up long before "do my phone".</p>
-""" % (feedback_form(), REPO_URL),
-                        description="Reach the person behind Rom Flasher. Send a "
-                        "guide request, report a bug or ask a flashing question "
-                        "and expect a real answer. Exact model and variant gets "
-                        "picked up fastest.",
+    contact_html_content = """
+<div class="contact-info-card">
+  <h2>Direct Publisher &amp; Editorial Contact</h2>
+  <p>Rom Flasher is an independent Android engineering publication authored and operated by <strong>Rohit Verma</strong>. Every technical manual, fastboot procedure, and unbrick protocol published here is maintained and verified directly by me.</p>
+  
+  <div class="contact-details-list">
+    <div class="cd-item">
+      <span class="cd-icon">&#9993;</span>
+      <div>
+        <strong>Primary Editorial Email:</strong><br>
+        <a href="mailto:{email}">{email}</a>
+      </div>
+    </div>
+    <div class="cd-item">
+      <span class="cd-icon">&#128337;</span>
+      <div>
+        <strong>Response Turnaround:</strong><br>
+        <span>Within 24 to 48 hours (Monday &ndash; Saturday, IST)</span>
+      </div>
+    </div>
+    <div class="cd-item">
+      <span class="cd-icon">&#128205;</span>
+      <div>
+        <strong>Testing Lab Location:</strong><br>
+        <span>India (Asia/Kolkata timezone)</span>
+      </div>
+    </div>
+    <div class="cd-item">
+      <span class="cd-icon">&#128279;</span>
+      <div>
+        <strong>Official Channels:</strong><br>
+        <a href="{yt}" target="_blank" rel="noopener">YouTube (@Rom_Flasher)</a> &middot; 
+        <a href="{gh}" target="_blank" rel="noopener">GitHub (@romflasher3419-spec)</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Send a Message</h2>
+<p>Have an editorial inquiry, hardware verification question, or technical correction? Fill out the form below. Messages are delivered directly to my personal inbox with spam protection.</p>
+{form}
+
+<h2>Emergency Bootloop &amp; Unbrick Inquiries</h2>
+<p>If you are reporting a bricked device or seeking diagnostic help, please include:</p>
+<ul>
+  <li><strong>Device Codename:</strong> e.g., POCO X7 Pro (<code>rodin</code>), Xiaomi Pad 5 (<code>nabu</code>), Redmi Note 10 Pro (<code>sweet</code>).</li>
+  <li><strong>Target Firmware:</strong> Stock ROM version, AOSP build, or custom recovery release.</li>
+  <li><strong>Failure State:</strong> Bootloader fastboot accessible, fastbootd userspace, recovery bootloop, or emergency download mode (EDL / BROM).</li>
+</ul>
+
+<h2>Bug Reports &amp; Code Issues</h2>
+<p>Found an issue in the free Rom Flasher Tool or fastboot scripts? Please open an issue with terminal log output on our <a href="{repo}/issues" target="_blank" rel="noopener">GitHub Issue Tracker</a> so the broader community can benefit from the fix.</p>
+""".format(email=CONTACT_EMAIL, yt=CHANNEL_URL, gh=REPO_URL, repo=REPO_URL, form=feedback_form())
+
+    out["contact.html"] = simple("contact.html", "Contact Rohit Verma & Rom Flasher Lab", "Contact \u2014 %s" % SITE, contact_html_content,
+                        description="Contact Rohit Verma, lead developer and publisher of Rom Flasher. Submit technical inquiries, guide requests, or lab verifications.",
                         schema={
                             "@context": "https://schema.org",
                             "@type": "ContactPage",
@@ -4048,6 +4156,14 @@ def build_feed(items):
 
 
 # ------------------------------------------------------------------- build
+EXCLUDED_NON_GUIDES = {
+    "n-Wim8ZW0XI",  # Rap battle clip (non-technical)
+    "6vY3AxT3-oU",  # Chase the cheque short
+    "QRdXybKscvk",  # Quick reply viewer talk (no flashing)
+    "NtMGfxg4j9o",  # Coding status short
+}
+
+
 def load_content():
     items, problems = [], []
     for path in sorted(glob.glob(os.path.join(CONTENT, "*.json"))):
@@ -4057,6 +4173,8 @@ def load_content():
                 data = json.load(fh)
         except Exception as exc:                                   # noqa: BLE001
             problems.append("%s: bad json (%s)" % (name, exc))
+            continue
+        if data.get("id") in EXCLUDED_NON_GUIDES:
             continue
         for field in ("id", "title", "slug"):
             if not data.get(field):
@@ -4200,19 +4318,14 @@ def main():
                       default=BUILT_ON)
     static_urls = [("", "1.0", "daily", newest_date),
                    ("videos.html", "0.9", "daily", newest_date),
-                   ("brands.html", "0.6", "weekly", newest_date),
-                   ("roms.html", "0.6", "weekly", newest_date),
-                   ("topics.html", "0.6", "weekly", newest_date),
-                   ("years.html", "0.5", "monthly", newest_date),
-                   ("tags.html", "0.5", "weekly", newest_date),
                    ("download.html", "0.95", "weekly", BUILT_ON),
                    ("downloader.html", "0.9", "weekly", BUILT_ON),
-                   ("donate.html", "0.4", "monthly", BUILT_ON),
                    ("apps.html", "0.8", "weekly", newest_date),
-                   ("about.html", "0.5", "monthly", BUILT_ON),
-                   ("contact.html", "0.4", "monthly", BUILT_ON),
-                   ("privacy.html", "0.3", "yearly", BUILT_ON),
-                   ("terms.html", "0.3", "yearly", BUILT_ON)]
+                   ("about.html", "0.8", "monthly", BUILT_ON),
+                   ("contact.html", "0.6", "monthly", BUILT_ON),
+                   ("privacy.html", "0.4", "yearly", BUILT_ON),
+                   ("terms.html", "0.4", "yearly", BUILT_ON),
+                   ("donate.html", "0.4", "monthly", BUILT_ON)]
     entries = ['<url><loc>%s/%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq>'
                '<priority>%s</priority></url>' % (SITE_URL, u, lm, cf, pr)
                for u, pr, cf, lm in static_urls]
@@ -4225,17 +4338,6 @@ def main():
                 % (SITE_URL, hub["slug"],
                    max(x.get("published") or BUILT_ON for x in hub["rows"]))
                 for hub in hubs.values()]
-    for kind, kind_hubs in group_hubs.items():
-        cfg = HUB_KINDS[kind]
-        # The four hub index pages (brands/roms/years/topics) already appear in
-        # static_urls above, so they are deliberately skipped here. Emitting them
-        # twice puts the same <loc> in the sitemap twice, which Search Console
-        # reports as a duplicate and which dilutes the lastmod signal.
-        entries += ['<url><loc>%s/%s/%s.html</loc><lastmod>%s</lastmod>'
-                    '<changefreq>weekly</changefreq><priority>0.6</priority></url>'
-                    % (SITE_URL, cfg["dir"], hub["slug"],
-                       max(x.get("published") or BUILT_ON for x in hub["rows"]))
-                    for hub in kind_hubs.values()]
     write("sitemap.xml",
           '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
