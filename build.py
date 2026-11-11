@@ -104,11 +104,11 @@ APK_URL = REPO_URL + "/releases/latest/download/app-release.apk"
 RELEASES_URL = REPO_URL + "/releases"
 
 APP = {
-    "version": "v1.4.1",
-    "released": "23 Oct 2026",
-    "size": "8.3 MB",
-    "bytes": "8670970",
-    "sha256": "CCC1759E0E147A6256012B1C4583D656B1CE43933B02B527ED07D7C40B5F24B0",
+    "version": "v1.5.0",
+    "released": "11 Nov 2026",
+    "size": "18.4 MB",
+    "bytes": "19258136",
+    "sha256": "118087AC14F84DD55679C59205E4F3D4DCAE96685D93D3C08EA6595D87397219",
     "android": "Android 8.0 or newer",
 }
 
@@ -2944,13 +2944,12 @@ the three I actually keep in the drawer.</p>
 {gear}
 
 <h2>Fresh in {ver}</h2>
-<p>Version 1.4.1 brings full hands-free zero-touch flashing and UI improvements:</p>
+<p>Version 1.5.0 refines the interface with clean English-only copy and Liquid Glass polish:</p>
 <ul>
-  <li><b>100% Zero-Touch Auto Reboot:</b> Bypasses the "Install additional packages?" prompt in recovery, rebooting straight into your new ROM.</li>
-  <li><b>1-Click AOSP Auto Flasher:</b> Full auto flashing pipeline for AOSP ROMs directly inside Option 2.</li>
-  <li><b>Targeted Boot Partition Extraction:</b> Instantly extracts only <code>boot</code>, <code>vendor_boot</code>, and <code>init_boot</code> from <code>payload.bin</code> and flashes both A &amp; B slots.</li>
-  <li><b>Clean Fastboot Wipe:</b> Automatically formats userdata and metadata before recovery.</li>
-  <li><b>Update Dialog Scrollbar:</b> In-app update changelog box now features smooth vertical scrolling with a visible scrollbar.</li>
+  <li><b>English-Only Experience:</b> Removed Hinglish strings and the language switcher popup across the app for cleaner, uniform clarity.</li>
+  <li><b>Liquid Glass Update Gate:</b> Upgraded the in-app update popup with frosted Liquid Glass cards, pills, and clean changelog scrolling.</li>
+  <li><b>Unified Section Spacing:</b> Aligned the Root tab top header-to-card spacing cleanly to match the Tools section.</li>
+  <li><b>Core Engine Stability:</b> Verified VBMeta Disabler, GSI Flasher, and zero-touch recovery sideload engines on release builds.</li>
 </ul>
 
 <h2>Questions people ask</h2>
